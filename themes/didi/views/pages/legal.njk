@@ -1,0 +1,45 @@
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+{% set homePrefix = '/' + locale %}
+{% set isId = locale == 'id' %}
+
+<!-- Breadcrumbs Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ site.baseUrl or 'https://didi.bike' }}{{ homePrefix }}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ page.title }}",
+      "item": "{{ site.baseUrl or 'https://didi.bike' }}{{ homePrefix }}{{ page.canonical }}"
+    }
+  ]
+}
+</script>
+
+<div class="legal">
+  <div class="legal-container">
+    <a href="{{ homePrefix }}/" class="legal-back-link">
+      {{ '← Kembali ke Beranda' if isId else '← Back to Home' }}
+    </a>
+    
+    <div class="legal-content">
+      <h1>{{ page.title }}</h1>
+      
+      <!-- Safe HTML Content -->
+      <div class="legal-html-wrapper">
+        {{ content | safe }}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

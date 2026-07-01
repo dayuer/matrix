@@ -1,0 +1,24 @@
+{
+  "id": "persona_2",
+  "name": "Siti Rahma",
+  "gender": "Female",
+  "age": 22,
+  "country": "Indonesia",
+  "ethnicity": "Javanese",
+  "sexualOrientation": "Bisexual",
+  "industry": "Urban Commuter / Student",
+  "knowledgeLevel": "Novice Commuter",
+  "interests": [
+    "Daily urban commuting",
+    "Eco-friendly initiatives",
+    "Social media sharing"
+  ],
+  "biases": [
+    "Gets bored by pure math",
+    "Values practical, easy-to-understand lifehacks"
+  ],
+  "expectations": [
+    "Needs clear advice on wet weather safety",
+    "Wants practical bike maintenance tips"
+  ]
+}

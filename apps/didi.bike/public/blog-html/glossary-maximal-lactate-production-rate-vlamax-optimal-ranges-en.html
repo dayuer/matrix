@@ -1,0 +1,105 @@
+<h1>Telemetry Pipelines: Optimal Ranges and Serial Processing for Maximal Lactate Production Rate VLaMax</h1>
+<p>From an embedded systems perspective, tracking the optimal ranges of maximal lactate production rate vlamax requires a high-performance data acquisition system. VLaMax defines the maximum glycolytic rate of an athlete, determining their sprint capacity and threshold maintenance. To evaluate this rate in the field, our telemetry platform must process blood lactate analysis packets and spirometry data streams. If the data pipeline suffers from high interrupt latency or data serialization errors, the resulting metabolic calculations will be corrupted.</p>
+<p>To stream these biometric metrics, our spirometer and power meter sensors communicate with the microcontroller via an I2C bus operating at 400 kHz. The gas sensor triggers an hardware interrupt whenever a new breath is completed. This signal calls an Interrupt Service Routine (ISR) to read the sensor registers immediately, preventing buffer overflows in the UART buffer.</p>
+<h2>Data Pipeline Architecture</h2>
+<pre><code>[Biometric Sensors] ---&gt; (I2C Register) ---&gt; [Microcontroller ISR]
+                                                     |
+                                                     v
+[DMA Transfer] &lt;--- [Thread Safety Mutex] &lt;--- [Circular UART Buffer]
+      |
+      v
+[Data Serialization] ---&gt; (BLE / ANT+) ---&gt; [Cycle Computer]
+</code></pre>
+<p>To maintain system stability, the ISR does not perform complex mathematical modeling. Instead, it reads raw bytes from the I2C register and appends them to a circular UART buffer. A separate thread running at a lower priority processes this buffer, executing calibrations and applying data smoothing filters. This multi-threaded system requires strict thread safety to prevent race conditions during buffer access.</p>
+<p>We calculate the binary transmission efficiency ($\eta$) of the serialized telemetry packets using a modified Shannon entropy calculation:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>η</mi><mo>=</mo><mfrac><mrow><mi>H</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><mi>L</mi></mfrac><mo>=</mo><mfrac><mrow><mo>−</mo><mo>∑</mo><mi>P</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mn>2</mn></msub><mi>P</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><mi>L</mi></mfrac></mrow><annotation encoding="application/x-tex">\eta = \frac{H(X)}{L} = \frac{- \sum P(x_i) \log_2 P(x_i)}{L}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">η</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.113em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">L</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.113em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">L</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><p>Where $H(X)$ is the Shannon entropy of the data payload, $x_i$ represents the individual byte frequencies, and $L$ represents the total packet length in bytes.</p>
+<h2>Spirometry Packet Register Specification</h2>
+<p>The following table defines the binary structure of our real-time telemetry frame:</p>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Offset (Bytes)</th>
+<th>Size (Bytes)</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Sync Header</td>
+<td>0</td>
+<td>2</td>
+<td><code>uint16_t</code></td>
+<td>Preamble sync bytes (<code>0xAA55</code>)</td>
+</tr>
+<tr>
+<td>Airflow Rate</td>
+<td>2</td>
+<td>2</td>
+<td><code>uint16_t</code></td>
+<td>Gas velocity in mL/s</td>
+</tr>
+<tr>
+<td>$O_2$ Fraction</td>
+<td>4</td>
+<td>2</td>
+<td><code>uint16_t</code></td>
+<td>Oxygen concentration percentage</td>
+</tr>
+<tr>
+<td>$CO_2$ Fraction</td>
+<td>6</td>
+<td>2</td>
+<td><code>uint16_t</code></td>
+<td>Carbon dioxide percentage</td>
+</tr>
+<tr>
+<td>Checksum</td>
+<td>8</td>
+<td>2</td>
+<td><code>uint16_t</code></td>
+<td>CRC-16-CCITT checksum value</td>
+</tr>
+</tbody></table>
+<p>Below is the C code block used in the processing thread to parse incoming packets from the UART buffer in a thread-safe manner:</p>
+<pre><code class="language-c">#define DATA_SIZE 8
+#define SPIRO_MUTEX_TIMEOUT 10
+
+int Process_Spirometry_Queue(uint8_t *raw_data) {
+    uint16_t calculated_crc;
+    uint16_t packet_crc;
+    
+    // Maintain thread safety when reading shared memory
+    if (xSemaphoreTake(xSpiroMutex, pdMS_TO_TICKS(SPIRO_MUTEX_TIMEOUT)) == pdTRUE) {
+        // Verify sync preamble
+        if (raw_data[0] == 0xAA &amp;&amp; raw_data[1] == 0x55) {
+            packet_crc = (raw_data[8] &lt;&lt; 8) | raw_data[9];
+            calculated_crc = crc16_ccitt(raw_data, DATA_SIZE);
+            
+            // Execute checksum verification
+            if (packet_crc == calculated_crc) {
+                evaluate_metabolic_metrics(raw_data);
+                xSemaphoreGive(xSpiroMutex);
+                return 1; // Validation pass
+            }
+        }
+        xSemaphoreGive(xSpiroMutex);
+    }
+    return 0; // Validation fail
+}
+</code></pre>
+<p>Once serialized and verified, the breath metrics are matched with mechanical power data to calculate the Respiratory Exchange Ratio (RER) in real time:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>R</mi><mi>E</mi><mi>R</mi><mo>=</mo><mfrac><mrow><mi>V</mi><mi>C</mi><msub><mi>O</mi><mn>2</mn></msub></mrow><mrow><mi>V</mi><msub><mi>O</mi><mn>2</mn></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">RER = \frac{VCO_2}{VO_2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.1963em;vertical-align:-0.836em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.2222em;">V</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.2222em;">V</span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.836em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><p>Where:</p>
+<ul>
+<li>$\text{TSS}$ and $\text{NP}$ reflect the exponential weighting of training stress, scaling with the 4th power of mechanical power output to match physiological load.</li>
+<li>$RER$ represents the Respiratory Exchange Ratio, indicating substrate oxidation ratios (carbohydrate vs. fat combustion).</li>
+<li>$W&#39;_{t}$ represents the instantaneous anaerobic work capacity remaining, measured in Joules (J), which drains non-linearly above FTP and reconstitutes exponentially during recovery.</li>
+</ul>
+<p>By maintaining low interrupt latency and ensuring thread safety, the telemetry system delivers clean, high-frequency cardiorespiratory data. This allows coaches to track whether VLaMax sits within the optimal range for the athlete&#39;s target event. Grand tour riders require a low VLaMax range ($0.3$ to $0.4\text{ mmol/L/s}$) to promote fat oxidation and glycogen sparing, while sprinters require a higher range ($0.7$ to $0.9\text{ mmol/L/s}$). Our data serialization protocols ensure that these values are tracked accurately on every training ride.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.tandfonline.com/toc/rjsp20/current" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Journal of Sports Sciences</a>: Biomechanical analysis and mechanical efficiency in elite cycling.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: High-frequency telemetry and sensor fusion calibrations.</li>
+<li><a href="https://www.uci.org/inside-uci/constitutions-regulations/regulations" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">UCI Cycling Regulations</a>: Part I: General Organisation of Cycling as a Sport (Aero &amp; Frame dimensions limits).</li>
+<li><a href="https://scholar.google.com/scholar?q=High-altitude+hypoxic+adaptation+and+cardiorespiratory+kinetics" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Swiss Federal Institute of Sport Magglingen</a>: High-altitude hypoxic adaptation and cardiorespiratory kinetics.</li>
+</ol>

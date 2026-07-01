@@ -1,0 +1,7 @@
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+  {% for block in page.blocks %}
+    {% include "blocks/" + block.type + ".njk" ignore missing %}
+  {% endfor %}
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "layouts/base.njk" %}
+{% block content %}
+
+  <main class="questions-page">
+
+    <!-- Hero Header -->
+    <section class="questions-header" data-reveal>
+      <p class="section-header__label">常见问答</p>
+      <h1 class="section-header__title">常见问答</h1>
+      <p class="section-header__desc">您关心的代驾服务问题，这里有详细解答。</p>
+    </section>
+
+    <section class="faq" id="faq" data-screen-label="FAQ">
+      <div class="faq__inner">
+        <div class="faq__list">
+          {% for item in faq %}
+          <div class="faq__item">
+            <div class="faq__question">
+              <span class="faq__title">{{ loop.index }}. {{ item.q }}</span>
+              <svg class="faq__arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+            <div class="faq__answer">
+              <p>{{ item.a | safe }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+{% endblock %}

@@ -1,0 +1,170 @@
+<h1>Intervals.icu for Cycling Training</h1>
+<p>Intervals.icu has become the go-to training analysis platform for self-cooked cyclists and data-minded coaches. It combines automatic fitness tracking, smart interval detection, and a clean calendar view—much of it free. This guide walks through setup, core features, and how Intervals.icu fits into a broader <a href="/en/blog/cycling-data-ecosystem-guide">cycling data ecosystem</a>.</p>
+<h2>What Makes Intervals.icu Different</h2>
+<p>Intervals.icu occupies a sweet spot between the simplicity of Strava and the depth of Golden Cheetah. It runs in the browser, requires no installation, and auto-syncs from nearly every popular platform. The interface prioritizes clarity: fitness trends, interval analysis, and weekly volume are visible at a glance.</p>
+<p>Standout qualities:</p>
+<ul>
+<li><strong>Automatic sync</strong> from Garmin, Wahoo, Strava, and more</li>
+<li><strong>Smart interval detection</strong> that highlights hard efforts</li>
+<li><strong>Fitness/freshness chart</strong> with TSB overlay</li>
+<li><strong>Coach sharing</strong> built in</li>
+<li><strong>Free tier</strong> that satisfies most riders</li>
+</ul>
+<h2>Getting Started</h2>
+<h3>Step 1: Create an Account and Connect Sources</h3>
+<p>Sign up at <a href="https://intervals.icu">intervals.icu</a>. On first login, connect your primary data source. The most common choice is Garmin Connect, since most modern head units upload there automatically.</p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Sync Method</th>
+<th>Latency</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Garmin Connect</td>
+<td>OAuth</td>
+<td>Minutes</td>
+</tr>
+<tr>
+<td>Strava</td>
+<td>OAuth</td>
+<td>Minutes</td>
+</tr>
+<tr>
+<td>Wahoo</td>
+<td>OAuth</td>
+<td>Minutes</td>
+</tr>
+<tr>
+<td>TrainingPeaks</td>
+<td>API</td>
+<td>Hourly</td>
+</tr>
+<tr>
+<td>Apple Health</td>
+<td>Manual export</td>
+<td>Manual</td>
+</tr>
+<tr>
+<td>FIT/TCX upload</td>
+<td>File</td>
+<td>Instant</td>
+</tr>
+</tbody></table>
+<p>Once connected, Intervals.icu backfills your historical rides automatically.</p>
+<h3>Step 2: Set Your Power and HR Zones</h3>
+<p>Navigate to <strong>Settings → Zones</strong> and enter your FTP, or use Intervals.icu&#39;s auto-detection, which estimates FTP from your recent maximal efforts. Heart rate zones follow similarly.</p>
+<p>Accurate zones matter—they drive every downstream metric, from TSS to interval classification.</p>
+<h3>Step 3: Configure Your Calendar</h3>
+<p>The calendar is the home screen. By default it shows each ride with TSS, duration, and intensity. You can toggle to a weekly or monthly view for volume planning.</p>
+<h2>Core Features</h2>
+<h3>Fitness and Freshness Tracking</h3>
+<p>Intervals.icu computes the classic fitness triad from your power data:</p>
+<ul>
+<li><strong>Fitness (CTL)</strong> — 42-day weighted average of daily TSS</li>
+<li><strong>Fatigue (ATL)</strong> — 7-day weighted average of daily TSS</li>
+<li><strong>Form (TSB)</strong> — Fitness minus Fatigue</li>
+</ul>
+<p>The chart overlays all three on a timeline. A positive TSB means you are relatively fresh; a negative TSB means you are carrying fatigue. The platform highlights ideal &quot;form&quot; ranges for different goals (training vs. peak performance).</p>
+<h3>Smart Interval Detection</h3>
+<p>This is where Intervals.icu shines. Every ride is scanned for meaningful efforts, and each detected interval is annotated with power, duration, heart rate, and TSS. You can filter intervals by type—sprint, threshold, VO2max—and compare them across rides.</p>
+<p>The detection algorithm groups short bursts into composite efforts, so a set of 5x5-minute threshold repeats shows up as a single structured session rather than five isolated peaks.</p>
+<h3>Ride Analysis View</h3>
+<p>For any individual ride, Intervals.icu shows:</p>
+<ul>
+<li>Power profile with normalized and average power</li>
+<li>Heart rate overlay</li>
+<li>Cadence and gear data (if available)</li>
+<li>Map with gradient-colored segments</li>
+<li>Interval list with per-effort metrics</li>
+</ul>
+<p>A built-in power-duration curve for the ride lets you spot where each effort sits relative to your season best.</p>
+<h3>Training Plan and Planned Workouts</h3>
+<p>Intervals.icu supports structured workout planning. You can:</p>
+<ul>
+<li>Import ERG-format workouts</li>
+<li>Drag planned sessions onto the calendar</li>
+<li>Sync planned workouts to Garmin head units for execution</li>
+<li>Compare planned vs. actual intensity after the ride</li>
+</ul>
+<p>This makes Intervals.icu viable as a lightweight training planning tool, not just an analysis platform.</p>
+<h2>Comparing Intervals.icu to Alternatives</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Intervals.icu</th>
+<th>TrainingPeaks</th>
+<th>Golden Cheetah</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Price</td>
+<td>Free tier + paid</td>
+<td>Subscription only</td>
+<td>Free</td>
+</tr>
+<tr>
+<td>Platform</td>
+<td>Web + mobile web</td>
+<td>Web + mobile app</td>
+<td>Desktop app</td>
+</tr>
+<tr>
+<td>Interval detection</td>
+<td>Automatic</td>
+<td>Manual</td>
+<td>Manual</td>
+</tr>
+<tr>
+<td>Coach sharing</td>
+<td>Built-in</td>
+<td>Built-in</td>
+<td>Manual export</td>
+</tr>
+<tr>
+<td>Offline use</td>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Custom metrics</td>
+<td>Limited (paid)</td>
+<td>Limited</td>
+<td>Full expression engine</td>
+</tr>
+</tbody></table>
+<p>For a deeper desktop-only analysis tool, see our <a href="/en/blog/golden-cheetah-cycling-analysis">Golden Cheetah cycling analysis</a> guide. For structured coaching workflows, <a href="/en/blog/trainingpeaks-data-sync">TrainingPeaks data sync</a> covers that platform.</p>
+<h2>Using Intervals.icu With Sensor Streaming Platforms</h2>
+<p>Intervals.icu ingests standard FIT and TCX files, which means it pairs naturally with platforms that capture high-resolution sensor data. The DIDI.BIKE Developer API, for example, streams raw 6-axis IMU data at 100 Hz via WebSocket and exposes REST endpoints that export sessions as FIT files. At $299, it is a practical way to capture ride data that flows straight into Intervals.icu.</p>
+<p>A typical workflow:</p>
+<ol>
+<li>Record a ride with the DIDI.BIKE sensor streaming active.</li>
+<li>Use the REST API to export the session as FIT.</li>
+<li>Upload the FIT file to Intervals.icu (or sync through Garmin Connect if the head unit forwarded the data).</li>
+</ol>
+<p>For developers, the <a href="/en/blog/cycling-sdk-libraries">cycling SDK libraries</a> article covers Python, JavaScript, and Java options for automating this export pipeline.</p>
+<h2>Tips for Better Analysis</h2>
+<ul>
+<li><strong>Trust the interval detection.</strong> Review flagged efforts each week rather than re-analyzing every ride manually.</li>
+<li><strong>Watch the form trend, not daily values.</strong> TSB swings day to day; the 7-day trend is more actionable.</li>
+<li><strong>Use the compare feature.</strong> Overlay two rides on the same segment to track progress.</li>
+<li><strong>Tag your rides.</strong> Consistent naming (e.g., &quot;Threshold 4x8&quot;) makes filtering and search far more powerful.</li>
+<li><strong>Review your power-duration curve monthly.</strong> It is the clearest single indicator of fitness changes.</li>
+</ul>
+<h2>FAQ</h2>
+<h3>Is Intervals.icu free to use?</h3>
+<p>Intervals.icu offers a generous free tier that covers most individual cyclists, including fitness tracking, interval detection, and basic charts. A paid subscription adds advanced features like multi-sport support, custom metrics, and longer data retention.</p>
+<h3>Does Intervals.icu work with Garmin and Wahoo?</h3>
+<p>Yes. Intervals.icu auto-syncs from Garmin Connect, Wahoo, Strava, TrainingPeaks, and many other platforms. Once connected, rides appear automatically without manual uploads.</p>
+<h3>How does Intervals.icu calculate fitness and freshness?</h3>
+<p>Intervals.icu uses Training Stress Score (TSS) from your power data to compute Chronic Training Load (fitness), Acute Training Load (fatigue), and Training Stress Balance (form). These values update automatically as new rides are synced.</p>
+<h3>Can I share my Intervals.icu data with a coach?</h3>
+<p>Yes. Intervals.icu has built-in coach-athlete sharing. Your coach can view your calendar, analyze rides, and add notes or planned workouts, making it a strong alternative to TrainingPeaks for remote coaching.</p>
+<h2>References</h2>
+<ol>
+<li><em>Wireless Communications and Mobile Computing</em>: ANT+ vs BLE latency profiles in dynamic environments.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: API data retention, FIT file streaming, and developer SDK structures.</li>
+</ol>

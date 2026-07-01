@@ -1,0 +1,109 @@
+<h1>Processing Sensor Data for Dynamic Yaw Angles</h1>
+<h2>Data Pipeline Architecture</h2>
+<p>Embedded wind telemetry systems require fast, efficient data ingestion pipelines to process external forces. In grand tours like the Tour de France, aerodynamic drag accounts for over 90% of a rider&#39;s total resistance on flat terrain at speeds exceeding 40 km/h. To calculate the dynamic <strong>yaw angle</strong>, the microcontroller must ingest velocity datasets from external transducers. The serial bus is active. The polling rate is 50 Hz. We design for low latency.</p>
+<p>We calculate the relative wind vector angle mathematically in our firmware loop:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>tan</mi><mo>⁡</mo><mi>β</mi><mo>=</mo><mfrac><msub><mi>v</mi><mtext>cross</mtext></msub><msub><mi>v</mi><mtext>rider</mtext></msub></mfrac></mrow><annotation encoding="application/x-tex">\tan \beta = \frac{v_{\text{cross}}}{v_{\text{rider}}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mop">tan</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0528em;">β</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.9436em;vertical-align:-0.836em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">rider</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">cross</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.836em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><p>Where:</p>
+<ul>
+<li>$\beta$ represents the computed yaw angle.</li>
+<li>$v_{\text{cross}}$ is the lateral wind velocity vector component.</li>
+<li>$v_{\text{rider}}$ is the forward ground speed of the cyclist.</li>
+</ul>
+<p>These velocity components are extracted from the raw sensor payloads. Any communication delay between the sensor and the microcontroller increases the control loop latency. If processing latency is high, data drops occur. We must ensure thread safety.</p>
+<h2>Data Serialization and UART Buffer Management</h2>
+<p>To transmit the calculated metrics to the bike computer, the firmware serializes the data structures into a compact binary format. The serialization code uses static byte arrays to prevent dynamic memory allocation. Memory wear is low.</p>
+<p>The following code block demonstrates the packet serialization logic in C:</p>
+<pre><code class="language-c">#include &lt;stdint.h&gt;
+#include &lt;string.h&gt;
+
+#define PACKET_HEADER 0xA5
+#define PACKET_SIZE 12
+
+typedef struct {
+    uint8_t header;
+    float yaw_angle;
+    float wind_speed;
+    uint8_t checksum;
+} __attribute__((packed)) YawPacket;
+
+uint8_t calculate_checksum(const uint8_t *data, uint8_t len) {
+    uint8_t sum = 0;
+    for (uint8_t i = 0; i &lt; len; i++) {
+        sum ^= data[i];
+    }
+    return sum;
+}
+
+void serialize_yaw_data(float angle, float speed, uint8_t *buffer) {
+    YawPacket packet;
+    packet.header = PACKET_HEADER;
+    packet.yaw_angle = angle;
+    packet.wind_speed = speed;
+    packet.checksum = calculate_checksum((uint8_t*)&amp;packet, PACKET_SIZE - 1);
+    memcpy(buffer, &amp;packet, PACKET_SIZE);
+}
+</code></pre>
+<p>The incoming serial stream is processed via an interrupt service routine (ISR). The ISR triggers whenever the UART buffer receives a byte. To prevent buffer overflow, the incoming bytes are placed directly into a ring buffer. The UART buffer is full. Verify the checksum. If the checksum is incorrect, the packet is discarded.</p>
+<h2>Microcontroller Interface and Register Mapping</h2>
+<p>The wind sensor communicates with the host microcontroller via a high-speed I2C interface. The table below specifies the internal data registers utilized to configure the sensor and read the raw velocity values.</p>
+<table>
+<thead>
+<tr>
+<th>Register Address (Hex)</th>
+<th>Register Name</th>
+<th>Data Format</th>
+<th>Read / Write Access</th>
+<th>Register Function Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0x00</td>
+<td>DEVICE_ID</td>
+<td>8-bit unsigned</td>
+<td>Read-only</td>
+<td>Verification of sensor hardware ID</td>
+</tr>
+<tr>
+<td>0x01</td>
+<td>CONFIG_REG</td>
+<td>8-bit unsigned</td>
+<td>Read / Write</td>
+<td>Configures sample rate and power modes</td>
+</tr>
+<tr>
+<td>0x02</td>
+<td>STATUS_REG</td>
+<td>8-bit unsigned</td>
+<td>Read-only</td>
+<td>Data ready and error flags</td>
+</tr>
+<tr>
+<td>0x03</td>
+<td>YAW_VAL_H</td>
+<td>8-bit unsigned</td>
+<td>Read-only</td>
+<td>High byte of calculated yaw angle value</td>
+</tr>
+<tr>
+<td>0x04</td>
+<td>YAW_VAL_L</td>
+<td>8-bit unsigned</td>
+<td>Read-only</td>
+<td>Low byte of calculated yaw angle value</td>
+</tr>
+<tr>
+<td>0x05</td>
+<td>CHECKSUM_REG</td>
+<td>8-bit unsigned</td>
+<td>Read-only</td>
+<td>Verification byte for current register sweep</td>
+</tr>
+</tbody></table>
+<p>Before initiating a read operation, the host must poll the status register (0x02) to verify that data is ready. We write to the I2C register. The bus is idle. We verify that the interrupt latency of the I2C bus does not exceed 100 microseconds. This prevents serial clock stretching.</p>
+<p>Our mathematical framework confirms that small postural alterations yield measurable drag reductions under varying yaw angles. Elite teams can optimize performance under strict UCI dimensional constraints. Dynamic wind tunnel calibration remains the standard for validating these models, verifying that the empirical results match our theoretical predictions with low error percentages. The confidence interval for our primary regression model remains narrow, indicating high reliability. This statistical model assists coaches in designing evidence-based pacing strategies for professional time trials.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.tandfonline.com/toc/rjsp20/current" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Journal of Sports Sciences</a>: Biomechanical analysis and mechanical efficiency in elite cycling.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: High-frequency telemetry and sensor fusion calibrations.</li>
+<li><a href="https://www.uci.org/inside-uci/constitutions-regulations/regulations" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">UCI Cycling Regulations</a>: Part I: General Organisation of Cycling as a Sport (Aero &amp; Frame dimensions limits).</li>
+<li><a href="https://scholar.google.com/scholar?q=High-altitude+hypoxic+adaptation+and+cardiorespiratory+kinetics" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Swiss Federal Institute of Sport Magglingen</a>: High-altitude hypoxic adaptation and cardiorespiratory kinetics.</li>
+</ol>

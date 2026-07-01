@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN" translate="no" class="notranslate">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>{{ page.title }}</title>
+  <meta name="description" content="{{ page.description }}">
+  {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}">{% endif %}
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ page.title }}">
+  <meta property="og:description" content="{{ page.description }}">
+  <meta property="og:image" content="{{ page.ogImage }}">
+  <meta property="og:url" content="{{ site.baseUrl }}{{ page.canonical }}">
+  
+  <link rel="canonical" href="{{ site.baseUrl }}{{ page.canonical }}">
+  <link rel="shortcut icon" href="{{ site.brand.favicon }}" type="image/x-icon">
+  {% if themeTokensCss %}<style id="theme-tokens">{{ themeTokensCss | safe }}</style>{% endif %}
+  <link rel="stylesheet" href="{{ basePath }}/theme.css?v={{ assetVersion }}">
+  
+  <!-- Google Fonts Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body{% if page.bodyClass %} class="{{ page.bodyClass }}"{% endif %}>
+
+  <!-- Navigation -->
+  <nav class="nav" id="navbar">
+    <div class="nav__inner">
+      <a href="{{ basePath }}/" class="nav__logo">
+        <span class="nav__logo-accent">ARR</span> Funds
+      </a>
+      <div class="nav__right" id="navLinks">
+        {% for item in site.nav %}
+          <a href="{{ basePath }}{{ item.href }}" class="nav__link {% if page.activeNav == item.key %}active{% endif %}">{{ item.text }}</a>
+        {% endfor %}
+        <a href="{{ site.cta.href }}" class="nav__cta">{{ site.cta.text }}</a>
+      </div>
+      <button class="nav__toggle" id="navToggle" aria-label="切换导航菜单">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- Content Block -->
+  {% block content %}{% endblock %}
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="{{ basePath }}/" class="footer__logo">
+          <span class="footer__logo-accent">ARR</span> Funds
+        </a>
+        <p class="footer__desc">{{ site.brand.desc }}</p>
+        <div class="footer__social">
+          {% for s in site.footer.social %}
+            <a href="{{ s.href }}">{{ s.text }}</a>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="footer__columns">
+        {% for col in site.footer.columns %}
+          <div class="footer__col">
+            <h4 class="footer__col-title">{{ col.title }}</h4>
+            <ul class="footer__col-list">
+              {% for link in col.links %}
+                <li>
+                  <a href="{{ link.href }}" {% if link.external %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.text }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__contact">{{ site.footer.legal.contact }}</p>
+      <p class="footer__copyright">
+        &copy; {{ currentYear }} {{ site.footer.legal.company.text }}. All rights reserved. 
+        {% if site.footer.legal.icp %}
+          · <a href="{{ site.footer.legal.icp.href }}" target="_blank" rel="noopener">{{ site.footer.legal.icp.text }}</a>
+        {% endif %}
+      </p>
+    </div>
+  </footer>
+
+  <script src="{{ basePath }}/app.js?v={{ assetVersion }}"></script>
+</body>
+
+</html>

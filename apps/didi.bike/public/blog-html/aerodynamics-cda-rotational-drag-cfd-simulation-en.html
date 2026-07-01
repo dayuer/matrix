@@ -1,0 +1,90 @@
+<h1>Telemetry Firmware Design for Wheel Rotational Drag</h1>
+<h2>Data Pipeline Architecture and Telemetry</h2>
+<p>In grand tours such as the Tour de France, aerodynamic drag accounts for over $90%$ of a rider&#39;s total resistance on flat terrain at speeds exceeding $40\text{ km/h}$. For a professional rider, optimizing <strong>Rotational Drag</strong> represents a permanent biomechanical advantage. When analyzed via computational modeling or high-frequency telemetry, we can isolate the flow separation points and pressure drag vectors. Under the strict dimensional constraints of the <strong>UCI Article 1.3.013</strong> and <strong>1.3.022</strong> (governing time trial bike dimensions and rider reach/elbow cup dimensions), optimizing the interaction between the rider&#39;s torso and incoming air vectors is key. This is especially true during crosswind sections in flat stages where the yaw angles vary dynamically. To capture these dynamics in real-world environments, we developed a specialized embedded system. The hardware utilizes a multi-sensor array to stream force and speed data directly from the rotating hub.</p>
+<p>The data pipeline requires high-speed acquisition. An onboard micro-controller polls the I2C register of the accelerometer and pressure sensors at one hundred Hertz. These raw sensor readings must be digitized immediately. We implement a localized ring buffer to store incoming packets before serialization. This configuration prevents data loss during high-speed wheel rotations. To model the fluid boundary behavior of <strong>Rotational Drag</strong>, we apply Navier-Stokes formulations simplified for external boundary layers. The governing physical relationship is expressed as:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>R</mi><mi>e</mi><mo>=</mo><mfrac><mrow><mi>ρ</mi><mi>v</mi><mi>L</mi></mrow><mi>μ</mi></mfrac></mrow><annotation encoding="application/x-tex">Re = \frac{\rho v L}{\mu}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.2408em;vertical-align:-0.8804em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">μ</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">ρ</span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="mord mathnormal">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><p>Where:</p>
+<ul>
+<li>$F_d$ is the total drag force vector in Newtons, representing the net force opposing the rider&#39;s forward motion.</li>
+<li>$Re$ represents the Reynolds Number, characterizing the transition from laminar to turbulent flow along the rider&#39;s limbs and skinsuit panels.</li>
+<li>$\rho$ is the local barometric air density, adjusted dynamically for altitude (e.g., during high-altitude Alpine passes or altitude training in St. Moritz, Switzerland).</li>
+<li>$A$ is the planimetric frontal area, captured via 2D photogrammetry.</li>
+<li>$L$ is the characteristic length scale of the rotating wheel component.</li>
+<li>$\mu$ is the dynamic viscosity of the surrounding air.</li>
+</ul>
+<h2>Firmware Management and Interrupt Service Routine</h2>
+<p>Maintaining a deterministic sampling rate is critical for sensor fusion. We configure a hardware timer to trigger an interrupt service routine (ISR) every ten milliseconds. The ISR is programmed to read the sensor registers over the SPI bus. To minimize interrupt latency, the ISR must execute within fifty microseconds. The routine extracts the raw data and pushes it onto a lock-free queue. Thread safety is maintained by using atomic pointers, which prevents memory corruption between the ISR context and the main application loop.</p>
+<p>Once the data is queued, the main application thread processes the raw readings. It applies a calibration offset and formats the variables for transmission. To evaluate the efficiency of our binary serialization protocol, we define the transmission efficiency coefficient using the following calculation:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>η</mi><mtext>trans</mtext></msub><mo>=</mo><mfrac><msub><mi>N</mi><mtext>payload</mtext></msub><msub><mi>N</mi><mtext>total</mtext></msub></mfrac><mo>⋅</mo><mn>100</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">\eta_{\text{trans}} = \frac{N_{\text{payload}}}{N_{\text{total}}} \cdot 100\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">η</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">trans</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.1963em;vertical-align:-0.836em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">total</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">payload</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.836em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">100%</span></span></span></span></span><p>Here, $\eta_{\text{trans}}$ represents the binary transmission efficiency percentage, $N_{\text{payload}}$ is the number of bytes containing actual sensor measurements, and $N_{\text{total}}$ is the total size of the transmitted packet including headers, frame counters, and checksum verification bytes.</p>
+<p>We optimize data serialization by packing the metrics into a dense binary structure. This approach minimizes the total payload size, which reduces the transmission time over the low-power wireless link. Lower air density at high elevations reduces the absolute aerodynamic load on the hub, resulting in smaller voltage swings from the strain gauges. The firmware dynamically shifts the analog-to-digital converter gain to maintain resolution.</p>
+<h2>Data Frame Register Specifications</h2>
+<p>Applying computational analyses under controlled wind tunnel conditions or velodrome field protocols (using the virtual elevation method) yields deterministic drag profiles. For professional sports science laboratories in Switzerland and France:</p>
+<ol>
+<li><strong>Skinsuit Material Boundary Layer</strong>: Adjusting seam placement can delay boundary layer separation, lowering the drag coefficient $C_d$ by up to $5%$.</li>
+<li><strong>Yaw Angle Probability</strong>: Incorporating crosswind yaw moments into the wheel profile selection ensures handling stability under gusty alpine conditions.</li>
+<li><strong>Barometric Compensation</strong>: In high-altitude passes ($&gt;2000\text{m}$), the decrease in air density $\rho$ reduces overall drag force, shifting the optimal pacing strategy from purely aerodynamic to physiological limits.</li>
+</ol>
+<p>The table below details the binary frame layout used for transmitting the telemetry data packets over the UART buffer.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Byte Offset</th>
+<th align="left">Field Name</th>
+<th align="left">Data Type</th>
+<th align="left">Scale Factor</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">0x00</td>
+<td align="left">Preamble</td>
+<td align="left">uint8</td>
+<td align="left">N/A</td>
+<td align="left">Fixed sync marker (always 0xA5)</td>
+</tr>
+<tr>
+<td align="left">0x01</td>
+<td align="left">Packet Type</td>
+<td align="left">uint8</td>
+<td align="left">N/A</td>
+<td align="left">Identifies data payload structure</td>
+</tr>
+<tr>
+<td align="left">0x02-0x05</td>
+<td align="left">Timestamp</td>
+<td align="left">uint32</td>
+<td align="left">1.0 (ms)</td>
+<td align="left">Milliseconds since boot</td>
+</tr>
+<tr>
+<td align="left">0x06-0x07</td>
+<td align="left">Rotational Speed</td>
+<td align="left">int16</td>
+<td align="left">0.1 (rad/s)</td>
+<td align="left">Measured angular velocity</td>
+</tr>
+<tr>
+<td align="left">0x08-0x09</td>
+<td align="left">Force Vector</td>
+<td align="left">int16</td>
+<td align="left">0.01 (N)</td>
+<td align="left">Differential force measurement</td>
+</tr>
+<tr>
+<td align="left">0x0A</td>
+<td align="left">Checksum</td>
+<td align="left">uint8</td>
+<td align="left">N/A</td>
+<td align="left">CRC-8 mathematical verification</td>
+</tr>
+</tbody></table>
+<p>Our packed binary format achieves a transmission efficiency of ninety percent. This design minimizes the duration of the active state of the radio transmitter, which preserves battery life.</p>
+<h2>Thread Safety and UART Buffer Management</h2>
+<p>During high-speed field testing, the UART buffer can overflow if the main loop experiences processing delays. We allocated a larger memory block for the transmission ring buffer. The serialization routine runs asynchronously. It pulls processed data from the queue and writes it to the UART TX register. If the transmitter is busy, the routine yields control to prevent blocking the processor. Checksum verification is executed on both ends of the wireless link. If the receiver detects a checksum error, the packet is discarded to prevent corrupted data from entering the post-processing pipeline.</p>
+<p>This firmware architecture was verified under extreme vibration conditions. The physical connection of the sensors stayed stable. The low-latency data pipeline allowed the test rider to receive immediate feedback on changes in their position. Meticulous code optimization ensures that our system runs reliably under all racing conditions.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.tandfonline.com/toc/rjsp20/current" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Journal of Sports Sciences</a>: Biomechanical analysis and mechanical efficiency in elite cycling.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: High-frequency telemetry and sensor fusion calibrations.</li>
+<li><a href="https://www.uci.org/inside-uci/constitutions-regulations/regulations" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">UCI Cycling Regulations</a>: Part I: General Organisation of Cycling as a Sport (Aero &amp; Frame dimensions limits).</li>
+<li><a href="https://scholar.google.com/scholar?q=High-altitude+hypoxic+adaptation+and+cardiorespiratory+kinetics" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Swiss Federal Institute of Sport Magglingen</a>: High-altitude hypoxic adaptation and cardiorespiratory kinetics.</li>
+</ol>

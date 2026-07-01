@@ -1,0 +1,153 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+{% set homePrefix = '/' + locale %}
+{% set isId = locale == 'id' %}
+
+<!-- Article JSON-LD Schema -->
+{% if post %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ post.title }}",
+  "description": "{{ post.excerpt or post.title }}",
+  "datePublished": "{{ post.publishedAt }}",
+  "author": {
+    "@type": "Organization",
+    "name": "DIDI.BIKE"
+  }
+}
+</script>
+{% endif %}
+
+<!-- Breadcrumbs Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ site.baseUrl or 'https://didi.bike' }}{{ homePrefix }}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ 'Science Wiki' if locale == 'en' else 'Wiki Sains' }}",
+      "item": "{{ site.baseUrl or 'https://didi.bike' }}{{ homePrefix }}/blog"
+    }{% if cluster %},
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ cluster.name[locale] or cluster.name.en }}",
+      "item": "{{ site.baseUrl or 'https://didi.bike' }}{{ homePrefix }}/blog?cluster={{ cluster.slug }}"
+    }{% endif %},
+    {
+      "@type": "ListItem",
+      "position": {% if cluster %}4{% else %}3{% endif %},
+      "name": "{{ post.title }}",
+      "item": "{{ site.baseUrl or 'https://didi.bike' }}{{ homePrefix }}/blog/{{ post.slug }}"
+    }
+  ]
+}
+</script>
+
+<article class="article-page">
+  <div class="article-container">
+    <a href="{{ homePrefix }}/blog" class="article-back-link">
+      ← {{ 'Kembali ke Blog' if isId else 'Back to Blog' }}
+    </a>
+
+    <header class="article-header">
+      <h1 class="article-title">{{ post.metaTitle or post.title }}</h1>
+      <div class="article-meta">
+        <time>{{ post.publishedAt }}</time>
+        {% if cluster %}
+          <span class="article-tag">{{ cluster.name[locale] or cluster.name.en }}</span>
+        {% endif %}
+      </div>
+    </header>
+
+    {% if coverUrl %}
+      <img
+        src="{{ coverUrl }}"
+        alt="{{ post.title }}"
+        class="article-cover"
+        style="width: 100%; height: auto;"
+      />
+    {% endif %}
+
+    {% if fallback %}
+      <div class="article-fallback-banner" style="margin: 2rem 0 1.5rem 0; padding: 1rem 1.25rem; background: rgba(0, 212, 255, 0.04); border-left: 3px solid var(--color-accent); border-radius: 4px;">
+        <p style="margin: 0; font-size: 0.85rem; line-height: 1.6; color: var(--color-accent); display: flex; align-items: flex-start; gap: 8px;">
+          <span style="font-size: 1.1rem; line-height: 1;">🌐</span>
+          <span>
+            {% if locale == 'id' %}
+              Artikel ini belum diterjemahkan ke Bahasa Indonesia. Menampilkan versi asli dalam <strong>Bahasa Inggris</strong>.
+            {% else %}
+              This article is not available in English yet. Displaying the original version in <strong>Indonesian</strong>.
+            {% endif %}
+          </span>
+        </p>
+      </div>
+    {% endif %}
+
+    <!-- Article Content (Markdown to HTML) -->
+    <div class="article-content">
+      {{ contentHtml | safe }}
+    </div>
+
+    <!-- Back to Core Pillar Guide if applicable -->
+    {% if not post.isPillar and post.pillarSlug %}
+      <div class="article-back-link" style="margin-top: 2rem;">
+        <a href="{{ homePrefix }}/blog/{{ post.pillarSlug }}">
+          ← {{ 'Baca panduan lengkap' if isId else 'Read the complete guide' }}
+        </a>
+      </div>
+    {% endif %}
+
+    <!-- In This Guide Links (If Pillar) -->
+    {% if post.isPillar and clusterIndex and clusterIndex.length > 0 %}
+      <section style="margin-top: 3rem;">
+        <h2 style="font-size: 1.4rem; mb-1: 1rem; color: var(--color-text-primary);">
+          {{ 'Dalam panduan ini' if isId else 'In this guide' }}
+        </h2>
+        <ul style="list-style: none; padding: 0; display: grid; gap: 0.75rem;">
+          {% for p in clusterIndex %}
+            <li>
+              <a href="{{ homePrefix }}/blog/{{ p.slug }}" style="color: var(--color-accent); text-decoration: none; font-weight: 500;">
+                {{ p.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+
+    <!-- Related Reading section -->
+    {% if relatedPosts and relatedPosts.length > 0 %}
+      <section class="related-posts">
+        <h2 class="related-posts-title">
+          {{ 'Bacaan Terkait' if isId else 'Related Reading' }}
+        </h2>
+        <ul class="related-posts-list">
+          {% for p in relatedPosts %}
+            <li>
+              <a href="{{ homePrefix }}/blog/{{ p.slug }}" class="related-posts-link">
+                <span class="related-posts-post-title">{{ p.title }}</span>
+                {% if p.excerpt %}
+                  <span class="related-posts-excerpt">{{ p.excerpt }}</span>
+                {% endif %}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+    
+  </div>
+</article>
+{% endblock %}

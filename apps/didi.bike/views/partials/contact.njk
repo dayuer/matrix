@@ -1,0 +1,113 @@
+<section id="contact" class="section contact">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">{{ dict.contact.label }}</span>
+      <h2 class="section-title">{{ dict.contact.title }}</h2>
+      <p class="section-desc">{{ dict.contact.desc }}</p>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Info items -->
+      <div class="contact-info animate-on-scroll">
+        <div class="contact-info-item">
+          <span class="contact-info-tag">{{ dict.contact.location }}</span>
+          <div>
+            <h4>{{ dict.contact.headquarters }}</h4>
+            <p>{{ dict.contact.address }}</p>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <span class="contact-info-tag">{{ dict.contact.emailLabel }}</span>
+          <div>
+            <h4>{{ dict.contact.generalInquiries }}</h4>
+            <p>info@didi.bike</p>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <span class="contact-info-tag">{{ dict.contact.businessLabel }}</span>
+          <div>
+            <h4>{{ dict.contact.businessDev }}</h4>
+            <p>partners@didi.bike</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <form noValidate class="glass-card contact-form animate-on-scroll delay-1" id="contactForm" data-locale="{{ locale or 'en' }}">
+        <!-- Success Overlay (Initially Hidden) -->
+        <div class="contact-success-overlay" id="contactSuccess" style="display: none;">
+          <div class="contact-success-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </div>
+          <h3 class="contact-success-title">{{ dict.contact.messageSent }}</h3>
+          <p class="contact-success-desc">
+            {% if locale == 'id' %}
+              Terima kasih. Permintaan Anda telah diajukan ke departemen hubungan korporat kami. Perwakilan resmi kami akan segera menghubungi Anda.
+            {% else %}
+              Thank you. Your request has been filed with our corporate relations department. An official representative will contact you shortly.
+            {% endif %}
+          </p>
+        </div>
+
+        <label for="contact-name" class="sr-only">{{ dict.contact.namePlaceholder }}</label>
+        <input 
+          id="contact-name" 
+          name="name" 
+          type="text" 
+          placeholder="{{ dict.contact.namePlaceholder }}" 
+          required 
+          class="contact-input" 
+        />
+        
+        <label for="contact-email" class="sr-only">{{ dict.contact.emailPlaceholder }}</label>
+        <input 
+          id="contact-email" 
+          name="email" 
+          type="email" 
+          placeholder="{{ dict.contact.emailPlaceholder }}" 
+          required 
+          class="contact-input" 
+        />
+        
+        <label for="contact-type" class="sr-only">{{ dict.contact.selectType }}</label>
+        <select 
+          id="contact-type" 
+          name="type" 
+          class="contact-input"
+          required
+        >
+          <option value="" disabled selected>{{ dict.contact.selectType }}</option>
+          <option value="general">{{ dict.contact.typeGeneral }}</option>
+          <option value="business">{{ dict.contact.typeBusiness }}</option>
+          <option value="technical">{{ dict.contact.typeTechnical }}</option>
+          <option value="press">{{ dict.contact.typePress }}</option>
+        </select>
+        
+        <label for="contact-message" class="sr-only">{{ dict.contact.messagePlaceholder }}</label>
+        <textarea 
+          id="contact-message" 
+          name="message" 
+          placeholder="{{ dict.contact.messagePlaceholder }}" 
+          rows="5" 
+          required 
+          class="contact-input"
+        ></textarea>
+        
+        <!-- Error Notice -->
+        <p class="contact-error-notice" id="contactError" style="display: none;"></p>
+        
+        <button
+          type="submit"
+          class="btn btn-primary contact-submit-btn"
+          id="contactSubmit"
+        >
+          {{ dict.contact.sendMessage }}
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

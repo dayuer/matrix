@@ -1,0 +1,185 @@
+<h1>ANT+ vs Bluetooth LE for Cycling Sensors</h1>
+<p>ANT+ and Bluetooth LE (BLE) are the two wireless protocols that connect cycling sensors to head units and phones. ANT+ is the established sport-sensor standard with mesh-style multi-device networking; Bluetooth LE 5.0 is the universal smartphone protocol with higher throughput. The ANT+ vs Bluetooth LE cycling decision depends on your hardware ecosystem and data needs. Modern sensors like the DIDI.BIKE unit solve the dilemma by broadcasting both simultaneously over a dual-mode <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2.4</mn><mtext> GHz</mtext></mrow><annotation encoding="application/x-tex">2.4\text{ GHz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">2.4</span><span class="mord text"><span class="mord"> GHz</span></span></span></span></span> radio.</p>
+<h2>Protocol Fundamentals</h2>
+<p>Both protocols operate in the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2.4</mn><mtext> GHz</mtext></mrow><annotation encoding="application/x-tex">2.4\text{ GHz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">2.4</span><span class="mord text"><span class="mord"> GHz</span></span></span></span></span> ISM band but use fundamentally different architectures.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>ANT+</th>
+<th>Bluetooth LE 5.0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Topology</td>
+<td>Connectionless broadcast / mesh</td>
+<td>Connection-oriented star</td>
+</tr>
+<tr>
+<td>Pairing</td>
+<td>Optional, channel-based</td>
+<td>Required, bonded</td>
+</tr>
+<tr>
+<td>Max sensors per receiver</td>
+<td>Unlimited (shared channel)</td>
+<td>~7 concurrent connections</td>
+</tr>
+<tr>
+<td>Raw throughput</td>
+<td>~60 kbps</td>
+<td>Up to 2 Mbps (LE 2M PHY)</td>
+</tr>
+<tr>
+<td>Typical latency</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&lt;</mo><mn>5</mn><mtext> ms</mtext></mrow><annotation encoding="application/x-tex">&lt;5\text{ ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">5</span><span class="mord text"><span class="mord"> ms</span></span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7</mn><mtext>–</mtext><mn>250</mn><mtext> ms</mtext></mrow><annotation encoding="application/x-tex">7\text{–}250\text{ ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7</span><span class="mord text"><span class="mord">–</span></span><span class="mord">250</span><span class="mord text"><span class="mord"> ms</span></span></span></span></span> (interval-dependent)</td>
+</tr>
+<tr>
+<td>Power (sensor side)</td>
+<td>Very low</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>Smartphone support</td>
+<td>Limited (requires native ANT chip)</td>
+<td>Universal</td>
+</tr>
+<tr>
+<td>Profile standardization</td>
+<td>ANT+ device profiles</td>
+<td>GATT services (less standardized)</td>
+</tr>
+</tbody></table>
+<h2>How ANT+ Works</h2>
+<p>ANT+ uses a connectionless broadcast model. Each sensor transmits on a shared channel at a defined rate (typically <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mtext> Hz</mtext></mrow><annotation encoding="application/x-tex">4\text{ Hz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">4</span><span class="mord text"><span class="mord"> Hz</span></span></span></span></span> for power/HR, up to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn><mtext> Hz</mtext></mrow><annotation encoding="application/x-tex">8\text{ Hz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">8</span><span class="mord text"><span class="mord"> Hz</span></span></span></span></span> for telemetry). Any receiver listening on that channel picks up the data—no pairing handshake, no connection maintenance.</p>
+<p>The key innovation is <strong>frequency hopping across a shared channel</strong>. Multiple sensors broadcast on offset time slots, and a single receiver decodes them all. This is why a bike computer can display power, heart rate, cadence, gear position, and telemetry from different brands simultaneously.</p>
+<p>ANT+ device profiles (power, heart rate, speed/cadence, muscle oxygen, gears, bike telemetry) define the data format so any brand&#39;s sensor works with any brand&#39;s head unit. This interoperability is ANT+&#39;s strongest advantage.</p>
+<h2>How Bluetooth LE Works</h2>
+<p>Bluetooth LE uses a connection-oriented model. The sensor (peripheral) advertises; the head unit or phone (central) scans, discovers, and establishes a connection. Data then flows over GATT (Generic Attribute Profile) characteristics during connection events spaced at the <strong>connection interval</strong>.</p>
+<p>The connection interval is the critical latency parameter:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>t</mi><mtext>latency</mtext></msub><mo>≈</mo><mi>n</mi><mo>×</mo><mtext>connection interval</mtext></mrow><annotation encoding="application/x-tex">t_{\text{latency}} \approx n \times \text{connection interval}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9012em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">latency</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord text"><span class="mord">connection interval</span></span></span></span></span></span><p>BLE connection intervals range from <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7.5</mn><mtext> ms</mtext></mrow><annotation encoding="application/x-tex">7.5\text{ ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7.5</span><span class="mord text"><span class="mord"> ms</span></span></span></span></span> to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mtext> s</mtext></mrow><annotation encoding="application/x-tex">4\text{ s}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span><span class="mord text"><span class="mord"> s</span></span></span></span></span>. For telemetry, you want <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7.5</mn><mtext>–</mtext><mn>15</mn><mtext> ms</mtext></mrow><annotation encoding="application/x-tex">7.5\text{–}15\text{ ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7.5</span><span class="mord text"><span class="mord">–</span></span><span class="mord">15</span><span class="mord text"><span class="mord"> ms</span></span></span></span></span>. At a <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7.5</mn><mtext> ms</mtext></mrow><annotation encoding="application/x-tex">7.5\text{ ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7.5</span><span class="mord text"><span class="mord"> ms</span></span></span></span></span> interval, BLE matches ANT+ latency. At a <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mtext> ms</mtext></mrow><annotation encoding="application/x-tex">100\text{ ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">100</span><span class="mord text"><span class="mord"> ms</span></span></span></span></span> interval (common in phone apps trying to save battery), latency is perceptible.</p>
+<p>BLE 5.0 introduced the 2M PHY (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mtext> Mbps</mtext></mrow><annotation encoding="application/x-tex">2\text{ Mbps}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">2</span><span class="mord text"><span class="mord"> Mbps</span></span></span></span></span> physical layer), doubling throughput and halving airtime per packet. This matters for streaming raw <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mtext> Hz</mtext></mrow><annotation encoding="application/x-tex">100\text{ Hz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">100</span><span class="mord text"><span class="mord"> Hz</span></span></span></span></span> IMU data, which the DIDI.BIKE sensor does at approximately <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.2</mn><mtext> KB/s</mtext></mrow><annotation encoding="application/x-tex">1.2\text{ KB/s}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1.2</span><span class="mord text"><span class="mord"> KB/s</span></span></span></span></span>.</p>
+<h2>Throughput Comparison</h2>
+<p>Raw IMU streaming at <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mtext> Hz</mtext></mrow><annotation encoding="application/x-tex">100\text{ Hz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">100</span><span class="mord text"><span class="mord"> Hz</span></span></span></span></span>, 6-axis, 2 bytes per axis produces <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1,200</mn><mtext> bytes/s</mtext></mrow><annotation encoding="application/x-tex">1{,}200\text{ bytes/s}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord"><span class="mpunct">,</span></span><span class="mord">200</span><span class="mord text"><span class="mord"> bytes/s</span></span></span></span></span>:</p>
+<table>
+<thead>
+<tr>
+<th>Protocol</th>
+<th>Usable Throughput</th>
+<th>Handles 1.2 KB/s?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ANT+ (legacy)</td>
+<td>~60 kbps (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7.5</mn><mtext> KB/s</mtext></mrow><annotation encoding="application/x-tex">7.5\text{ KB/s}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">7.5</span><span class="mord text"><span class="mord"> KB/s</span></span></span></span></span>)</td>
+<td>Yes, with headroom</td>
+</tr>
+<tr>
+<td>BLE 4.2</td>
+<td>~237 kbps (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>30</mn><mtext> KB/s</mtext></mrow><annotation encoding="application/x-tex">30\text{ KB/s}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">30</span><span class="mord text"><span class="mord"> KB/s</span></span></span></span></span>)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>BLE 5.0 (2M PHY)</td>
+<td>~1.4 Mbps (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>175</mn><mtext> KB/s</mtext></mrow><annotation encoding="application/x-tex">175\text{ KB/s}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">175</span><span class="mord text"><span class="mord"> KB/s</span></span></span></span></span>)</td>
+<td>Yes, large headroom</td>
+</tr>
+</tbody></table>
+<p>Both protocols handle cycling sensor data rates comfortably. BLE 5.0&#39;s advantage becomes relevant only for multi-sensor high-rate streaming or firmware OTA updates.</p>
+<h2>Power Consumption</h2>
+<p>Sensor-side power consumption affects battery life. The relationship is roughly:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>P</mi><mo>∝</mo><msub><mi>f</mi><mtext>transmit</mtext></msub><mo>×</mo><msub><mi>t</mi><mtext>airtime</mtext></msub></mrow><annotation encoding="application/x-tex">P \propto f_{\text{transmit}} \times t_{\text{airtime}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∝</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3175em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">transmit</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7651em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3175em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">airtime</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span><p>ANT+ transmits short bursts frequently but with minimal overhead. BLE maintains a connection with periodic wake-ups. In practice, both achieve multi-month battery life on coin cells for <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mtext> Hz</mtext></mrow><annotation encoding="application/x-tex">4\text{ Hz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">4</span><span class="mord text"><span class="mord"> Hz</span></span></span></span></span> sensors like power meters. For <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mtext> Hz</mtext></mrow><annotation encoding="application/x-tex">100\text{ Hz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">100</span><span class="mord text"><span class="mord"> Hz</span></span></span></span></span> telemetry streaming, the DIDI.BIKE sensor achieves <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>120</mn><mtext>h</mtext></mrow><annotation encoding="application/x-tex">120\text{h}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">120</span><span class="mord text"><span class="mord">h</span></span></span></span></span> by duty-cycling the radio and batching transmissions—techniques agnostic to protocol. Battery considerations are covered in the <a href="/en/blog/cycling-sensors-telemetry-guide">Cycling Sensors &amp; Telemetry Guide</a>.</p>
+<h2>Latency in Practice</h2>
+<p>For real-time biofeedback, latency must stay under <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mtext> ms</mtext></mrow><annotation encoding="application/x-tex">10\text{ ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span><span class="mord text"><span class="mord"> ms</span></span></span></span></span> end-to-end. See <a href="/en/blog/latency-cycling-telemetry">Latency in Cycling Telemetry</a> for the full breakdown. Protocol-level latency:</p>
+<table>
+<thead>
+<tr>
+<th>Protocol</th>
+<th>Best Case</th>
+<th>Typical</th>
+<th>Worst Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ANT+ broadcast</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&lt;</mo><mn>5</mn><mtext> ms</mtext></mrow><annotation encoding="application/x-tex">&lt;5\text{ ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">5</span><span class="mord text"><span class="mord"> ms</span></span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mtext> ms</mtext></mrow><annotation encoding="application/x-tex">5\text{ ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">5</span><span class="mord text"><span class="mord"> ms</span></span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mtext> ms</mtext></mrow><annotation encoding="application/x-tex">10\text{ ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span><span class="mord text"><span class="mord"> ms</span></span></span></span></span></td>
+</tr>
+<tr>
+<td>BLE (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7.5</mn><mtext> ms</mtext></mrow><annotation encoding="application/x-tex">7.5\text{ ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7.5</span><span class="mord text"><span class="mord"> ms</span></span></span></span></span> interval)</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7.5</mn><mtext> ms</mtext></mrow><annotation encoding="application/x-tex">7.5\text{ ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7.5</span><span class="mord text"><span class="mord"> ms</span></span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>15</mn><mtext> ms</mtext></mrow><annotation encoding="application/x-tex">15\text{ ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">15</span><span class="mord text"><span class="mord"> ms</span></span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>30</mn><mtext> ms</mtext></mrow><annotation encoding="application/x-tex">30\text{ ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">30</span><span class="mord text"><span class="mord"> ms</span></span></span></span></span></td>
+</tr>
+<tr>
+<td>BLE (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mtext> ms</mtext></mrow><annotation encoding="application/x-tex">100\text{ ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">100</span><span class="mord text"><span class="mord"> ms</span></span></span></span></span> interval)</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mtext> ms</mtext></mrow><annotation encoding="application/x-tex">100\text{ ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">100</span><span class="mord text"><span class="mord"> ms</span></span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>150</mn><mtext> ms</mtext></mrow><annotation encoding="application/x-tex">150\text{ ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">150</span><span class="mord text"><span class="mord"> ms</span></span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>250</mn><mtext> ms</mtext></mrow><annotation encoding="application/x-tex">250\text{ ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">250</span><span class="mord text"><span class="mord"> ms</span></span></span></span></span></td>
+</tr>
+</tbody></table>
+<p>ANT+ has a structural latency advantage because it skips the connection-event scheduling. BLE matches it only when the connection interval is set aggressively low, which most phone apps do not do.</p>
+<h2>When to Choose ANT+</h2>
+<ul>
+<li>You use a dedicated bike computer (Garmin, Wahoo, Bryton, Hammerhead)</li>
+<li>You run many sensors simultaneously (power, HR, cadence, gears, telemetry)</li>
+<li>You want cross-brand interoperability without configuration</li>
+<li>Your head unit has a native ANT chip (most dedicated bike computers do)</li>
+</ul>
+<h2>When to Choose Bluetooth LE</h2>
+<ul>
+<li>Your only head unit is a smartphone</li>
+<li>You stream raw high-rate data (IMU, video, etc.) needing BLE 5.0 throughput</li>
+<li>You want a single-protocol setup with no extra hardware</li>
+<li>You develop custom apps and need open GATT access</li>
+</ul>
+<h2>The Dual-Mode Solution</h2>
+<p>The cleanest answer is both. The DIDI.BIKE sensor uses a dual-mode <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2.4</mn><mtext> GHz</mtext></mrow><annotation encoding="application/x-tex">2.4\text{ GHz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">2.4</span><span class="mord text"><span class="mord"> GHz</span></span></span></span></span> radio chip that broadcasts ANT+ and BLE 5.0 simultaneously. Riders pair with a Garmin over ANT+ for their structured training display, while a phone app receives the BLE stream for detailed IMU analysis. No protocol choice is required; the sensor speaks both. This is the direction the industry is heading, and it resolves the ANT+ vs Bluetooth LE cycling debate for the rider.</p>
+<h2>Pairing and Interoperability</h2>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>ANT+</th>
+<th>BLE</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Pairing speed</td>
+<td>Instant (channel match)</td>
+<td>2–10s (discovery + bond)</td>
+</tr>
+<tr>
+<td>Cross-brand profiles</td>
+<td>Standardized (ANT+ profiles)</td>
+<td>Partially standardized (FTMS, CSCS)</td>
+</tr>
+<tr>
+<td>Multi-receiver</td>
+<td>Yes (many head units listen)</td>
+<td>No (one central per connection)</td>
+</tr>
+<tr>
+<td>Phone compatibility</td>
+<td>Requires ANT chip (rare in phones)</td>
+<td>Universal</td>
+</tr>
+</tbody></table>
+<p>The multi-receiver capability of ANT+ is underappreciated: a single sensor can feed a bike computer, a backup phone, and a coach&#39;s tablet simultaneously. BLE ties a sensor to one central device per connection.</p>
+<h2>FAQ</h2>
+<p><strong>Which is better for cycling, ANT+ or Bluetooth LE?</strong>
+It depends. ANT+ is better for multi-sensor setups with a dedicated bike computer because its mesh topology handles many simultaneous sensors without pairing overhead. Bluetooth LE 5.0 is better for phone-based riding because every smartphone supports it and it offers higher throughput for raw data streaming.</p>
+<p><strong>Can a sensor use both ANT+ and Bluetooth LE at the same time?</strong>
+Yes. Many modern sensors, including the DIDI.BIKE unit, broadcast both protocols simultaneously from a single dual-mode radio chip. This lets riders pair with any head unit or phone without choosing.</p>
+<p><strong>Does Bluetooth LE 5.0 have lower latency than ANT+?</strong>
+Not necessarily. ANT+ connectionless broadcasts can achieve under <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mtext> ms</mtext></mrow><annotation encoding="application/x-tex">5\text{ ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">5</span><span class="mord text"><span class="mord"> ms</span></span></span></span></span> latency. BLE latency depends on the connection interval and can range from <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7.5</mn><mtext> ms</mtext></mrow><annotation encoding="application/x-tex">7.5\text{ ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7.5</span><span class="mord text"><span class="mord"> ms</span></span></span></span></span> to over <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>200</mn><mtext> ms</mtext></mrow><annotation encoding="application/x-tex">200\text{ ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">200</span><span class="mord text"><span class="mord"> ms</span></span></span></span></span>. For sub-10ms telemetry, both protocols are viable with proper configuration.</p>
+<p><strong>Why do bike computers prefer ANT+?</strong>
+ANT+ was designed for sport sensors. Its shared-channel architecture lets a head unit receive power, heart rate, cadence, gears, and telemetry from multiple brands simultaneously without managing individual connections. Bluetooth LE requires managing paired connections per device.</p>
+<h2>References</h2>
+<ol>
+<li><em>IEEE Sensors Journal</em>: Multi-sensor data fusion and attitude estimation using MEMS IMUs.</li>
+<li><em>Journal of NeuroEngineering and Rehabilitation</em>: Wearable telemetry sensors and realtime posture tracking.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: 100Hz IMU sampling rates and Kalman filtering for gravity extraction.</li>
+</ol>

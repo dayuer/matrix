@@ -1,0 +1,47 @@
+# synon.ai —— 站点品牌级配置（纯数据，由 matrix CLI 驱动，无需任何 node 工程）
+theme: dossier
+themeOptions: {}
+
+baseUrl: https://synon.ai
+
+brand:
+  name: Synon Global
+  desc: 全球化 FDE (Forward Deployed Engineering) 交付与 AI 数字化重构平台。我们不做一次性外包，而是以技术为投资的联营模式，深度驻场进行旧系统逆向工程与 AI 原生系统重构，与客户长期共赢。
+  favicon: /images/favicon.svg
+
+nav:
+  - { key: fde, text: FDE 框架, href: "/#fde" }
+  - { key: team, text: 交付团队, href: "/#team" }
+  - { key: portfolio, text: 全球版图, href: "/#portfolio" }
+  - { key: faq, text: 合作模式, href: "/#faq" }
+
+cta: { text: 申请技术合作, href: "/#apply" }
+
+footer:
+  columns:
+    - title: 核心交付
+      links:
+        - { text: FDE 驻场服务, href: "/#fde" }
+        - { text: Echo-Delta 模型, href: "/#team" }
+        - { text: 逆向重构引擎, href: "/#fde" }
+    - title: 全球市场
+      links:
+        - { text: 大中华区, href: "/#portfolio" }
+        - { text: 亚太区（香港 / 印尼）, href: "/#portfolio" }
+        - { text: 欧洲与中东区, href: "/#portfolio" }
+    - title: 关于我们
+      links:
+        - { text: 企业定位, href: "/#fde" }
+        - { text: 合作模式 FAQ, href: "/#faq" }
+        - { text: 申请技术合作, href: "/#apply" }
+  legal:
+    contact: 咨询与合作投递：contact@synon.ai
+    company: { text: Synon Global Group Limited, href: "#" }
+    foundingYear: 2026
+  social:
+    - { text: LinkedIn, href: "#" }
+    - { text: Twitter, href: "#" }
+
+# 页面 meta 的站点级默认值（页面文件里可覆盖）
+defaults:
+  ogImage: /images/og-image.svg

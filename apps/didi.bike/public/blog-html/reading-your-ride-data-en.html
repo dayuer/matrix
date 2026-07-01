@@ -1,0 +1,128 @@
+<h1>Reading Your Ride Data: A Beginner&#39;s Guide</h1>
+<p>Reading your cycling ride data means turning the numbers from each ride — power, heart rate, cadence, and derived metrics like TSS — into insight about your fitness and the effectiveness of your training. The point is not to collect data for its own sake but to spot trends, confirm that sessions achieved their purpose, and adjust your plan. This guide introduces the key metrics and how to interpret them.</p>
+<h2>The headline numbers</h2>
+<p>Every ride file tells a story through a handful of headline metrics. Here is what each means and how to read it.</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>What it measures</th>
+<th>What to look for</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Average power</td>
+<td>Simple mean watts</td>
+<td>Useful for steady efforts; misleading for variable rides</td>
+</tr>
+<tr>
+<td>Normalized Power (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">NP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span></span></span></span>)</td>
+<td>Metabolic cost of the ride</td>
+<td>Better gauge of effort on group rides and intervals</td>
+</tr>
+<tr>
+<td>Average heart rate</td>
+<td>Mean cardiovascular response</td>
+<td>Compare to power to assess fatigue and drift</td>
+</tr>
+<tr>
+<td>Cadence</td>
+<td>Pedal revolutions per minute</td>
+<td>Consistency and shifts under load</td>
+</tr>
+<tr>
+<td>TSS</td>
+<td>Training load of the ride</td>
+<td>Cumulative fatigue and fitness signal</td>
+</tr>
+</tbody></table>
+<h2>Average power vs. normalized power</h2>
+<p>This is the most important distinction for a beginner. Average power is just the arithmetic mean. Normalized Power applies a fourth-power rolling average to capture how variable, surgy efforts feel:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>N</mi><mi>P</mi><mo>=</mo><mroot><mrow><mfrac><mn>1</mn><mi>N</mi></mfrac><mo>∑</mo><msubsup><mover accent="true"><mi>P</mi><mo>ˉ</mo></mover><mn>30</mn><mrow><mtext> </mtext><mn>4</mn></mrow></msubsup></mrow><mn>4</mn></mroot></mrow><annotation encoding="application/x-tex">NP = \sqrt[4]{\frac{1}{N}\sum \bar{P}_{30}^{\,4}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.44em;vertical-align:-0.7884em;"></span><span class="mord sqrt"><span class="root"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8401em;"><span style="top:-3.0179em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size6 size1 mtight"><span class="mord mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6516em;"><span class="svg-align" style="top:-4.4em;"><span class="pstrut" style="height:4.4em;"></span><span class="mord" style="padding-left:1em;"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-symbol large-op" style="position:relative;top:0em;">∑</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8201em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span></span><span style="top:-3.2523em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1667em;"><span class="mord">ˉ</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7959em;"><span style="top:-2.4337em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">30</span></span></span></span><span style="top:-3.0448em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mspace mtight" style="margin-right:0.1952em;"></span><span class="mord mtight">4</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2663em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.6116em;"><span class="pstrut" style="height:4.4em;"></span><span class="hide-tail" style="min-width:1.02em;height:2.48em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="2.48em" viewBox="0 0 400000 2592" preserveAspectRatio="xMinYMin slice"><path d="M424,2478
+c-1.3,-0.7,-38.5,-172,-111.5,-514c-73,-342,-109.8,-513.3,-110.5,-514
+c0,-2,-10.7,14.3,-32,49c-4.7,7.3,-9.8,15.7,-15.5,25c-5.7,9.3,-9.8,16,-12.5,20
+s-5,7,-5,7c-4,-3.3,-8.3,-7.7,-13,-13s-13,-13,-13,-13s76,-122,76,-122s77,-121,77,-121
+s209,968,209,968c0,-2,84.7,-361.7,254,-1079c169.3,-717.3,254.7,-1077.7,256,-1081
+l0 -0c4,-6.7,10,-10,18,-10 H400000
+v40H1014.6
+s-87.3,378.7,-272.6,1166c-185.3,787.3,-279.3,1182.3,-282,1185
+c-2,6,-10,9,-24,9
+c-8,0,-12,-0.7,-12,-2z M1001 80
+h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7884em;"><span></span></span></span></span></span></span></span></span></span><p>On a perfectly steady trainer ride, average power and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">NP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span></span></span></span> are nearly identical. On a group ride with sprints and recoveries, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">NP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span></span></span></span> sits well above average power — because those surges cost far more fatigue than the average suggests. Always use <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">NP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span></span></span></span> when judging how hard a variable ride was.</p>
+<h2>Intensity Factor and TSS</h2>
+<p>Two derived metrics summarize a ride relative to your fitness:</p>
+<p><strong>Intensity Factor (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mi>F</mi></mrow><annotation encoding="application/x-tex">IF</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span></span></span></span>)</strong> is the ride&#39;s difficulty relative to your threshold:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>I</mi><mi>F</mi><mo>=</mo><mfrac><mrow><mi>N</mi><mi>P</mi></mrow><mrow><mi>F</mi><mi>T</mi><mi>P</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">IF = \frac{NP}{FTP}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0463em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><p>An <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mi>F</mi></mrow><annotation encoding="application/x-tex">IF</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span></span></span></span> of 1.0 means you rode right at threshold for the duration. A recovery ride is typically below 0.75.</p>
+<p><strong>Training Stress Score (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>S</mi><mi>S</mi></mrow><annotation encoding="application/x-tex">TSS</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span></span></span></span>)</strong> combines duration and intensity into a single load number:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>T</mi><mi>S</mi><mi>S</mi><mo>=</mo><mfrac><mrow><mi>N</mi><mi>P</mi><mo>×</mo><mi>I</mi><mi>F</mi><mo>×</mo><mn>3600</mn></mrow><mrow><mi>F</mi><mi>T</mi><mi>P</mi><mo>×</mo><mn>3600</mn></mrow></mfrac><mo>×</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">TSS = \frac{NP \times IF \times 3600}{FTP \times 3600} \times 100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.1297em;vertical-align:-0.7693em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">3600</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">3600</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">100</span></span></span></span></span><p>Rough TSS benchmarks:</p>
+<table>
+<thead>
+<tr>
+<th>TSS</th>
+<th>Ride type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&lt; 50</td>
+<td>Easy / recovery</td>
+</tr>
+<tr>
+<td>50–100</td>
+<td>Typical endurance ride</td>
+</tr>
+<tr>
+<td>100–150</td>
+<td>Hard interval session</td>
+</tr>
+<tr>
+<td>150–200</td>
+<td>Long, hard ride or race</td>
+</tr>
+<tr>
+<td>&gt; 200</td>
+<td>Very demanding; needs recovery</td>
+</tr>
+</tbody></table>
+<p>Tracking daily and weekly TSS builds a Performance Management Chart that reveals accumulating fitness and fatigue.</p>
+<h2>Heart rate: the body&#39;s response</h2>
+<p>Heart rate tells you how your body responded to the work, not the work itself. Useful patterns:</p>
+<ul>
+<li><strong>Cardiac drift.</strong> A rising heart rate at constant power over a ride indicates fatigue, heat stress, or dehydration. Mild drift (under ~5%) is normal; large drift signals trouble.</li>
+<li><strong>HR-to-power decoupling.</strong> If HR climbs while power holds, you are working harder cardiovascularly for the same output.</li>
+<li><strong>Resting and recovery HR trends.</strong> Multi-week trends in resting HR reveal accumulating fatigue or illness.</li>
+</ul>
+<h2>Cadence</h2>
+<p>Cadence is less about right or wrong and more about context. Most trained riders self-select 80–100 rpm on flats. Track whether cadence collapses under fatigue — a sign of muscular weakness — and whether you are grinding unnecessarily in heavy gears.</p>
+<h2>Adding aero and posture data</h2>
+<p>If you ride with an aero sensor, ride files gain two more dimensions: CdA and posture. The <strong>DIDI.BIKE</strong> sensor records real-time CdA and posture (via a 100 Hz 6-axis IMU) and syncs to Strava, TrainingPeaks, Garmin, and Wahoo. Reviewing these after a ride tells you not just how hard you worked but how aerodynamically efficient you were, and whether your position held as fatigue set in.</p>
+<h2>A simple post-ride review routine</h2>
+<ol>
+<li><strong>Check the headline numbers.</strong> Did <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">NP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mi>F</mi></mrow><annotation encoding="application/x-tex">IF</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span></span></span></span>, and TSS match the session&#39;s intent?</li>
+<li><strong>Compare HR to power.</strong> Is the relationship consistent, or did HR drift unexpectedly?</li>
+<li><strong>Look at time-in-zone.</strong> Did you spend time where the plan called for it?</li>
+<li><strong>Review cadence and (if available) posture and CdA.</strong> Did form hold under load?</li>
+<li><strong>Note how you felt.</strong> Subjective RPE alongside the data builds calibration over time.</li>
+</ol>
+<h2>Common mistakes</h2>
+<ul>
+<li><strong>Chasing average power.</strong> It is easily gamed by coasting and surging. Use <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">NP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span></span></span></span> instead.</li>
+<li><strong>Ignoring context.</strong> A high HR on a hot day is not the same signal as on a cool one.</li>
+<li><strong>Over-analyzing single rides.</strong> Trends across weeks matter more than any one file.</li>
+</ul>
+<h2>Putting it together</h2>
+<p>Reading ride data turns each ride into a data point in a longer arc of training. Pair it with a sound <a href="/en/blog/ftp-testing-protocol">FTP test</a> to keep zones accurate, structured <a href="/en/blog/cycling-interval-design">interval design</a> to know what each session should achieve, and the broader <a href="/en/blog/training-racing-cycling-data-guide">Training &amp; Racing data guide</a> for the full framework.</p>
+<h2>FAQ</h2>
+<p><strong>What is the difference between average power and normalized power?</strong>
+Average power is the simple mean of all wattage readings. Normalized Power weights surges more heavily via a fourth-power rolling average, giving a better estimate of the metabolic cost of a variable ride.</p>
+<p><strong>What is a good TSS for a single ride?</strong>
+A typical endurance ride is around 50 to 100 TSS. Hard interval sessions often reach 100 to 150 TSS. Rides above 200 TSS require significant recovery.</p>
+<p><strong>Why is my heart rate lower than expected at a given power?</strong>
+Common causes are fatigue, heat adaptation, dehydration, or simply being well-rested. Tracking cardiac drift over weeks helps distinguish fitness gains from other factors.</p>
+<p><strong>Do I need special software to read my ride data?</strong>
+No. Platforms like Strava, TrainingPeaks, Garmin Connect, and Wahoo&#39;s app provide power, heart-rate, and TSS analysis. Pairing a sensor like DIDI.BIKE adds CdA and posture data.</p>
+<h2>References</h2>
+<ol>
+<li><em>Medicine &amp; Science in Sports &amp; Exercise</em>: Modeling anaerobic work capacity (W&#39;) and fatigue dynamics.</li>
+<li><em>International Journal of Sports Physiology and Performance</em>: Altitude training block dynamics and VO2max recovery.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: Realtime physiological telemetry and training stress balance tracking.</li>
+</ol>

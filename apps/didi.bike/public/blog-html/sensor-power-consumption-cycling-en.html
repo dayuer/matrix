@@ -1,0 +1,114 @@
+<h1>Sensor Power Consumption and Battery Life</h1>
+<p>Cycling sensor battery life is the result of a power budget spread across four subsystems: the IMU that samples motion, the radio that transmits it, the flash that buffers it, and the microcontroller that orchestrates everything. A 120-hour sensor like the DIDI.BIKE — running a 6-axis IMU at 100 Hz, dual ANT+/BLE 5.0 radios, an 8 MB offline buffer, and a barometer — is engineered so that no single subsystem starves the others. This guide breaks down where the energy goes, how design choices extend or shorten cycling sensor battery life, and what the real-world numbers mean for riders.</p>
+<h2>The Power Budget: Where Energy Goes</h2>
+<p>A modern cycling telemetry sensor has four main power-consuming subsystems. Their relative contribution depends on configuration, but a representative budget looks like this:</p>
+<table>
+<thead>
+<tr>
+<th>Subsystem</th>
+<th>Function</th>
+<th>Typical share of power budget</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IMU (gyro + accel)</td>
+<td>Continuous 100 Hz motion sampling</td>
+<td>25-35%</td>
+</tr>
+<tr>
+<td>Radio (BLE + ANT+)</td>
+<td>Wireless telemetry transmission</td>
+<td>30-40%</td>
+</tr>
+<tr>
+<td>Microcontroller</td>
+<td>Sensor fusion, buffering, protocol stack</td>
+<td>15-25%</td>
+</tr>
+<tr>
+<td>Flash + barometer</td>
+<td>Offline buffering, altitude sampling</td>
+<td>10-15%</td>
+</tr>
+</tbody></table>
+<p>The exact split varies with connection state: when the radio is actively transmitting it dominates; when the link is down and the sensor is buffering to flash, the flash and MCU shares rise. But over a full ride, the IMU and radio together account for roughly two-thirds of the energy used.</p>
+<h2>IMU Power Consumption</h2>
+<p>A 6-axis MEMS IMU like the one in the DIDI.BIKE sensor draws a few milliamperes in continuous operation. The gyro is typically the thirstier axis because its vibrating structure must be driven constantly, while the accelerometer is comparatively cheap to run. The key lever is <strong>sampling rate</strong>.</p>
+<p>Power consumption scales roughly linearly with sampling rate because the dominant cost is the analog-to-digital conversion cycle and the sensor&#39;s active-mode current, not the digital readout. Moving from 100 Hz to 200 Hz would therefore roughly double the IMU&#39;s energy draw — yet, as our <a href="/en/blog/sampling-rate-nyquist-cycling">Nyquist and sampling rate guide</a> shows, there is no cycling-relevant signal above 50 Hz to capture, so the extra power buys no useful data. This is the core engineering reason the DIDI.BIKE sensor settled on 100 Hz: it is the rate at which the IMU captures every relevant frequency for minimum energy.</p>
+<h2>Radio Power Consumption</h2>
+<p>The radio is the single most variable load. Its power depends on:</p>
+<ul>
+<li><strong>Connection state</strong>: Transmitting draws 5-15 mA peaks; idle listening draws less; deep sleep draws microamps.</li>
+<li><strong>Connection interval</strong>: A shorter interval means the radio wakes more often, increasing average draw. BLE&#39;s 7.5 ms minimum interval is fast but power-hungry; a 100 ms interval is far cheaper but adds latency.</li>
+<li><strong>Transmit power</strong>: Higher TX power extends range but drains the battery faster.</li>
+<li><strong>Dual-radio operation</strong>: Running ANT+ and BLE simultaneously roughly doubles radio activity versus a single protocol.</li>
+</ul>
+<p>The DIDI.BIKE sensor&#39;s dual-radio design is the most power-intensive configuration, but the payoff is universal compatibility with both bike computers and smartphones. See <a href="/en/blog/cycling-telemetry-protocols">cycling telemetry protocols</a> for why both radios matter. Even with both active, careful duty-cycling keeps the sensor at 120 hours.</p>
+<h2>Flash and Buffering Power</h2>
+<p>Writing to the 8 MB offline buffer consumes energy only when the wireless link is down and samples must be persisted. During normal connected operation the buffer sees little write activity and its power contribution is minimal. This is why buffering during dropouts does not dramatically shorten battery life — the flash is only exercised when needed. The buffering architecture is detailed in <a href="/en/blog/sensor-data-buffering-offline">sensor data buffering and offline storage</a>.</p>
+<h2>Calculating Battery Life</h2>
+<p>Battery life in hours is:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Battery life</mtext><mo>=</mo><mfrac><mtext>Battery capacity (mAh)</mtext><mtext>Average current draw (mA)</mtext></mfrac></mrow><annotation encoding="application/x-tex">\text{Battery life} = \frac{\text{Battery capacity (mAh)}}{\text{Average current draw (mA)}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">Battery life</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">Average current draw (mA)</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">Battery capacity (mAh)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><p>For the DIDI.BIKE sensor to achieve 120 hours, the average current must satisfy:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>I</mi><mtext>avg</mtext></msub><mo>=</mo><mfrac><mtext>Capacity</mtext><mrow><mn>120</mn><mtext> h</mtext></mrow></mfrac></mrow><annotation encoding="application/x-tex">I_{\text{avg}} = \frac{\text{Capacity}}{120\text{ h}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">avg</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0463em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">120</span><span class="mord text"><span class="mord"> h</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">Capacity</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><p>If the sensor&#39;s battery is, say, 500 mAh, then the average current is:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>I</mi><mtext>avg</mtext></msub><mo>=</mo><mfrac><mrow><mn>500</mn><mtext> mAh</mtext></mrow><mrow><mn>120</mn><mtext> h</mtext></mrow></mfrac><mo>≈</mo><mn>4.2</mn><mtext> mA</mtext></mrow><annotation encoding="application/x-tex">I_{\text{avg}} = \frac{500\text{ mAh}}{120\text{ h}} \approx 4.2\text{ mA}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">avg</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0574em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">120</span><span class="mord text"><span class="mord"> h</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">500</span><span class="mord text"><span class="mord"> mAh</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">4.2</span><span class="mord text"><span class="mord"> mA</span></span></span></span></span></span><p>Holding average consumption to ~4 mA while running a 100 Hz IMU and dual radios requires aggressive duty-cycling: the radio sleeps between packets, the MCU enters low-power run mode between sensor reads, and unused peripherals are gated off. This kind of power management is the difference between a 20-hour sensor and a 120-hour sensor.</p>
+<h2>Real-World Translation</h2>
+<p>120 hours of battery life means different things to different riders:</p>
+<table>
+<thead>
+<tr>
+<th>Rider profile</th>
+<th>Weekly hours</th>
+<th>Charge interval</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Casual (2-3 h/week)</td>
+<td>3</td>
+<td>~40 weeks (charge annually)</td>
+</tr>
+<tr>
+<td>Regular (5-8 h/week)</td>
+<td>7</td>
+<td>~17 weeks (~4 months)</td>
+</tr>
+<tr>
+<td>Enthusiast (8-12 h/week)</td>
+<td>10</td>
+<td>~12 weeks (~3 months)</td>
+</tr>
+<tr>
+<td>Pro / ultra (15-25 h/week)</td>
+<td>20</td>
+<td>~6 weeks</td>
+</tr>
+</tbody></table>
+<p>Even a professional averaging 20 hours per week gets about six weeks between charges. For most riders, the sensor effectively runs all season on a handful of USB-C charges.</p>
+<h2>USB-C Charging</h2>
+<p>The DIDI.BIKE sensor charges via USB-C, which delivers faster charging than older Micro-USB and is reversible for convenience. A depleted sensor typically reaches full charge in 1-2 hours. USB-C also supports standardized power delivery, so the sensor can be topped up from a power bank during a multi-day tour — a meaningful advantage over coin-cell sensors that cannot be recharged in the field.</p>
+<h2>Strategies to Extend Battery Life</h2>
+<p>If you need to stretch a charge further:</p>
+<ol>
+<li><strong>Disable the radio you are not using.</strong> If you ride with a bike computer only, turn off BLE; if phone-only, turn off ANT+.</li>
+<li><strong>Reduce transmit frequency.</strong> Some sensors let you lower the telemetry reporting rate, which reduces radio wake-ups at the cost of less granular live data.</li>
+<li><strong>Avoid extreme temperatures.</strong> Cold weather reduces effective battery capacity; insulating the sensor helps in winter.</li>
+<li><strong>Keep firmware updated.</strong> OTA updates often include power-management improvements — see <a href="/en/blog/ota-firmware-updates-cycling">OTA firmware updates</a>.</li>
+<li><strong>Store at partial charge.</strong> Long-term storage at full charge degrades lithium cells faster; store around 50% if the sensor sits idle for months.</li>
+</ol>
+<h2>The Engineering Trade-Off</h2>
+<p>Every cycling sensor design is a trade-off among sampling rate, radio activity, buffer size, and battery capacity. The DIDI.BIKE sensor chose a high-data-rate path — 100 Hz, 6-axis, dual radio, large buffer — and then engineered the power budget to still deliver 120 hours. A coin-cell sensor makes the opposite trade-off: minimal data rate, single radio, no buffer, but year-long battery. Neither is universally better; the right choice depends on whether you want rich telemetry or install-and-forget simplicity.</p>
+<p>For the complete picture of how power, sampling, buffering, and protocol choices fit together, the pillar <a href="/en/blog/cycling-sensors-telemetry-guide">cycling sensors and telemetry guide</a> is the overview, and the <a href="/en/blog/gyroscope-vs-accelerometer-cycling">gyroscope vs accelerometer</a> article explains the IMU subsystem whose power draw we analyzed here.</p>
+<h2>FAQ</h2>
+<p><strong>What drains a cycling sensor&#39;s battery the most?</strong>
+In an IMU-based sensor, the radio (BLE or ANT+) and the always-on IMU sampling at 100 Hz are the two largest draws. The DIDI.BIKE sensor is engineered so these together still allow 120 hours of continuous operation.</p>
+<p><strong>How many hours does a good cycling sensor last on a charge?</strong>
+A high-quality rechargeable sensor like the DIDI.BIKE lasts 120 hours of continuous telemetry. That is roughly 2-3 months of riding for an active cyclist doing 8-10 hours per week.</p>
+<p><strong>Does turning off Bluetooth extend battery life?</strong>
+Yes. If you do not need live telemetry on a phone, disabling BLE and recording only to the internal 8 MB buffer reduces radio power draw and can extend battery life, though the IMU remains active.</p>
+<p><strong>Does sampling at a higher rate use more power?</strong>
+Yes. Power consumption scales roughly linearly with sampling rate. Doubling from 100 Hz to 200 Hz would increase IMU power draw significantly while capturing no useful additional cycling data, which is why 100 Hz is the efficient sweet spot.</p>
+<h2>References</h2>
+<ol>
+<li><em>IEEE Sensors Journal</em>: Multi-sensor data fusion and attitude estimation using MEMS IMUs.</li>
+<li><em>Journal of NeuroEngineering and Rehabilitation</em>: Wearable telemetry sensors and realtime posture tracking.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: 100Hz IMU sampling rates and Kalman filtering for gravity extraction.</li>
+</ol>

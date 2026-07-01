@@ -1,0 +1,24 @@
+{
+  "id": "persona_16",
+  "name": "Camila Silva",
+  "gender": "Female",
+  "age": 25,
+  "country": "Brazil",
+  "ethnicity": "Mixed Race",
+  "sexualOrientation": "Pansexual",
+  "industry": "Digital Media Marketing",
+  "knowledgeLevel": "Novice Commuter",
+  "interests": [
+    "Group rides",
+    "E-bike power assistance",
+    "Urban lifestyle"
+  ],
+  "biases": [
+    "Prefers bite-sized, visually rich content",
+    "Dislikes long academic essays"
+  ],
+  "expectations": [
+    "Wants short video summaries",
+    "Seeks community ride reviews"
+  ]
+}

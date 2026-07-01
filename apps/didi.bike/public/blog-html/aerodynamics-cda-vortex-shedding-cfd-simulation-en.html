@@ -1,0 +1,103 @@
+<h1>Vortex Shedding Telemetry and CFD Data Pipelines</h1>
+<h2>Embedded Telemetry Architecture</h2>
+<p>Embedded systems in professional cycling must process high-frequency sensor streams to capture dynamic drag events. Aerodynamic drag accounts for over $90%$ of total resistance on flat terrain at speeds exceeding $40\text{ km/h}$. Measuring these forces requires analyzing boundary layer flow separation. Vortex shedding behind the seatpost creates low-pressure zones. These zones produce measurable pressure oscillations. To capture these events, our hardware platform utilizes differential pressure transducers. These transducers connect to the primary MCU via an I2C register interface.</p>
+<p>The system captures data at 50 Hz. This frequency is necessary to avoid aliasing of the vortex shedding signal. The MCU must process these streams without dropping packets. Interrupt latency represents a primary constraint. If the processor is busy, data in the I2C register will be overwritten. We implement a direct memory access (DMA) pipeline to transfer raw sensor readings into SRAM. This architecture minimizes MCU intervention. It ensures that raw telemetry data is preserved for downstream processing.</p>
+<h2>Data Serialization and Packet Protocols</h2>
+<p>Once the raw pressure values are retrieved, the MCU packages them into serial packets. We utilize a custom serialization protocol. The packet includes a header, a timestamp, pressure metrics, and a trailing checksum. During time-series validation, we compute the relative wind yaw angle ($\beta$) to determine the crosswind impact:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>tan</mi><mo>⁡</mo><mi>β</mi><mo>=</mo><mfrac><msub><mi>v</mi><mtext>cross</mtext></msub><msub><mi>v</mi><mtext>rider</mtext></msub></mfrac></mrow><annotation encoding="application/x-tex">\tan \beta = \frac{v_{\text{cross}}}{v_{\text{rider}}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mop">tan</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0528em;">β</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.9436em;vertical-align:-0.836em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">rider</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">cross</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.836em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><p>Where:</p>
+<ul>
+<li>$\beta$ is the relative yaw angle in radians.</li>
+<li>$v_{\text{cross}}$ is the lateral crosswind component in meters per second.</li>
+<li>$v_{\text{rider}}$ represents the forward velocity vector of the bicycle relative to the ground.</li>
+<li>$F_d$ is the total drag force vector in Newtons, representing the net force opposing the rider&#39;s forward motion.</li>
+<li>$Re$ represents the Reynolds Number, characterizing the transition from laminar to turbulent flow along the rider&#39;s limbs and skinsuit panels.</li>
+<li>$\rho$ is the local barometric air density, adjusted dynamically for altitude (e.g., during high-altitude Alpine passes or altitude training in St. Moritz, Switzerland).</li>
+<li>$A$ is the planimetric frontal area, captured via 2D photogrammetry.</li>
+</ul>
+<p>The calculation of relative velocity is necessary to normalize the pressure drag measurements. The serial packet is structured to optimize transmission bandwidth. We avoid floating-point representation in the payload. Instead, pressure values are scaled and transmitted as 16-bit integers.</p>
+<h2>Data Frame Register Structure</h2>
+<p>The telemetry receiver decodes the serial stream. It extracts the raw values from the packet payload. The table below details the register allocation within the telemetry receiver memory space.</p>
+<table>
+<thead>
+<tr>
+<th>Byte Offset</th>
+<th>Register Name</th>
+<th>Data Type</th>
+<th>Bit Range</th>
+<th>Description &amp; Verification</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0x00</td>
+<td>REG_HEADER</td>
+<td>uint8_t</td>
+<td>7:0</td>
+<td>Fixed preamble value ($0\text{xAA}$)</td>
+</tr>
+<tr>
+<td>0x01</td>
+<td>REG_YAW_VAL</td>
+<td>int16_t</td>
+<td>15:0</td>
+<td>Calculated yaw angle ($\beta$) in milliradian</td>
+</tr>
+<tr>
+<td>0x03</td>
+<td>REG_PRES_1</td>
+<td>uint16_t</td>
+<td>15:0</td>
+<td>Sensor port 1 pressure differential (Pa)</td>
+</tr>
+<tr>
+<td>0x05</td>
+<td>REG_PRES_2</td>
+<td>uint16_t</td>
+<td>15:0</td>
+<td>Sensor port 2 pressure differential (Pa)</td>
+</tr>
+<tr>
+<td>0x07</td>
+<td>REG_CADENCE</td>
+<td>uint8_t</td>
+<td>7:0</td>
+<td>Crank rotation speed in rpm</td>
+</tr>
+<tr>
+<td>0x08</td>
+<td>REG_CHECKSUM</td>
+<td>uint16_t</td>
+<td>15:0</td>
+<td>CRC-16-CCITT verification value</td>
+</tr>
+</tbody></table>
+<p>Each register must be parsed sequentially. The CRC checksum is verified first. If the checksum fails, the receiver discards the packet. We implement a thread safety lock. This lock prevents the parsing thread from reading a register while the UART buffer is writing to it.</p>
+<pre><code class="language-c">// Example ISR for UART packet reception
+void UART_RX_IRQHandler(void) {
+    uint8_t rx_byte = UART_ReadByte();
+    static uint16_t buffer_index = 0;
+    
+    if (buffer_index &lt; UART_BUFFER_SIZE) {
+        rx_buffer[buffer_index++] = rx_byte;
+        if (rx_byte == 0xAA &amp;&amp; buffer_index == 1) {
+            // Sync detected
+            timer_start();
+        }
+    } else {
+        // Buffer overflow prevention
+        buffer_index = 0;
+        rx_buffer[buffer_index++] = rx_byte;
+    }
+}
+</code></pre>
+<h2>Interrupt Latency and Ring Buffer Optimization</h2>
+<p>The ISR must execute in under 5 microseconds. This constraint prevents buffer overrun at high baud rates. We optimize memory access by declaring the rx_buffer as volatile. This prevents compiler optimizations from caching the buffer pointer in CPU registers. We also utilize a circular ring buffer to manage incoming telemetry. The parser thread runs as a low-priority task. It extracts packets from the ring buffer.</p>
+<p>If the ring buffer fills to $80%$ capacity, the system triggers a warning flags register. The MCU will then skip non-essential telemetry packets. For example, battery level updates will be delayed. Priority is given to pressure differential data. This ensures that the vortex shedding analysis remains uninterrupted. </p>
+<p>DIDI.BIKE systems enforce strict checksum verification. The CRC-16 calculation is executed in hardware. The MCU features a dedicated CRC peripheral. Using the hardware peripheral reduces computation time. The execution time drops from 120 clock cycles in C code to just 4 cycles. This optimization frees CPU cycles for real-time Fourier transform calculations.</p>
+<p>The system is tested across high altitude training runs. In these environments, pressure drops change the air density values. The MCU updates the compensation registers dynamically. This prevents data drift under cold mountain temperatures. The serial stream remains robust under all operating conditions.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.tandfonline.com/toc/rjsp20/current" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Journal of Sports Sciences</a>: Biomechanical analysis and mechanical efficiency in elite cycling.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: High-frequency telemetry and sensor fusion calibrations.</li>
+<li><a href="https://www.uci.org/inside-uci/constitutions-regulations/regulations" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">UCI Cycling Regulations</a>: Part I: General Organisation of Cycling as a Sport (Aero &amp; Frame dimensions limits).</li>
+<li><a href="https://scholar.google.com/scholar?q=High-altitude+hypoxic+adaptation+and+cardiorespiratory+kinetics" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Swiss Federal Institute of Sport Magglingen</a>: High-altitude hypoxic adaptation and cardiorespiratory kinetics.</li>
+</ol>

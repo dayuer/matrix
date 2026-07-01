@@ -1,0 +1,33 @@
+{% set data = block.data or dict.pillars %}
+<section class="section pillars">
+  <div class="pillars-glow"></div>
+  <div class="container">
+    <div class="pillars-grid">
+      {% for item in data.items %}
+        <div class="glass-card pillars-card animate-on-scroll delay-{{ loop.index }}">
+          <div class="pillars-card-top">
+            <span class="pillars-icon">
+              {% if loop.index0 == 0 %}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" />
+                </svg>
+              {% elif loop.index0 == 1 %}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="5" r="3" /><path d="M12 8v4" /><path d="M8 20l2-8h4l2 8" /><path d="M7 12h10" />
+                </svg>
+              {% else %}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M8.5 16.5a5 5 0 017 0" /><path d="M5 13a9 9 0 0114 0" /><path d="M2 9.5a13 13 0 0120 0" /><circle cx="12" cy="20" r="1.5" fill="currentColor" />
+                </svg>
+              {% endif %}
+            </span>
+            <span class="pillars-num">0{{ loop.index }}</span>
+          </div>
+          <h3 class="pillars-card-title">{{ item.title }}</h3>
+          <p class="pillars-card-desc">{{ item.desc }}</p>
+          <div class="pillars-card-line"></div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

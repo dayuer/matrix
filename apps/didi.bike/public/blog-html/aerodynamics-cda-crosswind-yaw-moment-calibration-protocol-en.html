@@ -1,0 +1,69 @@
+<h1>Calibration Protocol for Steering Sensor Forces</h1>
+<h2>Step 1: Mounting Tolerances and Thread Lock</h2>
+<p>To achieve precise measurement of steering torque in real-world environments, a mechanic must isolate the mechanical interface of the carbon handlebars. Start by inspecting all mounting surfaces for debris. Apply a thin layer of medium-strength thread lock to the threads of the M4 titanium fasteners holding the sensor housing. Fasten each bolt in a cross-pattern sequence to ensure uniform seating. You must check the clearance of the custom aluminum bracket against the headtube to prevent frictional binding.</p>
+<p>Always use a calibrated digital torque wrench to set fasteners to their specified limits. The required torque tolerance for these structural components is tight. Even a minor deviation in tightness can shift the strain gauge centering position, rendering downstream readings invalid. Avoid overtightening. Excess stress damages the fragile electronics of the sensor. Check the bracket. Is it secure? A loose housing generates mechanical play that destroys telemetry tracking.</p>
+<p>Furthermore, we must prevent galvanic corrosion when mating titanium fasteners with carbon fiber structures. Use a specialized isolating paste on the carbon contact surfaces to block electrochemical degradation over long test cycles. Inspect the thread engagement depth. Each bolt must thread into the receiving barrel by at least five full turns to distribute the mechanical shear load evenly. If the threads are stripped or worn, replace the entire bracket assembly immediately to maintain system rigidity.</p>
+<h2>Step 2: Strain Gauge Centering and Play Detection</h2>
+<p>Mechanical play and slop detection are the main enemies of precise telemetry calibrations. If the assembly contains any shifting tolerance, the sensor registers false movement that corrupts data. We use a dial indicator to measure axial deflection at the steering column. Place the probe against the handlebar clamp. Apply a lateral force to the bars. Watch the needle. Zero play is our goal. Any deflection greater than $0.05\text{ mm}$ indicates that internal spacer shims require adjustment.</p>
+<p>If you find slop, disassemble the clamp. Add precision brass spacer shims to eliminate the gap. Reassemble the unit. Check the alignment of the internal strain gauges. They must align with the primary steering axis. Use the centering screw to adjust the sensor. The mechanical torque acting on the steering spindle follows this physical equation:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>τ</mi><mo>=</mo><mi>F</mi><mo>⋅</mo><mi>d</mi><mo>⋅</mo><mi>sin</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>θ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\tau = F \cdot d \cdot \sin(\theta)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">sin</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0278em;">θ</span><span class="mclose">)</span></span></span></span></span><p>Where:</p>
+<ul>
+<li>$\tau$ represents the torque in Newton-meters.</li>
+<li>$F$ is the lateral force vector applied by the wind.</li>
+<li>$d$ is the moment arm distance.</li>
+<li>$\theta$ is the angle of force application.</li>
+</ul>
+<p>Verify this alignment before proceeding. Clean all oil from the spindle using isopropyl alcohol.</p>
+<p>To perform strain gauge centering, connect the sensor to the diagnostic console. Apply a known calibration weight of exactly $1.0\text{ kg}$ to the left handlebar tip, recording the voltage change. Move the weight to the right handlebar tip, verifying that the voltage output mirror image matches the left-side readings. If the signals are asymmetrical, the physical sensor element is slightly rotated. Use a plastic drift punch and a small hammer to gently tap the sensor casing until the left-to-right differential voltage falls below the maximum allowed tolerance limit of $1.5%$.</p>
+<h2>Step 3: Zero-Point Calibration Offset Calibration</h2>
+<p>Before moving the bike to the wind tunnel, you must execute the zero-point calibration offset procedure. Place the bike on a level surface. Secure the rear dropouts in the test stand clamp. The front wheel must rotate freely. Ensure no wind or vibrations disturb the room. Connect the digital interface cable to the diagnostic port. Open the sensor terminal. Check the analog output signal. The raw voltage should sit within $0.01\text{ V}$ of the nominal zero reference.</p>
+<p>If the calibration offset exceeds this limit, adjust the analog potentiometer. Turn the adjustment screw. Do this slowly. Watch the terminal display. The reading should stabilize. Repeat the process three times to ensure stability. This calibration step isolates the system from baseline structural stresses. The physical relationship of the airflow around the rider&#39;s front wheel assembly relies on the Reynolds number:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>R</mi><mi>e</mi><mo>=</mo><mfrac><mrow><mi>ρ</mi><mi>v</mi><mi>L</mi></mrow><mi>μ</mi></mfrac></mrow><annotation encoding="application/x-tex">Re = \frac{\rho v L}{\mu}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.2408em;vertical-align:-0.8804em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">μ</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">ρ</span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="mord mathnormal">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><p>Where:</p>
+<ul>
+<li>$F_d$ is the total drag force vector in Newtons, representing the net force opposing the rider&#39;s forward motion.</li>
+<li>$Re$ represents the Reynolds Number, characterizing the transition from laminar to turbulent flow along the rider&#39;s limbs and skinsuit panels.</li>
+<li>$\rho$ is the local barometric air density, adjusted dynamically for altitude (e.g., during high-altitude Alpine passes or altitude training in St. Moritz, Switzerland).</li>
+<li>$A$ is the planimetric frontal area, captured via 2D photogrammetry.</li>
+</ul>
+<p>This calculation helps identify the boundary layer transition point. Ensure your workspace is dust-free. Dust ruins the delicate calibration steps.</p>
+<p>Moreover, thermal expansion can cause zero-point drift during long testing sessions. We run a temperature cycle test by placing the bike in a heated chamber at $35^{\circ}\text{C}$ for two hours, then cooling it to $10^{\circ}\text{C}$ to record the thermal drift coefficient. Our target is a maximum temperature-induced offset of less than $0.05\text{ Nm}$ across the entire operating range. If the offset exceeds this threshold, replace the internal compensation resistor to stabilize the wheatstone bridge circuit against environmental changes.</p>
+<h2>Step 4: Drivetrain Alignment and Friction Losses</h2>
+<p>Friction losses within the steering bearing assembly mimic aerodynamic forces, skewing the calibration profiles. Clean the headset bearings. Pack them with low-viscosity grease. Adjust the preload top cap. The steering movement must remain smooth. If the bearings bind, the steering sensor records friction drag instead of wind forces. Use the required tools for this assembly task. The required gear list and torque specifications are detailed in the tables below.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Component</th>
+<th align="left">Recommended Tool</th>
+<th align="left">Torque Specification</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Handlebar Clamp Bolts</td>
+<td align="left">Hex Key 4mm</td>
+<td align="left">$5.0 \text{ Nm} \pm 0.2 \text{ Nm}$</td>
+</tr>
+<tr>
+<td align="left">Sensor Stem Bracket</td>
+<td align="left">Torx T20 Driver</td>
+<td align="left">$4.0 \text{ Nm} \pm 0.1 \text{ Nm}$</td>
+</tr>
+<tr>
+<td align="left">Headset Top Cap Screw</td>
+<td align="left">Hex Key 5mm</td>
+<td align="left">$2.5 \text{ Nm} \pm 0.3 \text{ Nm}$</td>
+</tr>
+<tr>
+<td align="left">Transducer Locknut</td>
+<td align="left">Custom Spanner</td>
+<td align="left">$8.0 \text{ Nm} \pm 0.5 \text{ Nm}$</td>
+</tr>
+</tbody></table>
+<p>Use the correct tools for every bolt. Replace worn fasteners immediately. Check the environmental sealing. Water ingress ruins the internal circuitry. Ensure the rubber gasket is seated properly. Tighten the sealing cap. The bike is now ready for testing.</p>
+<p>Furthermore, we must check for any cable routing interference that could pull on the handlebars during steering inputs. Route all electronic shifting wires and hydraulic brake hoses through the center of the stem, ensuring they have sufficient slack to allow a full forty-five degrees of steering angle in both directions without binding. If a hose is too tight, it will pull the steering off-center, introducing a mechanical preload that distorts the low-force strain gauge readings. Inspect the steering column assembly under a magnifying lamp to ensure no carbon fibers are fraying around the sensor bracket clamp area.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.tandfonline.com/toc/rjsp20/current" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Journal of Sports Sciences</a>: Biomechanical analysis and mechanical efficiency in elite cycling.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: High-frequency telemetry and sensor fusion calibrations.</li>
+<li><a href="https://www.uci.org/inside-uci/constitutions-regulations/regulations" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">UCI Cycling Regulations</a>: Part I: General Organisation of Cycling as a Sport (Aero &amp; Frame dimensions limits).</li>
+<li><a href="https://scholar.google.com/scholar?q=High-altitude+hypoxic+adaptation+and+cardiorespiratory+kinetics" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Swiss Federal Institute of Sport Magglingen</a>: High-altitude hypoxic adaptation and cardiorespiratory kinetics.</li>
+</ol>

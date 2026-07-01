@@ -1,0 +1,164 @@
+<h1>Wahoo Head Unit Integration Guide</h1>
+<p>Wahoo head units — the ELEMNT, BOLT, and ROAM families — are popular for their crisp screens, simple button navigation, and strong dual-protocol support. The DIDI.BIKE sensor integrates cleanly because it broadcasts on both ANT+ and BLE 5.0 simultaneously, so wahoo head unit integration takes only a few minutes. We analyze pairing, configuring data pages, and fixing the most common issues.</p>
+<h2>Supported models</h2>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>ANT+</th>
+<th>BLE 5.0</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ELEMNT (original)</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Legacy but fully compatible</td>
+</tr>
+<tr>
+<td>ELEMNT BOLT v1 / v2</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>v2 adds ambient light sensor</td>
+</tr>
+<tr>
+<td>ELEMNT ROAM v1 / v2</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>v2 has a color screen and USB-C</td>
+</tr>
+<tr>
+<td>ELEMNT RIVAL (watch)</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Triathlon use</td>
+</tr>
+</tbody></table>
+<p>All models recognize the DIDI.BIKE sensor&#39;s standard power, cadence, and heart-rate profiles.</p>
+<h2>Step 1: Pair the sensor</h2>
+<p>Unlike Garmin, Wahoo configuration happens mostly in the <strong>ELEMNT companion app</strong> on your phone, then syncs to the head unit.</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Open the ELEMNT companion app and tap <strong>Sensors</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Tap <strong>+</strong> or <strong>Add Sensor</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Wake the DIDI.BIKE sensor by spinning the crank</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Wait for the sensor to appear under the relevant categories (Power, Cadence, Heart Rate)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Tap each one to pair</td>
+</tr>
+<tr>
+<td>6</td>
+<td>The head unit confirms pairing with a checkmark on its screen</td>
+</tr>
+</tbody></table>
+<h2>Step 2: Choose ANT+ or BLE</h2>
+<p>Wahoo is unusual in that it handles BLE sensors natively, not just ANT+. You can pick either:</p>
+<ul>
+<li><strong>ANT+ (recommended)</strong> — the de-facto standard for bike sensors, lowest latency, broadest interoperability.</li>
+<li><strong>BLE 5.0</strong> — useful if you want the phone to stay connected to the same sensor for a companion app or custom IMU logging.</li>
+</ul>
+<p>Pair one protocol at a time per profile to avoid confusion. The DIDI.BIKE sensor can serve both simultaneously, so you can run ANT+ to the Wahoo and BLE to a phone in parallel.</p>
+<h2>Step 3: Configure data pages</h2>
+<p>Wahoo organizes metrics into Pages that you design in the companion app.</p>
+<ol>
+<li>In the app, open <strong>Profile → Pages</strong>.</li>
+<li>Select the page you ride with (e.g., the default &quot;Training&quot; page).</li>
+<li>Tap a tile slot and assign a metric:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Tile</th>
+<th>Metric</th>
+<th>Tip</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Top</td>
+<td>Power (3 s avg)</td>
+<td>Smoother than instantaneous</td>
+</tr>
+<tr>
+<td>Middle-left</td>
+<td>Cadence</td>
+<td>Target your efficient range</td>
+</tr>
+<tr>
+<td>Middle-right</td>
+<td>Heart rate</td>
+<td>Pair a chest strap for accuracy</td>
+</tr>
+<tr>
+<td>Bottom</td>
+<td>Speed / Power zone</td>
+<td>Zone is more actionable than raw watts</td>
+</tr>
+</tbody></table>
+<ol start="4">
+<li>Tap <strong>Save</strong> — the layout syncs to the head unit the next time the app connects.</li>
+</ol>
+<p>You can build several pages (Endurance, Intervals, Recovery) and switch between them with the side buttons during a ride.</p>
+<h2>Step 4: Set power zones</h2>
+<p>Accurate zones make the power number meaningful. In the companion app:</p>
+<ol>
+<li>Go to <strong>Settings → Your Zones → Power</strong>.</li>
+<li>Enter your functional threshold power (FTP). The DIDI.BIKE sensor&#39;s calibration keeps the watts trustworthy, so your FTP input is the main source of zone accuracy.</li>
+<li>Save. The head unit now shows your current zone as a data field and can alert you when you drift outside a target band.</li>
+</ol>
+<p>The zone boundaries follow the standard percentages of FTP. For example, zone 2 endurance sits at 56–75% of FTP, while zone 5 VO2-max is 106–120%.</p>
+<h2>Troubleshooting</h2>
+<h3>Sensor pairs but shows zero watts</h3>
+<ul>
+<li>Confirm the sensor is awake (LED active) and the crank is turning.</li>
+<li>Check that you paired the <strong>Power</strong> profile, not just Cadence.</li>
+<li>Inspect the sensor&#39;s battery — below 20%, transmission weakens and readings can stall.</li>
+</ul>
+<h3>Head unit freezes during pairing</h3>
+<ul>
+<li>Force-quit the companion app, restart the head unit (hold the power button), and retry.</li>
+<li>Remove stale sensors from the app&#39;s list before adding new ones.</li>
+</ul>
+<h3>Data drops on rough roads</h3>
+<p>Vibration can momentarily interrupt ANT+ reception on any head unit. Reposition the sensor closer to the Wahoo&#39;s receiver, and ensure the mount is tight. For diagnosing road-surface effects themselves, the DIDI.BIKE sensor&#39;s IMU data — accessible via the Developer API — is the tool for the job. See <a href="/en/blog/developer-api-raw-imu-data">Developer API: Raw IMU Data</a>.</p>
+<h2>Syncing rides onward</h2>
+<p>Once the Wahoo records a ride, it can auto-sync to Strava, TrainingPeaks, and other platforms through the companion app&#39;s <strong>Accounts</strong> settings. Pairing details are in <a href="/en/blog/export-ride-data-strava">How to Export and Analyze Rides on Strava</a> and <a href="/en/blog/trainingpeaks-data-sync">TrainingPeaks Data Sync Explained</a>.</p>
+<h2>Related articles</h2>
+<ul>
+<li><a href="/en/blog/cycling-data-ecosystem-guide">The Cycling Data Ecosystem: Integrations &amp; API Guide</a></li>
+<li><a href="/en/blog/stream-sensor-data-garmin-edge">How to Stream Sensor Data to a Garmin Edge</a></li>
+<li><a href="/en/blog/zwift-real-time-sensor-data">Zwift and Real-Time Sensor Data</a></li>
+<li><a href="/en/blog/trainingpeaks-data-sync">TrainingPeaks Data Sync Explained</a></li>
+</ul>
+<h2>FAQ</h2>
+<p><strong>Is the DIDI.BIKE sensor compatible with Wahoo head units?</strong>
+Yes. The DIDI.BIKE sensor&#39;s dual ANT+ and BLE 5.0 broadcasting works with every Wahoo model including the ELEMNT, ELEMNT BOLT, ELEMNT ROAM, and the newer ROAM v2 and BOLT v2.</p>
+<p><strong>Which protocol should I use to pair with Wahoo — ANT+ or BLE?</strong>
+Wahoo supports both. ANT+ is the recommended primary link for stability, while BLE 5.0 is useful if you want to connect the same sensor to a phone app at the same time.</p>
+<p><strong>How do I add power and cadence fields to a Wahoo data page?</strong>
+In the Wahoo ELEMNT companion app, open your profile&#39;s Pages, edit a page, and drag Power, Cadence, and Heart Rate tiles into the layout. Changes sync to the head unit over Wi-Fi or Bluetooth.</p>
+<p><strong>Why will my Wahoo not find the sensor during pairing?</strong>
+Wake the sensor by spinning the crank, ensure the battery is above 20%, clear old sensors from the ELEMNT companion app&#39;s sensor list, and move within 3 meters of the head unit.</p>
+<h2>References</h2>
+<ol>
+<li><em>Wireless Communications and Mobile Computing</em>: ANT+ vs BLE latency profiles in dynamic environments.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: API data retention, FIT file streaming, and developer SDK structures.</li>
+</ol>

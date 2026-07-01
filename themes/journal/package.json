@@ -1,0 +1,20 @@
+{
+  "name": "@matrix/theme-journal",
+  "version": "1.0.0",
+  "private": true,
+  "description": "内容矩阵主题：企业官网资讯（Corporate Journal）—— 包含 Bento 卡片、多页博客与服务下单板块。表现层，应用逻辑仍在 apps/edaijia。",
+  "main": "dist/theme.js",
+  "types": "dist/theme.d.ts",
+  "exports": { ".": { "types": "./dist/theme.d.ts", "default": "./dist/theme.js" } },
+  "scripts": {
+    "build:manifest": "tsc -p tsconfig.json",
+    "build:client": "tsc -p tsconfig.client.json && tsc -p tsconfig.order.json && tsc -p tsconfig.order-status.json",
+    "build": "npm run build:manifest && npm run build:client"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": { "@matrix/site-kit": "1.0.0" },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^5.5.0"
+  }
+}

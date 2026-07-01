@@ -1,0 +1,23 @@
+{# 埋点 snippet：按 config 选择平台。provider=none 时不输出任何脚本。 #}
+{% if site.analytics.provider == 'ga4' and site.analytics.id %}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analytics.id }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{ site.analytics.id }}');
+</script>
+{% elif site.analytics.provider == 'baidu' and site.analytics.id %}
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?{{ site.analytics.id }}';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+{% elif site.analytics.provider == 'sensors' and site.analytics.id %}
+{# 神策：按实际 SDK 接入地址替换 #}
+<script>/* Sensors SDK init with id {{ site.analytics.id }} */</script>
+{% endif %}

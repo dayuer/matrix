@@ -1,0 +1,21 @@
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+{% set homePrefix = '/' + locale %}
+{% set isId = locale == 'id' %}
+
+<main class="not-found-main" style="min-height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 20px; background: var(--color-bg-primary);">
+  <div class="container" style="max-width: 600px;">
+    <h1 style="font-size: clamp(4rem, 10vw, 8rem); font-weight: 800; line-height: 1; margin-bottom: 1.5rem; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">404</h1>
+    <h2 style="font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 700; color: var(--color-text-primary); margin-bottom: 1rem;">
+      {{ 'Halaman Tidak Ditemukan' if isId else 'Page Not Found' }}
+    </h2>
+    <p style="font-size: 1.05rem; color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 2.5rem; max-width: 480px; margin-left: auto; margin-right: auto;">
+      {{ 'Maaf, halaman yang Anda cari tidak ada atau telah dipindahkan ke alamat lain.' if isId else 'Sorry, the page you are looking for does not exist or has been moved to another address.' }}
+    </p>
+    <a href="{{ homePrefix }}/" class="btn btn-primary" style="padding: 12px 28px;">
+      {{ 'Kembali ke Beranda' if isId else 'Back to Home' }}
+    </a>
+  </div>
+</main>
+{% endblock %}

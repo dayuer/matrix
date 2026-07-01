@@ -1,0 +1,20 @@
+{
+  "name": "@matrix/theme-dossier",
+  "version": "1.0.0",
+  "private": true,
+  "description": "内容矩阵主题：工程档案（Engineering Dossier）—— 浅色技术纸 + 蓝图网格 + Archivo/JetBrains Mono + 朱红标注。",
+  "main": "dist/theme.js",
+  "types": "dist/theme.d.ts",
+  "exports": { ".": { "types": "./dist/theme.d.ts", "default": "./dist/theme.js" } },
+  "scripts": {
+    "build:manifest": "tsc -p tsconfig.json",
+    "build:client": "tsc -p tsconfig.client.json",
+    "build": "npm run build:manifest && npm run build:client"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": { "@matrix/site-kit": "1.0.0" },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^5.5.0"
+  }
+}

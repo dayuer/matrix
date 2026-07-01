@@ -1,0 +1,85 @@
+{% extends "layouts/base.njk" %}
+{% block content %}
+
+  <main class="blog-page">
+
+    <!-- Hero Header -->
+    <section class="blog-header" data-reveal>
+      <p class="section-header__label">代驾学堂</p>
+      <h1 class="section-header__title">行业洞察</h1>
+      <p class="section-header__desc">聚焦代驾出行行业动态、车险增值服务标准化、智能驾驶人机协同及政策规范研究。</p>
+    </section>
+
+    <!-- 博客主内容区 -->
+    <section class="blog-content">
+      <div class="blog-container">
+        
+        <!-- 左侧文章列表 -->
+        <div class="blog-main">
+          {% if articles.length > 0 %}
+            <div class="blog-grid">
+              {% for article in articles %}
+                <article class="blog-card" data-reveal>
+                  <div class="blog-card__body">
+                    <div class="blog-card__meta">
+                      <span class="blog-card__category blog-card__category--{{ article.cluster }}">
+                        {% if article.cluster == 'pricing' %}收费指南
+                        {% elif article.cluster == 'safety' %}安全责任
+                        {% elif article.cluster == 'scenarios' %}商务场景
+                        {% elif article.cluster == 'recruit' %}司机招募
+                        {% else %}行业动态{% endif %}
+                      </span>
+                      <span class="blog-card__date">{{ article.displayDate }}</span>
+                    </div>
+                    <h2 class="blog-card__title">
+                      <a href="{{ basePath }}/blog/{{ article.slug }}">{{ article.title }}</a>
+                    </h2>
+                    <p class="blog-card__excerpt">{{ article.excerpt }}</p>
+                  </div>
+                  <div class="blog-card__footer">
+                    <span class="blog-card__author">
+                      <span class="blog-card__avatar-placeholder">{{ article.author.name.slice(0, 1) }}</span>
+                      {{ article.author.name }}
+                    </span>
+                    <a href="{{ basePath }}/blog/{{ article.slug }}" class="blog-card__link">
+                      阅读全文 
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                      </svg>
+                    </a>
+                  </div>
+                </article>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="blog-empty">
+              <p>暂无相关资讯文章</p>
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- 右侧侧边栏 -->
+        <aside class="blog-sidebar">
+          
+          <!-- 快捷入口卡片 (玻璃钢磨砂卡片) -->
+          <div class="sidebar-card">
+            <h3 class="sidebar-card__title">需要代驾服务？</h3>
+            <p class="sidebar-card__desc">说一句话即可下单，酒后代驾一键即达。</p>
+            <a href="{{ basePath }}/order" class="sidebar-card__btn sidebar-card__btn--primary">立即叫车</a>
+          </div>
+
+          <div class="sidebar-card">
+            <h3 class="sidebar-card__title">想加入我们？</h3>
+            <p class="sidebar-card__desc">时间自由，多劳多得。e代驾诚招全国代驾司机。</p>
+            <a href="{{ basePath }}/entry" class="sidebar-card__btn">申请加盟</a>
+          </div>
+
+        </aside>
+
+      </div>
+    </section>
+
+  </main>
+
+{% endblock %}

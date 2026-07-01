@@ -1,0 +1,804 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-intervalsicu-rest-api-real-time-streaming</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-intervalsicu-rest-api-real-time-streaming"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-intervalsicu-rest-api-real-time-streaming"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-intervalsicu-rest-api-synchronization-logic</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-intervalsicu-rest-api-synchronization-logic"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-intervalsicu-rest-api-synchronization-logic"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-intervalsicu-rest-api-custom-scripting</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-intervalsicu-rest-api-custom-scripting"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-intervalsicu-rest-api-custom-scripting"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/tapering-cycling-peak</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/tapering-cycling-peak"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/tapering-cycling-peak"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-software-engineering</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-software-engineering"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-software-engineering"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-api-integration</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-api-integration"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-api-integration"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-data-serialization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-data-serialization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-data-serialization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-performance-optimization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-performance-optimization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-performance-optimization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-security-compliance</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-security-compliance"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-security-compliance"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-database-architecture</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-database-architecture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-database-architecture"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-protocol-parsing</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-protocol-parsing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-protocol-parsing"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-real-time-streaming</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-real-time-streaming"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-real-time-streaming"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-synchronization-logic</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-synchronization-logic"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-synchronization-logic"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-custom-scripting</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-custom-scripting"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-golden-cheetah-custom-python-custom-scripting"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/cycling-pacing-strategies</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/cycling-pacing-strategies"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/cycling-pacing-strategies"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-wahoo-api-companion-software-engineering</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-wahoo-api-companion-software-engineering"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-wahoo-api-companion-software-engineering"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-wahoo-api-companion-api-integration</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-wahoo-api-companion-api-integration"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-wahoo-api-companion-api-integration"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-wahoo-api-companion-data-serialization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-wahoo-api-companion-data-serialization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-wahoo-api-companion-data-serialization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-wahoo-api-companion-performance-optimization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-wahoo-api-companion-performance-optimization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-wahoo-api-companion-performance-optimization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-wahoo-api-companion-security-compliance</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-wahoo-api-companion-security-compliance"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-wahoo-api-companion-security-compliance"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-wahoo-api-companion-database-architecture</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-wahoo-api-companion-database-architecture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-wahoo-api-companion-database-architecture"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-wahoo-api-companion-protocol-parsing</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-wahoo-api-companion-protocol-parsing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-wahoo-api-companion-protocol-parsing"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-wahoo-api-companion-real-time-streaming</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-wahoo-api-companion-real-time-streaming"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-wahoo-api-companion-real-time-streaming"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-wahoo-api-companion-synchronization-logic</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-wahoo-api-companion-synchronization-logic"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-wahoo-api-companion-synchronization-logic"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-wahoo-api-companion-custom-scripting</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-wahoo-api-companion-custom-scripting"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-wahoo-api-companion-custom-scripting"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/wind-awareness-racing</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/wind-awareness-racing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/wind-awareness-racing"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-garmin-connect-iq-background-software-engineering</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-garmin-connect-iq-background-software-engineering"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-garmin-connect-iq-background-software-engineering"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-garmin-connect-iq-background-api-integration</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-garmin-connect-iq-background-api-integration"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-garmin-connect-iq-background-api-integration"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-garmin-connect-iq-background-data-serialization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-garmin-connect-iq-background-data-serialization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-garmin-connect-iq-background-data-serialization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-garmin-connect-iq-background-performance-optimization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-garmin-connect-iq-background-performance-optimization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-garmin-connect-iq-background-performance-optimization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-garmin-connect-iq-background-security-compliance</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-garmin-connect-iq-background-security-compliance"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-garmin-connect-iq-background-security-compliance"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-garmin-connect-iq-background-database-architecture</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-garmin-connect-iq-background-database-architecture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-garmin-connect-iq-background-database-architecture"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-garmin-connect-iq-background-protocol-parsing</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-garmin-connect-iq-background-protocol-parsing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-garmin-connect-iq-background-protocol-parsing"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-garmin-connect-iq-background-real-time-streaming</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-garmin-connect-iq-background-real-time-streaming"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-garmin-connect-iq-background-real-time-streaming"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-garmin-connect-iq-background-synchronization-logic</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-garmin-connect-iq-background-synchronization-logic"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-garmin-connect-iq-background-synchronization-logic"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-garmin-connect-iq-background-custom-scripting</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-garmin-connect-iq-background-custom-scripting"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-garmin-connect-iq-background-custom-scripting"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/data-driven-cycling-coaching</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/data-driven-cycling-coaching"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/data-driven-cycling-coaching"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-raw-imu-data-websocket-software-engineering</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-raw-imu-data-websocket-software-engineering"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-raw-imu-data-websocket-software-engineering"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-raw-imu-data-websocket-api-integration</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-raw-imu-data-websocket-api-integration"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-raw-imu-data-websocket-api-integration"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-raw-imu-data-websocket-data-serialization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-raw-imu-data-websocket-data-serialization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-raw-imu-data-websocket-data-serialization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-raw-imu-data-websocket-performance-optimization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-raw-imu-data-websocket-performance-optimization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-raw-imu-data-websocket-performance-optimization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-raw-imu-data-websocket-security-compliance</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-raw-imu-data-websocket-security-compliance"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-raw-imu-data-websocket-security-compliance"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-raw-imu-data-websocket-database-architecture</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-raw-imu-data-websocket-database-architecture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-raw-imu-data-websocket-database-architecture"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-raw-imu-data-websocket-protocol-parsing</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-raw-imu-data-websocket-protocol-parsing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-raw-imu-data-websocket-protocol-parsing"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-raw-imu-data-websocket-real-time-streaming</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-raw-imu-data-websocket-real-time-streaming"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-raw-imu-data-websocket-real-time-streaming"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-raw-imu-data-websocket-synchronization-logic</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-raw-imu-data-websocket-synchronization-logic"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-raw-imu-data-websocket-synchronization-logic"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-raw-imu-data-websocket-custom-scripting</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-raw-imu-data-websocket-custom-scripting"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-raw-imu-data-websocket-custom-scripting"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/cycling-data-ecosystem-guide</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/cycling-data-ecosystem-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/cycling-data-ecosystem-guide"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-cycling-telemetry-broker-mqtt-software-engineering</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-cycling-telemetry-broker-mqtt-software-engineering"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-cycling-telemetry-broker-mqtt-software-engineering"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-cycling-telemetry-broker-mqtt-api-integration</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-cycling-telemetry-broker-mqtt-api-integration"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-cycling-telemetry-broker-mqtt-api-integration"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-cycling-telemetry-broker-mqtt-data-serialization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-cycling-telemetry-broker-mqtt-data-serialization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-cycling-telemetry-broker-mqtt-data-serialization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-cycling-telemetry-broker-mqtt-performance-optimization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-cycling-telemetry-broker-mqtt-performance-optimization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-cycling-telemetry-broker-mqtt-performance-optimization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-physiological-modeling</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-physiological-modeling"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-physiological-modeling"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-training-stress-quantification</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-training-stress-quantification"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-training-stress-quantification"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-performance-prediction</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-performance-prediction"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-performance-prediction"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-adaptation-mechanics</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-adaptation-mechanics"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-adaptation-mechanics"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-metabolic-calculation</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-metabolic-calculation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-metabolic-calculation"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-fatigue-management</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-fatigue-management"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-fatigue-management"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/stream-sensor-data-garmin-edge</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/stream-sensor-data-garmin-edge"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/stream-sensor-data-garmin-edge"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-intensity-optimization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-intensity-optimization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-intensity-optimization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-aerobic-efficiency</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-aerobic-efficiency"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-aerobic-efficiency"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-anaerobic-capacity-evaluation</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-anaerobic-capacity-evaluation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-anaerobic-capacity-evaluation"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-supercompensation-forecasting</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-supercompensation-forecasting"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-vo2max-submaximal-extrapolation-supercompensation-forecasting"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-physiological-modeling</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-physiological-modeling"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-physiological-modeling"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-training-stress-quantification</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-training-stress-quantification"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-training-stress-quantification"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-performance-prediction</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-performance-prediction"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-performance-prediction"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-adaptation-mechanics</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-adaptation-mechanics"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-adaptation-mechanics"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-metabolic-calculation</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-metabolic-calculation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-metabolic-calculation"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-fatigue-management</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-fatigue-management"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-fatigue-management"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/export-ride-data-strava</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/export-ride-data-strava"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/export-ride-data-strava"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-intensity-optimization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-intensity-optimization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-intensity-optimization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-aerobic-efficiency</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-aerobic-efficiency"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-aerobic-efficiency"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-anaerobic-capacity-evaluation</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-anaerobic-capacity-evaluation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-anaerobic-capacity-evaluation"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-supercompensation-forecasting</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-supercompensation-forecasting"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-lactate-threshold-lt1-and-lt2-supercompensation-forecasting"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-physiological-modeling</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-physiological-modeling"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-physiological-modeling"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-training-stress-quantification</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-training-stress-quantification"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-training-stress-quantification"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-performance-prediction</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-performance-prediction"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-performance-prediction"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-adaptation-mechanics</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-adaptation-mechanics"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-adaptation-mechanics"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-metabolic-calculation</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-metabolic-calculation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-metabolic-calculation"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-fatigue-management</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-fatigue-management"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-fatigue-management"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/wahoo-head-unit-integration</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/wahoo-head-unit-integration"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/wahoo-head-unit-integration"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-intensity-optimization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-intensity-optimization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-intensity-optimization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-aerobic-efficiency</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-aerobic-efficiency"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-aerobic-efficiency"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-anaerobic-capacity-evaluation</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-anaerobic-capacity-evaluation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-anaerobic-capacity-evaluation"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-supercompensation-forecasting</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-supercompensation-forecasting"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-heart-rate-decoupling-index-supercompensation-forecasting"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-chronic-training-load-ctl-physiological-modeling</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-chronic-training-load-ctl-physiological-modeling"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-chronic-training-load-ctl-physiological-modeling"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-chronic-training-load-ctl-training-stress-quantification</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-chronic-training-load-ctl-training-stress-quantification"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-chronic-training-load-ctl-training-stress-quantification"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-chronic-training-load-ctl-performance-prediction</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-chronic-training-load-ctl-performance-prediction"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-chronic-training-load-ctl-performance-prediction"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-chronic-training-load-ctl-adaptation-mechanics</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-chronic-training-load-ctl-adaptation-mechanics"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-chronic-training-load-ctl-adaptation-mechanics"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-chronic-training-load-ctl-metabolic-calculation</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-chronic-training-load-ctl-metabolic-calculation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-chronic-training-load-ctl-metabolic-calculation"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/809-training-racing-chronic-training-load-ctl-fatigue-management</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/809-training-racing-chronic-training-load-ctl-fatigue-management"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/809-training-racing-chronic-training-load-ctl-fatigue-management"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/trainingpeaks-data-sync</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/trainingpeaks-data-sync"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/trainingpeaks-data-sync"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/810-training-racing-chronic-training-load-ctl-intensity-optimization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/810-training-racing-chronic-training-load-ctl-intensity-optimization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/810-training-racing-chronic-training-load-ctl-intensity-optimization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/811-training-racing-chronic-training-load-ctl-aerobic-efficiency</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/811-training-racing-chronic-training-load-ctl-aerobic-efficiency"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/811-training-racing-chronic-training-load-ctl-aerobic-efficiency"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/812-training-racing-chronic-training-load-ctl-anaerobic-capacity-evaluation</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/812-training-racing-chronic-training-load-ctl-anaerobic-capacity-evaluation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/812-training-racing-chronic-training-load-ctl-anaerobic-capacity-evaluation"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/813-training-racing-chronic-training-load-ctl-supercompensation-forecasting</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/813-training-racing-chronic-training-load-ctl-supercompensation-forecasting"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/813-training-racing-chronic-training-load-ctl-supercompensation-forecasting"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-acute-training-load-atl-physiological-modeling</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-acute-training-load-atl-physiological-modeling"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-acute-training-load-atl-physiological-modeling"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-acute-training-load-atl-training-stress-quantification</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-acute-training-load-atl-training-stress-quantification"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-acute-training-load-atl-training-stress-quantification"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-acute-training-load-atl-performance-prediction</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-acute-training-load-atl-performance-prediction"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-acute-training-load-atl-performance-prediction"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-acute-training-load-atl-adaptation-mechanics</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-acute-training-load-atl-adaptation-mechanics"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-acute-training-load-atl-adaptation-mechanics"/>
+  </url>
+</urlset>

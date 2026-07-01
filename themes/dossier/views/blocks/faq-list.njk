@@ -1,0 +1,14 @@
+{% set d = block.data %}
+{% set h = d.head %}
+<section class="section" id="{{ d.anchor or 'faq' }}">
+  {% include "blocks/_section-head.njk" %}
+
+  <div class="faqs">
+    {% for item in d.faqs %}
+      <article class="faq reveal">
+        <h3 class="faq__q"><span class="faq__q-no mono">Q{{ loop.index }}</span>{{ item.question }}</h3>
+        <p class="faq__a">{{ item.answer }}</p>
+      </article>
+    {% endfor %}
+  </div>
+</section>

@@ -1,0 +1,98 @@
+<h1>Using Telemetry for Race-Day Decisions</h1>
+<p>Telemetry is the live stream of data from your bike and body during a race — power, speed, heart rate, and increasingly CdA and posture. Used well, it turns race day from a series of guesses into a sequence of informed decisions: when to push, when to sit in, and when to hold your aero position as fatigue builds. We analyze which telemetry matters, how to read it under pressure, and how to make decisions that translate into results.</p>
+<h2>What telemetry gives you</h2>
+<p>Race telemetry turns the variables you can&#39;t see or feel accurately into numbers you can act on. The core live metrics:</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Race-day use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Power (watts)</td>
+<td>Pace to a target, avoid the death-surge</td>
+</tr>
+<tr>
+<td>Heart rate</td>
+<td>Detect fatigue, heat stress, and drift</td>
+</tr>
+<tr>
+<td>Speed</td>
+<td>Confirm pace on sectors and into wind</td>
+</tr>
+<tr>
+<td>CdA (drag area)</td>
+<td>Hold your fastest position, spot drift</td>
+</tr>
+<tr>
+<td>Posture / IMU</td>
+<td>Catch when you sit up under load</td>
+</tr>
+</tbody></table>
+<p>The hardest of these to feel accurately is pacing. Adrenaline and fresh legs make the first 10 minutes feel easy, and the cost arrives late. Power data is the objective check.</p>
+<h2>Pacing decisions</h2>
+<p>The biggest race-day win from telemetry is disciplined pacing. Recall that Normalized Power punishes surges:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>N</mi><mi>P</mi><mo>=</mo><mroot><mrow><mfrac><mn>1</mn><mi>N</mi></mfrac><mo>∑</mo><msubsup><mover accent="true"><mi>P</mi><mo>ˉ</mo></mover><mn>30</mn><mrow><mtext> </mtext><mn>4</mn></mrow></msubsup></mrow><mn>4</mn></mroot></mrow><annotation encoding="application/x-tex">NP = \sqrt[4]{\frac{1}{N}\sum \bar{P}_{30}^{\,4}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.44em;vertical-align:-0.7884em;"></span><span class="mord sqrt"><span class="root"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8401em;"><span style="top:-3.0179em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size6 size1 mtight"><span class="mord mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6516em;"><span class="svg-align" style="top:-4.4em;"><span class="pstrut" style="height:4.4em;"></span><span class="mord" style="padding-left:1em;"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-symbol large-op" style="position:relative;top:0em;">∑</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8201em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span></span><span style="top:-3.2523em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1667em;"><span class="mord">ˉ</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7959em;"><span style="top:-2.4337em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">30</span></span></span></span><span style="top:-3.0448em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mspace mtight" style="margin-right:0.1952em;"></span><span class="mord mtight">4</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2663em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.6116em;"><span class="pstrut" style="height:4.4em;"></span><span class="hide-tail" style="min-width:1.02em;height:2.48em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="2.48em" viewBox="0 0 400000 2592" preserveAspectRatio="xMinYMin slice"><path d="M424,2478
+c-1.3,-0.7,-38.5,-172,-111.5,-514c-73,-342,-109.8,-513.3,-110.5,-514
+c0,-2,-10.7,14.3,-32,49c-4.7,7.3,-9.8,15.7,-15.5,25c-5.7,9.3,-9.8,16,-12.5,20
+s-5,7,-5,7c-4,-3.3,-8.3,-7.7,-13,-13s-13,-13,-13,-13s76,-122,76,-122s77,-121,77,-121
+s209,968,209,968c0,-2,84.7,-361.7,254,-1079c169.3,-717.3,254.7,-1077.7,256,-1081
+l0 -0c4,-6.7,10,-10,18,-10 H400000
+v40H1014.6
+s-87.3,378.7,-272.6,1166c-185.3,787.3,-279.3,1182.3,-282,1185
+c-2,6,-10,9,-24,9
+c-8,0,-12,-0.7,-12,-2z M1001 80
+h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7884em;"><span></span></span></span></span></span></span></span></span></span><p>Each sharp acceleration spikes <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">NP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span></span></span></span> and burns matches you cannot get back. Telemetry lets you hold a target power band rather than riding by feel — which, early in a race, almost always overestimates what is sustainable.</p>
+<p>For most race efforts:</p>
+<ul>
+<li><strong>Time trials / breakaways:</strong> hold <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mi>F</mi><mo>≈</mo><mn>1.0</mn><mo lspace="0em" rspace="0em">−</mo><mn>1.05</mn></mrow><annotation encoding="application/x-tex">IF \approx 1.0{-}1.05</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1.0</span><span class="mord"><span class="mord">−</span></span><span class="mord">1.05</span></span></span></span>.</li>
+<li><strong>Road races:</strong> vary between Zone 2 recovery in the bunch and short Zone 5/6 bursts at the front, metered by live power.</li>
+<li><strong>Criteriums:</strong> accept high <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">NP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span></span></span></span> but avoid wasted surges out of corners.</li>
+</ul>
+<h2>Wind and course decisions</h2>
+<p>Speed combined with power reveals wind. If your speed drops at a constant wattage, you are into a headwind; if it rises, you have a tailwind. This matters because drag scales with the cube of speed:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>P</mi><mrow><mi>a</mi><mi>e</mi><mi>r</mi><mi>o</mi></mrow></msub><mo>≈</mo><mstyle scriptlevel="0" displaystyle="false"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mtext> </mtext><mi>ρ</mi><mtext> </mtext><msub><mi>C</mi><mi>d</mi></msub><mi>A</mi><mtext> </mtext><msup><mi>v</mi><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">P_{aero} \approx \tfrac{1}{2}\, \rho\, C_dA\, v^{3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.0278em;">er</span><span class="mord mathnormal mtight">o</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2091em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">ρ</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span></span><p>The time lost into a headwind is worth more than the time gained with a tailwind, so it pays to push slightly harder into the wind and recover with it. Telemetry makes those micro-decisions real-time rather than reactive.</p>
+<h2>Position and CdA decisions</h2>
+<p>Late in a race, fatigue makes riders sit up — and CdA climbs just when every watt matters. Real-time CdA and posture data catches this the instant it happens.</p>
+<p>The <strong>DIDI.BIKE</strong> sensor provides live CdA and posture via a 100 Hz 6-axis IMU, streaming to Garmin and Wahoo head units and onward to Strava and TrainingPeaks. On race day it lets you:</p>
+<ol>
+<li><strong>Confirm you are holding your aero position</strong> under fatigue, not just when fresh.</li>
+<li><strong>Pace to a drag-aware target</strong> rather than raw watts, accounting for wind and gradient.</li>
+<li><strong>Detect wind and gradient sectors</strong> so you know when to push and when to recover.</li>
+</ol>
+<p>At $299 it brings pro-level, in-race aero feedback to any rider.</p>
+<h2>Breakaway and group dynamics</h2>
+<p>In a break or bunch, telemetry helps you meter your contribution. If your live power shows you are pulling at threshold while others coast, the numbers tell you to rotate off or ease. If a chase is closing, power confirms whether you are genuinely at the limit or just feeling the pressure. Decisions based on data beat decisions based on panic.</p>
+<h2>A race-day display setup</h2>
+<p>Keep your head unit useful, not distracting:</p>
+<ul>
+<li><strong>One primary metric</strong> front and center (power for TTs; power and speed for road races).</li>
+<li><strong>Alerts</strong> for upper limits (e.g. heart rate ceiling) so you don&#39;t have to watch every field.</li>
+<li><strong>CdA / posture</strong> on a secondary page to check periodically, especially late in the race.</li>
+</ul>
+<p>The goal is to act on telemetry, not fixate on it. Set targets pre-race, then let alerts and quick glances do the work.</p>
+<h2>Common mistakes</h2>
+<ul>
+<li><strong>Over-reliance on feel early in the race.</strong> Adrenaline lies; trust the power.</li>
+<li><strong>Chasing averages.</strong> Use live power and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">NP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span></span></span></span> trend, not a single big number.</li>
+<li><strong>Ignoring position drift.</strong> CdA rising late in a race is silent speed loss.</li>
+<li><strong>Screen clutter.</strong> Too many fields divide attention. Keep it simple.</li>
+</ul>
+<h2>Putting it together</h2>
+<p>Telemetry on race day is about converting preparation into execution: pacing that respects the math, wind-aware effort distribution, and a position that holds under fatigue. Pair it with disciplined <a href="/en/blog/cycling-pacing-strategies">cycling pacing strategies</a>, a current <a href="/en/blog/ftp-testing-protocol">FTP test</a>, and the broader <a href="/en/blog/training-racing-cycling-data-guide">Training &amp; Racing data guide</a> for the full system.</p>
+<h2>FAQ</h2>
+<p><strong>What telemetry data is most useful during a race?</strong>
+Power, heart rate, speed, and CdA are the most actionable live metrics. They let you pace precisely, detect wind sectors, and confirm you are holding your fastest position.</p>
+<p><strong>Should I stare at my head unit during a race?</strong>
+No. Use audio or glance alerts for key targets and limits. The goal is to act on telemetry, not to fixate on it and lose awareness of the race around you.</p>
+<p><strong>How does telemetry help in a breakaway or group ride?</strong>
+Telemetry shows when you are doing disproportionate work and when sitting in is wiser, and it helps you meter efforts so you have power left for the decisive move.</p>
+<p><strong>What makes the DIDI.BIKE sensor useful on race day?</strong>
+It streams real-time CdA, power-compatible telemetry, and 100 Hz posture data to your head unit, so you can pace to drag-aware targets and catch position drift mid-race.</p>
+<h2>References</h2>
+<ol>
+<li><em>Medicine &amp; Science in Sports &amp; Exercise</em>: Modeling anaerobic work capacity (W&#39;) and fatigue dynamics.</li>
+<li><em>International Journal of Sports Physiology and Performance</em>: Altitude training block dynamics and VO2max recovery.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: Realtime physiological telemetry and training stress balance tracking.</li>
+</ol>

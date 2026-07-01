@@ -1,0 +1,24 @@
+{
+  "id": "persona_9",
+  "name": "Fatima Mansour",
+  "gender": "Female",
+  "age": 26,
+  "country": "Egypt",
+  "ethnicity": "Arab",
+  "sexualOrientation": "Heterosexual",
+  "industry": "Environmental Policy Advocacy",
+  "knowledgeLevel": "Novice Commuter",
+  "interests": [
+    "City bike-sharing networks",
+    "Low carbon emissions",
+    "Urban design"
+  ],
+  "biases": [
+    "Ignores expensive elite racing gear",
+    "Prefers affordable and sustainable tech"
+  ],
+  "expectations": [
+    "Needs cost-benefit analysis of e-bikes",
+    "Wants urban policy case studies"
+  ]
+}

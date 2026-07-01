@@ -1,0 +1,30 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" font-family="'Archivo','PingFang SC',sans-serif">
+  <rect width="1200" height="630" fill="#faf9f6"/>
+  <g stroke="rgba(22,24,29,0.06)" stroke-width="1">
+    <g>
+      <line x1="0" y1="63" x2="1200" y2="63"/><line x1="0" y1="126" x2="1200" y2="126"/>
+      <line x1="0" y1="189" x2="1200" y2="189"/><line x1="0" y1="252" x2="1200" y2="252"/>
+      <line x1="0" y1="378" x2="1200" y2="378"/><line x1="0" y1="441" x2="1200" y2="441"/>
+      <line x1="0" y1="504" x2="1200" y2="504"/><line x1="0" y1="567" x2="1200" y2="567"/>
+    </g>
+    <g>
+      <line x1="80" y1="0" x2="80" y2="630"/><line x1="1120" y1="0" x2="1120" y2="630"/>
+    </g>
+  </g>
+
+  <!-- mark -->
+  <g transform="translate(80,84)">
+    <rect x="0.5" y="0.5" width="47" height="47" rx="4" fill="#16181d"/>
+    <circle cx="14" cy="24" r="3.6" fill="none" stroke="#faf9f6" stroke-width="2.2"/>
+    <path d="M17.6 24 H31.5" stroke="#c6431c" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M27 18.8 L32.2 24 L27 29.2" fill="none" stroke="#c6431c" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="32" y="18.5" width="11" height="11" rx="1.4" fill="none" stroke="#faf9f6" stroke-width="2.2"/>
+    <text x="66" y="33" font-size="30" font-weight="800" letter-spacing="-1" fill="#16181d">Synon<tspan fill="#c6431c">/</tspan>Global</text>
+  </g>
+
+  <text x="80" y="300" font-size="34" font-family="'JetBrains Mono',monospace" letter-spacing="4" fill="#c6431c">FORWARD DEPLOYED ENGINEERING</text>
+  <text x="78" y="378" font-size="72" font-weight="800" letter-spacing="-3" fill="#16181d">把遗留系统，逆向重构为</text>
+  <text x="78" y="464" font-size="72" font-weight="800" letter-spacing="-3" fill="#16181d">AI 原生<tspan fill="#c6431c">企业 OS</tspan></text>
+
+  <text x="80" y="544" font-size="26" fill="#6b7079">驻场 FDE 交付 · Echo-Delta 双擎 · 与客户共担风险、共享增量红利</text>
+</svg>

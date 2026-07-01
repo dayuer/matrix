@@ -1,0 +1,196 @@
+<h1>Data-Driven Cycling Coaching</h1>
+<p>Data-driven cycling coaching transforms training from guesswork into a measurable, adjustable process. By tracking power, heart rate, load, and recovery metrics, coaches and self-coached riders can quantify fitness, predict form, and make evidence-based decisions about what to train, how hard, and when. We analyze the metrics, models, and methods that underpin modern data-driven coaching — and how to apply them.</p>
+<h2>The Foundation: Power as the Primary Metric</h2>
+<p>Power (measured in watts) is the objective currency of cycling performance. Unlike heart rate or perceived exertion, power is instantaneous and is unaffected by environmental conditions. Every data-driven coaching system is built on power data.</p>
+<p>The key power metrics:</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Definition</th>
+<th>Use in Coaching</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FTP</td>
+<td>Highest sustainable power for ~1 hour</td>
+<td>Anchors all training zones</td>
+</tr>
+<tr>
+<td>Normalized Power (NP)</td>
+<td>Power adjusted for variability</td>
+<td>Reflects physiological cost of variable efforts</td>
+</tr>
+<tr>
+<td>Variability Index (VI)</td>
+<td>NP / Average Power</td>
+<td>Measures how steady a ride was (1.0 = perfectly steady)</td>
+</tr>
+<tr>
+<td>Efficiency Factor (EF)</td>
+<td>NP / Average HR</td>
+<td>Tracks aerobic improvement over time</td>
+</tr>
+<tr>
+<td>Intensity Factor (IF)</td>
+<td>NP / FTP</td>
+<td>Measures how hard a ride was relative to FTP</td>
+</tr>
+</tbody></table>
+<p>Normalized Power deserves explanation. It accounts for the fact that variable riding (sprints, surges, coasting) is physiologically harder than steady riding at the same average power. NP is calculated as:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>N</mi><mi>P</mi><mo>=</mo><msqrt><mrow><mfrac><mn>1</mn><mi>t</mi></mfrac><msubsup><mo>∫</mo><mn>0</mn><mi>t</mi></msubsup><msubsup><mi>P</mi><mn>30</mn><mn>4</mn></msubsup><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mtext> </mtext><mi>d</mi><mi>t</mi></mrow></msqrt></mrow><annotation encoding="application/x-tex">NP = \sqrt{\frac{1}{t} \int_0^t P_{30}^4(t) \, dt}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:3.04em;vertical-align:-1.0904em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.9496em;"><span class="svg-align" style="top:-5em;"><span class="pstrut" style="height:5em;"></span><span class="mord" style="padding-left:1em;"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">t</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.4445em;position:relative;top:-0.0011em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.5435em;"><span style="top:-1.7881em;margin-left:-0.4445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span><span style="top:-3.8129em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9119em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7959em;"><span style="top:-2.4337em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">30</span></span></span></span><span style="top:-3.0448em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2663em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">t</span></span></span><span style="top:-3.9096em;"><span class="pstrut" style="height:5em;"></span><span class="hide-tail" style="min-width:1.02em;height:3.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="3.08em" viewBox="0 0 400000 3240" preserveAspectRatio="xMinYMin slice"><path d="M473,2793
+c339.3,-1799.3,509.3,-2700,510,-2702 l0 -0
+c3.3,-7.3,9.3,-11,18,-11 H400000v40H1017.7
+s-90.5,478,-276.2,1466c-185.7,988,-279.5,1483,-281.5,1485c-2,6,-10,9,-24,9
+c-8,0,-12,-0.7,-12,-2c0,-1.3,-5.3,-32,-16,-92c-50.7,-293.3,-119.7,-693.3,-207,-1200
+c0,-1.3,-5.3,8.7,-16,30c-10.7,21.3,-21.3,42.7,-32,64s-16,33,-16,33s-26,-26,-26,-26
+s76,-153,76,-153s77,-151,77,-151c0.7,0.7,35.7,202,105,604c67.3,400.7,102,602.7,104,
+606zM1001 80h400000v40H1017.7z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.0904em;"><span></span></span></span></span></span></span></span></span></span><p>where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mn>30</mn></msub></mrow><annotation encoding="application/x-tex">P_{30}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">30</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> is a 30-second rolling average of power. The fourth-power weighting reflects the nonlinear cost of high-intensity efforts.</p>
+<h2>Training Stress Score: Quantifying Load</h2>
+<p>Training Stress Score (TSS) quantifies the training load of a single ride:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>T</mi><mi>S</mi><mi>S</mi><mo>=</mo><mfrac><mrow><mi>t</mi><mo>×</mo><mi>N</mi><mi>P</mi><mo>×</mo><mi>I</mi><mi>F</mi></mrow><mrow><mi>F</mi><mi>T</mi><mi>P</mi><mo>×</mo><mn>3600</mn></mrow></mfrac><mo>×</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">TSS = \frac{t \times NP \times IF}{FTP \times 3600} \times 100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.1297em;vertical-align:-0.7693em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">3600</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">100</span></span></span></span></span><p>where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6151em;"></span><span class="mord mathnormal">t</span></span></span></span> is duration in seconds. Key reference points:</p>
+<ul>
+<li>1 hour at FTP = 100 TSS</li>
+<li>1 hour easy Zone 2 = approximately 40-50 TSS</li>
+<li>1 hour race = approximately 80-120 TSS</li>
+<li>4-hour endurance ride = approximately 150-200 TSS</li>
+</ul>
+<p>TSS enables comparison across rides of different durations and intensities, and serves as the input to the load models below.</p>
+<h2>The Performance Manager Chart (PMC)</h2>
+<p>The PMC, developed by Coggan, models the relationship between training load, fitness, and fatigue. It uses exponentially weighted moving averages of daily TSS.</p>
+<h3>Chronic Training Load (CTL)</h3>
+<p>CTL is a 42-day exponentially weighted average of daily TSS. It represents long-term fitness:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>C</mi><mi>T</mi><msub><mi>L</mi><mi>t</mi></msub><mo>=</mo><mi>C</mi><mi>T</mi><msub><mi>L</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><mo stretchy="false">(</mo><mi>T</mi><mi>S</mi><msub><mi>S</mi><mi>t</mi></msub><mo>−</mo><mi>C</mi><mi>T</mi><msub><mi>L</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo><mo>×</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msup><mi>e</mi><mrow><mo>−</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>42</mn></mrow></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">CTL_t = CTL_{t-1} + (TSS_t - CTL_{t-1}) \times (1 - e^{-1/42})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8917em;vertical-align:-0.2083em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.188em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.938em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1/42</span></span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span><p>A higher CTL means more accumulated fitness. Elite riders often sustain CTL of 100-150+ during peak training blocks.</p>
+<h3>Acute Training Load (ATL)</h3>
+<p>ATL is a 7-day exponentially weighted average of daily TSS. It represents short-term fatigue:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>A</mi><mi>T</mi><msub><mi>L</mi><mi>t</mi></msub><mo>=</mo><mi>A</mi><mi>T</mi><msub><mi>L</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><mo stretchy="false">(</mo><mi>T</mi><mi>S</mi><msub><mi>S</mi><mi>t</mi></msub><mo>−</mo><mi>A</mi><mi>T</mi><msub><mi>L</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo><mo>×</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msup><mi>e</mi><mrow><mo>−</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>7</mn></mrow></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">ATL_t = ATL_{t-1} + (TSS_t - ATL_{t-1}) \times (1 - e^{-1/7})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8917em;vertical-align:-0.2083em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.188em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.938em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1/7</span></span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span><p>ATL rises quickly with hard training and falls quickly with rest.</p>
+<h3>Training Stress Balance (TSB)</h3>
+<p>TSB is the difference between fitness and fatigue:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>T</mi><mi>S</mi><mi>B</mi><mo>=</mo><mi>C</mi><mi>T</mi><mi>L</mi><mo>−</mo><mi>A</mi><mi>T</mi><mi>L</mi></mrow><annotation encoding="application/x-tex">TSB = CTL - ATL</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord mathnormal">L</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord mathnormal">L</span></span></span></span></span><p>TSB predicts form (the combination of fitness and freshness). Negative TSB means you are training harder than your body has adapted to (building fitness, accumulating fatigue). Positive TSB means you are fresher than your training load.</p>
+<table>
+<thead>
+<tr>
+<th>TSB Range</th>
+<th>Interpretation</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>30</mn></mrow><annotation encoding="application/x-tex">-30</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">30</span></span></span></span> or lower</td>
+<td>Heavy training, high fatigue</td>
+<td>Recovery needed soon</td>
+</tr>
+<tr>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">-10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">10</span></span></span></span> to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>30</mn></mrow><annotation encoding="application/x-tex">-30</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">30</span></span></span></span></td>
+<td>Productive training zone</td>
+<td>Continue building</td>
+</tr>
+<tr>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">-10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">10</span></span></span></span> to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">+5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">5</span></span></span></span></td>
+<td>Transition zone</td>
+<td>Approach racing</td>
+</tr>
+<tr>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">+10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">10</span></span></span></span> to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>25</mn></mrow><annotation encoding="application/x-tex">+25</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">25</span></span></span></span></td>
+<td>Peak form</td>
+<td>Race target zone</td>
+</tr>
+<tr>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>25</mn></mrow><annotation encoding="application/x-tex">+25</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">25</span></span></span></span> to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>40</mn></mrow><annotation encoding="application/x-tex">+40</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">40</span></span></span></span></td>
+<td>Very fresh, risk of flat</td>
+<td>Sharpening only</td>
+</tr>
+</tbody></table>
+<p>The PMC is a planning tool, not a prescription. It does not tell you what type of training to do — only how the load accumulates. Quality of training (intensity distribution, specificity) matters as much as total load.</p>
+<h2>Building a Data-Driven Training Plan</h2>
+<h3>Step 1: Establish FTP</h3>
+<p>Every plan starts with an accurate FTP test. See <a href="/en/blog/ftp-testing-protocol">FTP testing protocol</a> for validated methods.</p>
+<h3>Step 2: Set Load Targets</h3>
+<p>Based on current CTL and goals:</p>
+<table>
+<thead>
+<tr>
+<th>Rider Level</th>
+<th>Typical Peak CTL</th>
+<th>Weekly Hours</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Recreational</td>
+<td>40-60</td>
+<td>5-8</td>
+</tr>
+<tr>
+<td>Club racer</td>
+<td>60-90</td>
+<td>8-12</td>
+</tr>
+<tr>
+<td>Elite amateur</td>
+<td>90-130</td>
+<td>12-18</td>
+</tr>
+<tr>
+<td>Professional</td>
+<td>130-180+</td>
+<td>20-30+</td>
+</tr>
+</tbody></table>
+<p>Build CTL gradually — increases of 3-5 TSS/day per week are sustainable; faster increases risk injury and burnout.</p>
+<h3>Step 3: Structure Intensity Distribution</h3>
+<p>Two main models:</p>
+<ul>
+<li><strong>Polarized (80/20):</strong> ~80% low intensity (Zone 1-2), ~20% high intensity (Zone 4+). Strong evidence base for endurance athletes.</li>
+<li><strong>Pyramidal:</strong> Most volume in Zone 2, less in Zone 4, least in Zone 5+. Common in practice.</li>
+</ul>
+<p>For interval design within these frameworks, see <a href="/en/blog/cycling-interval-design">cycling interval design</a>.</p>
+<h3>Step 4: Monitor and Adjust</h3>
+<p>Weekly review of:</p>
+<ul>
+<li>Actual vs. planned TSS.</li>
+<li>TSB trend (are you accumulating or shedding fatigue?).</li>
+<li>Efficiency Factor (is NP/HR improving at submaximal intensity?).</li>
+<li>Heart rate decoupling (is HR drifting excessively at fixed power?).</li>
+<li>Subjective readiness (sleep, motivation, muscle soreness).</li>
+</ul>
+<h3>Step 5: Periodize and Peak</h3>
+<p>Structure training into blocks (e.g., 3 weeks build, 1 week recovery), then taper before key races. Use TSB targets to time the peak. For tapering details, see <a href="/en/blog/tapering-cycling-peak">tapering cycling peak</a>.</p>
+<h2>Heart Rate Data in Coaching</h2>
+<p>While power is primary, heart rate provides essential physiological context:</p>
+<ul>
+<li><strong>Decoupling (HR/P):</strong> If HR rises more than 5% relative to power over a ride, it signals drift from heat, dehydration, or fatigue. Tracking decoupling across rides reveals aerobic development (decreasing drift) or overreaching (increasing drift).</li>
+<li><strong>Efficiency Factor (NP/HR):</strong> Rising EF at submaximal intensity indicates improving aerobic efficiency.</li>
+<li><strong>Resting HR and HRV:</strong> Morning metrics that reflect recovery status. Use trends, not single readings.</li>
+</ul>
+<h2>Common Pitfalls in Data-Driven Coaching</h2>
+<h3>1. Chasing CTL Instead of Performance</h3>
+<p>High CTL is not a goal — it is a means to performance. Riders who maximize load without specificity or recovery often plateau or regress.</p>
+<h3>2. Ignoring Subjective Data</h3>
+<p>Data does not capture everything. Sleep quality, life stress, motivation, and muscle soreness must inform decisions alongside metrics. A rider with good numbers but poor subjective state is a crash waiting to happen.</p>
+<h3>3. Over-Reliance on Single Metrics</h3>
+<p>TSB is a model, not reality. Two riders with identical TSB can have very different actual form depending on the quality and recency of their training. Use multiple data sources.</p>
+<h3>4. Frequent FTP Testing</h3>
+<p>Testing every week wastes training time and introduces noise. Test every 4-8 weeks, as described in <a href="/en/blog/ftp-testing-protocol">FTP testing protocol</a>.</p>
+<h3>5. Ignoring Environmental Factors</h3>
+<p>Heat and altitude shift the relationship between power and physiological cost. A ride at 250 W in 35°C heat is not the same as 250 W at 18°C. Account for conditions when interpreting data. See <a href="/en/blog/heat-and-altitude-cycling">heat and altitude cycling</a>.</p>
+<h2>Technology for Data-Driven Coaching</h2>
+<p>Consistent, comprehensive data collection is the foundation. The <a href="/en/blog/reading-your-ride-data">DIDI.BIKE sensor</a> captures power, heart rate, cadence, body posture, and real-time CdA, streaming all data to TrainingPeaks, Strava, Garmin, and Wahoo for $299. This gives coaches a complete dataset for every ride — not just power numbers, but the aerodynamic and positional context that turns raw data into actionable insight.</p>
+<p>For coaches, the ability to see CdA trends and posture data alongside traditional metrics means training prescriptions can account for the rider&#39;s aerodynamic development, not just physiological load. A rider improving their position (lower CdA) gains free speed that does not show up in power data alone.</p>
+<p>For the complete framework connecting all these metrics, start with the <a href="/en/blog/training-racing-cycling-data-guide">cycling data guide</a>. For race-day application of coaching data, see <a href="/en/blog/telemetry-race-day-decisions">telemetry race day decisions</a>.</p>
+<h2>FAQ</h2>
+<p><strong>What is data-driven cycling coaching?</strong>
+Data-driven cycling coaching uses power, heart rate, and related metrics to design, monitor, and adjust training. Instead of relying on feel alone, coaches and riders use quantitative data to optimize load, track adaptation, and predict form.</p>
+<p><strong>What metrics matter most for cycling coaching?</strong>
+The core metrics are power (FTP, normalized power, variability index), Training Stress Score (TSS), Chronic Training Load (CTL), Acute Training Load (ATL), Training Stress Balance (TSB), and heart rate decoupling. Together these describe fitness, fatigue, and readiness.</p>
+<p><strong>What is the Performance Manager Chart in cycling?</strong>
+The Performance Manager Chart (PMC) models fitness and fatigue using exponentially weighted moving averages of TSS. CTL represents long-term fitness, ATL represents short-term fatigue, and TSB (CTL minus ATL) predicts race-day form.</p>
+<p><strong>Can I coach myself effectively with cycling data?</strong>
+Yes, with discipline. Self-coached riders who consistently track TSS, monitor fatigue signals, and adjust training based on data can achieve strong results. A coach adds objectivity, experience-based pattern recognition, and accountability.</p>
+<p><strong>How does the DIDI.BIKE sensor support data-driven coaching?</strong>
+The DIDI.BIKE sensor captures power, heart rate, cadence, posture, and real-time CdA, streaming everything to TrainingPeaks, Strava, Garmin, and Wahoo. This gives coaches a complete, consistent dataset for analysis and decision-making.</p>
+<h2>References</h2>
+<ol>
+<li><em>Medicine &amp; Science in Sports &amp; Exercise</em>: Modeling anaerobic work capacity (W&#39;) and fatigue dynamics.</li>
+<li><em>International Journal of Sports Physiology and Performance</em>: Altitude training block dynamics and VO2max recovery.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: Realtime physiological telemetry and training stress balance tracking.</li>
+</ol>

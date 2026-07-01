@@ -1,0 +1,241 @@
+<h1>Cycling SDK Libraries: Python, JS, Java</h1>
+<p>The DIDI.BIKE cycling SDK libraries give developers a clean, typed interface to the Developer API—WebSocket streaming at 100 Hz, REST endpoints for session history, raw 6-axis IMU access, and webhook utilities. Official SDKs are available for Python, JavaScript, and Java. We analyze installation, core APIs, and code examples for each language.</p>
+<h2>Why Use an SDK Over Raw HTTP?</h2>
+<p>You can always call the REST and WebSocket APIs directly, but the SDKs save significant time by handling the tedious parts:</p>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>Raw API</th>
+<th>SDK</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Authentication</td>
+<td>Manual header management</td>
+<td>Automatic token injection</td>
+</tr>
+<tr>
+<td>WebSocket reconnection</td>
+<td>DIY backoff logic</td>
+<td>Built-in auto-reconnect</td>
+</tr>
+<tr>
+<td>JSON parsing</td>
+<td>Manual deserialization</td>
+<td>Typed objects / DataFrames</td>
+</tr>
+<tr>
+<td>Pagination</td>
+<td>Manual cursor handling</td>
+<td>Iterator abstraction</td>
+</tr>
+<tr>
+<td>Error handling</td>
+<td>Raw status codes</td>
+<td>Typed exceptions</td>
+</tr>
+<tr>
+<td>Rate limiting</td>
+<td>Manual retry</td>
+<td>Built-in backoff</td>
+</tr>
+</tbody></table>
+<p>For an overview of where SDKs fit in the broader ecosystem, see the <a href="/en/blog/cycling-data-ecosystem-guide">cycling data ecosystem guide</a>.</p>
+<h2>SDK Comparison at a Glance</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Python</th>
+<th>JavaScript</th>
+<th>Java</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Package name</td>
+<td><code>dbbike</code></td>
+<td><code>@didi.bike/sdk</code></td>
+<td><code>bike:db:core</code></td>
+</tr>
+<tr>
+<td>Async model</td>
+<td>asyncio</td>
+<td>Promises / async-await</td>
+<td>CompletableFuture</td>
+</tr>
+<tr>
+<td>WebSocket</td>
+<td>websockets</td>
+<td>ws</td>
+<td>Java-WebSocket</td>
+</tr>
+<tr>
+<td>DataFrame support</td>
+<td>pandas</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Min version</td>
+<td>Python 3.9</td>
+<td>Node 18 / ES2020</td>
+<td>Java 11</td>
+</tr>
+</tbody></table>
+<h2>Python SDK</h2>
+<h3>Installation</h3>
+<pre><code class="language-bash">pip install dbbike
+</code></pre>
+<p>For pandas integration (recommended for analysis):</p>
+<pre><code class="language-bash">pip install &quot;dbbike[pandas]&quot;
+</code></pre>
+<h3>Connecting and Streaming</h3>
+<pre><code class="language-python">from dbbike import dbBikeClient
+
+client = dbBikeClient(api_key=&quot;dk_live_yourkey&quot;)
+
+# Live stream IMU data at 100 Hz
+def on_sample(sample):
+    # sample is a typed IMUSample with ax, ay, az, gx, gy, gz, t
+    print(f&quot;az={sample.az:.3f} m/s²&quot;)
+
+client.stream(device_id=&quot;dk_001&quot;, on_sample=on_sample)
+</code></pre>
+<p>The <code>stream</code> method opens a WebSocket and calls <code>on_sample</code> for each 100 Hz sample. The SDK handles reconnection automatically.</p>
+<h3>Retrieving Historical Data</h3>
+<pre><code class="language-python"># Get sessions for a device
+sessions = client.list_sessions(device_id=&quot;dk_001&quot;)
+
+# Download IMU data as a DataFrame
+df = client.get_session_imu(
+    session_id=&quot;dk_sess_482&quot;,
+    format=&quot;dataframe&quot;
+)
+
+print(df.head())
+#                          t      ax      ay      az      gx      gy      gz
+# 0 2026-06-23 14:00:00.000  0.012  -0.034   9.801  0.002  -0.015   0.008
+# 1 2026-06-23 14:00:00.010  0.015  -0.031   9.798  0.003  -0.014   0.007
+</code></pre>
+<p>The DataFrame is indexed by timestamp and includes all six IMU channels, making it immediately ready for analysis, plotting, or export.</p>
+<h3>Exporting Sessions</h3>
+<pre><code class="language-python">client.export_session(
+    session_id=&quot;dk_sess_482&quot;,
+    format=&quot;fit&quot;,
+    path=&quot;./ride_482.fit&quot;
+)
+</code></pre>
+<p>Export to FIT for import into <a href="/en/blog/golden-cheetah-cycling-analysis">Golden Cheetah</a> or <a href="/en/blog/intervals-icu-cycling">Intervals.icu</a>.</p>
+<h2>JavaScript SDK</h2>
+<h3>Installation</h3>
+<pre><code class="language-bash">npm install @didi.bike/sdk
+</code></pre>
+<h3>Connecting and Streaming</h3>
+<pre><code class="language-javascript">import { dbBike } from &quot;@didi.bike/sdk&quot;;
+
+const client = new dbBike({ apiKey: &quot;dk_live_yourkey&quot; });
+
+await client.connect(&quot;dk_001&quot;);
+
+client.onImu((sample) =&gt; {
+  console.log(`az=${sample.az.toFixed(3)} m/s²`);
+});
+
+// Graceful shutdown
+process.on(&quot;SIGINT&quot;, async () =&gt; {
+  await client.disconnect();
+  process.exit(0);
+});
+</code></pre>
+<p>The SDK works in both Node.js and the browser. In the browser, it uses the native WebSocket; in Node, it uses the <code>ws</code> package automatically.</p>
+<h3>Async Iterator for Streaming</h3>
+<p>For consumers that prefer pull-based processing, the SDK exposes an async iterator:</p>
+<pre><code class="language-javascript">for await (const sample of client.imuStream(&quot;dk_001&quot;)) {
+  processSample(sample);
+}
+</code></pre>
+<h3>REST Calls</h3>
+<pre><code class="language-javascript">const sessions = await client.listSessions({ deviceId: &quot;dk_001&quot; });
+const imu = await client.getSessionImu(&quot;dk_sess_482&quot;, { format: &quot;json&quot; });
+</code></pre>
+<h2>Java SDK</h2>
+<h3>Installation (Maven)</h3>
+<pre><code class="language-xml">&lt;dependency&gt;
+  &lt;groupId&gt;bike.db&lt;/groupId&gt;
+  &lt;artifactId&gt;core&lt;/artifactId&gt;
+  &lt;version&gt;1.4.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h3>Connecting and Streaming</h3>
+<pre><code class="language-java">import bike.db.dbBikeClient;
+import bike.db.IMUSample;
+
+dbBikeClient client = new dbBikeClient(&quot;dk_live_yourkey&quot;);
+
+client.stream(&quot;dk_001&quot;, (IMUSample sample) -&gt; {
+    System.out.printf(&quot;az=%.3f m/s²%n&quot;, sample.getAz());
+});
+
+// Blocking call to keep the app alive
+client.awaitDisconnect();
+</code></pre>
+<p>The Java SDK uses a callback interface for streaming and <code>CompletableFuture</code> for REST calls, fitting naturally into reactive and async applications.</p>
+<h3>REST Calls</h3>
+<pre><code class="language-java">CompletableFuture&lt;List&lt;Session&gt;&gt; sessions =
+    client.listSessionsAsync(&quot;dk_001&quot;);
+
+sessions.thenAccept(list -&gt; {
+    list.forEach(s -&gt; System.out.println(s.getId()));
+});
+</code></pre>
+<h2>Common Patterns Across SDKs</h2>
+<h3>Subscribing to Specific Channels</h3>
+<p>By default, <code>stream()</code> subscribes to all IMU channels. To receive only accelerometer data (reducing bandwidth):</p>
+<pre><code class="language-python">client.stream(device_id=&quot;dk_001&quot;, channels=[&quot;accel&quot;], on_sample=on_sample)
+</code></pre>
+<h3>Filtering by Frequency</h3>
+<p>Request a decimated stream when full 100 Hz resolution is not needed:</p>
+<pre><code class="language-python">client.stream(device_id=&quot;dk_001&quot;, rate_hz=25, on_sample=on_sample)
+</code></pre>
+<h3>Handling Disconnections</h3>
+<p>All SDKs reconnect automatically with exponential backoff. You can register a callback for connection state changes:</p>
+<pre><code class="language-javascript">client.onConnectionStateChange((state) =&gt; {
+  console.log(`Connection: ${state}`); // &quot;connected&quot; | &quot;reconnecting&quot; | &quot;error&quot;
+});
+</code></pre>
+<h2>Building a Complete App</h2>
+<p>A typical cycling analytics app combines streaming, storage, and export. Here is a minimal Python example:</p>
+<pre><code class="language-python">from dbbike import dbBikeClient
+import pandas as pd
+
+client = dbBikeClient(api_key=&quot;dk_live_yourkey&quot;)
+samples = []
+
+def on_sample(sample):
+    samples.append(sample.to_dict())
+
+# Stream for the duration of a ride
+client.stream(device_id=&quot;dk_001&quot;, on_sample=on_sample)
+
+# After the ride: analyze
+df = pd.DataFrame(samples)
+df[&quot;t&quot;] = pd.to_datetime(df[&quot;t&quot;], unit=&quot;s&quot;)
+vibration = df[&quot;az&quot;].std()
+print(f&quot;Vertical vibration (std): {vibration:.4f} m/s²&quot;)
+</code></pre>
+<p>For real-time webhook integrations alongside streaming, see <a href="/en/blog/cycling-data-webhooks">cycling data webhooks</a>. For details on the underlying IMU data, see the <a href="/en/blog/developer-api-raw-imu-data">developer API raw IMU data</a> guide.</p>
+<h2>FAQ</h2>
+<h3>Which programming languages have official DIDI.BIKE cycling SDKs?</h3>
+<p>DIDI.BIKE provides official SDKs for Python, JavaScript (Node.js and browser), and Java. All three SDKs expose the same functionality: WebSocket streaming at 100 Hz, REST endpoints for session history, raw 6-axis IMU access, and webhook helper utilities.</p>
+<h3>Are the DIDI.BIKE cycling SDK libraries open source?</h3>
+<p>Yes. All official SDKs are open source under the MIT license and hosted on GitHub. You can inspect the code, submit issues, and contribute pull requests. The SDKs work with the $299 DIDI.BIKE Developer API.</p>
+<h3>How do I install the Python cycling SDK?</h3>
+<p>Install the Python SDK with pip: run &#39;pip install dbbike&#39;. The package supports Python 3.9 and later and includes optional pandas integration for returning IMU data as DataFrames.</p>
+<h3>Do the SDKs handle WebSocket reconnection automatically?</h3>
+<p>Yes. All three SDKs implement automatic reconnection with exponential backoff. If the WebSocket connection drops, the SDK reconnects and resumes streaming without requiring application-level logic.</p>
+<h2>References</h2>
+<ol>
+<li><em>Wireless Communications and Mobile Computing</em>: ANT+ vs BLE latency profiles in dynamic environments.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: API data retention, FIT file streaming, and developer SDK structures.</li>
+</ol>

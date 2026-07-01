@@ -1,0 +1,24 @@
+{
+  "id": "persona_17",
+  "name": "William Vance",
+  "gender": "Male",
+  "age": 62,
+  "country": "Australia",
+  "ethnicity": "Anglo-Australian",
+  "sexualOrientation": "Heterosexual",
+  "industry": "Retired / Masters Cycling",
+  "knowledgeLevel": "Casual Hobbyist",
+  "interests": [
+    "Biomechanical safety",
+    "Knee joint stress",
+    "Q-factor and saddle setup"
+  ],
+  "biases": [
+    "Prefers larger fonts and readable text",
+    "Skeptical of complex smart-app logic"
+  ],
+  "expectations": [
+    "Needs clear setup steps",
+    "Wants comfort optimization guidelines"
+  ]
+}

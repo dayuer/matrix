@@ -1,0 +1,50 @@
+{% extends "layouts/base.njk" %}
+{% from "partials/card-manager.njk" import managerCard %}
+{% block content %}
+
+  <main class="partner-page">
+
+    <!-- Hero Header -->
+    <section class="partner-header" data-reveal>
+      <div class="partner-header__inner">
+        <p class="section-header__label">城市加盟</p>
+        <h1 class="section-header__title">城市加盟与合伙人计划</h1>
+        <p class="section-header__desc">携手 e代驾，共享万亿车主出行红利。我们将为您提供全方位的技术、数据与精细化运营支持。</p>
+      </div>
+    </section>
+
+    <!-- Section 1: Support Grid (Bento) -->
+    <section class="partner-support" data-reveal>
+      <div class="partner-support__inner">
+        <h2 class="partner-section-title">全方位加盟支持</h2>
+        <p class="partner-section-desc">统一高标准的服务与技术支撑，助力您在授权合作区域快速打开市场。</p>
+
+        <div class="support-grid">
+          {% for s in partner.support %}
+          <div class="support-card">
+            <div class="support-card__icon-wrapper">
+              <svg class="support-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{{ s.icon | safe }}</svg>
+            </div>
+            <h3 class="support-card__title">{{ s.title }}</h3>
+            <p class="support-card__desc">{{ s.desc }}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Managers Grid -->
+    <section class="partner-managers" data-reveal>
+      <div class="partner-managers__inner">
+        <h2 class="partner-section-title">合伙人计划区域负责人</h2>
+        <p class="partner-section-desc">欢迎对应省区加盟商联系咨询（非城市加盟合作咨询勿扰）</p>
+
+        <div class="managers-grid">
+          {% for m in partner.managers %}{{ managerCard(m) }}{% endfor %}
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+{% endblock %}

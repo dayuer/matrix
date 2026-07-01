@@ -1,0 +1,198 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+{% set homePrefix = '/' + locale %}
+{% set isId = locale == 'id' %}
+
+{% set compatList = ['Garmin Edge', 'Wahoo ELEMNT', 'Hammerhead Karoo', 'Strava', 'TrainingPeaks', 'Zwift', 'Golden Cheetah', 'intervals.icu'] %}
+
+<!-- Breadcrumbs Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ site.baseUrl or 'https://didi.bike' }}{{ homePrefix }}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ 'Teknologi' if isId else 'Technology' }}",
+      "item": "{{ site.baseUrl or 'https://didi.bike' }}{{ homePrefix }}/technology"
+    }
+  ]
+}
+</script>
+
+<div class="technology-main">
+  <!-- Hero Section -->
+  <section class="technology-hero">
+    <div class="container">
+      <span class="technology-badge">{{ 'Teknik & Rekayasa' if isId else 'Engineering' }}</span>
+      <h1 class="technology-page-title">
+        {% if isId %}
+          Kami Membangun Terowongan Angin<br />
+          <span class="technology-accent">Yang Muat di Saku Jersey Anda.</span>
+        {% else %}
+          We Built a Wind Tunnel<br />
+          <span class="technology-accent">That Fits in Your Jersey Pocket.</span>
+        {% endif %}
+      </h1>
+      <p class="technology-hero-desc">
+        {{ 'Pengujian aerodinamika tradisional mengharuskan Anda memesan sesi terowongan angin seharga $500/jam, melakukan perjalanan ke satu dari sedikit fasilitas di dunia, dan berharap aliran udara terkontrol di sana cocok dengan medan asli Anda. Kami percaya harus ada cara yang lebih baik.' if isId else 'Traditional aero testing means booking a wind tunnel at $500/hour, travelling to one of a dozen facilities worldwide, and hoping the controlled airflow matches what you actually ride through. We thought there had to be a better way.' }}
+      </p>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="technology-section">
+    <div class="container">
+      <h2 class="technology-section-title">{{ 'Bagaimana Cara Kerjanya?' if isId else 'How It Actually Works' }}</h2>
+      <p class="technology-section-desc">
+        {{ 'Sensor terpasang rapi di belakang rel sadel Anda — beratnya hanya 14 gram, hampir tidak disadari. Di dalamnya, empat subsistem inti berjalan secara simultan pada frekuensi 100Hz, saling merujuk silang untuk menyusun gambaran lengkap tentang interaksi Anda dengan udara, jalan, dan tubuh Anda sendiri.' if isId else 'The sensor sits behind your saddle rail — 14 grams, barely noticeable. Inside, four core subsystems run simultaneously at 100Hz, cross-referencing each other to build a complete picture of your interaction with the air, the road, and your own body.' }}
+      </p>
+
+      <div class="technology-tech-grid">
+        <div class="glass-card technology-tech-card">
+          <div class="technology-tech-num">01</div>
+          <h3>{{ 'IMU 6-Arah' if isId else '6-Axis IMU' }}</h3>
+          <p>
+            {{ 'Akselerometer tiga arah plus giroskop tiga arah, melakukan sampling pada 100Hz. Kami menggunakan Bosch BMI270 — chip kelas medis yang melacak orientasi tubuh Anda di ruang angkasa dengan presisi sudut ±0,1°. Kami dapat mendeteksi perbedaan posisi antara Anda memegang hoods atau drops hanya dalam satu kayuhan sadel.' if isId else "Three-axis accelerometer plus three-axis gyroscope, sampling at 100Hz. We use a Bosch BMI270 — the same chip you'll find in surgical robotics. It tracks your body's orientation in space with ±0.1° precision, which means we can detect the difference between you riding on the hoods versus the drops within a single pedal stroke." }}
+          </p>
+          <div class="technology-spec-tag">{{ 'Resolusi sudut ±0.1°' if isId else '±0.1° angular resolution' }}</div>
+        </div>
+
+        <div class="glass-card technology-tech-card">
+          <div class="technology-tech-num">02</div>
+          <h3>{{ 'Ketinggian Barometrik' if isId else 'Barometric Altitude' }}</h3>
+          <p>
+            {{ 'Sensor tekanan presisi Bosch BMP390 mengukur perubahan ketinggian hingga ±0,1 meter. Dipadukan dengan kecepatan GPS, kami menghitung kepadatan udara secara real-time. Kepadatan udara berfluktuasi 5–8% di pegunungan, dan keakuratan kalkulasi CdA Anda sangat ditentukan oleh akurasi estimasi kepadatan udara tersebut.' if isId else "A Bosch BMP390 pressure sensor measures altitude changes down to ±0.1m. This isn't just for climbing stats — combined with GPS speed data, we calculate air density in real time. Air density swings 5–8% between sea level and a mountain pass, and your CdA calculation is only as good as your air density estimate." }}
+          </p>
+          <div class="technology-spec-tag">{{ 'Akurasi ketinggian ±0.1m' if isId else '±0.1m altitude accuracy' }}</div>
+        </div>
+
+        <div class="glass-card technology-tech-card">
+          <div class="technology-tech-num">03</div>
+          <h3>{{ 'Strain Gauge Presisi' if isId else 'Strain Gauges' }}</h3>
+          <p>
+            {{ 'Empat foil strain gauge dalam konfigurasi jembatan Wheatstone penuh. Kami melalui 14 prototipe untuk menyeimbangkan jembatan sensor ini — jika terlalu sensitif, getaran jalan akan mengaburkan sinyal; jika terlalu kaku, Anda kehilangan deteksi gaya frekuensi rendah. Mampu mengukur gaya hingga 0,5N dalam rentang 0–2000N.' if isId else 'Four bonded foil strain gauges in a full Wheatstone bridge configuration. We went through 14 prototypes to get the bridge balance right — too sensitive and road vibration drowns the signal, too stiff and you lose the low-frequency pedaling forces. The final design resolves forces down to 0.5N across a 0–2000N range.' }}
+          </p>
+          <div class="technology-spec-tag">{{ 'Resolusi 0.5N / Rentang 0–2000N' if isId else '0.5N resolution / 0–2000N range' }}</div>
+        </div>
+
+        <div class="glass-card technology-tech-card">
+          <div class="technology-tech-num">04</div>
+          <h3>{{ 'Mesin Fusi Sensor' if isId else 'Sensor Fusion Engine' }}</h3>
+          <p>
+            {{ 'Data mentah dari keempat subsistem mengalir langsung ke filter Kalman yang berjalan pada SoC nRF52840. Filter ini menyatukan orientasi IMU, tekanan barometrik, vektor gaya strain gauge, dan kecepatan GPS menjadi satu model yang koheren. Latensi dari peristiwa fisik ke CdA hasil komputasi di bawah 10ms.' if isId else 'Raw data from all four subsystems feeds into an extended Kalman filter running on an nRF52840 SoC. The filter fuses IMU orientation, barometric pressure, strain force vectors, and GPS velocity into a single coherent model. Latency from physical event to computed CdA: under 10 milliseconds.' }}
+          </p>
+          <div class="technology-spec-tag">{{ 'Latensi ujung-ke-ujung &lt;10ms' if isId else '&lt;10ms end-to-end latency' }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CdA Measurement -->
+  <section class="technology-section technology-section-alt">
+    <div class="container">
+      <h2 class="technology-section-title">{{ 'CdA: Angka yang Sangat Penting' if isId else 'CdA: The Number That Matters' }}</h2>
+      <p class="technology-section-desc">
+        {{ 'Koefisien hambatan aerodinamis dikalikan luas area proyeksi depan — CdA — menentukan sekitar 80% dari hambatan yang Anda hadapi di atas kecepatan 25 km/jam. Turunkan CdA Anda sebesar 5% dan Anda menghemat waktu 30 detik pada time trial 40km dengan output daya yang sama. Kami mengukurnya langsung di jalan raya.' if isId else "Reduce your CdA by 5% and you're looking at a 30-second gain over a 40km time trial at the same power output. We measure it continuously, outdoors, while you ride." }}
+      </p>
+
+      <div class="technology-compare-table">
+        <h3 class="technology-table-title">{{ 'Perbandingan Metode' if isId else 'How We Compare' }}</h3>
+        <div class="technology-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>{{ 'Metode' if isId else 'Method' }}</th>
+                <th>{{ 'Biaya' if isId else 'Cost' }}</th>
+                <th>{{ 'Lokasi' if isId else 'Location' }}</th>
+                <th>{{ 'Real-time' if isId else 'Real-time' }}</th>
+                <th>{{ 'Akurasi' if isId else 'Accuracy' }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ 'Terowongan Angin' if isId else 'Wind Tunnel' }}</td>
+                <td>{{ '$500–1.500/sesi' if isId else '$500–1,500/session' }}</td>
+                <td>{{ 'Hanya Laboratorium' if isId else 'Lab only' }}</td>
+                <td>{{ 'Tidak' if isId else 'No' }}</td>
+                <td>±1% CdA</td>
+              </tr>
+              <tr>
+                <td>{{ 'Pengujian Velodrom' if isId else 'Velodrome Testing' }}</td>
+                <td>{{ '$200–500/sesi' if isId else '$200–500/session' }}</td>
+                <td>{{ 'Hanya Trek' if isId else 'Track only' }}</td>
+                <td>{{ 'Tidak' if isId else 'No' }}</td>
+                <td>±3% CdA</td>
+              </tr>
+              <tr>
+                <td>{{ 'Metode Chung (GPS)' if isId else 'Chung Method (GPS)' }}</td>
+                <td>{{ 'Gratis (Mandiri)' if isId else 'Free (DIY)' }}</td>
+                <td>{{ 'Luar Ruangan' if isId else 'Outdoors' }}</td>
+                <td>{{ 'Tidak (Pasca-Rilis)' if isId else 'No (post-ride)' }}</td>
+                <td>±5–8% CdA</td>
+              </tr>
+              <tr class="technology-highlight-row">
+                <td><strong>{{ 'Sensor DIDI.BIKE' if isId else 'DIDI.BIKE Sensor' }}</strong></td>
+                <td><strong>{{ '$299 sekali bayar' if isId else '$299 one-time' }}</strong></td>
+                <td><strong>{{ 'Di Mana Saja' if isId else 'Anywhere' }}</strong></td>
+                <td><strong>{{ 'Ya (&lt;10ms)' if isId else 'Yes (&lt;10ms)' }}</strong></td>
+                <td><strong>±2% CdA</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Methodology -->
+  <section class="technology-section">
+    <div class="container">
+      <h2 class="technology-section-title">{{ 'Pendekatan Kami Terhadap Akurasi' if isId else 'Our Approach to Accuracy' }}</h2>
+      <div class="technology-method-grid">
+        <div class="technology-method-card">
+          <h3>{{ 'Divalidasi Terhadap Terowongan Angin' if isId else 'Validated Against Wind Tunnels' }}</h3>
+          <p>
+            {{ 'Kami menjalankan 200+ jam pengujian komparatif di Terowongan Angin Industri RMIT di Melbourne dan Terowongan Angin Kecepatan Rendah San Diego. Pembacaan sensor kami berkorelasi pada r² = 0,94 dengan nilai terowongan angin asli di berbagai posisi berkendara dari full aero tuck hingga tegak.' if isId else 'We ran 200+ hours of comparative testing at the RMIT Industrial Wind Tunnel in Melbourne and the San Diego Low Speed Wind Tunnel. Our sensor readings correlate at r² = 0.94 with tunnel CdA values across rider positions from full aero tuck to upright climbing stance.' }}
+          </p>
+        </div>
+        <div class="technology-method-card">
+          <h3>{{ 'Uji Jalan Nyata di Lapangan' if isId else 'Field-Tested on Real Roads' }}</h3>
+          <p>
+            {{ 'Korelasi laboratorium memang wajib, tetapi tidak cukup. Kami menguji alat ini bersama 12 pesepeda semi-profesional selama tiga bulan berkendara di Calpe (Spanyol), Girona, dan Adelaide Hills. Angin samping, lalu lintas, fluktuasi suhu ekstrim — sensor menangani semuanya dalam batas akurasi spesifikasi kami.' if isId else 'Lab correlation is necessary but not sufficient. We tested with 12 semi-pro riders across three months of riding in Calpe (Spain), Girona, and the Adelaide Hills. Crosswinds, traffic, temperature swings from 4°C mornings to 32°C afternoons — the sensor handled all of it within our published accuracy spec.' }}
+          </p>
+        </div>
+        <div class="technology-method-card">
+          <h3>{{ 'Protokol Data Terbuka' if isId else 'Open Data Protocol' }}</h3>
+          <p>
+            {{ 'Setiap titik data diekspor sebagai file .FIT standar. Tanpa kunci ekosistem berpemilik. Masukkan berkas perjalanan Anda ke TrainingPeaks, Golden Cheetah, intervals.icu, atau skrip Python buatan Anda sendiri. Kami memublikasikan skema data kami secara terbuka.' if isId else 'Every data point is exported as a standard .FIT file. No proprietary lock-in. Pull your rides into TrainingPeaks, Golden Cheetah, intervals.icu, or your own Python scripts. We publish our data schema openly because we believe reproducibility matters more than walled gardens.' }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Connectivity -->
+  <section class="technology-section technology-section-alt">
+    <div class="container">
+      <h2 class="technology-section-title">{{ 'Konektivitas & Integrasi' if isId else 'Connectivity & Integration' }}</h2>
+      <p class="technology-section-desc">
+        {{ 'Sensor memancarkan data pada protokol ANT+ dan Bluetooth LE 5.0 secara bersamaan. Hubungkan langsung dengan komputer sepeda apa pun yang sudah Anda miliki.' if isId else 'The sensor broadcasts on both ANT+ and Bluetooth LE 5.0 simultaneously. Pair it with whatever head unit you already own — no ecosystem lock-in.' }}
+      </p>
+      <div class="technology-compat-grid">
+        {% for name in compatList %}
+          <div class="technology-compat-item">{{ name }}</div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

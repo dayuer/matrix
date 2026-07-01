@@ -1,0 +1,79 @@
+{% set stats = [
+  { num: '14g', label: 'Sensor Weight' },
+  { num: '100Hz', label: 'Data Rate' },
+  { num: '120h', label: 'Battery Life' },
+  { num: '±0.1°', label: 'Angular Precision' }
+] %}
+
+{% set planMetrics = [
+  [
+    { v: '$15-25', u: '/unit BOM' },
+    { v: '<4 weeks', u: 'integration' },
+    { v: 'ISO 26262', u: 'compliant' }
+  ],
+  [
+    { v: '$499', u: 'Pro license' },
+    { v: '±2mm', u: 'accuracy' },
+    { v: '98.5%', u: 'fit rate' }
+  ],
+  [
+    { v: '$299', u: '/month' },
+    { v: 'Unlimited', u: 'retention' },
+    { v: '99.99%', u: 'uptime SLA' }
+  ]
+] %}
+
+<section id="business" class="section business">
+  <div class="business-glow"></div>
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">{{ dict.business.label }}</span>
+      <h2 class="section-title">{{ dict.business.title }}</h2>
+      <p class="section-desc">{{ dict.business.desc }}</p>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="business-stats-grid animate-on-scroll">
+      {% for s in stats %}
+        <div class="business-stat-box">
+          <div class="business-stat-num">{{ s.num }}</div>
+          <div class="business-stat-label">{{ s.label }}</div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Plans Grid -->
+    <div class="business-plans-grid">
+      {% for p in dict.business.plans %}
+        {% set planIndex = loop.index0 %}
+        <div class="glass-card business-plan-card animate-on-scroll delay-{{ loop.index }}">
+          <div class="business-plan-tag">{{ p.tag }}</div>
+          <h3 class="business-plan-title">{{ p.title }}</h3>
+          <p class="business-plan-desc">{{ p.desc }}</p>
+
+          <div class="business-plan-metrics">
+            {% for m in planMetrics[planIndex] %}
+              <div class="business-plan-metric">
+                <span class="business-pm-value">{{ m.v }}</span>
+                <span class="business-pm-unit">{{ m.u }}</span>
+              </div>
+            {% endfor %}
+          </div>
+
+          <ul class="business-plan-features">
+            {% for f in p.features %}
+              <li>{{ f }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- CTA block -->
+    <div class="business-cta-block animate-on-scroll delay-4">
+      <h3>{{ dict.business.readyTitle }}</h3>
+      <p>{{ dict.business.readyDesc }}</p>
+      <a href="#contact" class="btn btn-primary">{{ dict.business.readyCta }}</a>
+    </div>
+  </div>
+</section>

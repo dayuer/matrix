@@ -1,0 +1,368 @@
+<h1>Cycling Power &amp; Pedaling Dynamics: The Complete Guide</h1>
+<p>A cycling power meter measures the mechanical force you apply to the drivetrain and converts it into watts — the single most objective metric in the sport. Unlike heart rate (affected by sleep, caffeine, heat) or speed (affected by wind and gradient), power is a direct measurement of work output. We analyze everything from the physics of how strain gauges measure torque, through power zones and normalized power, to pedaling efficiency, left-right balance, calibration, and choosing the right meter for your riding.</p>
+<h2>In this guide</h2>
+<p>This is the pillar article for the power-pedaling cluster. Each topic below links to a dedicated deep dive:</p>
+<ul>
+<li><a href="/en/blog/what-is-a-power-meter">What Is a Power Meter?</a> — definitions and core concepts for newcomers</li>
+<li><a href="/en/blog/how-power-meters-work-strain-gauges">How Power Meters Work: Strain Gauges Explained</a> — the physics of torque measurement</li>
+<li><a href="/en/blog/pedaling-efficiency-smoothness">Pedaling Efficiency and Smoothness Explained</a> — torque effectiveness and dead-spot analysis</li>
+<li><a href="/en/blog/left-right-power-balance">Left-Right Power Balance: What&#39;s Normal?</a> — bilateral asymmetry data</li>
+<li><a href="/en/blog/cadence-vs-power-cycling">Cadence vs. Power in Cycling</a> — untangling two related but independent metrics</li>
+<li><a href="/en/blog/dual-sided-vs-single-sided-power-meter">Dual-Sided vs. Single-Sided Power Meters</a> — which do you need?</li>
+<li><a href="/en/blog/cycling-power-zones-explained">Cycling Power Zones Explained</a> — training by the numbers</li>
+<li><a href="/en/blog/normalized-power-vs-average">Normalized Power vs. Average Power</a> — why the 4th-power weighting matters</li>
+<li><a href="/en/blog/power-meter-accuracy-calibration">Power Meter Accuracy and Calibration</a> — zero-offset, drift and error budgets</li>
+<li><a href="/en/blog/crank-vs-pedal-vs-hub-power-meter">Crank vs. Pedal vs. Hub Power Meters</a> — form-factor comparison</li>
+<li><a href="/en/blog/power-meter-temperature-drift">Power Meter Temperature Drift</a> — cold-ride accuracy issues</li>
+<li><a href="/en/blog/power-meter-cost-guide">Power Meter Cost Guide</a> — value tiers and total cost of ownership</li>
+<li><a href="/en/blog/torque-effectiveness-pedaling">Torque Effectiveness and Pedaling</a> — the positive-force metric</li>
+</ul>
+<h2>What a Power Meter Actually Measures</h2>
+<p>Power, in physics terms, is the rate of doing work. On a bicycle the relevant equation is:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>P</mi><mo>=</mo><mi>τ</mi><mo>⋅</mo><mi>ω</mi></mrow><annotation encoding="application/x-tex">P = \tau \cdot \omega</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4445em;"></span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">ω</span></span></span></span></span><p>Where:</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span></span></span></span> is power in watts (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>W</mtext></mrow><annotation encoding="application/x-tex">\text{W}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">W</span></span></span></span></span>)</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi></mrow><annotation encoding="application/x-tex">\tau</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span></span></span></span> is torque in newton-meters (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>N⋅m</mtext></mrow><annotation encoding="application/x-tex">\text{N·m}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">N⋅m</span></span></span></span></span>)</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi></mrow><annotation encoding="application/x-tex">\omega</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">ω</span></span></span></span> is angular velocity in radians per second (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>rad/s</mtext></mrow><annotation encoding="application/x-tex">\text{rad/s}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">rad/s</span></span></span></span></span>)</li>
+</ul>
+<p>The strain gauges bonded to a crank arm, pedal spindle, spider, or hub shell measure the tiny physical deformation (strain) caused by the rider&#39;s torque. The meter&#39;s electronics combine that torque reading with cadence — the angular velocity — to produce a power figure several times per second.</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>What it measures</th>
+<th>Typical location</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Strain gauges</td>
+<td>Torque (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi></mrow><annotation encoding="application/x-tex">\tau</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span></span></span></span>)</td>
+<td>Crank, pedal, spider, hub</td>
+</tr>
+<tr>
+<td>Accelerometer / reed switch</td>
+<td>Cadence (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi></mrow><annotation encoding="application/x-tex">\omega</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">ω</span></span></span></span>)</td>
+<td>Crank or pedal body</td>
+</tr>
+<tr>
+<td>Microcontroller</td>
+<td>Computes <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>=</mo><mi>τ</mi><mo>⋅</mo><mi>ω</mi></mrow><annotation encoding="application/x-tex">P = \tau \cdot \omega</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4445em;"></span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">ω</span></span></span></span></td>
+<td>Inside the meter housing</td>
+</tr>
+</tbody></table>
+<h2>Why Power Is the Gold Standard</h2>
+<p>Heart rate lags effort by 10–30 seconds and drifts with fatigue and hydration. Speed and pace depend entirely on external conditions. Power alone gives you a number that means the same thing at sea level and at altitude, in a headwind and a tailwind, fresh or fatigued.</p>
+<p>That objectivity is why structured training is built around power zones. If your functional threshold power (FTP) is 250 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>W</mtext></mrow><annotation encoding="application/x-tex">\text{W}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">W</span></span></span></span></span>, then Zone 2 endurance is roughly 56–75% of that, and Zone 4 threshold is 91–105%. Those percentages hold regardless of the day&#39;s conditions.</p>
+<p>Read more: <a href="/en/blog/cycling-power-zones-explained">Cycling Power Zones Explained</a>.</p>
+<h2>The Physics of the Pedal Stroke</h2>
+<p>Each pedal revolution is not a constant force application. Force peaks during the downstroke — roughly between 1 o&#39;clock and 5 o&#39;clock — and drops to near zero at the top and bottom dead centers. This produces a pulsatile power profile:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>P</mi><mtext>instant</mtext></msub><mo stretchy="false">(</mo><mi>θ</mi><mo stretchy="false">)</mo><mo>=</mo><mi>τ</mi><mo stretchy="false">(</mo><mi>θ</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>ω</mi><mo stretchy="false">(</mo><mi>θ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P_{\text{instant}}(\theta) = \tau(\theta) \cdot \omega(\theta)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3175em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">instant</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0278em;">θ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0278em;">θ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">ω</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0278em;">θ</span><span class="mclose">)</span></span></span></span></span><p>The instantaneous power varies through the pedal stroke, but what your head unit displays is the average over a full revolution (or several). Two key metrics describe the shape of that pulsing force:</p>
+<ul>
+<li><strong>Torque Effectiveness (TE):</strong> the ratio of positive torque (propulsive) to total torque over one revolution. A value of 90% means 10% of your effort was wasted fighting the rising pedal.</li>
+<li><strong>Pedaling Smoothness (PS):</strong> how evenly force is distributed. Perfectly constant torque would be 100%; real riders see 10–40%.</li>
+</ul>
+<p>Deep dive: <a href="/en/blog/pedaling-efficiency-smoothness">Pedaling Efficiency and Smoothness Explained</a> and <a href="/en/blog/torque-effectiveness-pedaling">Torque Effectiveness and Pedaling</a>.</p>
+<h2>Left-Right Power Balance</h2>
+<p>Dual-sided meters measure each leg independently and report a balance figure, typically expressed as a percentage split like 52/48. Natural asymmetry of 2–5% per side is normal and not inherently a problem. Larger imbalances can result from injury, bike fit, or muscular dominance.</p>
+<table>
+<thead>
+<tr>
+<th>Balance split</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>50/50 to 53/47</td>
+<td>Normal range</td>
+</tr>
+<tr>
+<td>54/46 to 56/44</td>
+<td>Mild asymmetry, monitor</td>
+</tr>
+<tr>
+<td>Beyond 56/44</td>
+<td>Investigate fit, injury, biomechanics</td>
+</tr>
+</tbody></table>
+<p>Full breakdown: <a href="/en/blog/left-right-power-balance">Left-Right Power Balance: What&#39;s Normal?</a>.</p>
+<h2>Single-Sided vs. Dual-Sided Meters</h2>
+<p>A single-sided meter (left crank or left pedal) measures one leg and doubles the result. This assumes a 50/50 balance, which most riders approximate but few hit exactly. The error introduced is typically the magnitude of your asymmetry: if you are 52/48, a left-sided meter will read about 4% high.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Accuracy</th>
+<th>Cost</th>
+<th>Best for</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Single-sided</td>
+<td>±1.5–3%</td>
+<td>Lower</td>
+<td>General training, budget</td>
+</tr>
+<tr>
+<td>Dual-sided</td>
+<td>±1–1.5%</td>
+<td>Higher</td>
+<td>Balance tracking, elite racing</td>
+</tr>
+</tbody></table>
+<p>Decision guide: <a href="/en/blog/dual-sided-vs-single-sided-power-meter">Dual-Sided vs. Single-Sided Power Meters</a>.</p>
+<h2>Form Factors: Crank, Pedal, Hub</h2>
+<p>Power meters come in several mounting locations, each with trade-offs in portability, accuracy, and cost.</p>
+<table>
+<thead>
+<tr>
+<th>Form factor</th>
+<th>Portability</th>
+<th>Dual-sided?</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Pedal-based</td>
+<td>Excellent</td>
+<td>Yes (or single)</td>
+<td>Easy to swap between bikes</td>
+</tr>
+<tr>
+<td>Crank arm</td>
+<td>Good</td>
+<td>Single or dual</td>
+<td>Most popular mid-tier option</td>
+</tr>
+<tr>
+<td>Spider</td>
+<td>Poor</td>
+<td>Dual</td>
+<td>High accuracy, bike-specific</td>
+</tr>
+<tr>
+<td>Hub</td>
+<td>Poor</td>
+<td>Combined</td>
+<td>Measures after drivetrain losses</td>
+</tr>
+</tbody></table>
+<p>Comparison: <a href="/en/blog/crank-vs-pedal-vs-hub-power-meter">Crank vs. Pedal vs. Hub Power Meters</a>.</p>
+<h2>Accuracy, Calibration and Temperature Drift</h2>
+<p>A power meter is only as good as its calibration. The most important routine is the <strong>zero-offset</strong> (or auto-zero), performed before each ride. This tells the meter what &quot;zero torque&quot; looks like at the current temperature, removing baseline drift.</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Reported power</mtext><mo>=</mo><mo stretchy="false">(</mo><mtext>Measured torque</mtext><mo>−</mo><mtext>Offset</mtext><mo stretchy="false">)</mo><mo>⋅</mo><mi>ω</mi></mrow><annotation encoding="application/x-tex">\text{Reported power} = (\text{Measured torque} - \text{Offset}) \cdot \omega</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">Reported power</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">Measured torque</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">Offset</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">ω</span></span></span></span></span><p>Temperature changes the physical properties of strain gauges and their adhesive. A ride that starts at 5 °C and warms to 20 °C can shift the offset noticeably. Quality meters auto-compensate; older or cheaper units may need a manual re-zero mid-ride.</p>
+<table>
+<thead>
+<tr>
+<th>Error source</th>
+<th>Typical magnitude</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Zero-offset drift</td>
+<td>1–5%</td>
+<td>Pre-ride zero-offset</td>
+</tr>
+<tr>
+<td>Temperature drift</td>
+<td>1–3%</td>
+<td>Auto-compensation / re-zero</td>
+</tr>
+<tr>
+<td>Slope calibration error</td>
+<td>1–2%</td>
+<td>Factory calibration</td>
+</tr>
+<tr>
+<td>Single-side doubling</td>
+<td>0–6%</td>
+<td>Use dual-sided if needed</td>
+</tr>
+</tbody></table>
+<p>Deep dive: <a href="/en/blog/power-meter-accuracy-calibration">Power Meter Accuracy and Calibration</a> and <a href="/en/blog/power-meter-temperature-drift">Power Meter Temperature Drift</a>.</p>
+<h2>Power Zones and Structured Training</h2>
+<p>Training zones are defined as percentages of FTP, the maximum power you can sustain for roughly an hour.</p>
+<table>
+<thead>
+<tr>
+<th>Zone</th>
+<th>Name</th>
+<th>% of FTP</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Active Recovery</td>
+<td>&lt; 55%</td>
+<td>Recovery, blood flow</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Endurance</td>
+<td>56–75%</td>
+<td>Aerobic base</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Tempo / Sweetspot</td>
+<td>76–90%</td>
+<td>Sustainable aerobic power</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Threshold</td>
+<td>91–105%</td>
+<td>Lactate threshold</td>
+</tr>
+<tr>
+<td>5</td>
+<td>VO2max</td>
+<td>106–120%</td>
+<td>Maximal aerobic</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Anaerobic</td>
+<td>121–150%</td>
+<td>Anaerobic capacity</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Neuromuscular</td>
+<td>&gt; 150%</td>
+<td>Sprint power</td>
+</tr>
+</tbody></table>
+<p>Full guide: <a href="/en/blog/cycling-power-zones-explained">Cycling Power Zones Explained</a>.</p>
+<h2>Normalized Power vs. Average Power</h2>
+<p>Average power is the arithmetic mean of all power samples over a duration. Normalized power (NP) applies a 30-second rolling average and then a fourth-power weighting to approximate the physiological cost of variable efforts:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>NP</mtext><mo>=</mo><mroot><mrow><mfrac><mn>1</mn><mi>T</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>T</mi></munderover><msubsup><mi>P</mi><mrow><mn>30</mn><mo separator="true">,</mo><mi>i</mi></mrow><mn>4</mn></msubsup></mrow><mn>4</mn></mroot></mrow><annotation encoding="application/x-tex">\text{NP} = \sqrt[4]{\frac{1}{T}\sum_{i=1}^{T} P_{30,i}^{4}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">NP</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:3.3338em;vertical-align:-1.2777em;"></span><span class="mord sqrt"><span class="root"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7893em;"><span style="top:-2.9671em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size6 size1 mtight"><span class="mord mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.0561em;"><span class="svg-align" style="top:-5.2938em;"><span class="pstrut" style="height:5.2938em;"></span><span class="mord" style="padding-left:1.056em;"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.1389em;">T</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7959em;"><span style="top:-2.4231em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">30</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">i</span></span></span></span><span style="top:-3.0448em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.413em;"><span></span></span></span></span></span></span></span></span><span style="top:-4.0161em;"><span class="pstrut" style="height:5.2938em;"></span><span class="hide-tail" style="min-width:0.742em;height:3.3738em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="3.3738em" viewBox="0 0 400000 3373" preserveAspectRatio="xMinYMin slice"><path d="M702 80H40000040
+H742v3239l-4 4-4 4c-.667.7 -2 1.5-4 2.5s-4.167 1.833-6.5 2.5-5.5 1-9.5 1
+h-12l-28-84c-16.667-52-96.667 -294.333-240-727l-212 -643 -85 170
+c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
+219 661 l218 661zM702 80H400000v40H742z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span></span></span></span></span><p>This means hard surges cost you disproportionately more than steady riding. NP is the foundation of Training Stress Score (TSS).</p>
+<p>Details: <a href="/en/blog/normalized-power-vs-average">Normalized Power vs. Average Power</a>.</p>
+<h2>Cadence and Power</h2>
+<p>Cadence (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>rpm</mtext></mrow><annotation encoding="application/x-tex">\text{rpm}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">rpm</span></span></span></span></span>) and power (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>W</mtext></mrow><annotation encoding="application/x-tex">\text{W}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">W</span></span></span></span></span>) are related but independent. You can ride at 250 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>W</mtext></mrow><annotation encoding="application/x-tex">\text{W}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">W</span></span></span></span></span> at 60 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>rpm</mtext></mrow><annotation encoding="application/x-tex">\text{rpm}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">rpm</span></span></span></span></span> (high force, low speed) or at 100 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>rpm</mtext></mrow><annotation encoding="application/x-tex">\text{rpm}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">rpm</span></span></span></span></span> (low force, high speed). Because <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>=</mo><mi>τ</mi><mo>⋅</mo><mi>ω</mi></mrow><annotation encoding="application/x-tex">P = \tau \cdot \omega</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4445em;"></span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">ω</span></span></span></span>, the same wattage at higher cadence requires less torque — less muscular strain but higher cardiovascular load.</p>
+<table>
+<thead>
+<tr>
+<th>Cadence range</th>
+<th>Muscle demand</th>
+<th>Cardio demand</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>60–70 rpm</td>
+<td>High torque</td>
+<td>Lower</td>
+</tr>
+<tr>
+<td>80–90 rpm</td>
+<td>Moderate</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>100+ rpm</td>
+<td>Low torque</td>
+<td>Higher</td>
+</tr>
+</tbody></table>
+<p>More: <a href="/en/blog/cadence-vs-power-cycling">Cadence vs. Power in Cycling</a>.</p>
+<h2>The DIDI.BIKE Sensor: A Lightweight Option</h2>
+<p>The DIDI.BIKE sensor is a 14-gram motion-and-power unit designed for cyclists who want rich pedaling data without a heavy or expensive dedicated power meter. It pairs a 6-axis IMU sampling at 100 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Hz</mtext></mrow><annotation encoding="application/x-tex">\text{Hz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">Hz</span></span></span></span></span> with a barometric pressure sensor, achieving power output correlation within ±1.5% against reference power meters and cadence precision of ±0.1°.</p>
+<p>Key specifications:</p>
+<table>
+<thead>
+<tr>
+<th>Specification</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Weight</td>
+<td>14 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>g</mtext></mrow><annotation encoding="application/x-tex">\text{g}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">g</span></span></span></span></span></td>
+</tr>
+<tr>
+<td>IMU</td>
+<td>6-axis, 100 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Hz</mtext></mrow><annotation encoding="application/x-tex">\text{Hz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">Hz</span></span></span></span></span></td>
+</tr>
+<tr>
+<td>Cadence precision</td>
+<td>±0.1°</td>
+</tr>
+<tr>
+<td>Power correlation</td>
+<td>±1.5%</td>
+</tr>
+<tr>
+<td>Barometer</td>
+<td>Yes (altitude/grade)</td>
+</tr>
+<tr>
+<td>Battery life</td>
+<td>120 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>h</mtext></mrow><annotation encoding="application/x-tex">\text{h}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord text"><span class="mord">h</span></span></span></span></span></td>
+</tr>
+<tr>
+<td>Connectivity</td>
+<td>ANT+ / BLE 5.0</td>
+</tr>
+<tr>
+<td>Price</td>
+<td>$299</td>
+</tr>
+</tbody></table>
+<p>The high sampling rate and IMU-based approach let the sensor estimate not only power but also pedaling dynamics — torque effectiveness, smoothness, and balance — from the motion signature of the crank, which no traditional strain-gauge-only meter captures as richly.</p>
+<h2>Choosing a Power Meter: Cost and Value</h2>
+<p>Power meter prices range from under $300 to over $2,000. The question is rarely &quot;what is the most accurate&quot; but &quot;what is accurate enough for my goals.&quot;</p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Price range</th>
+<th>Typical rider</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Budget / sensor-based</td>
+<td>$200–$400</td>
+<td>New to data-driven training</td>
+</tr>
+<tr>
+<td>Mid-range single-sided</td>
+<td>$400–$700</td>
+<td>Serious amateur</td>
+</tr>
+<tr>
+<td>Dual-sided</td>
+<td>$700–$1,500</td>
+<td>Racer, data enthusiast</td>
+</tr>
+<tr>
+<td>Premium / dual-position</td>
+<td>$1,500+</td>
+<td>Elite, bike-fitting context</td>
+</tr>
+</tbody></table>
+<p>Full breakdown: <a href="/en/blog/power-meter-cost-guide">Power Meter Cost Guide</a>.</p>
+<h2>Putting It All Together</h2>
+<p>Training with power changes how you ride. Instead of guessing whether a climb effort is threshold or VO2max, you know. Instead of hoping you recovered enough for the sprint, you can see whether your normalized power dropped or held. The ecosystem of metrics — FTP, zones, NP, TSS, TE/PS, balance — exists to translate raw watts into actionable decisions about intensity, duration, and recovery.</p>
+<p>Start with the basics: get a meter, establish your FTP, and train by zone. Then layer in efficiency and balance data as your curiosity and goals demand. The <a href="/en/blog/what-is-a-power-meter">DIDI.BIKE sensor</a> is one entry point that brings pedaling dynamics along with power at a fraction of the cost of a traditional dual-sided crank meter.</p>
+<h2>FAQ</h2>
+<p><strong>What is a cycling power meter and what does it measure?</strong>
+A cycling power meter measures the mechanical force you apply to the bike and converts it into power output in watts. It uses strain gauges to detect torque on the crank, pedal, spider or hub, and combines that with angular velocity to report real-time wattage.</p>
+<p><strong>How accurate are modern power meters?</strong>
+Quality power meters achieve ±1.5% to ±2.0% accuracy. The DIDI.BIKE sensor correlates with reference power meters to within ±1.5% and measures cadence with ±0.1° precision.</p>
+<p><strong>Do I need a dual-sided power meter?</strong>
+Most riders do not. Single-sided meters estimate total power well enough for training. Dual-sided meters are valuable if you track left-right balance or have a known asymmetry from injury.</p>
+<p><strong>What is a good pedaling efficiency number?</strong>
+Pedaling smoothness values typically range from 10% to 40%. Higher values indicate a more even application of force throughout the pedal stroke. Elite riders often achieve 20-30% smoothness.</p>
+<p><strong>How long do power meter batteries last?</strong>
+Battery life ranges from 100 to over 200 hours depending on the model. The DIDI.BIKE sensor lasts up to 120 hours on a single charge and weighs only 14 grams.</p>
+<h2>References</h2>
+<ol>
+<li><em>Sports Medicine</em>: Biomechanical analysis of force application and pedaling effectiveness.</li>
+<li><em>European Journal of Applied Physiology</em>: Muscle co-contraction and efficiency in high-torque cycling.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: Strain gauge Wheatstone bridge calibration and bottom bracket flex calculations.</li>
+</ol>

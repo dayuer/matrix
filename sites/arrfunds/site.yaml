@@ -1,0 +1,45 @@
+# arrfunds.com —— 站点品牌级配置（纯数据，由 matrix CLI 驱动）
+theme: arrfunds
+themeOptions: {}
+
+baseUrl: https://arrfunds.com
+
+brand:
+  name: ARR Funds
+  desc: 专注投资拥有经常性收入（ARR）的 AI 企业。我们寻找将人工智能转化为可持续订阅收入的优秀团队，提供资本、资源与战略支持。
+  favicon: /images/favicon.ico
+
+nav:
+  - { key: home, text: 首页, href: / }
+  - { key: thesis, text: 投资理念, href: "/#thesis" }
+  - { key: portfolio, text: 关注领域, href: "/#portfolio" }
+  - { key: process, text: 投资流程, href: "/#process" }
+
+cta: { text: 提交 BP, href: "/#apply" }
+
+footer:
+  columns:
+    - title: 投资方向
+      links:
+        - { text: AI SaaS 企业服务, href: "/#portfolio" }
+        - { text: AI 基础设施与工具链, href: "/#portfolio" }
+        - { text: AI 垂直行业应用, href: "/#portfolio" }
+    - title: 关于基金
+      links:
+        - { text: 投资理念, href: "/#thesis" }
+        - { text: 投资流程, href: "/#process" }
+        - { text: 联系我们, href: "/#apply" }
+    - title: 法律条款
+      links:
+        - { text: 隐私政策, href: / }
+        - { text: 免责声明, href: / }
+  legal:
+    contact: BP 投递 & 投资合作：contact@arrfunds.com
+    company: { text: ARR Funds Management Limited, href: "#" }
+    foundingYear: 2024
+  social:
+    - { text: LinkedIn, href: "#" }
+    - { text: Twitter, href: "#" }
+
+defaults:
+  ogImage: /images/og-image.jpg

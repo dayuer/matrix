@@ -1,0 +1,266 @@
+# 首页 —— 内容即数据：blocks 数组按序渲染，结构由主题 dossier 的 views/blocks/*.njk 决定。
+# 无规律的一次性内容可加 { type: custom-html, data: { html: "..." } } 直接嵌原始 HTML。
+template: home
+
+meta:
+  title: Synon Global — 全球化 FDE 交付与 AI 数字化重构平台
+  description: Synon.ai 专注于全球异构遗留系统的数据库逆向工程、流程诊断与 AI-Native 架构重构。我们派出驻场的 Echo 与 Delta 团队，交付具备高度自主自治能力的智能企业操作系统，与客户深度共赢。
+  keywords: Synon,Synon.ai,FDE,Forward Deployed Engineer,AI重构,逆向工程,遗留系统升级,Echo Delta,AI企业OS
+  ogImageAlt: Synon Global — FDE 交付与 AI 重构平台
+  activeNav: fde
+  priority: 1.0
+  changefreq: weekly
+  jsonLd:
+    "@context": https://schema.org
+    "@type": Organization
+    name: Synon Global
+    url: https://synon.ai
+    description: 全球化 FDE (Forward Deployed Engineering) 交付与 AI 数字化重构平台。我们不做一次性外包，而是以技术为投资的联营模式，深度驻场进行旧系统逆向工程与 AI 原生系统重构，与客户长期共赢。
+    areaServed: [CN, HK, ID, GB, AE]
+    knowsAbout:
+      - Forward Deployed Engineering
+      - 遗留系统逆向工程
+      - AI-Native 架构重构
+      - AI 智能体
+    contactPoint:
+      "@type": ContactPoint
+      email: contact@synon.ai
+      contactType: sales
+
+blocks:
+  - type: hero
+    data:
+      kicker: FORWARD&nbsp;DEPLOYED&nbsp;ENGINEERING · 技术档案
+      titleHtml: 把数十年的<span class="u-mark">遗留系统</span>，<br>逆向重构为 <span class="u-accent">AI 原生企业 OS</span>
+      lead: Synon Global 派遣驻场的 Echo 与 Delta 团队，深入解析旧代码与数据库，以 AI 智能体为核心重写业务流程。我们以技术为投资，与客户共担风险、共享增量红利。
+      actions:
+        - { text: 申请技术合作, href: "#apply", variant: primary, arrow: true }
+        - { text: 查看 FDE 交付框架, href: "#fde", variant: ghost }
+      panel:
+        head: SYSTEM RECONSTRUCTION MAP
+        ref: REF / SYN-OS
+        legacy: { tag: INPUT, name: 遗留单体系统, sub: Java · AS/400 · 存储过程 }
+        arrow: FDE&nbsp;×5
+        target: { tag: OUTPUT, name: AI 原生企业 OS, sub: 微服务 · 自治 Agent · 护栏 }
+        stats:
+          - { label: 交付大洲, value: "03" }
+          - { label: 平均效率提升, value: 5.5× }
+          - { label: 运营成本变化, value: −60%, accent: true }
+
+  - type: fde-steps
+    data:
+      anchor: fde
+      head:
+        no: §01
+        tag: FDE-FRAMEWORK
+        title: FDE 五步交付框架
+        lead: 从逆向解析旧数据库 schema，到重塑 AI 原生业务流程 —— 端到端的透明重构与高标准交付。
+      steps:
+        - num: "01"
+          title: 数据库逆向工程
+          desc: 深入理解既有系统的核心逻辑，而非简单的黑盒开发。
+          subItems:
+            - 逆向解析数十年前的旧系统数据库 schema
+            - 梳理隐藏的代码控制流与实体依赖关系
+            - 无损还原完整且复杂的既有业务逻辑全貌
+        - num: "02"
+          title: 业务流程诊断
+          desc: 量化传统流程的效率损失，发现深度改进空间。
+          subItems:
+            - 驻场对真实业务操作流进行端到端审计
+            - 识别跨部门流转中的冗余环节与数据断点
+            - 量化时间与人力效率损失，输出重构可行性报告
+        - num: "03"
+          title: AI Native 业务架构
+          desc: 以 AI 智能体为核心重新设计业务流程。
+          subItems:
+            - 引入高度自治的独立 Agent 替代繁琐的审批流
+            - 根据业务场景自适应路由与任务动态拆解
+            - 实现业务流程由「人驱动」向「智能流驱动」演进
+        - num: "04"
+          title: 系统架构重构
+          desc: 将臃肿的单体遗留代码彻底重构为现代高内聚微服务。
+          subItems:
+            - 使用现代语言（如 TypeScript、Go）高内聚模块化重写
+            - 为 AI 模型集成、RAG、外部 API 预留标准连接管道
+            - 保障高吞吐率、高可用性以及数据合规围栏
+        - num: "05"
+          title: 交付 AI 企业 OS
+          desc: 生成可自动化运营、持续迭代的智能企业级操作系统。
+          subItems:
+            - 嵌入原生 AI 智能体，直接替代高重复的人力流
+            - 配备端到端的观测与防错护栏（Guardrails）
+            - 以联营形式在真实业务中持续进行闭环优化与迭代
+
+  - type: team-grid
+    data:
+      anchor: team
+      head:
+        no: §02
+        tag: ECHO-DELTA-MODEL
+        title: Echo-Delta 双擎交付模型
+        lead: 紧密协作的精英小组，将深度现场洞察与极致技术工程落地融为一体。
+      teams:
+        - name: Echo 团队
+          role: Embedded Analysts · 嵌入式业务分析师
+          desc: 常驻在客户的业务一线，成为旧系统和新智能系统之间的沟通桥梁。
+          points:
+            - 长期驻扎客户现场，深度观察日常运转痛点
+            - 与最终业务人员交谈，提取并翻译隐含的行业知识与用例
+            - 为重构方案提供源源不断的第一手真实业务反馈
+            - 负责跨国项目现场的关系管理与高管汇报沟通
+        - name: Delta 团队
+          role: Deployment Engineers · 部署工程师
+          desc: 在真实复杂的企业级 IT 环境中，负责方案的敏捷落地与性能调优。
+          points:
+            - 在客户复杂的私有云或混合云环境中快速构建、迭代
+            - 编写遗留数据库适配器、SSO 集成模块及数据同步管道
+            - 进行 Prompt 优化、RAG 检索增强与多 Agent 协同的底层落地
+            - 负责 AI 幻觉防御、模型漂移监控及回归测试风险排查
+
+  - type: portfolio
+    data:
+      anchor: portfolio
+      head:
+        no: §03
+        tag: GLOBAL-CASEBOOK
+        title: 全球重构版图与标杆案例
+        lead: 在中国、东南亚、英国及中东，对关键核心系统进行 AI 深度重写，实现非凡业务收益。
+      cases:
+        - id: insurance
+          ref: CASE-01
+          title: 综合金融保险集团 · 承保及赔付链条智能化重构
+          clientType: 亚洲领先的综合金融保险集团
+          region: 大中华区
+          metrics: 核保理赔处理效率倍增 5.5 倍，运营人力成本降低 60%
+          desc: 该集团理赔系统基于多年前的 Java 语言搭建，策略调整周期以月计算，数千名专员进行纯人工复核，人工成本和疲劳损耗居高不下。Synon 驻场团队通过逆向还原核心赔付逻辑，使用微服务与 AI 赔付智能体（Claim Agent）替代传统人工流水线，实现了秒级承保/赔付决策，完成全站的自动化降本与效率重塑。
+          charts:
+            - title: 单笔理赔决策时效
+              beforeLabel: 传统遗留
+              beforeVal: 72h
+              beforeRatio: 100
+              afterLabel: Synon OS
+              afterVal: 秒级
+              afterRatio: 2
+              delta: 72h → 秒级
+            - title: 核保理赔运营人力成本
+              beforeLabel: 传统遗留
+              beforeVal: 100%
+              beforeRatio: 100
+              afterLabel: Synon OS
+              afterVal: 40%
+              afterRatio: 40
+              delta: −60%
+          bulletPoints:
+            - 理赔智能体（Claim Agent）自动解析上下文，秒级做出核赔结论，代替人工人海复核
+            - 多模态反欺诈智能体实时监控，漏赔与恶意欺诈率降至 0.05% 以下
+            - 完全基于云原生微服务架构，后续系统迭代与演进成本降低 85%
+        - id: retail
+          ref: CASE-02
+          title: 跨国零售与商业地产 · 智能库存与供应链重塑
+          clientType: 东南亚领先的零售、医疗与商业地产集团
+          region: 亚太区（香港 / 印尼）
+          metrics: 库存周转效率提升 42%，冷链生鲜损耗大降 35%
+          desc: 该集团商超冷链与地产供应链数据每日午夜批量异步同步，预测全凭采购部门经验提报，导致高额的安全库存占用和生鲜腐损。Synon 通过逆向还原其异构 ERP 表结构，构建了毫秒级同步管道（Datalark），并在业务层嵌入自适应补货 Agent，依据实时销售、客流与天气实现「零安全库存」自动订货。
+          charts:
+            - title: 冷链生鲜运营损耗率
+              beforeLabel: 传统遗留
+              beforeVal: 18%
+              beforeRatio: 100
+              afterLabel: Synon OS
+              afterVal: 11.7%
+              afterRatio: 65
+              delta: −35%
+            - title: 采购补货流程周期
+              beforeLabel: 传统遗留
+              beforeVal: 72h
+              beforeRatio: 100
+              afterLabel: Synon OS
+              afterVal: 10min
+              afterRatio: 3
+              delta: 72h → 10min
+          bulletPoints:
+            - 数据流毫秒级对齐，补货 Agent 自主感知全国门店动态销售脉搏
+            - AI 整合天气、周边客群属性与节日，自适应计算最优进货量并自动下单
+            - 92% 采购计划托管至自适应 Agent，库存周转效率提升 42%，全集团库容资金减半
+        - id: energy
+          ref: CASE-03
+          title: 跨国能源与资源巨头 · 设备全生命周期预防性维护
+          clientType: 全球领先的跨国能源与资源巨头
+          region: 欧洲区（英国）
+          metrics: 非计划停机时间缩减 55%，年备件维护成本降低 40%
+          desc: 该巨头数万口油气井设备维护采用「故障后维修」的被动模式，直升机频繁往返海上平台进行物理排查，传感器海量日志滞后。Synon 派出 FDE 团队在钻井现场逆向还原传感器故障关联，开发了 AI-Native 预测维护大脑，通过多模态 Agent 提前 72 小时预测故障并精准派单，变被动抢修为自动防范。
+          charts:
+            - title: 年均非计划停机时长
+              beforeLabel: 传统遗留
+              beforeVal: 120h
+              beforeRatio: 100
+              afterLabel: Synon OS
+              afterVal: 54h
+              afterRatio: 45
+              delta: −55%
+            - title: 故障隐患预测提前期
+              lowerIsBetter: false
+              beforeLabel: 传统遗留
+              beforeVal: 0h
+              beforeRatio: 3
+              afterLabel: Synon OS
+              afterVal: 72h
+              afterRatio: 100
+              delta: 0h → 72h
+          bulletPoints:
+            - AI 大脑实时融合振动、温度、声波多模态数据，提前 72 小时对设备磨损进行故障预警
+            - 自动给出隐患定位与最佳维护路径建议，工程师仅在隐患确立时精准干预
+            - 非计划停机时间缩减 55%，极大延长高价值设备的平均无故障运行寿命
+
+  - type: faq-list
+    data:
+      anchor: faq
+      head:
+        no: §04
+        tag: COOPERATION-MODEL
+        title: 技术合作模式 FAQ
+        lead: 关于驻场交付、长期分成与代码知识产权的核心关切。
+      faqs:
+        - question: Synon 与传统软件外包开发有什么不同？
+          answer: 传统外包按人天计费，交付代码即代表服务终结，难以保障系统的长期成长。Synon 采用以技术为投资的联营模式：技术交付周期更短，长期通过系统效率提升或业务增量收入分成，与您的商业成就深度绑定。
+        - question: 你们如何保证旧系统逆向工程的准确度？
+          answer: FDE Echo 团队会驻扎在您的一线，与熟悉旧业务的操作人员深度访谈；Delta 团队利用自研数据库分析工具进行表关联与触发器的静态逆向还原，结合大语言模型的强理解力，保证重构后的业务规则与既有系统对齐。
+        - question: 重构后的系统知识产权（IP）归谁所有？
+          answer: 重构后的核心业务逻辑与数据资产完全归客户所有。Synon 仅保留通用的底层 Agent 中间件与数据连接组件的许可权，以确保您的系统资产安全、合规，且不受供应商锁定。
+        - question: 如何发起一次合作评估？
+          answer: 您可在下方提交申请，资深架构师将在 2 个工作日内与您取得联系。初步沟通后，我们会派出 2-3 人的 Echo 预调研小组赴贵司现场进行为期一周的无偿业务诊断，并输出诊断蓝图。
+
+  - type: apply-form
+    data:
+      anchor: apply
+      head:
+        no: §05
+        tag: ENGAGEMENT
+        title: 开启企业 AI-Native 重构旅程
+        lead: 提交遗留系统改造痛点，安排 Echo 团队入驻，开展无偿的首次业务诊断。
+      promise:
+        - { no: "01", text: 2 个工作日内资深架构师对接 }
+        - { no: "02", text: 2-3 人 Echo 小组现场调研一周 }
+        - { no: "03", text: 输出可执行的重构诊断蓝图 }
+      form:
+        submitText: 提交合作申请
+        fields:
+          companyName: { label: 企业名称, placeholder: 例如：亚洲综合金融集团 }
+          contactName: { label: 联系人姓名, placeholder: 张先生 / 女士 }
+          contactEmail: { label: 工作邮箱, placeholder: contact@company.com }
+          systemType:
+            label: 待重构遗留系统类型
+            placeholder: 选择您的遗留技术栈
+            options:
+              - value: ibm
+                text: "IBM i / AS400（RPG, Java, CA 2E）"
+              - value: legacy-db
+                text: 臃肿复杂的传统 SQL 存储过程系统
+              - value: monolith
+                text: "庞大的 Java / C# 单体架构 ERP/CRM"
+              - value: other
+                text: 其他非结构化历史代码系统
+          description:
+            label: 核心重构诉求与痛点描述
+            placeholder: 请简述系统当前的业务规模、开发维护瓶颈，以及期望用 AI 智能体替代哪些传统流程……

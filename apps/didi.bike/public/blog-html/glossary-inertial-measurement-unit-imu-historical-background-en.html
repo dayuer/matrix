@@ -1,0 +1,60 @@
+<h1>From Eye to Algorithm: The Historical Journey of the Inertial Measurement Unit IMU</h1>
+<p>When I first started racing road bikes, coaching was an art form. My old coach would stand on the side of the road, watching me ride by. He would look at my posture, my hips, and how the frame swayed during a sprint. &quot;You&#39;re rocking too much,&quot; he would say. &quot;Keep your torso still.&quot; It was subjective, based entirely on visual observation. Today, when I am behind the bars, my coach does not need to guess. The historical introduction of the inertial measurement unit imu transformed cycling biomechanics from a subjective art into a precise science.</p>
+<p>The early telemetry systems were incredibly basic, tracking only speed and cadence. If you wanted to measure frame movement, you had to mount heavy, wired sensors that ruined the bike&#39;s handling. In the saddle of a time trial bike, trying to hold 50 km/h, the last thing you wanted was a bulky system adding drag. As micro-electromechanical systems (MEMS) progressed, the components shrank. Today, a tiny sensor tucked inside the seatpost or stem tracks 3D movement without affecting the ride feel, capturing every vibration and tilt of the bike.</p>
+<p>From my perspective as a rider, the historical evolution of the IMU has revolutionized bike fitting. In the past, a fit was done statically on a trainer. But static fits do not replicate peloton dynamics. On the road, wind, surface texture, and fatigue change how you move. By logging acceleration and angular velocity during actual road sessions, we can identify when a position begins to break down. We can measure how road vibration travels through the seatpost to the pelvis, directly impacting our comfort and endurance.</p>
+<p>To evaluate the physiological impact of these physical stresses, we combine the mechanical data with training metrics. The standard formula for Training Stress Score (TSS) helps us quantify this load:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>TSS</mtext><mo>=</mo><mfrac><mrow><mi>t</mi><mo>⋅</mo><mi>P</mi><mo>⋅</mo><mtext>IF</mtext></mrow><mrow><mn>3600</mn><mo>⋅</mo><mtext>FTP</mtext></mrow></mfrac><mo>⋅</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">\text{TSS} = \frac{t \cdot P \cdot \text{IF}}{3600 \cdot \text{FTP}} \cdot 100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">TSS</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0463em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3600</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord text"><span class="mord">FTP</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord text"><span class="mord">IF</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">100</span></span></span></span></span><p>Where:</p>
+<ul>
+<li>$\text{TSS}$ and $\text{NP}$ reflect the exponential weighting of training stress, scaling with the 4th power of mechanical power output to match physiological load.</li>
+<li>$RER$ represents the Respiratory Exchange Ratio, indicating substrate oxidation ratios (carbohydrate vs. fat combustion).</li>
+<li>$W&#39;_{t}$ represents the instantaneous anaerobic work capacity remaining, measured in Joules (J), which drains non-linearly above FTP and reconstitutes exponentially during recovery.</li>
+</ul>
+<p>For an athlete, managing this physiological stress is the key to grand tour success. If your position is unstable, your core muscles are constantly working to stabilize your spine. This stabilization work drains your $W&#39;$ capacity, meaning you have fewer matches to burn on key climbs. In my early career, I would suffer from severe lower back pain during long climbs. The IMU data revealed that my saddle was too high, causing my pelvis to rock. Fixing that position resulted in massive glycogen sparing, saving my screaming muscles for the final sprint.</p>
+<p>To illustrate how my subjective perception of stability aligns with the actual physical measurements, we can review the following data logged across different road surfaces:</p>
+<table>
+<thead>
+<tr>
+<th>Road Type</th>
+<th>Subjective Core Fatigue (RPE)</th>
+<th>IMU Lateral Sway ($g$)</th>
+<th>Drivetrain Friction</th>
+<th>Tactical Decision</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>New Asphalt</td>
+<td>Very Low (RPE 10)</td>
+<td>0.012</td>
+<td>Minimal</td>
+<td>Push high gear, stay in drops</td>
+</tr>
+<tr>
+<td>Worn Sealcoat</td>
+<td>Moderate (RPE 13)</td>
+<td>0.035</td>
+<td>Low</td>
+<td>Focus on smooth pedaling circle</td>
+</tr>
+<tr>
+<td>Chip-seal Road</td>
+<td>High (RPE 16)</td>
+<td>0.078</td>
+<td>Moderate</td>
+<td>Shift weight to rear wheel</td>
+</tr>
+<tr>
+<td>Gravel Sector</td>
+<td>Very High (RPE 18)</td>
+<td>0.145</td>
+<td>High</td>
+<td>Unweight saddle, open hands</td>
+</tr>
+</tbody></table>
+<p>In the end, the transition from subjective coaching to sensor-based analytics has changed how we ride. The IMU provides a direct, honest feedback loop. It tells us when our position is wasting energy, allowing us to make adjustments that preserve our strength. For any rider looking to maximize their speed, learning to use these numbers is the ultimate competitive advantage.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.tandfonline.com/toc/rjsp20/current" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Journal of Sports Sciences</a>: Biomechanical analysis and mechanical efficiency in elite cycling.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: High-frequency telemetry and sensor fusion calibrations.</li>
+<li><a href="https://www.uci.org/inside-uci/constitutions-regulations/regulations" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">UCI Cycling Regulations</a>: Part I: General Organisation of Cycling as a Sport (Aero &amp; Frame dimensions limits).</li>
+<li><a href="https://scholar.google.com/scholar?q=High-altitude+hypoxic+adaptation+and+cardiorespiratory+kinetics" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Swiss Federal Institute of Sport Magglingen</a>: High-altitude hypoxic adaptation and cardiorespiratory kinetics.</li>
+</ol>

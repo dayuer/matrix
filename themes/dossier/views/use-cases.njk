@@ -1,0 +1,133 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+{% set homePrefix = '/' + locale %}
+{% set isId = locale == 'id' %}
+
+{% set cases = [
+  {
+    tag: 'Tim Profesional' if isId else 'Pro Teams',
+    title: 'Aerodinamika Hari Balapan Tanpa Terowongan Angin' if isId else 'Race Day Aero Without the Wind Tunnel',
+    descParas: [
+      "Kami awalnya membangun sensor ini karena sebuah tim tingkat Kontinental di Belgia memintanya. Pembalap mereka kehilangan 45 detik per 40km ITT dibandingkan dengan tim WorldTour — bukan karena fisik mereka kurang bugar, tetapi karena mereka tidak mampu membayar sesi terowongan angin triwulanan seharga €1.200 per sesi." if isId else "We originally built this sensor because a Continental-level team in Belgium asked us to. Their riders were losing 45 seconds per 40km TT compared to WorldTour teams — not because they were less fit, but because they couldn't afford quarterly wind tunnel sessions at €1,200 a pop.",
+      "Kini mereka menguji posisi berkendara selama sesi latihan Selasa pagi. Sensor mencatat CdA bersamaan dengan daya (power), sehingga pelatih dapat melihat dengan tepat posisi mana yang membuang watt dan mana yang menghemat watt. Musim lalu, rata-rata peringkat TT mereka meningkat 11 posisi di seluruh tim." if isId else "Now they test positions during Tuesday morning training rides. The sensor logs CdA alongside power, so their coach can see exactly which position costs watts and which saves them. Last season, their average TT ranking improved by 11 places across the team.",
+      "Triknya adalah data di jalan raya nyata sebenarnya lebih berguna daripada data terowongan angin dalam banyak situasi. Jalan raya memberi Anda hembusan angin samping di antara gedung, aliran udara naik di jembatan, dan pusaran udara peloton yang berantakan. Sensor kami menangkap semua realitas itu." if isId else "The trick is that real-road data is actually more useful than tunnel data in many situations. Wind tunnels give you zero-yaw perfection. Roads give you crosswinds coming off buildings, updrafts on bridge approaches, and the messy reality of a peloton's wake. Our sensor captures all of that."
+    ],
+    stats: [
+      { value: '45s', label: 'Waktu dihemat per 40km TT' if isId else 'Time saved per 40km TT' },
+      { value: '11', label: 'Rata-rata kenaikan peringkat' if isId else 'Average ranking improvement' },
+      { value: '€0', label: 'Biaya pengujian per sesi' if isId else 'Per-session aero testing cost' }
+    ]
+  },
+  {
+    tag: 'Bike Fitter' if isId else 'Bike Fitters',
+    title: 'Kuantifikasi Apa yang Tidak Bisa Dilihat Mata Anda' if isId else "Quantify What Your Eyes Can't See",
+    descParas: [
+      "Sebagian besar proses fitting sepeda berakhir dengan fitter berkata \"itu sepertinya sudah pas.\" Dan mereka biasanya benar — fitter berpengalaman memiliki intuisi yang luar biasa. Tetapi intuisi tidak memberi klien angka nyata untuk dibawa pulang." if isId else "Most bike fits end with the fitter saying \"that looks about right.\" And they're usually correct — experienced fitters have incredible intuition. But intuition doesn't give the client a number to take home.",
+      "Kami telah bermitra dengan 23 studio fitting di seluruh Eropa dan Australia yang kini menyertakan profil aero DIDI.BIKE sebagai bagian dari paket fit premium mereka. Pengendara melakukan simulasi bersepeda 15 menit di jalan luar studio dalam posisi lama, lalu kembali untuk penyesuaian posisi baru, dan mengulangi tes. Perbandingan CdA sebelum/sesudah menjadi laporan nyata yang dapat dilihat, dipahami, dan dibagikan oleh klien." if isId else "We've partnered with 23 fitting studios across Europe and Australia who now include a DIDI.BIKE aero profile as part of their premium fit package. The rider does a 15-minute ride on the road outside the studio in their old position, then returns for adjustments, and repeats. The before/after CdA comparison becomes a tangible deliverable — something the client can see, understand, and share.",
+      "Studio fitting memberi tahu kami bahwa penambahan fitur ini meningkatkan konversi fitting premium mereka sebesar 35%. Pesepeda menginginkan data nyata, bukan sekadar perasaan. Sensor ini membuktikan keahlian fitter dengan angka." if isId else "Studio owners tell us this single addition increased their premium fit conversions by 35%. Riders want data, not just feel. The sensor gives fitters a way to prove their expertise with numbers."
+    ],
+    stats: [
+      { value: '23', label: 'Studio mitra' if isId else 'Partner studios' },
+      { value: '35%', label: 'Kenaikan konversi fit premium' if isId else 'Premium fit conversion increase' },
+      { value: '15m', label: 'Waktu profil dasar' if isId else 'Time for baseline profile' }
+    ]
+  },
+  {
+    tag: 'Atlet Individu' if isId else 'Individual Athletes',
+    title: 'Musim Aerodinamis Pribadi Anda' if isId else 'Your Personal Aero Season',
+    descParas: [
+      "Anda tidak memerlukan pelatih atau tim profesional untuk menggunakan sensor ini. Pasang, hubungkan dengan komputer sepeda Garmin atau Wahoo Anda, dan mulailah bersepeda. Aplikasi pendamping menunjukkan tren CdA Anda dari waktu ke waktu bersamaan dengan perkembangan FTP Anda." if isId else "You don't need a coach or a team to use this. Mount it, pair it with your Garmin or Wahoo, and ride. The companion app shows your CdA trend over time alongside your FTP progression.",
+      "Sebagian besar pesepeda menemukan peningkatan CdA sebesar 3-8% di musim pertama mereka hanya dengan bereksperimen dengan reach stang, tinggi sadel, dan pilihan helm. Pada FTP 250W dan kecepatan 40km/jam, penurunan CdA 5% berarti berkendara 1,2 km/jam lebih cepat — atau menghemat 18W pada kecepatan yang sama. Itu adalah penghematan daya yang sangat signifikan tanpa perlu latihan fisik ekstra." if isId else "Most riders discover a 3–8% CdA improvement in their first season just by experimenting with bar reach, saddle height, and helmet choice. At FTP 250W and 40km/h, a 5% CdA drop translates to roughly 1.2 km/h faster — or 18W saved at the same speed. That's a meaningful chunk of watts you don't have to train for.",
+      "Satu hal yang sering kami dengar: \"Saya tidak pernah menyadari betapa pentingnya posisi kepala saya.\" Sensor menangkap perbedaan CdA antara melihat jalan 30 meter di depan vs 10 meter di depan. Perbedaannya mencapai 2-4%." if isId else "One thing we hear a lot: \"I never realized how much my head position mattered.\" The sensor picks up the CdA difference between looking at the road 30m ahead versus 10m ahead. It's usually 2–4% — more than the difference between most helmets on the market."
+    ],
+    stats: [
+      { value: '3–8%', label: 'Peningkatan CdA biasa' if isId else 'Typical CdA improvement' },
+      { value: '18W', label: 'Daya dihemat pada kecepatan sama' if isId else 'Saved at same speed' },
+      { value: '2–4%', label: 'Dampak CdA posisi kepala' if isId else 'Head position CdA impact' }
+    ]
+  },
+  {
+    tag: 'Mitra OEM' if isId else 'OEM Partners',
+    title: 'Integrasikan Sensor Kami ke Produk Anda' if isId else 'Integrate Our Sensor Into Your Product',
+    descParas: [
+      "Kami menyuplai modul sensor sebagai komponen OEM kepada produsen sepeda, perusahaan helm, dan merek aksesori bersepeda. Modul ini dikirim sebagai paket 14 gram dengan antarmuka I²C dan SPI — masukkan langsung ke desain PCB Anda dan akses semua data mentah sensor." if isId else "We supply the sensor module as an OEM component to bike manufacturers, helmet companies, and cycling accessory brands. The module ships as a 14g package with exposed I²C and SPI interfaces — drop it into your PCB design and access all raw sensor data.",
+      "Integrasi OEM saat ini mencakup pembuatan sadel terintegrasi (tanpa terlihat dudukan luar), stang terintegrasi, dan konfigurasi helm untuk R&D aerodinamika. Kami menangani kalibrasi dan sertifikasi; Anda menangani desain industri. Pemesanan minimum: 500 unit." if isId else "Current OEM integrations include saddle-embedded builds (no external mount visible), integrated handlebar stems, and helmet-mounted configurations for motorcycle aero R&D. We handle calibration and certification; you handle industrial design. Minimum order: 500 units.",
+      "SDK OEM kami mendukung C, Python, dan JavaScript. Dokumentasi lengkap tersedia di docs.didi.bike (di bawah perjanjian NDA). Kami juga menawarkan firmware label putih (white-label) bagi mitra yang ingin mengirimkan dengan merek mereka sendiri." if isId else "Our OEM SDK supports C, Python, and JavaScript. Full documentation at docs.didi.bike (under NDA). We also offer white-label firmware for partners who want to ship under their own brand."
+    ],
+    stats: [
+      { value: '500+', label: 'Mitra OEM global' if isId else 'OEM partners worldwide' },
+      { value: '50+', label: 'Negara pengiriman' if isId else 'Countries shipped' },
+      { value: '500', label: 'Jumlah minimum pemesanan' if isId else 'Minimum order quantity' }
+    ]
+  }
+] %}
+
+<!-- Breadcrumbs Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ site.baseUrl or 'https://didi.bike' }}{{ homePrefix }}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ 'Skenario Penggunaan' if isId else 'Use Cases' }}",
+      "item": "{{ site.baseUrl or 'https://didi.bike' }}{{ homePrefix }}/use-cases"
+    }
+  ]
+}
+</script>
+
+<div class="use-cases-main">
+  <!-- Hero Section -->
+  <section class="use-cases-hero">
+    <div class="container">
+      <span class="use-cases-badge">{{ 'Skenario Penggunaan' if isId else 'Use Cases' }}</span>
+      <h1 class="use-cases-page-title">
+        {% if isId %}
+          Dibangun untuk Orang-Orang yang<br />
+          <span class="use-cases-accent">Benar-Benar Bersepeda.</span>
+        {% else %}
+          Built for People Who<br />
+          <span class="use-cases-accent">Actually Ride Bikes.</span>
+        {% endif %}
+      </h1>
+      <p class="use-cases-hero-desc">
+        {{ 'Kami tidak merancang ini di ruang rapat direksi. Setiap fitur hadir karena ada pesepeda, fitter, atau insinyur sungguhan yang memintanya selama pengujian lapangan.' if isId else "We didn't design this in a boardroom. Every feature exists because a real cyclist, fitter, or engineer asked for it during testing." }}
+      </p>
+    </div>
+  </section>
+
+  <!-- Use Cases List -->
+  {% for c in cases %}
+    <section class="use-cases-case-section {% if loop.index0 % 2 == 1 %}use-cases-section-alt{% endif %}">
+      <div class="container">
+        <div class="use-cases-case-layout">
+          <div class="use-cases-case-content">
+            <span class="use-cases-case-tag">{{ c.tag }}</span>
+            <h2 class="use-cases-case-title">{{ c.title }}</h2>
+            {% for para in c.descParas %}
+              <p class="use-cases-case-para">{{ para }}</p>
+            {% endfor %}
+          </div>
+          <div class="use-cases-case-stats">
+            {% for s in c.stats %}
+              <div class="use-cases-stat">
+                <span class="use-cases-stat-value">{{ s.value }}</span>
+                <span class="use-cases-stat-label">{{ s.label }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endfor %}
+</div>
+{% endblock %}

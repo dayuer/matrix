@@ -1,0 +1,24 @@
+{
+  "id": "persona_10",
+  "name": "Li Wei",
+  "gender": "Male",
+  "age": 42,
+  "country": "China",
+  "ethnicity": "Han",
+  "sexualOrientation": "Heterosexual",
+  "industry": "OEM Bicycle Manufacturing",
+  "knowledgeLevel": "Technical Professional",
+  "interests": [
+    "Integrated frame design",
+    "Supply chain reliability",
+    "Mass production costs"
+  ],
+  "biases": [
+    "Values scalable, standardized sensor pods",
+    "Ignores boutique custom builds"
+  ],
+  "expectations": [
+    "Wants integration manuals",
+    "Demands testing standards like ISO or EN"
+  ]
+}

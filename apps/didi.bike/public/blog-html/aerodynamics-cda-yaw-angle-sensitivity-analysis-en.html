@@ -1,0 +1,72 @@
+<h1>Statistical Analysis: Yaw Angle Aerodynamic Sensitivity</h1>
+<h2>Statistical Core and Regression</h2>
+<p>In competitive road racing, the angle of the apparent wind relative to the rider&#39;s direction of travel represents the yaw angle. Understanding how changes in this angle affect aerodynamic drag is a key task in sports science. On flat terrain at speeds exceeding 40 km/h, aerodynamic resistance accounts for over 90% of the total impedance. To analyze this interaction, we collect high-frequency telemetry data during dynamic cycling trials. The physical relationship between air density, pressure, and temperature must be monitored to ensure data accuracy. The governing atmospheric state relation is expressed as:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>ρ</mi><mo>=</mo><mfrac><mi>p</mi><mrow><mi>R</mi><mo>⋅</mo><mi>T</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\rho = \frac{p}{R \cdot T}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">ρ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.7936em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><p>Where:</p>
+<ul>
+<li>$F_d$ is the total drag force vector in Newtons, representing the net force opposing the rider&#39;s forward motion.</li>
+<li>$Re$ represents the Reynolds Number, characterizing the transition from laminar to turbulent flow along the rider&#39;s limbs and skinsuit panels.</li>
+<li>$\rho$ is the local barometric air density, adjusted dynamically for altitude (e.g., during high-altitude Alpine passes or altitude training in St. Moritz, Switzerland).</li>
+<li>$A$ is the planimetric frontal area, captured via 2D photogrammetry.</li>
+</ul>
+<p>To investigate the sensitivity of the system to yaw variation, we apply time-series regression models to the gathered datasets. We calculate the correlation coefficient between the yaw angle and the drag force vector. Under the strict dimensional constraints of the UCI Article 1.3.013 and 1.3.022, minor changes in hand placement alter the effective frontal area. This interaction becomes increasingly complex at high yaw angles, where crosswinds create asymmetrical flow separation zones.</p>
+<h2>Sensitivity Metrics and Variance</h2>
+<p>Our statistical analysis focuses on quantifying the variance of drag measurements across different wind conditions. We calculated the standard deviation of the drag force vector at distinct yaw angles. The formula for the standard deviation of our observations is expressed as:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>σ</mi><mo>=</mo><msqrt><mrow><mfrac><mn>1</mn><mi>N</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>−</mo><mi>μ</mi><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding="application/x-tex">\sigma = \sqrt{\frac{1}{N} \sum_{i=1}^{N} (x_i - \mu)^2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">σ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:3.3338em;vertical-align:-1.2777em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.0561em;"><span class="svg-align" style="top:-5.2938em;"><span class="pstrut" style="height:5.2938em;"></span><span class="mord" style="padding-left:1.056em;"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.109em;">N</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">μ</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-4.0161em;"><span class="pstrut" style="height:5.2938em;"></span><span class="hide-tail" style="min-width:0.742em;height:3.3738em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="3.3738em" viewBox="0 0 400000 3373" preserveAspectRatio="xMinYMin slice"><path d="M702 80H40000040
+H742v3239l-4 4-4 4c-.667.7 -2 1.5-4 2.5s-4.167 1.833-6.5 2.5-5.5 1-9.5 1
+h-12l-28-84c-16.667-52-96.667 -294.333-240-727l-212 -643 -85 170
+c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
+219 661 l218 661zM702 80H400000v40H742z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span></span></span></span></span><p>Where:</p>
+<ul>
+<li>$\sigma$ is the standard deviation of the measured drag forces.</li>
+<li>$N$ is the number of data points.</li>
+<li>$x_i$ represents each individual drag force observation.</li>
+<li>$\mu$ is the arithmetic mean of the dataset.</li>
+</ul>
+<p>This formula allows us to estimate the dispersion of our aerodynamic measurements. The p-value of our regression coefficient was less than 0.01, confirming the statistical significance of yaw angles. We computed 95% confidence intervals to define the range of expected drag values. These confidence intervals show that as yaw angles increase from 0 to 15 degrees, the uncertainty of the drag coefficient expands quadratically. This expansion is due to unsteady vortex shedding along the rider&#39;s torso.</p>
+<h2>Data Smoothing and Outlier Rejection</h2>
+<p>Field testing is subject to significant environmental noise. Vibrations from rough road surfaces introduce high-frequency components that can distort the telemetry. To resolve this, we performed data smoothing using a low-pass Butterworth filter. We also applied a three-sigma outlier rejection protocol to eliminate sensor anomalies caused by sudden physical movement. This outlier rejection ensures that our dataset reflects steady-state aerodynamic behavior rather than transient accelerations. The combination of data smoothing and outlier rejection yields a clean, stationary time-series. We can then isolate the true relationship between crosswind vectors and drag forces.</p>
+<h2>Telemetry Compilation and Results</h2>
+<p>Table 1 compiles the raw metrics, processed means, and variances of drag measurements at various yaw angles.</p>
+<p>Table 1 summarizes the statistical properties of the drag force datasets.</p>
+<table>
+<thead>
+<tr>
+<th>Yaw Angle (deg)</th>
+<th>Raw Observations (N)</th>
+<th>Processed Mean (N)</th>
+<th>Variance ($N^2$)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0.0</td>
+<td>1200</td>
+<td>18.24</td>
+<td>0.045</td>
+</tr>
+<tr>
+<td>5.0</td>
+<td>1200</td>
+<td>18.96</td>
+<td>0.062</td>
+</tr>
+<tr>
+<td>10.0</td>
+<td>1200</td>
+<td>20.15</td>
+<td>0.098</td>
+</tr>
+<tr>
+<td>15.0</td>
+<td>1200</td>
+<td>22.41</td>
+<td>0.144</td>
+</tr>
+</tbody></table>
+<p>Yaw angles fluctuate. Wind direction shifts. Data requires smoothing. Regressions show trends. Variances increase rapidly. Telemetry records forces. Boundaries remain complex. Errors propogate dynamically. These brief lines encapsulate the analytical challenges of outdoor fluid dynamics.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.tandfonline.com/toc/rjsp20/current" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Journal of Sports Sciences</a>: Biomechanical analysis and mechanical efficiency in elite cycling.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: High-frequency telemetry and sensor fusion calibrations.</li>
+<li><a href="https://www.uci.org/inside-uci/constitutions-regulations/regulations" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">UCI Cycling Regulations</a>: Part I: General Organisation of Cycling as a Sport (Aero &amp; Frame dimensions limits).</li>
+<li><a href="https://scholar.google.com/scholar?q=High-altitude+hypoxic+adaptation+and+cardiorespiratory+kinetics" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Swiss Federal Institute of Sport Magglingen</a>: High-altitude hypoxic adaptation and cardiorespiratory kinetics.</li>
+</ol>

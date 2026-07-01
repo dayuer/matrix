@@ -1,0 +1,263 @@
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+{% set homePrefix = '/' + locale %}
+{% set isId = locale == 'id' %}
+
+{% set letters = [
+  {
+    char: 'D',
+    word: 'Data',
+    desc: 'Setiap keputusan didasarkan pada data sensor dunia nyata, bukan spekulasi.' if isId else 'Every decision driven by real-world sensor data, not guesswork.'
+  },
+  {
+    char: 'I',
+    word: 'Integrated',
+    desc: 'Fusi multi-sensor ke dalam satu platform telemetri yang terpadu.' if isId else 'Multi-sensor fusion into one unified telemetry platform.'
+  },
+  {
+    char: 'D',
+    word: 'Dynamic',
+    desc: 'Analisis real-time yang bergerak bersama Anda — bukan snapshot statis.' if isId else 'Real-time analysis that moves with you — not a static snapshot.'
+  },
+  {
+    char: 'I',
+    word: 'Intelligence',
+    desc: 'Wawasan yang dapat ditindaklanjuti diekstrak dari data mentah secara otomatis.' if isId else 'Actionable insights extracted from raw data, automatically.'
+  }
+] %}
+
+{% set timeline = [
+  { 
+    date: '2024 Q1', 
+    text: 'Berdiri di Jakarta, Indonesia bekerja sama dengan riset Terowongan Angin RMIT' if isId else 'Founded in Jakarta, Indonesia with RMIT Wind Tunnel research collaboration' 
+  },
+  { 
+    date: '2024 Q3', 
+    text: 'Prototipe sensor pertama menyelesaikan validasi terowongan angin RMIT dengan korelasi r²=0.94' if isId else 'First prototype sensor completes RMIT wind tunnel validation at r²=0.94 correlation' 
+  },
+  { 
+    date: '2025 Q1', 
+    text: 'Aplikasi paten global diajukan; SDK & API pengembang didi.bike dirilis secara global' if isId else 'Global patent applications filed; didi.bike developer SDK & open telemetry API released' 
+  },
+  { 
+    date: '2025 Q3', 
+    text: 'Pengujian beta berskala besar selesai di 23 studio fitting sepeda premium Eropa & Australia' if isId else 'Enterprise beta testing completed across 23 premium European & Australian bike fitting studios' 
+  },
+  { 
+    date: '2026 Q1', 
+    text: 'Pre-order dibuka secara global untuk distribusi individual & modul OEM industri' if isId else 'Pre-orders open globally for consumer distribution & industrial OEM white-label modules' 
+  }
+] %}
+
+{% set weAre = [
+  'Produsen perangkat keras telemetri bersepeda' if isId else 'Cycling telemetry hardware manufacturer',
+  'Perusahaan teknologi olahraga & sensor' if isId else 'Sports technology & sensor company',
+  'Platform analisis data untuk atlet' if isId else 'Data analytics platform for athletes',
+  'Teknik pengukuran presisi tinggi' if isId else 'Precision measurement engineering'
+] %}
+
+{% set weAreNot = [
+  'Layanan berbagi tumpangan atau taksi' if isId else 'Ride-hailing or taxi service',
+  'Platform transportasi atau mobilitas' if isId else 'Transportation or mobility platform',
+  'Perusahaan logistik atau pengiriman' if isId else 'Logistics or delivery company',
+  'Aplikasi seluler untuk memesan tumpangan' if isId else 'Mobile app for booking rides'
+] %}
+
+<!-- Breadcrumbs Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ site.baseUrl or 'https://didi.bike' }}{{ homePrefix }}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ 'Tentang' if isId else 'About' }}",
+      "item": "{{ site.baseUrl or 'https://didi.bike' }}{{ homePrefix }}/about"
+    }
+  ]
+}
+</script>
+
+<div class="about-main">
+  <!-- Hero Section -->
+  <section class="about-hero">
+    <div class="container">
+      <span class="about-badge">{{ 'Cerita Kami' if isId else 'Our Story' }}</span>
+      <h1 class="about-page-title">
+        <span class="about-accent">D</span>ata-
+        <span class="about-accent">I</span>ntegrated
+        <span class="about-accent">D</span>ynamic
+        <span class="about-accent">I</span>ntelligence
+      </h1>
+      <p class="about-hero-desc">
+        {{ 'DB bukanlah sekadar nama — ini adalah akronim. Empat kata yang mendefinisikan filosofi teknik kami: tangkap data, integrasikan sensor, analisis secara dinamis, berikan kecerdasan.' if isId else "DB is not a name — it's an acronym. Four words that define our engineering philosophy: capture data, integrate sensors, analyze dynamically, deliver intelligence." }}
+      </p>
+    </div>
+  </section>
+
+  <!-- The Name: D.I.D.I -->
+  <section class="about-section">
+    <div class="container">
+      <h2 class="about-section-title">{{ 'Arti Nama' if isId else 'The Name' }}</h2>
+      <p class="about-section-desc">
+        {{ 'Setiap huruf dalam DB mewakili prinsip inti dari platform sensor kami. Bersama-sama, mereka menggambarkan alur lengkap — dari pengukuran mentah hingga wawasan nyata.' if isId else 'Every letter in DB stands for a core principle of our sensor platform. Together, they describe the full pipeline — from raw measurement to actionable insight.' }}
+      </p>
+      <div class="about-letter-grid">
+        {% for item in letters %}
+          <div class="glass-card about-letter-card">
+            <div class="about-letter-char">{{ item.char }}</div>
+            <div class="about-letter-word">{{ item.word }}</div>
+            <p class="about-letter-desc">{{ item.desc }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section class="about-section about-section-alt">
+    <div class="container">
+      <h2 class="about-section-title">{{ 'Presisi di Setiap Kayuhan' if isId else 'Precision in Every Pedal' }}</h2>
+      <div class="about-mission-content">
+        {% if isId %}
+          <p>
+            Pengujian aerodinamika bersepeda profesional selama ini selalu terkurung di balik
+            sesi terowongan angin seharga $15.000+ dan laboratorium olahraga universitas. Kami
+            percaya setiap pesepeda serius berhak mendapatkan akses ke data yang sama — tanpa
+            perlu jas laboratorium dan anggaran ratusan juta rupiah.
+          </p>
+          <p>
+            Sensor DIDI.BIKE menghadirkan
+            <span class="about-mission-highlight">
+              pengukuran CdA real-time, pelacakan postur tubuh, dan analisis gaya kayuhan
+            </span>
+            dalam kemasan ringkas 14 gram yang dipasang di belakang tiang sadel Anda.
+            Satu perangkat. $299. Tanpa biaya langganan.
+          </p>
+          <p>
+            Berdiri pada tahun
+            <span class="about-mission-highlight">2024</span>,
+            berkantor pusat di
+            <span class="about-mission-highlight">Jakarta</span> —
+            pusat teknologi terbesar di Asia Tenggara — kami adalah tim pesepeda,
+            insinyur, dan ilmuwan data yang membangun alat yang kami harap ada sejak dulu.
+          </p>
+        {% else %}
+          <p>
+            Professional cycling aerodynamics testing has been locked behind
+            $15,000+ wind tunnel sessions and university sports labs. We
+            believe every serious cyclist deserves access to the same
+            data — without the lab coat and the six-figure budget.
+          </p>
+          <p>
+            The DIDI.BIKE Sensor delivers
+            <span class="about-mission-highlight">
+              real-time CdA measurement, posture tracking, and force
+              analysis
+            </span>
+            in a 14-gram package that mounts behind your saddle rail.
+            One device. $299. No subscription.
+          </p>
+          <p>
+            Founded in
+            <span class="about-mission-highlight">2024</span>,
+            headquartered in
+            <span class="about-mission-highlight">Jakarta</span> —
+            Southeast Asia's largest tech hub — we are a team of cyclists,
+            engineers, and data scientists building the tools we wished
+            existed.
+          </p>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Are — And What We Are Not -->
+  <section class="about-section">
+    <div class="container">
+      <h2 class="about-section-title">
+        {{ 'Siapa DIDI.BIKE Sebenarnya — Dan Siapa yang Bukan' if isId else "What DIDI.BIKE Is — And What It Isn't" }}
+      </h2>
+      <p class="about-section-desc">
+        {{ 'Nama kami terkadang menimbulkan kebingungan. Mari kami jelaskan dengan sangat jelas.' if isId else 'Our name occasionally causes confusion. Let us be perfectly clear.' }}
+      </p>
+
+      <div class="about-contrast-grid">
+        <!-- We Are Column -->
+        <div class="glass-card about-contrast-column about-contrast-positive">
+          <div class="about-contrast-label">{{ 'Kami Adalah' if isId else 'We Are' }}</div>
+          <div class="about-contrast-list">
+            {% for item in weAre %}
+              <div class="about-contrast-item">
+                <span class="about-contrast-icon">✓</span>
+                <span>{{ item }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- We Are Not Column -->
+        <div class="glass-card about-contrast-column about-contrast-negative">
+          <div class="about-contrast-label">{{ 'Kami Bukan' if isId else 'We Are Not' }}</div>
+          <div class="about-contrast-list">
+            {% for item in weAreNot %}
+              <div class="about-contrast-item">
+                <span class="about-contrast-icon">✗</span>
+                <span>{{ item }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <div class="about-disclaimer">
+        {{ 'DIDI.BIKE tidak memiliki afiliasi, asosiasi, atau dukungan dari perusahaan berbagi tumpangan, transportasi, atau mobilitas mana pun. Kesamaan apa pun dengan nama merek lain murni kebetulan. DIDI.BIKE adalah merek teknologi olahraga independen yang terdaftar sebagai Data-Integrated Dynamic Intelligence.' if isId else 'DIDI.BIKE has no affiliation, association, or endorsement by any ride-hailing, transportation, or mobility company. Any similarity to other brand names is purely coincidental. DIDI.BIKE is an independent sports technology brand registered as Data-Integrated Dynamic Intelligence.' }}
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Our Journey -->
+  <section class="about-section about-section-alt">
+    <div class="container">
+      <h2 class="about-section-title">{{ 'Perjalanan Kami' if isId else 'Our Journey' }}</h2>
+      <p class="about-section-desc">
+        {{ 'Dari sebuah garasi di Jakarta hingga pengujian beta bersama tim profesional.' if isId else 'From a Jakarta garage to beta testing with professional teams.' }}
+      </p>
+      <div class="about-timeline">
+        {% for item in timeline %}
+          <div class="about-timeline-item">
+            <div class="about-timeline-date">{{ item.date }}</div>
+            <div class="about-timeline-text">{{ item.text }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="about-cta">
+    <div class="container">
+      <h2 class="about-cta-title">{{ 'Lihat Apa yang Kami Bangun' if isId else "See What We're Building" }}</h2>
+      <p class="about-cta-desc">
+        {{ 'Jelajahi keunggulan sensor kami atau hubungi tim teknis kami.' if isId else 'Explore the sensor or get in touch with our team.' }}
+      </p>
+      <div class="about-cta-buttons">
+        <a href="{{ homePrefix }}/#sensor" class="btn btn-primary">
+          {{ 'Lihat Sensor →' if isId else 'View Sensor →' }}
+        </a>
+        <a href="{{ homePrefix }}/#contact" class="btn btn-secondary">
+          {{ 'Hubungi Kami' if isId else 'Contact Us' }}
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

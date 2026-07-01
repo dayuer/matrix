@@ -1,0 +1,130 @@
+{% extends "layouts/order-base.njk" %}
+
+{% block content %}
+<main class="order-page">
+
+  {# ── 顶部栏：城市 | Logo | 登录 ── #}
+  <header class="order-header">
+    <button class="city-selector" id="citySelector">
+      <svg class="city-selector__icon" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1C4.79 1 3 2.79 3 5c0 3.13 4 7.5 4 7.5s4-4.37 4-7.5C11 2.79 9.21 1 7 1zm0 5.5A1.5 1.5 0 117 3.5a1.5 1.5 0 010 3z" fill="currentColor"/></svg>
+      <span class="city-selector__name" id="cityName">定位中…</span>
+      <svg class="city-selector__arrow" id="citySelectorArrow" width="12" height="12" viewBox="0 0 12 12"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+    </button>
+    <img src="{{ basePath }}/images/logo.png" alt="e代驾" class="order-header__logo">
+    <div class="order-header__right">
+      <button class="order-login-btn" id="loginBtn">老客户登录</button>
+    </div>
+  </header>
+
+  {# ── 城市选择下拉面板 ── #}
+  <div class="city-dropdown" id="cityDropdown" style="display:none">
+    <div class="city-dropdown__header">
+      <span class="city-dropdown__title">选择城市</span>
+      <button class="city-dropdown__close" id="cityClose">✕</button>
+    </div>
+    <div class="city-dropdown__search">
+      <input type="text" class="city-dropdown__input" id="citySearch" placeholder="搜索城市名称">
+    </div>
+    {# 字母索引栏（JS 动态填充） #}
+    <div class="city-dropdown__index" id="cityIndex"></div>
+    {# 城市列表（JS 动态填充） #}
+    <div class="city-dropdown__list" id="cityList">
+      <div class="status-timeline__loading">
+        <div class="status-timeline__spinner"></div>
+        <p>加载城市列表…</p>
+      </div>
+    </div>
+  </div>
+
+  {# ── AI 出行助手对话流 ── #}
+  <section class="chat-thread" id="chatThread">
+    {# AI 招呼语 #}
+    <div class="chat-bubble chat-bubble--assistant">
+      <div class="chat-bubble__avatar">🚗</div>
+      <div class="chat-bubble__body">
+        <p id="greetingText">去哪儿？说一句话我帮你叫代驾</p>
+      </div>
+    </div>
+    {# 回头客常用地址气泡（首屏前置） #}
+    <div class="chat-shortcuts" id="shortcuts" style="display:none">
+      {# 由 JS 动态填充常用地址胶囊 #}
+    </div>
+  </section>
+
+  {# ── 需求确认卡片（AI 解析后渲染） ── #}
+  <div class="order-card" id="orderCard" style="display:none">
+    <div class="order-card__header">行程确认</div>
+    <div class="order-card__field">
+      <span class="order-card__label">起点</span>
+      <span class="order-card__value" id="cardOrigin">—</span>
+      <button class="order-card__edit" data-field="origin">修改</button>
+    </div>
+    <div class="order-card__field">
+      <span class="order-card__label">终点</span>
+      <span class="order-card__value" id="cardDest">—</span>
+      <button class="order-card__edit" data-field="destination">修改</button>
+    </div>
+    <div class="order-card__price" id="cardPrice"></div>
+    <div class="order-card__more" id="cardMore" style="display:none">
+      <div class="order-card__field">
+        <span class="order-card__label">乘车人</span>
+        <input class="order-card__input" id="riderPhone" type="tel" placeholder="默认本人">
+      </div>
+      <div class="order-card__field">
+        <span class="order-card__label">备注</span>
+        <input class="order-card__input" id="orderNote" type="text" placeholder="如：酒后、带宠物">
+      </div>
+    </div>
+    <button class="order-card__toggle" id="toggleMore">更多选项</button>
+    <button class="order-card__submit" id="confirmOrder">确认叫代驾</button>
+  </div>
+
+  {# ── 验证面板（点确认后出现） ── #}
+  <div class="verify-panel" id="verifyPanel" style="display:none">
+    {# 一键登录 #}
+    <button class="verify-panel__oneclick" id="oneclickBtn" style="display:none">
+      <span id="oneclickText">本机号一键下单</span>
+    </button>
+    {# 手机号输入（一键登录不可用时） #}
+    <div class="verify-panel__phone" id="phoneInput">
+      <input type="tel" class="verify-panel__tel" id="phoneNumber" placeholder="请输入手机号" maxlength="11" autocomplete="tel">
+      <button class="verify-panel__send" id="sendMagicLink">发送验证短信</button>
+    </div>
+    {# Magic Link 等待态 #}
+    <div class="verify-panel__waiting" id="waitingPanel" style="display:none">
+      <div class="verify-panel__waiting-icon">📱</div>
+      <p class="verify-panel__waiting-text">验证短信已发出，请点击短信中的链接完成下单</p>
+      <button class="verify-panel__resend" id="resendBtn">重新发送</button>
+      <p class="verify-panel__fallback">收不到？<a href="tel:95139" data-track="verify_fallback_call">拨打 95139 人工下单</a></p>
+    </div>
+    <p class="verify-panel__agreement">
+      <label><input type="checkbox" checked id="agreeCheck"> 我已阅读并同意</label>
+      <a href="https://www.edaijia.cn/rule.html" target="_blank">《服务协议》</a>
+      <a href="https://www.edaijia.cn/privacy.html" target="_blank">《隐私政策》</a>
+    </p>
+  </div>
+
+  {# ── 底部输入栏（voice-first） ── #}
+  <footer class="order-input" id="orderInput">
+    <button class="order-input__voice" id="voiceBtn" aria-label="语音输入">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" fill="currentColor"/>
+        <path d="M19 10v2a7 7 0 01-14 0v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="12" y1="19" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <input type="text" class="order-input__text" id="textInput" placeholder="点这里打字，或按住说话">
+    <button class="order-input__send" id="sendBtn" disabled>发送</button>
+  </footer>
+
+  {# ── 3 秒超时逃生门（动态显示） ── #}
+  <div class="order-escape" id="escapePanel" style="display:none">
+    <a href="tel:95139" class="order-escape__call" data-track="escape_95139">📞 拨打 95139 电话叫车</a>
+  </div>
+
+</main>
+
+{% block extraScript %}
+<script src="{{ basePath }}/order.js?v={{ assetVersion }}"></script>
+{% endblock %}
+{% endblock %}

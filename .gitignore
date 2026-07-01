@@ -1,0 +1,34 @@
+# ============================================================
+#  内容矩阵 · 根级 .gitignore
+#  npm workspaces monorepo：一份规则覆盖 packages/、themes/、apps/*。
+#  子目录若有自己的 .gitignore，规则叠加生效，不冲突。
+# ============================================================
+
+# 依赖
+node_modules/
+
+# 构建产物（各 app / package / theme 的 tsc 输出与静态导出）
+dist/
+out/
+.next/
+
+# 主题包编译出的客户端脚本（源码在 themes/*/client/*.ts，此为产物）
+# 注意：含 / 的规则默认锚定仓库根，必须用 **/ 前缀才能匹配 themes/*/public/ 这种嵌套路径
+**/public/*.js
+**/public/*.js.map
+
+# 环境变量与部署凭据 —— 真实值绝不入库，只保留 .env.example 之类的模板
+.env
+.env.local
+.env.*.local
+.env.deploy
+!.env.example
+!.env.deploy.example
+
+# 操作系统 / 编辑器
+.DS_Store
+*.log
+
+# Claude Code 本机专属设置（含个人权限白名单等），团队共享设置请用 settings.json
+.claude/settings.local.json
+**/.claude/settings.local.json

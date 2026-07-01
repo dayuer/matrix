@@ -1,0 +1,73 @@
+<h1>Embedded Drivetrain Architecture for Real-Time W-Prime Computation</h1>
+<h2>Data Pipeline Architecture</h2>
+<p>Processing high-frequency physical telemetry on microcontrollers requires a robust firmware design. Our target parameter is <strong>anaerobic work capacity w-prime</strong>. To estimate this state in real-time, the MCU must handle continuous mechanical strain-gauge readings. We serialize this raw stream. This is logical. The architecture leverages a dedicated peripheral bus to communicate with the sensors. Ensuring thread safety is our primary challenge. The core processor polls the sensors via I2C registers, dumping data into a ring buffer. </p>
+<p>Our firmware interacts with the sensor silicon via standard I2C registers. We configure the device to run at four hundred kilohertz. This clock rate is optimal. It minimizes electrical noise on the PCB. The I2C read routine runs inside a low-priority thread. This ensures that the primary telemetry calculations remain unaffected. We track transmission retry counts. If three consecutive reads fail, the system triggers a hardware alert. This monitoring ensures reliability. We must protect the data pipeline.</p>
+<p>We analyze the information capacity of this channel. Shannon entropy defines our maximum limits. This is math. The channel capacity equation is:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>H</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><mo>−</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mi>P</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mn>2</mn></msub><mi>P</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H(X) = -\sum_{i=1}^n P(x_i) \log_2 P(x_i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.9291em;vertical-align:-1.2777em;"></span><span class="mord">−</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span><p>Where:</p>
+<ul>
+<li>$H(X)$ represents the information entropy of the serialized telemetry packet.</li>
+<li>$P(x_i)$ represents the probability distribution of discrete sensor voltage levels.</li>
+<li>$n$ represents the total number of quantization intervals on the analog-to-digital converter.</li>
+</ul>
+<h2>Serial Packet Specification and Register Structure</h2>
+<p>Once the data is inside the ring buffer, the MCU prepares it for wireless transmission. We define a strict packet schema. This layout minimizes UART buffer overhead. A dedicated Interrupt Service Routine (ISR) handles the timer triggers, guaranteeing low interrupt latency during high-intensity intervals. Every packet contains a checksum verification byte to prevent data corruption. </p>
+<p>Below is the register structure used for wireless telemetry frame serialization:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Byte Offset</th>
+<th align="left">Field Name</th>
+<th align="left">Data Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">0x00</td>
+<td align="left">Frame Header</td>
+<td align="left">uint8_t</td>
+<td align="left">Fixed synchronization byte (0xAA)</td>
+</tr>
+<tr>
+<td align="left">0x01</td>
+<td align="left">Payload Length</td>
+<td align="left">uint8_t</td>
+<td align="left">Size of transmission payload in bytes</td>
+</tr>
+<tr>
+<td align="left">0x02-0x05</td>
+<td align="left">Mechanical Power</td>
+<td align="left">float</td>
+<td align="left">Floating-point power output value in Watts</td>
+</tr>
+<tr>
+<td align="left">0x06-0x09</td>
+<td align="left">W-Prime Remaining</td>
+<td align="left">float</td>
+<td align="left">Estimated remaining anaerobic energy in Joules</td>
+</tr>
+<tr>
+<td align="left">0x0A</td>
+<td align="left">Checksum Verification</td>
+<td align="left">uint8_t</td>
+<td align="left">8-bit XOR verification byte</td>
+</tr>
+</tbody></table>
+<h2>Mathematical Optimization and Firmware Logic</h2>
+<p>The mathematical representation of <strong>anaerobic work capacity w-prime</strong> and its corresponding metabolic/physical relation is modeled as:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>R</mi><mi>E</mi><mi>R</mi><mo>=</mo><mfrac><mrow><mi>V</mi><mi>C</mi><msub><mi>O</mi><mn>2</mn></msub></mrow><mrow><mi>V</mi><msub><mi>O</mi><mn>2</mn></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">RER = \frac{VCO_2}{VO_2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.1963em;vertical-align:-0.836em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.2222em;">V</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.2222em;">V</span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.836em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><p>Where:</p>
+<ul>
+<li>$\text{TSS}$ and $\text{NP}$ reflect the exponential weighting of training stress, scaling with the 4th power of mechanical power output to match physiological load.</li>
+<li>$RER$ represents the Respiratory Exchange Ratio, indicating substrate oxidation ratios (carbohydrate vs. fat combustion).</li>
+<li>$W&#39;_{t}$ represents the instantaneous anaerobic work capacity remaining, measured in Joules (J), which drains non-linearly above FTP and reconstitutes exponentially during recovery.</li>
+</ul>
+<p>Our embedded algorithm reads these variables to estimate glycogen depletion rates. The system tracks the Respiratory Exchange Ratio proxy. If the athlete goes above critical power, the remaining anaerobic capacity ($W&#39;_{t}$) depletes. The firmware updates this calculation at a frequency of ten Hertz. This high rate is necessary. It provides instant feedback to the athlete. </p>
+<h2>Memory Optimization and Exception Handling</h2>
+<p>Embedded systems operate under strict memory constraints. We must avoid memory allocation failures. The W-Prime tracking code uses static memory allocation. This ensures predictable runtime performance. We must check for boundary overflows. If a sensor reports a negative value, the ISR discards it. The system flags this error. This logic prevents division-by-zero errors in the main mathematical loop. Regular data validation keeps the telemetry stream reliable.</p>
+<p>Let us review the serial transmission loop. When writing to the UART buffer, we check the transmit status register. This prevents buffer overflow. If the transmission buffer is full, the firmware blocks until a slot becomes available. This is a non-blocking design pattern. It ensures that critical sensor readings are never lost. We also implement a hardware watchdog timer. If the main loop hangs, the watchdog resets the MCU. This safety feature is necessary for outdoor racing devices. It prevents device lockup under extreme conditions. The code remains robust.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.tandfonline.com/toc/rjsp20/current" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Journal of Sports Sciences</a>: Biomechanical analysis and mechanical efficiency in elite cycling.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: High-frequency telemetry and sensor fusion calibrations.</li>
+<li><a href="https://www.uci.org/inside-uci/constitutions-regulations/regulations" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">UCI Cycling Regulations</a>: Part I: General Organisation of Cycling as a Sport (Aero &amp; Frame dimensions limits).</li>
+<li><a href="https://scholar.google.com/scholar?q=High-altitude+hypoxic+adaptation+and+cardiorespiratory+kinetics" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Swiss Federal Institute of Sport Magglingen</a>: High-altitude hypoxic adaptation and cardiorespiratory kinetics.</li>
+</ol>

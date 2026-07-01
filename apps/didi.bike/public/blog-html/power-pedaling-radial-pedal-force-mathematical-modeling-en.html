@@ -1,0 +1,53 @@
+<h1>Screaming Muscles and Wasted Watts: Mathematical Modeling of Radial Pedal Force in the Saddle</h1>
+<h2>1. Fighting the Crank Arm on the Limit</h2>
+<p>Behind the bars, when you are holding 50 km/h in the final stretch of a time trial, every single watt counts. Your screaming muscles are demanding oxygen, and your lungs are burning. In these moments, you want every ounce of sweat to drive the rear wheel forward. Yet, our bodies are not perfect machines. I have spent years analyzing my telemetry files, only to find that a massive chunk of my effort is lost.</p>
+<p>This loss is caused by <strong>radial pedal force</strong>. Instead of pushing the pedal perpendicular to the crank to spin it, you end up shoving your foot directly down the metal arm. This happens most often during the transition zones at the top and bottom of the stroke.</p>
+<h2>2. Mathematical Formulation &amp; Torque Dynamics</h2>
+<p>The instantaneous mechanical power and crank torque relation of <strong>radial pedal force</strong> is modeled as:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mi>τ</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>ω</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(t) = \tau(t) \cdot \omega(t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">ω</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span></span><p>Where:</p>
+<ul>
+<li>$P(t)$ is the instantaneous power in Watts.</li>
+<li>$\tau(t)$ represents the crank torque vector, which is the cross product of the crank arm position vector and the applied pedal force vector.</li>
+<li>$\omega(t)$ is the dynamic angular velocity of the crank, which varies slightly within each stroke due to resistance changes.</li>
+<li>$\text{TE}$ and $\text{PS}$ represent Torque Effectiveness and Pedal Smoothness, respectively, tracking force application efficiency.</li>
+</ul>
+<p>When I look at my telemetry files during a qualifying split, I see these exact equations playing out. The software isolates the radial components to determine where the stroke becomes inefficient.</p>
+<h2>3. Feeling the Effort Versus Analyzing the Numbers</h2>
+<p>During intense peloton dynamics, your brain tells you that you are pushing hard. The sensors, however, reveal a different story.</p>
+<table>
+<thead>
+<tr>
+<th>Race Scenario</th>
+<th>Road Feel / Subjective Effort</th>
+<th>Measured Radial Pedal Force (N)</th>
+<th>Bio-Feedback Action Taken</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Flat Time Trial</td>
+<td>Smooth, holding 50 km/h</td>
+<td>18 N at dead centers</td>
+<td>Dropping heels to sweep through the bottom arc</td>
+</tr>
+<tr>
+<td>Cobbled Sector</td>
+<td>Violent road vibration, high fatigue</td>
+<td>42 N random peaks</td>
+<td>Shifting weight back to stabilize the pelvis</td>
+</tr>
+<tr>
+<td>Alpine Climb</td>
+<td>Screaming muscles, low cadence grinding</td>
+<td>65 N pushing into crank</td>
+<td>Standing up to modify the leg lever angle</td>
+</tr>
+</tbody></table>
+<p>When the road vibration gets rough, my pelvis bounces, and my foot alignment degrades. The table shows how mechanical stability correlates with wasted effort. </p>
+<p>To improve, I focus on sweeping my foot backward at the bottom of the stroke, like scraping mud off the sole of my shoe. This mental cue changes the force direction. It shifts the vector from radial compression to tangential acceleration. By watching the telemetry screen during training, I can train my nervous system to minimize the radial spikes. This small adjustment saves energy, keeping me fresh for the final sprint.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.tandfonline.com/toc/rjsp20/current" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Journal of Sports Sciences</a>: Biomechanical analysis and mechanical efficiency in elite cycling.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: High-frequency telemetry and sensor fusion calibrations.</li>
+<li><a href="https://www.uci.org/inside-uci/constitutions-regulations/regulations" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">UCI Cycling Regulations</a>: Part I: General Organisation of Cycling as a Sport (Aero &amp; Frame dimensions limits).</li>
+<li><a href="https://scholar.google.com/scholar?q=High-altitude+hypoxic+adaptation+and+cardiorespiratory+kinetics" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Swiss Federal Institute of Sport Magglingen</a>: High-altitude hypoxic adaptation and cardiorespiratory kinetics.</li>
+</ol>

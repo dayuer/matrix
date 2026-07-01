@@ -1,0 +1,185 @@
+<h1>Bike Fitting Technology: Tools and Sensors</h1>
+<p>Bike fitting technology has evolved from a plumb line and a goniometer to a layered stack of motion capture, pressure mapping, inertial sensors, and force-measuring pedals. The goal of all of it is the same: measure what your body does on the bike, so you can change the bike instead of your body. We analyze the full spectrum of tools, what each measures, how accurate it is, and where it fits in a fit process. For the biomechanical framework these tools serve, see the <a href="/en/blog/bike-fitting-biomechanics-guide">bike fitting biomechanics guide</a>.</p>
+<h2>The Measurement Stack</h2>
+<p>Every fit, from DIY to studio, answers the same questions: Where are your joints? What angles do they make? How do they move under load? How is force distributed? Different tools answer these with different precision.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>What It Measures</th>
+<th>Example Tools</th>
+<th>Typical Accuracy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Static dimensions</td>
+<td>Joint angles at rest</td>
+<td>Goniometer, plumb line</td>
+<td>±2-3°</td>
+</tr>
+<tr>
+<td>Video kinematics</td>
+<td>Joint angles from video</td>
+<td>Phone, Kinovea, Coach&#39;s Eye</td>
+<td>±2-3°</td>
+</tr>
+<tr>
+<td>Optical motion capture</td>
+<td>3D joint trajectories</td>
+<td>Vicon, Retül, STT</td>
+<td>&lt;1°, sub-mm</td>
+</tr>
+<tr>
+<td>Inertial sensors (IMU)</td>
+<td>Orientation, angular velocity</td>
+<td>DIDI.BIKE sensor, Xsens</td>
+<td>±0.1°</td>
+</tr>
+<tr>
+<td>Pressure mapping</td>
+<td>Force distribution</td>
+<td>GebioMized, Velocio</td>
+<td>±5% pressure</td>
+</tr>
+<tr>
+<td>Force measurement</td>
+<td>Pedal force, power</td>
+<td>Favero Assioma, Garmin Rally</td>
+<td>±1% power</td>
+</tr>
+</tbody></table>
+<h2>Static Tools: Goniometers and Plumb Lines</h2>
+<p>The foundation is still the goniometer—a two-armed protractor that measures joint angles—and the plumb line, which establishes vertical reference lines for fore-aft position. These tools are cheap, fast, and surprisingly effective in trained hands.</p>
+<p><strong>Use them for:</strong> knee angle at bottom dead center, hip angle at top dead center, KOPS alignment, and shoulder angle.</p>
+<p><strong>Limits:</strong> They measure only static positions. As soon as you pedal, the pelvis shifts, the ankle plantarflexes, and the real angles change by several degrees. For more on this gap, see <a href="/en/blog/dynamic-vs-static-bike-fit">dynamic vs static bike fit</a>.</p>
+<h2>Video Kinematics: The Accessible Middle</h2>
+<p>A smartphone at 60 fps plus a free app (Kinovea on desktop, Coach&#39;s Eye or Hudl Technique on mobile) turns any trainer session into a kinematic measurement. You mark joint centers on the screen and the app computes angles frame by frame.</p>
+<p><strong>Best practices:</strong></p>
+<ul>
+<li>Camera perpendicular to the rider, at hip height, 3-4 m away to minimize parallax</li>
+<li>Mark anatomical landmarks (greater trochanter, lateral knee joint line, lateral malleolus) with tape</li>
+<li>Measure at 3-4 points in the pedal stroke, not just one</li>
+</ul>
+<p><strong>Accuracy:</strong> With careful setup, video-derived knee angles land within 2-3° of motion-capture values. That is good enough for most saddle-height and reach decisions, which is why video underpins the <a href="/en/blog/bike-fit-without-motion-capture">bike fit without motion capture</a> approach.</p>
+<h2>Optical Motion Capture: The Gold Standard</h2>
+<p>Studio systems like Vicon, Retül, and STT use multiple synchronized cameras to track reflective markers on the rider at 100-400 Hz. Software reconstructs 3D joint trajectories and reports angles throughout the pedal stroke.</p>
+<p><strong>Strengths:</strong></p>
+<ul>
+<li>Sub-degree angular accuracy, sub-millimeter positional accuracy</li>
+<li>Captures left-right asymmetry</li>
+<li>Tracks motion across the full stroke, not just discrete points</li>
+</ul>
+<p><strong>Limits:</strong></p>
+<ul>
+<li>High equipment cost ($50,000-$250,000 for a full setup)</li>
+<li>Studio-bound; cannot measure riding outdoors</li>
+<li>Marker placement requires expertise; marker slip degrades data</li>
+</ul>
+<p>The instantaneous knee flexion angle drives the moment arm of the pedal force:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>τ</mi><mtext>knee</mtext></msub><mo>=</mo><msub><mi>F</mi><mtext>pedal</mtext></msub><mo>⋅</mo><msub><mi>r</mi><mtext>moment</mtext></msub><mo stretchy="false">(</mo><msub><mi>θ</mi><mtext>knee</mtext></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\tau_{\text{knee}} = F_{\text{pedal}} \cdot r_{\text{moment}}(\theta_{\text{knee}})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">knee</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">pedal</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">moment</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">knee</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span><p>where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mtext>moment</mtext></msub></mrow><annotation encoding="application/x-tex">r_{\text{moment}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">moment</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> is a nonlinear function of the knee angle. Motion capture resolves <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi><mtext>knee</mtext></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\theta_{\text{knee}}(t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">knee</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span> with the precision needed to optimize this.</p>
+<h2>Inertial Sensors: IMUs Come of Age</h2>
+<p>Inertial measurement units (IMUs) combine accelerometers, gyroscopes, and sometimes magnetometers to measure orientation and angular velocity without external cameras. They are the fastest-growing category in bike fitting technology because they are cheap, wireless, and work anywhere—indoors or on the road.</p>
+<p>The DIDI.BIKE sensor is a representative example: a 14-gram, IP67-rated unit that mounts on the seat post and runs a 6-axis IMU at 100 Hz with ±0.1° angular resolution. A built-in barometer logs altitude and gradient, and the 120-hour battery covers weeks of training. Dual ANT+ and BLE 5.0 output streams data to common training apps.</p>
+<p><strong>What IMUs add to a fit:</strong></p>
+<ul>
+<li><strong>Pelvic motion.</strong> Roll, pitch, and yaw of the pelvis—the single best indicator of a saddle too high or reach too long. Elevated pelvic roll amplitude correlates with lower-back load.</li>
+<li><strong>Outdoor validity.</strong> Studio motion capture measures you on a trainer; IMUs measure you on the road, where gradient, wind, and fatigue change your motion.</li>
+<li><strong>Trend tracking.</strong> Logged over weeks, IMU data shows fit drift before you feel it as pain.</li>
+</ul>
+<p><strong>Limits:</strong> IMUs drift in absolute position over time and cannot track joint centers as precisely as optical systems. They are best for relative motion and trends, not absolute dimensions.</p>
+<h2>Pressure Mapping: The Saddle and Foot</h2>
+<p>Pressure mapping uses arrays of thin force sensors to visualize how load distributes across a surface—usually the saddle or the footbed.</p>
+<p><strong>Saddle pressure mapping</strong> (GebioMized, Velocio) reveals whether you sit centered, shifted left/right, or too far forward/back. It is invaluable for saddle selection and for diagnosing numbness or perineal pain. See <a href="/en/blog/saddle-pressure-mapping">saddle pressure mapping</a> for the full workflow.</p>
+<p><strong>In-shoe pressure mapping</strong> shows hotspots and uneven forefoot loading, informing cleat wedging and insole choices.</p>
+<h2>Force and Power Measurement</h2>
+<p>Power meters (Favero Assioma, Garmin Rally, SRM) measure torque and cadence at the pedal, which lets a fitter quantify left-right balance and pedaling smoothness. Force-vector analysis—breaking the pedal force into tangential and radial components—reveals whether a rider is pushing efficiently or wasting energy in dead spots.</p>
+<table>
+<thead>
+<tr>
+<th>Tool Category</th>
+<th>Entry Cost</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Goniometer + plumb line</td>
+<td>$20-$50</td>
+<td>Baseline static fit</td>
+</tr>
+<tr>
+<td>Phone + free app</td>
+<td>$0 (phone assumed)</td>
+<td>DIY video kinematics</td>
+</tr>
+<tr>
+<td>IMU sensor (e.g., DIDI.BIKE)</td>
+<td>$299</td>
+<td>Dynamic pelvic/motion tracking at home</td>
+</tr>
+<tr>
+<td>Power pedals</td>
+<td>$500-$1,000</td>
+<td>Force balance, pedaling efficiency</td>
+</tr>
+<tr>
+<td>Saddle pressure mat</td>
+<td>Used in-studio ($/fit)</td>
+<td>Saddle selection, numbness diagnosis</td>
+</tr>
+<tr>
+<td>Optical motion capture</td>
+<td>Studio session ($200-$500)</td>
+<td>Full dynamic fit, asymmetry</td>
+</tr>
+</tbody></table>
+<h2>Choosing the Right Tool Stack</h2>
+<p>The right bike fitting technology depends on your needs:</p>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Recommended Stack</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>First fit, pain-free</td>
+<td>Goniometer or phone video</td>
+</tr>
+<tr>
+<td>Knee, back, or neck pain</td>
+<td>Video + IMU sensor, or studio motion capture</td>
+</tr>
+<tr>
+<td>Saddle discomfort or numbness</td>
+<td>Saddle pressure mapping</td>
+</tr>
+<tr>
+<td>Performance and racing</td>
+<td>Motion capture + power pedals</td>
+</tr>
+<tr>
+<td>Tracking fit over time</td>
+<td>IMU sensor for ongoing data</td>
+</tr>
+</tbody></table>
+<p>For riders who want a middle path between a one-off studio visit and pure self-fit, pairing a phone video with a seat-post IMU sensor like the DIDI.BIKE unit ($299) gives you both the static dimensions and the dynamic motion data to make and track adjustments over time.</p>
+<p>For the broader question of whether to seek professional help, see <a href="/en/blog/professional-vs-diy-bike-fit">professional vs DIY bike fit</a>, and for how often to re-check, see <a href="/en/blog/bike-fit-frequency-how-often">how often should you get a bike fit</a>.</p>
+<h2>FAQ</h2>
+<p><strong>What technology is used in a bike fit?</strong>
+Bike fitting technology ranges from simple goniometers and plumb lines to 3D motion-capture systems, pressure mapping mats, inertial measurement units (IMUs), and force-measuring pedals. Studios combine several of these; home setups can use a phone camera plus a sensor.</p>
+<p><strong>What is motion capture in bike fitting?</strong>
+Motion capture in bike fitting uses optical or inertial sensors to track joint positions at 100+ Hz while you pedal. Systems like Retül and Vicon record knee angle, pelvic motion, and asymmetry in real time, giving a dynamic picture a static measurement cannot.</p>
+<p><strong>Are bike fit sensors accurate?</strong>
+Quality IMU-based sensors achieve angular resolution of about 0.1 degrees at sampling rates of 100 Hz. They are less accurate than optical motion capture for absolute joint-center position but excellent for tracking relative motion and asymmetry under load.</p>
+<p><strong>Do I need pressure mapping for a bike fit?</strong>
+Pressure mapping helps if you have saddle discomfort, numbness, or suspect uneven weight distribution. It is not essential for a basic fit but adds valuable data for saddle selection and fore-aft positioning.</p>
+<p><strong>Can a phone camera replace bike fit tools?</strong>
+A 60 fps phone camera can measure knee and hip angles to within 2-3 degrees when set up carefully. It cannot replace motion capture or pressure mapping, but it is sufficient for most saddle height and reach checks.</p>
+<hr>
+<p><em>Related:</em> <a href="/en/blog/bike-fitting-biomechanics-guide">Bike Fitting Biomechanics Guide</a> · <a href="/en/blog/dynamic-vs-static-bike-fit">Dynamic vs Static Bike Fit</a> · <a href="/en/blog/professional-vs-diy-bike-fit">Professional vs DIY Bike Fit</a> · <a href="/en/blog/saddle-pressure-mapping">Saddle Pressure Mapping</a></p>
+<h2>References</h2>
+<ol>
+<li><em>Clinical Biomechanics</em>: Knee kinematics and muscle activation patterns in cycling fit protocols.</li>
+<li><em>Journal of Applied Biomechanics</em>: Saddle fore-aft positions and lower extremity joint mechanics.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: Precision sensor calibration for posture and skeletal angle mapping.</li>
+</ol>

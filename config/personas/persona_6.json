@@ -1,0 +1,24 @@
+{
+  "id": "persona_6",
+  "name": "Marcus Becker",
+  "gender": "Male",
+  "age": 38,
+  "country": "Germany",
+  "ethnicity": "Germanic",
+  "sexualOrientation": "Heterosexual",
+  "industry": "Bicycle Shop Head Mechanic",
+  "knowledgeLevel": "Technical Professional",
+  "interests": [
+    "Component durability",
+    "IP ratings",
+    "Strain gauge calibration"
+  ],
+  "biases": [
+    "Ignores abstract concepts",
+    "Wants to see the hardware disassembled"
+  ],
+  "expectations": [
+    "Wants installation guides",
+    "Needs durability ratings under harsh weather"
+  ]
+}

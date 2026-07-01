@@ -1,0 +1,61 @@
+{% set data = block.data or dict.hero %}
+<section id="home" class="hero">
+  <!-- Interactive Particles Canvas -->
+  <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
+
+  <!-- Glowing Orbs and Grids -->
+  <div class="hero-glow-a"></div>
+  <div class="hero-glow-b"></div>
+  <div class="hero-grid-overlay"></div>
+
+  <div class="container hero-content">
+    <div class="hero-left">
+      <span class="hero-tagline">{{ data.tagline }}</span>
+      <h1 class="hero-title">
+        {{ data.titleLine1 }}<br />
+        <span class="hero-highlight">{{ data.titleLine2 }}</span>
+      </h1>
+      <p class="hero-subtitle">{{ data.subtitle }}</p>
+      <div class="hero-cta">
+        <a href="#sensor" class="btn btn-primary">{{ data.ctaPrimary }}</a>
+        <a href="#business" class="btn btn-secondary">{{ data.ctaSecondary }}</a>
+      </div>
+
+      <!-- Telemetry Specifications -->
+      <div class="hero-metrics">
+        <div class="hero-metric">
+          <span class="hero-metric-value">14g</span>
+          <span class="hero-metric-label">{{ data.weight }}</span>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-metric">
+          <span class="hero-metric-value">100Hz</span>
+          <span class="hero-metric-label">{{ data.sampleRate }}</span>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-metric">
+          <span class="hero-metric-value">&lt;10ms</span>
+          <span class="hero-metric-label">{{ data.latency }}</span>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-metric">
+          <span class="hero-metric-value">120h</span>
+          <span class="hero-metric-label">{{ data.battery }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Side Telemetry Animation -->
+    <div class="hero-right">
+      {% include "partials/sensor_svg.njk" %}
+    </div>
+  </div>
+
+  <!-- Scroll Down Indicator -->
+  <div class="hero-scroll-indicator">
+    <span>{{ data.scroll }}</span>
+    <div class="hero-scroll-line">
+      <div class="hero-scroll-dot"></div>
+    </div>
+  </div>
+</section>

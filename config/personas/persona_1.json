@@ -1,0 +1,24 @@
+{
+  "id": "persona_1",
+  "name": "John Miller",
+  "gender": "Male",
+  "age": 34,
+  "country": "USA",
+  "ethnicity": "Caucasian",
+  "sexualOrientation": "Heterosexual",
+  "industry": "Aerospace Engineering",
+  "knowledgeLevel": "Technical Professional",
+  "interests": [
+    "Aerodynamic efficiency",
+    "CFD simulations",
+    "Carbon fiber optimization"
+  ],
+  "biases": [
+    "Prefers data-heavy equations",
+    "Dislikes high-level generic marketing content"
+  ],
+  "expectations": [
+    "Wants precise CdA measurements",
+    "Likes raw mathematical derivations"
+  ]
+}

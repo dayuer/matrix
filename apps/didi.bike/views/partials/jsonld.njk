@@ -1,0 +1,201 @@
+{# JSON-LD Structured Data for Metadata Rich Snippets #}
+{% set isId = (locale == 'id') %}
+{% set baseUrl = 'https://didi.bike' %}
+{% set localizedHomeUrl = baseUrl ~ (isId and '/id' or '/en') %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "{{ baseUrl }}/#website",
+      "name": "DIDI.BIKE",
+      "alternateName": "Data-driven Biomechanics",
+      "url": "{{ baseUrl }}",
+      "publisher": { "@id": "{{ baseUrl }}/#organization" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "{{ baseUrl }}/{{ locale }}/blog?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "{{ baseUrl }}/#organization",
+      "name": "DIDI.BIKE",
+      "alternateName": "Data-driven Biomechanics",
+      "url": "{{ baseUrl }}",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ baseUrl }}/logo-icon.png",
+        "width": 640,
+        "height": 640
+      },
+      "description": "{{ 'Perusahaan teknologi olahraga yang memproduksi sensor telemetri bersepeda presisi tinggi untuk profil aerodinamis, analisis biomekanika, dan optimalisasi performa.' if isId else 'Sports technology company building precision cycling telemetry sensors for aerodynamic profiling, biomechanics analysis, and performance optimization.' }}",
+      "foundingDate": "2024",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jakarta",
+        "addressRegion": "DKI Jakarta",
+        "addressCountry": "ID"
+      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "email": "info@didi.bike",
+          "contactType": "customer service",
+          "availableLanguage": ["English", "Indonesian"]
+        },
+        {
+          "@type": "ContactPoint",
+          "email": "partners@didi.bike",
+          "contactType": "sales",
+          "availableLanguage": ["English", "Indonesian"]
+        }
+      ]
+    },
+    {
+      "@type": "Product",
+      "@id": "{{ baseUrl }}/#product",
+      "name": "DIDI.BIKE Sensor",
+      "description": "{{ 'Sensor telemetri bersepeda 14 gram yang mengukur hambatan aerodinamis (CdA), dinamika pengayuhan, dan postur pengendara secara real-time pada 100Hz. Dipasang pada tiang kursi apa pun, terhubung via ANT+ dan Bluetooth LE 5.0 ke Garmin, Wahoo, Strava, dan TrainingPeaks.' if isId else 'A 14-gram cycling telemetry sensor that measures aerodynamic drag (CdA), pedaling dynamics, and rider posture in real time at 100Hz. Mounts on any seat post, connects via ANT+ and Bluetooth LE 5.0 to Garmin, Wahoo, Strava, and TrainingPeaks.' }}",
+      "brand": {
+        "@type": "Brand",
+        "name": "DIDI.BIKE"
+      },
+      "category": "Cycling Sensors & Electronics",
+      "url": "{{ baseUrl }}/#sensor",
+      "image": "{{ baseUrl }}/og-image.png",
+      "weight": {
+        "@type": "QuantitativeValue",
+        "value": 14,
+        "unitCode": "GRM"
+      },
+      "additionalProperty": [
+        { "@type": "PropertyValue", "name": "Sampling Rate", "value": "100Hz", "unitText": "hertz" },
+        { "@type": "PropertyValue", "name": "Latency", "value": "<10ms" },
+        { "@type": "PropertyValue", "name": "Battery Life", "value": "40 hours continuous" },
+        { "@type": "PropertyValue", "name": "Connectivity", "value": "ANT+ & Bluetooth LE 5.0" },
+        { "@type": "PropertyValue", "name": "Waterproof Rating", "value": "IPX7" },
+        { "@type": "PropertyValue", "name": "Angular Accuracy", "value": "±0.1°" },
+        { "@type": "PropertyValue", "name": "IMU Type", "value": "6-axis Bosch BMI270" },
+        { "@type": "PropertyValue", "name": "Operating Temperature", "value": "-10°C to 60°C" },
+        { "@type": "PropertyValue", "name": "Data Storage", "value": "1MB internal + 8MB external" },
+        { "@type": "PropertyValue", "name": "Firmware Updates", "value": "OTA via companion app" },
+        { "@type": "PropertyValue", "name": "Mounting", "value": "Saddle rail clip (7mm / 9mm)" },
+        { "@type": "PropertyValue", "name": "Charging", "value": "USB-C, 45 min to full" }
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "299",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/PreOrder",
+        "url": "{{ baseUrl }}/#contact",
+        "priceValidUntil": "2026-12-31",
+        "shippingDetails": {
+          "@type": "OfferShippingDetails",
+          "shippingRate": {
+            "@type": "MonetaryAmount",
+            "value": "0",
+            "currency": "USD"
+          },
+          "shippingDestination": {
+            "@type": "DefinedRegion",
+            "addressCountry": "WW"
+          },
+          "deliveryTime": {
+            "@type": "ShippingDeliveryTime",
+            "handlingTime": {
+              "@type": "QuantitativeValue",
+              "minValue": 1,
+              "maxValue": 3,
+              "unitCode": "DAY"
+            },
+            "transitTime": {
+              "@type": "QuantitativeValue",
+              "minValue": 7,
+              "maxValue": 21,
+              "unitCode": "DAY"
+            }
+          }
+        },
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "applicableCountry": "WW",
+          "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+          "merchantReturnDays": 30,
+          "returnMethod": "https://schema.org/ReturnByMail",
+          "returnFees": "https://schema.org/FreeReturn"
+        }
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "{{ baseUrl }}/#webpage",
+      "name": "{{ 'DIDI.BIKE — Sensor Bersepeda Presisi Tinggi' if isId else 'DIDI.BIKE — Precision Cycling Sensor' }}",
+      "description": "{{ 'Sensor DIDI.BIKE adalah perangkat telemetri bersepeda 14 gram. Mengukur hambatan aerodinamis, dinamika pengayuhan, dan postur pada 100Hz dengan akurasi ±0.1°.' if isId else 'The DIDI.BIKE Sensor is a 14-gram cycling telemetry device. It measures aerodynamic drag, pedaling dynamics, and posture at 100Hz with ±0.1° accuracy and sub-10ms latency.' }}",
+      "url": "{{ baseUrl }}/{{ locale }}",
+      "isPartOf": { "@id": "{{ baseUrl }}/#website" },
+      "about": { "@id": "{{ baseUrl }}/#product" },
+      "publisher": { "@id": "{{ baseUrl }}/#organization" },
+      "inLanguage": "{{ 'id-ID' if isId else 'en-US' }}",
+      "datePublished": "2025-01-15",
+      "dateModified": "{{ page.dateModified | default('2026-07-01') }}"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "{{ baseUrl }}/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "{{ 'Beranda' if isId else 'Home' }}",
+          "item": "{{ localizedHomeUrl }}"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "{{ baseUrl }}/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "{{ 'Apa itu Sensor DIDI.BIKE?' if isId else 'What is the DIDI.BIKE Sensor?' }}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ 'Sensor DIDI.BIKE adalah perangkat telemetri bersepeda 14 gram yang dipasang pada tiang kursi. Mengukur koefisien hambatan aerodinamis (CdA), dinamika pengayuhan, dan postur pengendara secara real-time menggunakan 6-axis IMU pada 100Hz dengan akurasi sudut ±0.1°.' if isId else 'The DIDI.BIKE Sensor is a 14-gram cycling telemetry device that mounts on any seat post. It measures aerodynamic drag coefficient (CdA), pedaling dynamics, and rider posture in real time using a 6-axis IMU at 100Hz with ±0.1° angular accuracy. It connects via ANT+ and Bluetooth LE 5.0 to Garmin, Wahoo, and Hammerhead head units, as well as Strava, TrainingPeaks, and other platforms. It costs $299.' }}"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "{{ 'Bagaimana Sensor DIDI.BIKE mengukur aerodinamika?' if isId else 'How does the DIDI.BIKE Sensor measure aerodynamics?' }}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ 'Sensor menghitung CdA secara real-time dengan menggabungkan data dari 6-axis IMU pada 100Hz dengan pembacaan tekanan udara (barometer). Sensor memantau sudut tubuh (kisaran 0°–45°), stabilitas panggul, dan posisi bersepeda. Mengoptimalkan posisi dapat menghemat 15–20 watt pada kecepatan 40 km/jam.' if isId else 'The sensor calculates real-time CdA (coefficient of drag area) by combining data from its 6-axis IMU (gyroscope and accelerometer) at 100Hz with barometric altitude readings. It monitors torso angle (0°–45° range), pelvic stability, and riding position (seated vs. standing). Optimizing position based on this data can save 15–20 watts at 40 km/h — roughly a 30-second advantage over 40 km.' }}"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "{{ 'Perangkat dan aplikasi apa yang kompatibel dengan Sensor DIDI.BIKE?' if isId else 'What devices and apps work with the DIDI.BIKE Sensor?' }}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ 'Sensor memancarkan data via ANT+ dan Bluetooth LE 5.0. Ini kompatibel dengan Garmin, Wahoo, dan Hammerhead, serta terintegrasi dengan Strava, TrainingPeaks, Golden Cheetah, dan Intervals.icu. Tidak memerlukan aplikasi khusus.' if isId else 'The sensor broadcasts via ANT+ and Bluetooth LE 5.0. It works with Garmin, Wahoo, and Hammerhead head units, and integrates with Strava, TrainingPeaks, WKO5, Golden Cheetah, Wahoo SYSTM, and Intervals.icu. No proprietary app is needed. A Developer API provides WebSocket streaming at 100Hz, REST endpoints, and SDK libraries for Python, JavaScript, and Java.' }}"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "{{ 'Berapa daya tahan baterai Sensor DIDI.BIKE?' if isId else 'What is the battery life of the DIDI.BIKE Sensor?' }}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ 'Sensor menyediakan daya tahan baterai 40 jam perekaman terus-menerus dalam sekali pengisian daya, terisi penuh dalam 45 menit via USB-C, dengan waktu siaga sekitar 6 bulan. Suhu operasional berkisar antara -10°C hingga 60°C dengan peringkat tahan air IPX7.' if isId else 'The sensor provides 40 hours of continuous recording on a single charge, fully recharges in 45 minutes via USB-C, and has roughly 6 months of standby time. The operating temperature range is -10°C to 60°C. It carries an IPX7 water resistance rating (submersible to 1m for 30 min) and 8MB of storage for offline data buffering.' }}"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>

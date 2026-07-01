@@ -1,0 +1,60 @@
+<section id="home" class="hero">
+  <!-- Interactive Particles Canvas -->
+  <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
+
+  <!-- Glowing Orbs and Grids -->
+  <div class="hero-glow-a"></div>
+  <div class="hero-glow-b"></div>
+  <div class="hero-grid-overlay"></div>
+
+  <div class="container hero-content">
+    <div class="hero-left">
+      <span class="hero-tagline">{{ dict.hero.tagline }}</span>
+      <h1 class="hero-title">
+        {{ dict.hero.titleLine1 }}<br />
+        <span class="hero-highlight">{{ dict.hero.titleLine2 }}</span>
+      </h1>
+      <p class="hero-subtitle">{{ dict.hero.subtitle }}</p>
+      <div class="hero-cta">
+        <a href="#sensor" class="btn btn-primary">{{ dict.hero.ctaPrimary }}</a>
+        <a href="#business" class="btn btn-secondary">{{ dict.hero.ctaSecondary }}</a>
+      </div>
+
+      <!-- Telemetry Specifications -->
+      <div class="hero-metrics">
+        <div class="hero-metric">
+          <span class="hero-metric-value">14g</span>
+          <span class="hero-metric-label">{{ dict.hero.weight }}</span>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-metric">
+          <span class="hero-metric-value">100Hz</span>
+          <span class="hero-metric-label">{{ dict.hero.sampleRate }}</span>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-metric">
+          <span class="hero-metric-value">&lt;10ms</span>
+          <span class="hero-metric-label">{{ dict.hero.latency }}</span>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-metric">
+          <span class="hero-metric-value">120h</span>
+          <span class="hero-metric-label">{{ dict.hero.battery }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Side Telemetry Animation -->
+    <div class="hero-right">
+      {% include "partials/sensor_svg.njk" %}
+    </div>
+  </div>
+
+  <!-- Scroll Down Indicator -->
+  <div class="hero-scroll-indicator">
+    <span>{{ dict.hero.scroll }}</span>
+    <div class="hero-scroll-line">
+      <div class="hero-scroll-dot"></div>
+    </div>
+  </div>
+</section>

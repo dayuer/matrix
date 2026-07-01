@@ -1,0 +1,9 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+<main class="home" id="main">
+  {% for block in page.blocks %}
+    {% include "blocks/" + block.type + ".njk" ignore missing %}
+  {% endfor %}
+</main>
+{% endblock %}

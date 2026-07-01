@@ -1,0 +1,20 @@
+{
+  "name": "@matrix/theme-arrfunds",
+  "version": "1.0.0",
+  "private": true,
+  "description": "内容矩阵主题：ARR 金融（深绿 + 薄荷强调 + Outfit/Inter，Bento 结构）。",
+  "main": "dist/theme.js",
+  "types": "dist/theme.d.ts",
+  "exports": { ".": { "types": "./dist/theme.d.ts", "default": "./dist/theme.js" } },
+  "scripts": {
+    "build:manifest": "tsc -p tsconfig.json",
+    "build:client": "tsc -p tsconfig.client.json",
+    "build": "npm run build:manifest && npm run build:client"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": { "@matrix/site-kit": "1.0.0" },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^5.5.0"
+  }
+}

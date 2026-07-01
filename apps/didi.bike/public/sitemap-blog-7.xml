@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://didi.bike/en/blog/sensor-telemetry-6-axis-sensor-fusion-sensor-calibration</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/sensor-telemetry-6-axis-sensor-fusion-sensor-calibration"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/sensor-telemetry-6-axis-sensor-fusion-sensor-calibration"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/sensor-telemetry-6-axis-sensor-fusion-mathematical-filtering</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/sensor-telemetry-6-axis-sensor-fusion-mathematical-filtering"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/sensor-telemetry-6-axis-sensor-fusion-mathematical-filtering"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-hardware-architecture</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-hardware-architecture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-hardware-architecture"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-firmware-optimization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-firmware-optimization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-firmware-optimization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/id/blog/training-racing-cycling-data-guide</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="id" href="https://didi.bike/id/blog/training-racing-cycling-data-guide"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-cycling-data-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-cycling-data-guide"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/training-racing-cycling-data-guide</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="id" href="https://didi.bike/id/blog/training-racing-cycling-data-guide"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/training-racing-cycling-data-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/training-racing-cycling-data-guide"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-signal-noise-mitigation</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-signal-noise-mitigation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-signal-noise-mitigation"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-calibration-algorithm</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-calibration-algorithm"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-calibration-algorithm"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-data-integrity-check</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-data-integrity-check"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-data-integrity-check"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-latency-assessment</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-latency-assessment"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-latency-assessment"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-power-management</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-power-management"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-power-management"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-protocol-analysis</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-protocol-analysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-protocol-analysis"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-sensor-calibration</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-sensor-calibration"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-sensor-calibration"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-mathematical-filtering</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-mathematical-filtering"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/sensor-telemetry-optical-heart-rate-hrv-sensor-mathematical-filtering"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-hardware-architecture</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-hardware-architecture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-hardware-architecture"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-firmware-optimization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-firmware-optimization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-firmware-optimization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/using-aero-data-in-training</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/using-aero-data-in-training"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/using-aero-data-in-training"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-signal-noise-mitigation</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-signal-noise-mitigation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-signal-noise-mitigation"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-calibration-algorithm</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-calibration-algorithm"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-calibration-algorithm"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-data-integrity-check</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-data-integrity-check"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-data-integrity-check"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-latency-assessment</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-latency-assessment"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-latency-assessment"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-power-management</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-power-management"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-power-management"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-protocol-analysis</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-protocol-analysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-protocol-analysis"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-sensor-calibration</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-sensor-calibration"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-sensor-calibration"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-mathematical-filtering</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-mathematical-filtering"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/sensor-telemetry-infrared-tire-temperature-sensor-mathematical-filtering"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/sensor-telemetry-wind-speed-anemometer-hardware-architecture</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/sensor-telemetry-wind-speed-anemometer-hardware-architecture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/sensor-telemetry-wind-speed-anemometer-hardware-architecture"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/sensor-telemetry-wind-speed-anemometer-firmware-optimization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/sensor-telemetry-wind-speed-anemometer-firmware-optimization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/sensor-telemetry-wind-speed-anemometer-firmware-optimization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/pacing-time-trial-cda</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/pacing-time-trial-cda"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/pacing-time-trial-cda"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-software-engineering</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-software-engineering"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-software-engineering"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-api-integration</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-api-integration"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-api-integration"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-data-serialization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-data-serialization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-data-serialization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-performance-optimization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-performance-optimization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-performance-optimization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-security-compliance</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-security-compliance"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-security-compliance"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-database-architecture</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-database-architecture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-database-architecture"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-protocol-parsing</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-protocol-parsing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-protocol-parsing"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-real-time-streaming</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-real-time-streaming"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-real-time-streaming"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-synchronization-logic</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-synchronization-logic"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-synchronization-logic"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-custom-scripting</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-custom-scripting"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-ant-bicycle-power-profile-custom-scripting"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/triathlon-bike-leg-aero-strategy</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/triathlon-bike-leg-aero-strategy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/triathlon-bike-leg-aero-strategy"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-software-engineering</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-software-engineering"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-software-engineering"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-api-integration</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-api-integration"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-api-integration"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-data-serialization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-data-serialization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-data-serialization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-performance-optimization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-performance-optimization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-performance-optimization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-security-compliance</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-security-compliance"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-security-compliance"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-database-architecture</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-database-architecture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-database-architecture"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-protocol-parsing</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-protocol-parsing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-protocol-parsing"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-real-time-streaming</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-real-time-streaming"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-real-time-streaming"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-synchronization-logic</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-synchronization-logic"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-synchronization-logic"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-custom-scripting</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-custom-scripting"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-bluetooth-le-cycling-speed-gatt-custom-scripting"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/reading-your-ride-data</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/reading-your-ride-data"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/reading-your-ride-data"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-fit-file-binary-format-software-engineering</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-fit-file-binary-format-software-engineering"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-fit-file-binary-format-software-engineering"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-fit-file-binary-format-api-integration</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-fit-file-binary-format-api-integration"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-fit-file-binary-format-api-integration"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-fit-file-binary-format-data-serialization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-fit-file-binary-format-data-serialization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-fit-file-binary-format-data-serialization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-fit-file-binary-format-performance-optimization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-fit-file-binary-format-performance-optimization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-fit-file-binary-format-performance-optimization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-fit-file-binary-format-security-compliance</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-fit-file-binary-format-security-compliance"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-fit-file-binary-format-security-compliance"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-fit-file-binary-format-database-architecture</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-fit-file-binary-format-database-architecture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-fit-file-binary-format-database-architecture"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-fit-file-binary-format-protocol-parsing</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-fit-file-binary-format-protocol-parsing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-fit-file-binary-format-protocol-parsing"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-fit-file-binary-format-real-time-streaming</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-fit-file-binary-format-real-time-streaming"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-fit-file-binary-format-real-time-streaming"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-fit-file-binary-format-synchronization-logic</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-fit-file-binary-format-synchronization-logic"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-fit-file-binary-format-synchronization-logic"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-fit-file-binary-format-custom-scripting</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-fit-file-binary-format-custom-scripting"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-fit-file-binary-format-custom-scripting"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/telemetry-race-day-decisions</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/telemetry-race-day-decisions"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/telemetry-race-day-decisions"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-software-engineering</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-software-engineering"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-software-engineering"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-api-integration</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-api-integration"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-api-integration"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-data-serialization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-data-serialization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-data-serialization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-performance-optimization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-performance-optimization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-performance-optimization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-security-compliance</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-security-compliance"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-security-compliance"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-database-architecture</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-database-architecture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-database-architecture"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-protocol-parsing</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-protocol-parsing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-protocol-parsing"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-real-time-streaming</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-real-time-streaming"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-real-time-streaming"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-synchronization-logic</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-synchronization-logic"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-synchronization-logic"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-custom-scripting</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-custom-scripting"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-garmin-fit-sdk-field-injection-custom-scripting"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/cycling-interval-design</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/cycling-interval-design"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/cycling-interval-design"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-software-engineering</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-software-engineering"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-software-engineering"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-api-integration</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-api-integration"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-api-integration"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-data-serialization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-data-serialization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-data-serialization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-performance-optimization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-performance-optimization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-performance-optimization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-security-compliance</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-security-compliance"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-security-compliance"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-database-architecture</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-database-architecture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-database-architecture"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-protocol-parsing</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-protocol-parsing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-protocol-parsing"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-real-time-streaming</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-real-time-streaming"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-real-time-streaming"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-synchronization-logic</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-synchronization-logic"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-synchronization-logic"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-custom-scripting</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-custom-scripting"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-trainingpeaks-api-oauth2-custom-scripting"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/ftp-testing-protocol</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/ftp-testing-protocol"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/ftp-testing-protocol"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-strava-api-webhooks-software-engineering</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-strava-api-webhooks-software-engineering"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-strava-api-webhooks-software-engineering"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-strava-api-webhooks-api-integration</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-strava-api-webhooks-api-integration"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-strava-api-webhooks-api-integration"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-strava-api-webhooks-data-serialization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-strava-api-webhooks-data-serialization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-strava-api-webhooks-data-serialization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-strava-api-webhooks-performance-optimization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-strava-api-webhooks-performance-optimization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-strava-api-webhooks-performance-optimization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-strava-api-webhooks-security-compliance</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-strava-api-webhooks-security-compliance"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-strava-api-webhooks-security-compliance"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-strava-api-webhooks-database-architecture</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-strava-api-webhooks-database-architecture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-strava-api-webhooks-database-architecture"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-strava-api-webhooks-protocol-parsing</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-strava-api-webhooks-protocol-parsing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-strava-api-webhooks-protocol-parsing"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-strava-api-webhooks-real-time-streaming</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-strava-api-webhooks-real-time-streaming"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-strava-api-webhooks-real-time-streaming"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/718-integrations-strava-api-webhooks-synchronization-logic</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/718-integrations-strava-api-webhooks-synchronization-logic"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/718-integrations-strava-api-webhooks-synchronization-logic"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/719-integrations-strava-api-webhooks-custom-scripting</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/719-integrations-strava-api-webhooks-custom-scripting"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/719-integrations-strava-api-webhooks-custom-scripting"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/heat-and-altitude-cycling</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/heat-and-altitude-cycling"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/heat-and-altitude-cycling"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-intervalsicu-rest-api-software-engineering</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-intervalsicu-rest-api-software-engineering"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-intervalsicu-rest-api-software-engineering"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-intervalsicu-rest-api-api-integration</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-intervalsicu-rest-api-api-integration"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-intervalsicu-rest-api-api-integration"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-intervalsicu-rest-api-data-serialization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-intervalsicu-rest-api-data-serialization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-intervalsicu-rest-api-data-serialization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-intervalsicu-rest-api-performance-optimization</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-intervalsicu-rest-api-performance-optimization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-intervalsicu-rest-api-performance-optimization"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-intervalsicu-rest-api-security-compliance</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-intervalsicu-rest-api-security-compliance"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-intervalsicu-rest-api-security-compliance"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-intervalsicu-rest-api-database-architecture</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-intervalsicu-rest-api-database-architecture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-intervalsicu-rest-api-database-architecture"/>
+  </url>
+  <url>
+    <loc>https://didi.bike/en/blog/integrations-intervalsicu-rest-api-protocol-parsing</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://didi.bike/en/blog/integrations-intervalsicu-rest-api-protocol-parsing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://didi.bike/en/blog/integrations-intervalsicu-rest-api-protocol-parsing"/>
+  </url>
+</urlset>

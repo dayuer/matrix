@@ -1,0 +1,219 @@
+<svg
+  id="sensorSvg"
+  viewBox="0 0 500 500"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="DIDI.BIKE Sensor — 14g cycling telemetry device with 6-axis IMU, barometer, gyroscope, and strain gauge"
+  style="width: 100%; height: 100%; max-width: 500px;"
+>
+  <defs>
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.3" />
+      <stop offset="50%" stop-color="#7c3aed" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#0a1628" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="coreCenter" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#0a1628" stop-opacity="0.2" />
+    </radialGradient>
+
+    <radialGradient id="signalWave" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#00d4ff" stop-opacity="0" />
+    </radialGradient>
+
+    <linearGradient id="streamGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0" />
+      <stop offset="50%" stop-color="#00d4ff" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#00d4ff" stop-opacity="0" />
+    </linearGradient>
+
+    <linearGradient id="streamGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0" />
+      <stop offset="50%" stop-color="#7c3aed" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0" />
+    </linearGradient>
+
+    <filter id="glowFilter" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="8" />
+    </filter>
+
+    <radialGradient id="bgPlate" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0a1628" stop-opacity="0.95" />
+      <stop offset="60%" stop-color="#0a1628" stop-opacity="0.7" />
+      <stop offset="85%" stop-color="#0a1628" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#0a1628" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <circle cx="250" cy="250" r="240" fill="url(#bgPlate)" />
+
+  <circle cx="250" cy="250" r="200" fill="url(#coreGlow)">
+    <animate attributeName="r" values="200;220;200" dur="4s" repeatCount="indefinite" />
+  </circle>
+
+  <circle cx="250" cy="250" r="60" fill="none" stroke="#00d4ff" stroke-width="0.5" opacity="0">
+    <animate attributeName="r" values="60;180" dur="3s" repeatCount="indefinite" />
+    <animate attributeName="opacity" values="0.4;0" dur="3s" repeatCount="indefinite" />
+  </circle>
+  <circle cx="250" cy="250" r="60" fill="none" stroke="#00d4ff" stroke-width="0.5" opacity="0">
+    <animate attributeName="r" values="60;180" dur="3s" begin="1s" repeatCount="indefinite" />
+    <animate attributeName="opacity" values="0.3;0" dur="3s" begin="1s" repeatCount="indefinite" />
+  </circle>
+  <circle cx="250" cy="250" r="60" fill="none" stroke="#7c3aed" stroke-width="0.3" opacity="0">
+    <animate attributeName="r" values="60;160" dur="3s" begin="2s" repeatCount="indefinite" />
+    <animate attributeName="opacity" values="0.2;0" dur="3s" begin="2s" repeatCount="indefinite" />
+  </circle>
+
+  <g>
+    <circle cx="250" cy="250" r="190" fill="none" stroke="#00d4ff" stroke-width="0.5" stroke-dasharray="4 8" opacity="0.2">
+      <animateTransform attributeName="transform" type="rotate" from="0 250 250" to="360 250 250" dur="60s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="250" cy="60" r="3" fill="#00d4ff" filter="url(#glowFilter)">
+      <animateTransform attributeName="transform" type="rotate" from="0 250 250" to="360 250 250" dur="12s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="440" cy="250" r="2" fill="#7c3aed" filter="url(#glowFilter)">
+      <animateTransform attributeName="transform" type="rotate" from="0 250 250" to="360 250 250" dur="12s" repeatCount="indefinite" />
+    </circle>
+  </g>
+
+  <g>
+    <ellipse cx="250" cy="250" rx="145" ry="145" fill="none" stroke="#7c3aed" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.15">
+      <animateTransform attributeName="transform" type="rotate" from="360 250 250" to="0 250 250" dur="45s" repeatCount="indefinite" />
+    </ellipse>
+    <circle cx="250" cy="105" r="2.5" fill="#7c3aed" filter="url(#glowFilter)">
+      <animateTransform attributeName="transform" type="rotate" from="360 250 250" to="0 250 250" dur="8s" repeatCount="indefinite" />
+    </circle>
+  </g>
+
+  <circle cx="250" cy="250" r="100" fill="none" stroke="#00d4ff" stroke-width="0.3" stroke-dasharray="1 4" opacity="0.12">
+    <animateTransform attributeName="transform" type="rotate" from="0 250 250" to="360 250 250" dur="30s" repeatCount="indefinite" />
+  </circle>
+
+  <path d="M280 230 Q350 180 420 140" fill="none" stroke="#00d4ff" stroke-width="1" opacity="0.08" class="data-stream" />
+  <circle r="2" fill="#00d4ff" opacity="0.8" filter="url(#glowFilter)">
+    <animateMotion dur="2.5s" repeatCount="indefinite">
+      <mpath href="#flow1" />
+    </animateMotion>
+  </circle>
+  <path id="flow1" d="M280 230 Q350 180 420 140" fill="none" stroke="none" />
+
+  <path d="M220 270 Q150 320 80 370" fill="none" stroke="#7c3aed" stroke-width="1" opacity="0.06" class="data-stream" />
+  <circle r="1.5" fill="#7c3aed" opacity="0.7" filter="url(#glowFilter)">
+    <animateMotion dur="3s" begin="0.8s" repeatCount="indefinite">
+      <mpath href="#flow2" />
+    </animateMotion>
+  </circle>
+  <path id="flow2" d="M220 270 Q150 320 80 370" fill="none" stroke="none" />
+
+  <path d="M275 265 Q340 310 400 380" fill="none" stroke="#00d4ff" stroke-width="0.8" opacity="0.06" class="data-stream" />
+  <circle r="1.5" fill="#00d4ff" opacity="0.6" filter="url(#glowFilter)">
+    <animateMotion dur="2.8s" begin="1.5s" repeatCount="indefinite">
+      <mpath href="#flow3" />
+    </animateMotion>
+  </circle>
+  <path id="flow3" d="M275 265 Q340 310 400 380" fill="none" stroke="none" />
+
+  <path d="M225 235 Q160 190 100 120" fill="none" stroke="#7c3aed" stroke-width="0.8" opacity="0.05" class="data-stream" />
+  <circle r="1.5" fill="#00d4ff" opacity="0.5">
+    <animateMotion dur="3.2s" begin="2s" repeatCount="indefinite">
+      <mpath href="#flow4" />
+    </animateMotion>
+  </circle>
+  <path id="flow4" d="M225 235 Q160 190 100 120" fill="none" stroke="none" />
+
+  <g>
+    <polygon
+      points="250,195 297,222.5 297,277.5 250,305 203,277.5 203,222.5"
+      fill="none"
+      stroke="#00d4ff"
+      stroke-width="1"
+      opacity="0.3"
+      filter="url(#softGlow)"
+    />
+
+    <polygon
+      points="250,200 293,225 293,275 250,300 207,275 207,225"
+      fill="rgba(10, 22, 40, 0.9)"
+      stroke="#00d4ff"
+      stroke-width="1.2"
+      opacity="0.9"
+    />
+
+    <polygon
+      points="250,215 278,232.5 278,267.5 250,285 222,267.5 222,232.5"
+      fill="url(#coreCenter)"
+      stroke="#00d4ff"
+      stroke-width="0.5"
+      opacity="0.5"
+    >
+      <animate attributeName="opacity" values="0.4;0.7;0.4" dur="3s" repeatCount="indefinite" />
+    </polygon>
+
+    <line x1="222" y1="250" x2="240" y2="250" stroke="#00d4ff" stroke-width="0.5" opacity="0.3" />
+    <line x1="260" y1="250" x2="278" y2="250" stroke="#00d4ff" stroke-width="0.5" opacity="0.3" />
+    <line x1="250" y1="232" x2="250" y2="243" stroke="#00d4ff" stroke-width="0.5" opacity="0.3" />
+    <line x1="250" y1="257" x2="250" y2="268" stroke="#00d4ff" stroke-width="0.5" opacity="0.3" />
+
+    <circle cx="250" cy="250" r="4" fill="#00d4ff" opacity="0.9" filter="url(#glowFilter)">
+      <animate attributeName="r" values="3;5;3" dur="2s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite" />
+    </circle>
+  </g>
+
+  <g opacity="0.95">
+    <line x1="207" y1="235" x2="130" y2="195" stroke="#00d4ff" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.5" />
+    <rect x="60" y="182" width="72" height="26" rx="5" fill="#0a1628" stroke="#00d4ff" stroke-width="1" />
+    <text x="96" y="199" text-anchor="middle" fill="#4ae0ff" font-size="9" font-family="JetBrains Mono, monospace" font-weight="600">6-Axis</text>
+    <circle cx="130" cy="195" r="2.5" fill="#00d4ff" opacity="0.8">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite" />
+    </circle>
+  </g>
+
+  <g opacity="0.95">
+    <line x1="293" y1="240" x2="380" y2="200" stroke="#7c3aed" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.5" />
+    <rect x="368" y="187" width="82" height="26" rx="5" fill="#0a1628" stroke="#7c3aed" stroke-width="1" />
+    <text x="409" y="204" text-anchor="middle" fill="#a78bfa" font-size="9" font-family="JetBrains Mono, monospace" font-weight="600">Barometer</text>
+    <circle cx="380" cy="200" r="2.5" fill="#7c3aed" opacity="0.8">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2.5s" begin="0.5s" repeatCount="indefinite" />
+    </circle>
+  </g>
+
+  <g opacity="0.95">
+    <line x1="293" y1="268" x2="380" y2="310" stroke="#00d4ff" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.5" />
+    <rect x="368" y="297" width="72" height="26" rx="5" fill="#0a1628" stroke="#00d4ff" stroke-width="1" />
+    <text x="404" y="314" text-anchor="middle" fill="#4ae0ff" font-size="9" font-family="JetBrains Mono, monospace" font-weight="600">Strain</text>
+    <circle cx="380" cy="310" r="2.5" fill="#00d4ff" opacity="0.8">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="1.8s" begin="1s" repeatCount="indefinite" />
+    </circle>
+  </g>
+
+  <g opacity="0.95">
+    <line x1="207" y1="268" x2="120" y2="310" stroke="#7c3aed" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.5" />
+    <rect x="48" y="297" width="74" height="26" rx="5" fill="#0a1628" stroke="#7c3aed" stroke-width="1" />
+    <text x="85" y="314" text-anchor="middle" fill="#a78bfa" font-size="9" font-family="JetBrains Mono, monospace" font-weight="600">Gyro</text>
+    <circle cx="120" cy="310" r="2.5" fill="#7c3aed" opacity="0.8">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2.2s" begin="1.5s" repeatCount="indefinite" />
+    </circle>
+  </g>
+
+  <circle cx="420" cy="95" r="1.5" fill="#00d4ff" opacity="0.3">
+    <animate attributeName="opacity" values="0.1;0.5;0.1" dur="4s" repeatCount="indefinite" />
+  </circle>
+  <circle cx="80" cy="410" r="1" fill="#7c3aed" opacity="0.3">
+    <animate attributeName="opacity" values="0.2;0.6;0.2" dur="3.5s" begin="1s" repeatCount="indefinite" />
+  </circle>
+  <circle cx="440" cy="400" r="1.5" fill="#00d4ff" opacity="0.2">
+    <animate attributeName="opacity" values="0.1;0.4;0.1" dur="5s" begin="0.5s" repeatCount="indefinite" />
+  </circle>
+</svg>

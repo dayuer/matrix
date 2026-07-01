@@ -1,0 +1,48 @@
+<h1>Force Vector Alignment and Saddle Height Calibration</h1>
+<h2>Step 1: Mounting Tolerances and Thread Lock Preparation</h2>
+<p>To achieve optimal power transmission, mechanical tolerances must remain tight. Clean the seatpost insert. Apply carbon friction paste. By applying a thin layer of medium-strength thread lock to the threads, you ensure the seatpost assembly maintains its optimal height without slipping under heavy load. Technicians must clean the inner seat tube with isopropyl alcohol to remove oil. Failing to clean this area leads to micro-slippage during high torque intervals. The parameters below must be verified:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Tool Specification</th>
+<th>Torque Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Seat Binder Bolt</td>
+<td>4mm Hex Wrench</td>
+<td>5.5 Nm</td>
+</tr>
+<tr>
+<td>Saddle Rail Clamp</td>
+<td>5mm Hex Wrench</td>
+<td>10.0 Nm</td>
+</tr>
+<tr>
+<td>Pedal Threads</td>
+<td>8mm Hex Key</td>
+<td>35.0 Nm</td>
+</tr>
+</tbody></table>
+<p>Tighten clamp bolts. Follow the manufacturer specifications.</p>
+<h2>Step 2: Aligning the Force Vector and Seat Setback</h2>
+<p>Adjusting the seat setback defines pelvic positioning. For elite cyclists, maintaining joint angles within safe physiological margins (e.g., knee extension angle between $140^{\circ}$ and $150^{\circ}$ at bottom dead center) is necessary to mitigate repetitive strain pathomechanics like patellofemoral pain syndrome or Achilles tendonitis over prolonged tours. Technicians calculate dynamic knee extensions using trigonometry to ensure that the force transmission vector operates at the ideal angle during the downstroke.</p>
+<p>To mathematically represent the joint force vectors and leverage associated with <strong>Saddle Height</strong>, we apply trigonometric link-node models of the lower limbs:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>L</mi><mtext>saddle</mtext></msub><mo>=</mo><mn>1.09</mn><mo>⋅</mo><mtext>Inseam</mtext></mrow><annotation encoding="application/x-tex">L_{\text{saddle}} = 1.09 \cdot \text{Inseam}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">saddle</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1.09</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">Inseam</span></span></span></span></span></span><p>Where:</p>
+<ul>
+<li>$L_{\text{saddle}}$ is the saddle height calculated via the Lemond or 109% inseam formulas, serving as the baseline for joint flexion.</li>
+<li>$\theta_{\text{knee}}$ is the dynamic knee angle, modeled using the cosine rule where $a$, $b$, and $c$ represent the femur length, tibia length, and effective seat height.</li>
+<li>$F_{\text{joint}}$ represents the shear force acting on the knee joint as a function of the pedaling force and joint extension angles.</li>
+</ul>
+<h2>Step 3: Calibrating the Strain Gauge Centering</h2>
+<p>Proper height settings influence force sensor accuracy. Ensure strain gauge centering is verified before testing. Incorrect alignment shifts the load unevenly, introducing measurement errors. Check the vectors. Calibration offset must be recorded under zero load. Friction losses inside worn pedals degrade measurement resolution. Strain gauge centering requires exact lateral offset alignment. Technicians verify calibration constants on every rebuild. Friction losses in dirty linkages waste energy. Keep the drivetrain clean.</p>
+<h2>Step 4: Environmental Sealing and Final Play/Slop Detection</h2>
+<p>Moisture ingress damages sensitive electronics. Environmental sealing must be checked regularly. Inspect rubber seals. Play/slop detection is mandatory. Check for saddle movement. Tolerances shape outcomes. Moisture leads to galvanic corrosion between carbon and aluminum parts. Correct environmental sealing prevents electrical failure. Technicians test the system under wet conditions. Any slop in the seatpost interface will compromise your force vector data. Secure the system completely.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.tandfonline.com/toc/rjsp20/current" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Journal of Sports Sciences</a>: Biomechanical analysis and mechanical efficiency in elite cycling.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: High-frequency telemetry and sensor fusion calibrations.</li>
+<li><a href="https://www.uci.org/inside-uci/constitutions-regulations/regulations" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">UCI Cycling Regulations</a>: Part I: General Organisation of Cycling as a Sport (Aero &amp; Frame dimensions limits).</li>
+<li><a href="https://scholar.google.com/scholar?q=High-altitude+hypoxic+adaptation+and+cardiorespiratory+kinetics" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Swiss Federal Institute of Sport Magglingen</a>: High-altitude hypoxic adaptation and cardiorespiratory kinetics.</li>
+</ol>

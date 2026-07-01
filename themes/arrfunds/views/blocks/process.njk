@@ -1,0 +1,19 @@
+{% set d = block.data %}
+<section class="process-section" id="{{ d.anchor or 'process' }}">
+  <div class="section-container">
+    <div class="section-header" data-reveal>
+      <p class="section-header__label">{{ d.head.label }}</p>
+      <h2 class="section-header__title">{{ d.head.title }}</h2>
+    </div>
+
+    <div class="process-timeline">
+      {% for step in d.steps %}
+        <div class="process-step" data-reveal>
+          <div class="process-step__number">{{ step.num }}</div>
+          <h3 class="process-step__title">{{ step.title }}</h3>
+          <p class="process-step__desc">{{ step.desc }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

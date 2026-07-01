@@ -1,0 +1,62 @@
+<h1>Calibration and Drivetrain Mounting for W-Prime Telemetry Sensors</h1>
+<h2>Step 1: Mounting Tolerances and Tool Selection</h2>
+<p>Precise data demands proper setup. You cannot expect accurate metabolic tracking if your hardware setup is loose. In the professional pits, a mechanic looks at the bicycle as a scientific instrument. Our target focus is <strong>anaerobic work capacity w-prime</strong> telemetry. To capture this power curve, we must measure mechanical force at the crank arm without any interference. Before turning a single bolt, assemble your tools. Clean your workspace. Dirt is the enemy of calibration.</p>
+<p>You must ensure that your digital torque wrench is calibrated. Drivetrain components operate under high forces, so keeping strict torque tolerance levels prevents component damage. We must avoid play/slop detection errors during high-wattage sprints.</p>
+<p>Drivetrain friction remains a primary source of mechanical error. A master mechanic checks chain wear every three hundred kilometers. A worn chain increases lateral play. This play introduces shear forces that the strain gauges might misinterpret as forward torque. Use a digital chain checker. Replace the chain if elongation exceeds zero point five percent. This is a non-negotiable rule. Do not compromise on component quality. Precision is your brand.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Installation Component</th>
+<th align="left">Required Tooling</th>
+<th align="left">Specific Torque Spec</th>
+<th align="left">Allowed Torque Tolerance</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Drivetrain Crank Bolt</td>
+<td align="left">Digital Torque Wrench</td>
+<td align="left">40 Nm</td>
+<td align="left">±1.5 Nm</td>
+</tr>
+<tr>
+<td align="left">Strain Gauge Bracket</td>
+<td align="left">Hex Key T25</td>
+<td align="left">4.5 Nm</td>
+<td align="left">±0.2 Nm</td>
+</tr>
+<tr>
+<td align="left">Bottom Bracket Sleeve</td>
+<td align="left">Splined BB Tool</td>
+<td align="left">50 Nm</td>
+<td align="left">±2.0 Nm</td>
+</tr>
+<tr>
+<td align="left">Telemetry Pod Screws</td>
+<td align="left">Micro Torque Screwdriver</td>
+<td align="left">1.2 Nm</td>
+<td align="left">±0.05 Nm</td>
+</tr>
+</tbody></table>
+<h2>Step 2: Strain Gauge Centering and Hardware Alignment</h2>
+<p>Alignment is everything. Place the strain gauge centering jig over the crank arm. It must sit flush. There should be zero play. Apply a thin layer of medium-strength thread lock to the mounting threads. Tighten the bolts in a cross-pattern. Do this slowly. This ensures even pressure across the silicon board. If the sensor is misaligned, the calibration offset will drift. This drift ruins telemetry accuracy.</p>
+<p>Once the mounting is secure, proceed with environmental sealing. Apply a silicone gasket around the telemetry housing. This prevents water and grit ingress. It protects the delicate electronics during wet races.</p>
+<h2>Step 3: Drivetrain Efficiency and Mathematical Calibrations</h2>
+<p>The mathematical representation of <strong>anaerobic work capacity w-prime</strong> and its corresponding metabolic/physical relation is modeled as:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>TSS</mtext><mo>=</mo><mfrac><mrow><mi>t</mi><mo>⋅</mo><mi>P</mi><mo>⋅</mo><mtext>IF</mtext></mrow><mrow><mn>3600</mn><mo>⋅</mo><mtext>FTP</mtext></mrow></mfrac><mo>⋅</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">\text{TSS} = \frac{t \cdot P \cdot \text{IF}}{3600 \cdot \text{FTP}} \cdot 100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">TSS</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0463em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3600</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord text"><span class="mord">FTP</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord text"><span class="mord">IF</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">100</span></span></span></span></span><p>Where:</p>
+<ul>
+<li>$\text{TSS}$ and $\text{NP}$ reflect the exponential weighting of training stress, scaling with the 4th power of mechanical power output to match physiological load.</li>
+<li>$RER$ represents the Respiratory Exchange Ratio, indicating substrate oxidation ratios (carbohydrate vs. fat combustion).</li>
+<li>$W&#39;_{t}$ represents the instantaneous anaerobic work capacity remaining, measured in Joules (J), which drains non-linearly above FTP and reconstitutes exponentially during recovery.</li>
+</ul>
+<p>Our sensor platform measures torque and calculates power output ($P$) in real-time. Friction losses in the chain and bearings can distort this value. You must account for these losses. Keep the drivetrain clean. Use high-quality lubricants. An unlubricated chain can waste up to six Watts. This losses skew your stress calculations.</p>
+<h2>Step 4: Zero-Calibration Offset and Troubleshooting</h2>
+<p>Before every ride, execute a manual zero-calibration. Set the drive-side crank arm to the six-o&#39;clock position. Hang a certified ten-kilogram weight from the pedal spindle. Verify the output reading on your service tablet. If the value differs from the factory spec, adjust the calibration offset in the telemetry app. Check for play/slop detection markers. Make sure the bottom bracket bearings rotate smoothly. Replace any worn seals. </p>
+<p>A loose crank bolt will cause the sensor to read low. Yes, it happens. A single loose screw can ruin a whole week of data. Keep everything tight. Use your torque wrench often. Check your values daily.</p>
+<p>Let us define a quick troubleshooting tree. If the head unit displays zero power, check the battery connection first. Inspect the contacts for corrosion. Use a clean contact cleaner if needed. Second, if you observe sudden spikes in power data, look for magnetic interference. Wireless shifters can sometimes jam telemetry frequencies. Move the sensor slightly if possible. Finally, if the reconstitution rate seems abnormal, verify the baseline offset. A shifted baseline mimics athlete fatigue. Regular maintenance prevents these headaches. Keep a service log.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.tandfonline.com/toc/rjsp20/current" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Journal of Sports Sciences</a>: Biomechanical analysis and mechanical efficiency in elite cycling.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: High-frequency telemetry and sensor fusion calibrations.</li>
+<li><a href="https://www.uci.org/inside-uci/constitutions-regulations/regulations" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">UCI Cycling Regulations</a>: Part I: General Organisation of Cycling as a Sport (Aero &amp; Frame dimensions limits).</li>
+<li><a href="https://scholar.google.com/scholar?q=High-altitude+hypoxic+adaptation+and+cardiorespiratory+kinetics" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Swiss Federal Institute of Sport Magglingen</a>: High-altitude hypoxic adaptation and cardiorespiratory kinetics.</li>
+</ol>

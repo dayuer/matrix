@@ -1,0 +1,17 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+<main class="home" id="main">
+  <section class="notfound">
+    <div class="notfound__inner">
+      <p class="mono notfound__code">ERR / 404 · RECORD NOT FOUND</p>
+      <h1 class="notfound__title">未在档案中找到该页面</h1>
+      <p class="notfound__desc">您访问的路径不存在或已被移除。返回首页继续浏览 FDE 交付框架与全球案例。</p>
+      <div class="notfound__actions">
+        <a href="{{ basePath }}/" class="btn btn--primary">返回首页 <span aria-hidden="true">→</span></a>
+        <a href="{{ basePath }}/#apply" class="btn btn--ghost">联系咨询</a>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}

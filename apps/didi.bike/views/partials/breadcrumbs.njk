@@ -1,0 +1,23 @@
+{# didi.bike Breadcrumbs Schema Component #}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://didi.bike/{{ locale | default('en') }}"
+    }
+    {% for item in breadcrumbs %}
+    ,{
+      "@type": "ListItem",
+      "position": {{ loop.index + 1 }},
+      "name": "{{ item.name }}",
+      "item": "https://didi.bike/{{ locale | default('en') }}{{ item.url }}"
+    }
+    {% endfor %}
+  ]
+}
+</script>

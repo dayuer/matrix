@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN" translate="no" class="notranslate">
+
+<head>
+  <meta charset="UTF-8">
+  {% if isRootRedirect %}
+  <script>
+    (function() {
+      var lang = navigator.language || navigator.userLanguage;
+      var target = '/en';
+      if (lang && lang.toLowerCase().startsWith('id')) {
+        target = '/id';
+      }
+      var redirectPath = "{{ redirectPath or '' }}";
+      window.location.replace(target + redirectPath);
+    })();
+  </script>
+  {% endif %}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>{{ page.title }}</title>
+  <meta name="description" content="{{ page.description }}">
+  {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}">{% endif %}
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#faf9f6">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ page.ogTitle or page.title }}">
+  <meta property="og:description" content="{{ page.ogDescription or page.description }}">
+  <meta property="og:image" content="{{ site.baseUrl }}{{ page.ogImage }}">
+  {% if page.ogImageAlt %}<meta property="og:image:alt" content="{{ page.ogImageAlt }}">{% endif %}
+  <meta property="og:url" content="{{ site.baseUrl }}{{ page.canonical }}">
+
+  <link rel="canonical" href="{{ site.baseUrl }}{{ page.canonical }}">
+  <link rel="icon" href="{{ basePath }}{{ site.brand.favicon }}" type="image/svg+xml">
+  {% if themeTokensCss %}<style id="theme-tokens">{{ themeTokensCss | safe }}</style>{% endif %}
+  <link rel="stylesheet" href="{{ basePath }}/theme.css?v={{ assetVersion }}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  {% if page.jsonLd %}<script type="application/ld+json">{{ page.jsonLd | dump | safe }}</script>{% endif %}
+</head>
+
+<body{% if page.bodyClass %} class="{{ page.bodyClass }}"{% endif %}>
+  <a href="#main" class="skip-link">跳到主内容</a>
+
+  <!-- Navigation -->
+  <nav class="nav" id="navbar" aria-label="主导航">
+    <div class="nav__inner">
+      <a href="{{ basePath }}/" class="nav__logo" aria-label="{{ site.brand.name }} 首页">
+        {% include "partials/logo.njk" %}
+        <span class="nav__logo-text">
+          {% if site.brand.name == 'DIDI.BIKE' %}
+            DIDI<span class="nav__logo-mark">.</span>BIKE
+          {% elif site.brand.name == 'Synon Global' %}
+            Synon<span class="nav__logo-mark">/</span>Global
+          {% else %}
+            {{ site.brand.name }}
+          {% endif %}
+        </span>
+      </a>
+
+      <div class="nav__links" id="navLinks">
+        {% for item in site.nav %}
+          <a href="{{ basePath }}{{ item.href }}" class="nav__link {% if page.activeNav == item.key %}is-active{% endif %}">
+            <span class="nav__link-idx">0{{ loop.index }}</span>{{ item.text }}
+          </a>
+        {% endfor %}
+        <a href="{{ basePath }}{{ site.cta.href }}" class="nav__cta">{{ site.cta.text }} <span aria-hidden="true">→</span></a>
+      </div>
+
+      <button class="nav__toggle" id="navToggle" aria-label="展开导航菜单" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Content Block -->
+  {% block content %}{% endblock %}
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="{{ basePath }}/" class="footer__logo" aria-label="{{ site.brand.name }} 首页">
+          {% include "partials/logo.njk" %}
+          <span class="nav__logo-text">
+            {% if site.brand.name == 'DIDI.BIKE' %}
+              DIDI<span class="nav__logo-mark">.</span>BIKE
+            {% elif site.brand.name == 'Synon Global' %}
+              Synon<span class="nav__logo-mark">/</span>Global
+            {% else %}
+              {{ site.brand.name }}
+            {% endif %}
+          </span>
+        </a>
+        <p class="footer__desc">{{ site.brand.desc }}</p>
+        <div class="footer__social">
+          {% for s in site.footer.social %}
+            <a href="{{ s.href }}">{{ s.text }}</a>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="footer__columns">
+        {% for col in site.footer.columns %}
+          <div class="footer__col">
+            <h4 class="footer__col-title">{{ col.title }}</h4>
+            <ul class="footer__col-list">
+              {% for link in col.links %}
+                <li><a href="{{ link.href }}" {% if link.external %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.text }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__contact">{{ site.footer.legal.contact }}</p>
+      <p class="footer__copyright">
+        <span class="mono">EST.{{ site.footer.legal.foundingYear }}</span>
+        &nbsp;·&nbsp; &copy; {{ currentYear }} {{ site.footer.legal.company.text }}
+      </p>
+    </div>
+  </footer>
+
+  <script src="{{ basePath }}/app.js?v={{ assetVersion }}"></script>
+</body>
+
+</html>

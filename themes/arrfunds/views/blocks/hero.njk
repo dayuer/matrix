@@ -1,0 +1,46 @@
+{% set d = block.data %}
+<section class="hero">
+  <div class="hero__inner">
+    <div class="hero__content" data-reveal>
+      <span class="hero__badge">{{ d.badge }}</span>
+      <h1 class="hero__title">{{ d.titleHtml | safe }}</h1>
+      <p class="hero__desc">
+        {{ d.desc }}
+      </p>
+      <div class="hero__ctas">
+        {% for c in d.ctas %}
+          <a href="{{ c.href }}" class="btn btn--{{ c.variant }}">{{ c.text }}</a>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if d.snapshot %}
+    <div class="hero__widget" data-reveal>
+      <div class="snapshot-card" id="calculator">
+        <h3 class="snapshot-card__title">{{ d.snapshot.title }}</h3>
+        <p class="snapshot-card__desc">{{ d.snapshot.desc }}</p>
+
+        <div class="snapshot-grid">
+          {% for item in d.snapshot.grid %}
+            <div class="snapshot-item">
+              <span class="snapshot-item__value{% if item.gradient %} text-gradient{% endif %}">{{ item.value }}</span>
+              <span class="snapshot-item__label">{{ item.label }}</span>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="snapshot-metrics">
+          {% for m in d.snapshot.metrics %}
+            <div class="metric-box">
+              <span class="metric-box__label">{{ m.label }}</span>
+              <span class="metric-box__value{% if m.green %} highlight-green{% endif %}">{{ m.value }}</span>
+            </div>
+          {% endfor %}
+        </div>
+
+        <a href="{{ d.snapshot.cta.href }}" class="snapshot-card__btn">{{ d.snapshot.cta.text }}</a>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>

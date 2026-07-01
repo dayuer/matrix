@@ -1,0 +1,155 @@
+# 首页 —— 文案原封不动从旧主题 home.njk（263 行硬编码）抽出为纯数据。
+# 结构由主题 arrfunds 的 views/blocks/*.njk 渲染；SVG 图标以原始标记内嵌（html-in-data）。
+template: home
+
+meta:
+  title: ARR Funds — 专注投资拥有经常性收入的 AI 企业
+  description: ARR Funds 是一只专注于 AI 领域的投资基金，寻找已将人工智能技术成功落地为可量化订阅收入（ARR）的优秀创业团队，提供资本、资源与战略支持。
+  keywords: ARR Funds,AI投资基金,AI企业投资,经常性收入,SaaS投资,AI SaaS,AI Agent,ARR
+  activeNav: home
+  priority: 1.0
+  changefreq: weekly
+
+blocks:
+  - type: hero
+    data:
+      badge: AI × ARR · 专注投资拥有订阅收入的 AI 企业
+      titleHtml: 投资将 AI 转化为<br><span class="text-gradient">可持续经常性收入</span>的团队。
+      desc: ARR Funds 是一只专注于 AI 领域的投资基金。我们只投资一类公司——已经将人工智能技术成功落地为可量化、可重复的订阅制收入（ARR/MRR）的优秀创业团队。我们不赌叙事，只投收入。
+      ctas:
+        - { text: 提交 BP, href: "#apply", variant: primary }
+        - { text: 投资理念, href: "#thesis", variant: secondary }
+      snapshot:
+        title: 基金概览
+        desc: 我们的投资偏好与核心关注指标
+        grid:
+          - { value: AI + ARR, label: 投资赛道, gradient: true }
+          - { value: $500K — $5M, label: 单笔投资区间 }
+          - { value: Pre-A — B 轮, label: 投资阶段 }
+          - { value: "> $1M ARR", label: 偏好 ARR 门槛 }
+        metrics:
+          - { label: 核心筛选标准, value: 净收入留存率 > 110% }
+          - { label: 退出策略偏好, value: 并购 + IPO 双通道, green: true }
+        cta: { text: 提交您的 AI 项目, href: "#apply" }
+
+  - type: thesis
+    data:
+      anchor: thesis
+      head:
+        label: 投资理念
+        titleHtml: 为什么我们只投<br>拥有 ARR 的 AI 企业？
+        desc: AI 正在重塑每一个行业。但我们相信，只有将技术壁垒转化为可重复的客户付费，才是 AI 公司真正的护城河。ARR 是检验商业化能力的唯一试金石。
+      cards:
+        - variant: large
+          tag: Core Thesis
+          title: ARR 是 AI 商业化的唯一裁判
+          desc: AI 行业有太多"Demo 惊艳、收入为零"的项目。我们认为，能够让企业客户按月/按年持续付费的 AI 产品，才真正解决了真实问题。ARR 不撒谎——它是产品市场匹配（PMF）最诚实的度量衡。
+          chart:
+            bars:
+              - { kind: demo, label: Demo 驱动型 }
+              - { kind: arr, label: ARR 驱动型 }
+        - tag: Predictable
+          title: 可预测收入 = 可预测价值
+          desc: 经常性收入为企业估值提供了坚实锚点。相比一次性授权或服务费模式，ARR 模型让我们能够以更高置信度评估 AI 企业的长期价值与增长潜力。
+        - tag: Compounding
+          title: 复利效应：客户越多、壁垒越深
+          desc: AI 订阅产品的独特性在于数据飞轮——越多客户使用，模型越精准，产品越好，留存率越高。这种正反馈循环是我们最看重的投资复利结构。
+        - variant: wide
+          tag: Anti-Fragile
+          title: 穿越周期的抗脆弱性
+          desc: 在宏观资本寒冬中，拥有高留存率 ARR 的 AI 公司能够依靠自身现金流存活甚至增长，而非依赖下一轮融资续命。我们的投资组合天然具备穿越周期的韧性。
+
+  - type: portfolio
+    data:
+      anchor: portfolio
+      head:
+        label: 关注领域
+        title: 我们重点关注的 AI 赛道
+        desc: 任何将 AI 能力封装为订阅制产品并已产生可验证 ARR 的企业，都在我们的投资雷达上。以下是我们尤为关注的细分赛道。
+      cards:
+        - title: AI 企业服务 SaaS
+          desc: 智能客服、AI 销售助手、自动化营销、AI 内容生成平台等面向企业客户的订阅制 AI 工具。
+          tag: 高留存 · 高 LTV
+          iconSvg: |-
+            <svg viewBox="0 0 24 24" fill="none">
+              <rect x="2" y="3" width="20" height="14" rx="2" />
+              <line x1="8" y1="21" x2="16" y2="21" />
+              <line x1="12" y1="17" x2="12" y2="21" />
+              <circle cx="12" cy="10" r="2" />
+              <circle cx="7" cy="7" r="1.5" />
+              <circle cx="17" cy="7" r="1.5" />
+              <line x1="8.5" y1="7.8" x2="10.5" y2="9.2" />
+              <line x1="15.5" y1="7.8" x2="13.5" y2="9.2" />
+            </svg>
+        - title: AI 基础设施 & 工具链
+          desc: 模型训练平台、数据标注引擎、AI 可观测性工具、向量数据库等面向开发者的基础设施层产品。
+          tag: 强技术壁垒 · 高粘性
+          iconSvg: |-
+            <svg viewBox="0 0 24 24" fill="none">
+              <rect x="4" y="4" width="16" height="16" rx="2" />
+              <rect x="9" y="9" width="6" height="6" rx="1" />
+              <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3" />
+            </svg>
+        - title: AI 垂直行业应用
+          desc: AI 医疗影像诊断、法律文档智能分析、AI 财务合规审计等深度嵌入特定行业工作流的垂类 AI 产品。
+          tag: 行业壁垒 · 难替代
+          iconSvg: |-
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M3 21h18M5 21V7a2 2 0 0 1 2-2h6M19 21V11M14 21V15M9 9h2M9 13h2" />
+              <path d="M17 2.5l1 1.5 1.5 1-1.5 1-1 1.5-1-1.5-1.5-1 1.5-1z" fill="currentColor" stroke="none" />
+            </svg>
+        - title: AI Agent & 自动化
+          desc: 自主行动的 AI Agent、端到端工作流自动化、RPA + AI 融合方案等新一代智能体产品。
+          tag: 前沿赛道 · 爆发增长
+          iconSvg: |-
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+              <line x1="12" y1="22.08" x2="12" y2="12" />
+            </svg>
+
+  - type: process
+    data:
+      anchor: process
+      head:
+        label: 投资流程
+        title: 从提交 BP 到完成投资
+      steps:
+        - num: "01"
+          title: 提交商业计划书
+          desc: 通过下方表单或发送邮件至 contact@arrfunds.com 提交您的 BP。请包含产品介绍、ARR 数据、团队背景与融资需求。
+        - num: "02"
+          title: 深度尽调与面谈
+          desc: 通过初步筛选后，我们的投资团队将与创始人深度交流产品路线图、客户留存、收入质量与增长策略，完成技术和财务尽调。
+        - num: "03"
+          title: 投资决策与交割
+          desc: 投资决策委员会评审通过后，我们将以最高效率完成条款确认（Term Sheet）和法律交割，确保资金最快在两周内到位。
+
+  - type: apply
+    data:
+      anchor: apply
+      title: 向我们提交您的 AI 项目
+      desc: 如果您正在构建一个拥有可量化经常性收入的 AI 产品，我们很想认识您。填写基本信息，投资团队将在 48 小时内回复。
+      highlights:
+        - 48小时内回复
+        - 不止资金，更提供资源
+        - 创始人友好条款
+      form:
+        submitText: 提交项目信息
+        notice: 提交即代表您同意我们的《隐私政策》。所有提交信息将严格保密处理。
+        fields:
+          companyName: { label: 公司名称, placeholder: 如：北京XX智能科技有限公司 }
+          currentArr:
+            label: 当前 ARR 规模
+            placeholder: 选择 ARR 规模
+            options:
+              - { value: pre_arr, text: 尚无 ARR (Pre-revenue) }
+              - { value: under_100k, text: $100K 以下 }
+              - { value: 100k_1m, text: $100K - $1M }
+              - { value: 1m_5m, text: $1M - $5M }
+              - { value: above_5m, text: $5M 以上 }
+          contactEmail: { label: 创始人邮箱, placeholder: founder@company.com }
+          aiDesc: { label: 一句话描述您的 AI 产品, placeholder: 如：面向电商客服的多语言 AI Agent 平台 }
+      toast:
+        title: 提交成功！
+        desc: 感谢您的信任。我们的投资团队将在 48 小时内审阅您的项目信息并发送初步反馈至您的邮箱。

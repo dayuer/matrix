@@ -1,0 +1,252 @@
+<h1>The Cycling Data Ecosystem: Integrations &amp; API Guide</h1>
+<p>Modern cycling generates more data than ever. Every pedal stroke, heart-beat, and cornering line can be captured, transmitted, and analyzed. This guide maps the full cycling data ecosystem — from the sensors on your bike to the cloud platforms and APIs that turn raw numbers into actionable insight. Whether you stream power to a Garmin Edge, sync rides to Strava, or build custom analysis tools, understanding how the pieces connect helps you get more from every ride.</p>
+<p>The DIDI.BIKE sensor sits at the center of this ecosystem. It broadcasts power, cadence, heart rate, and inertial-measurement-unit (IMU) data over both ANT+ and Bluetooth Low Energy (BLE) 5.0, pairs directly with Garmin, Wahoo, and Hammerhead head units, syncs to Strava, TrainingPeaks, Golden Cheetah, and Intervals.icu, and exposes a Developer API with WebSocket 100 Hz streaming, REST endpoints, and SDKs. Priced at $299, it is designed to be the single sensor that feeds every tool in your stack.</p>
+<h2>In this guide</h2>
+<p>This is the pillar for the <strong>integrations</strong> cluster. Each article below dives deep into one connection point:</p>
+<ul>
+<li><a href="/en/blog/stream-sensor-data-garmin-edge">How to Stream Sensor Data to a Garmin Edge</a></li>
+<li><a href="/en/blog/export-ride-data-strava">How to Export and Analyze Rides on Strava</a></li>
+<li><a href="/en/blog/wahoo-head-unit-integration">Wahoo Head Unit Integration Guide</a></li>
+<li><a href="/en/blog/trainingpeaks-data-sync">TrainingPeaks Data Sync Explained</a></li>
+<li><a href="/en/blog/zwift-real-time-sensor-data">Zwift and Real-Time Sensor Data</a></li>
+<li><a href="/en/blog/golden-cheetah-cycling-analysis">Golden Cheetah Cycling Analysis</a></li>
+<li><a href="/en/blog/intervals-icu-cycling">Intervals.icu Cycling Analytics</a></li>
+<li><a href="/en/blog/developer-api-raw-imu-data">Developer API: Raw IMU Data</a></li>
+<li><a href="/en/blog/cycling-data-webhooks">Cycling Data Webhooks</a></li>
+<li><a href="/en/blog/cycling-sdk-libraries">Cycling SDK Libraries</a></li>
+</ul>
+<h2>The layers of a cycling data ecosystem</h2>
+<p>A functioning ecosystem has four layers. Data flows top-down during a ride and bottom-up when you analyze it afterward.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>What it does</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Capture</strong></td>
+<td>Records physical phenomena as electrical signals</td>
+<td>Strain gauges, accelerometers, optical heart-rate sensors</td>
+</tr>
+<tr>
+<td><strong>Transmit</strong></td>
+<td>Moves data from sensor to receiver in real time</td>
+<td>ANT+, BLE 5.0, Wi-Fi</td>
+</tr>
+<tr>
+<td><strong>Process &amp; Store</strong></td>
+<td>Head units log the ride; cloud platforms store it long-term</td>
+<td>Garmin Edge, Wahoo ELEMNT, Strava, TrainingPeaks</td>
+</tr>
+<tr>
+<td><strong>Analyze &amp; Extend</strong></td>
+<td>Turns raw files into insight and lets developers build on top</td>
+<td>Golden Cheetah, Intervals.icu, Developer API, SDKs</td>
+</tr>
+</tbody></table>
+<p>A weak link at any layer limits the whole system. A great sensor with a poor head unit drops packets; a perfect ride file in an app with weak analytics hides the signal inside the noise.</p>
+<h3>Layer 1: Capture — what a sensor measures</h3>
+<table>
+<thead>
+<tr>
+<th>Data type</th>
+<th>Unit</th>
+<th>Typical source</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Power</td>
+<td>Watts</td>
+<td>Strain-gauge power meter</td>
+<td>The most objective measure of training load</td>
+</tr>
+<tr>
+<td>Cadence</td>
+<td>rpm</td>
+<td>Cadence sensor / crank magnet</td>
+<td>Pedaling efficiency and muscular demand</td>
+</tr>
+<tr>
+<td>Heart rate</td>
+<td>bpm</td>
+<td>Chest strap / optical sensor</td>
+<td>Physiological strain and recovery</td>
+</tr>
+<tr>
+<td>Speed &amp; distance</td>
+<td>km/h, km</td>
+<td>Wheel sensor / GPS</td>
+<td>Pace and route</td>
+</tr>
+<tr>
+<td>IMU (accel + gyro)</td>
+<td>m/s², °/s</td>
+<td>Inertial sensor</td>
+<td>Bike handling, cornering, crashes, road surface</td>
+</tr>
+<tr>
+<td>Gradient</td>
+<td>%</td>
+<td>Barometric altimeter / GPS</td>
+<td>Effort context on climbs</td>
+</tr>
+</tbody></table>
+<p>The DIDI.BIKE sensor bundles power, cadence, heart-rate proxy signals, and a six-axis IMU into one unit, which means one device populates most of the table above.</p>
+<h4>Sampling-rate fundamentals</h4>
+<p>A sensor&#39;s usefulness depends on how often it samples. Power and heart rate change slowly relative to pedaling dynamics, so 1 Hz is acceptable for those channels. IMU data is different: handling events — a sharp swerve, a pothole impact — happen in tens of milliseconds. Nyquist&#39;s theorem tells us that to reconstruct an event of frequency $f$ we must sample at least at $2f$.</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>f</mi><mtext>sample</mtext></msub><mo>≥</mo><mn>2</mn><msub><mi>f</mi><mtext>signal</mtext></msub></mrow><annotation encoding="application/x-tex">f_{\text{sample}} \geq 2 f_{\text{signal}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">sample</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord">2</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">signal</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span></span><p>If a road-surface vibration has meaningful content up to 40 Hz, the sensor must sample at 80 Hz or higher to represent it faithfully. This is why the DIDI.BIKE Developer API streams IMU channels at 100 Hz — well above the $2 \times 40 = 80$ Hz minimum for typical road vibrations.</p>
+<h3>Layer 2: Transmit — ANT+ vs BLE 5.0</h3>
+<p>The two dominant real-time protocols are ANT+ and Bluetooth Low Energy. They are not mutually exclusive; the DIDI.BIKE sensor broadcasts on both simultaneously.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>ANT+</th>
+<th>BLE 5.0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Topology</td>
+<td>Mesh / many-to-many</td>
+<td>Star / one-to-many</td>
+</tr>
+<tr>
+<td>Latency</td>
+<td>~4 Hz typical</td>
+<td>Up to 10 Hz (connection interval dependent)</td>
+</tr>
+<tr>
+<td>Pairing</td>
+<td>Device profiles (power, HR, cadence)</td>
+<td>GATT services</td>
+</tr>
+<tr>
+<td>Phone support</td>
+<td>Requires ANT+ radio (rare on phones)</td>
+<td>Universal on modern phones</td>
+</tr>
+<tr>
+<td>Head-unit support</td>
+<td>Garmin, Wahoo, Hammerhead, Bryton</td>
+<td>Wahoo, Hammerhead, Karoo, phones</td>
+</tr>
+</tbody></table>
+<p>The practical takeaway: ANT+ is the reliable backbone for head units, while BLE 5.0 is the bridge to phones, indoor-training apps like Zwift, and custom apps built on the DIDI.BIKE SDK.</p>
+<h3>Layer 3: Process &amp; store — head units and cloud platforms</h3>
+<p>The head unit is the on-bike computer that receives sensor broadcasts, adds GPS and timing, and writes a ride file — almost always a <code>.fit</code> file. After the ride, that file is uploaded to one or more cloud platforms.</p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Primary role</th>
+<th>Auto-sync from DIDI.BIKE</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Garmin Connect</td>
+<td>Head-unit companion + basic analysis</td>
+<td>Via Garmin head unit</td>
+</tr>
+<tr>
+<td>Strava</td>
+<td>Social segments, route discovery</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>TrainingPeaks</td>
+<td>Coach-driven structured planning</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Golden Cheetah</td>
+<td>Deep, offline analysis (free, open-source)</td>
+<td>Manual / API export</td>
+</tr>
+<tr>
+<td>Intervals.icu</td>
+<td>Automated fitness-and-fatigue tracking</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+<p>Auto-sync means the DIDI.BIKE sensor&#39;s data reaches the platform without manual export — the ride lands in your account as soon as the head unit or phone reconnects to the internet.</p>
+<h3>Layer 4: Analyze &amp; extend — APIs, SDKs, and webhooks</h3>
+<p>Cloud platforms give you dashboards. The Developer API lets you build your own.</p>
+<ul>
+<li><strong>WebSocket streaming (100 Hz)</strong> — real-time access to every IMU sample, useful for live handling analysis or a custom heads-up display.</li>
+<li><strong>REST API</strong> — query historical rides, sessions, and aggregated metrics with standard HTTP requests.</li>
+<li><strong>SDKs</strong> — Python and JavaScript libraries that wrap the API so you can pull data in a few lines of code.</li>
+<li><strong>Webhooks</strong> — push notifications when a ride finishes, so your pipeline or coaching tool reacts automatically.</li>
+</ul>
+<p>For a hands-on tour, read <a href="/en/blog/developer-api-raw-imu-data">Developer API: Raw IMU Data</a>, <a href="/en/blog/cycling-data-webhooks">Cycling Data Webhooks</a>, and <a href="/en/blog/cycling-sdk-libraries">Cycling SDK Libraries</a>.</p>
+<h2>Choosing the right integration path</h2>
+<p>Your stack depends on what you are trying to achieve. The table below matches common goals to the relevant cluster articles.</p>
+<table>
+<thead>
+<tr>
+<th>Goal</th>
+<th>Start here</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>See live power on a Garmin Edge</td>
+<td><a href="/en/blog/stream-sensor-data-garmin-edge">Stream Sensor Data to Garmin Edge</a></td>
+</tr>
+<tr>
+<td>Use a Wahoo ELEMNT or BOLT</td>
+<td><a href="/en/blog/wahoo-head-unit-integration">Wahoo Head Unit Integration</a></td>
+</tr>
+<tr>
+<td>Ride indoors on Zwift</td>
+<td><a href="/en/blog/zwift-real-time-sensor-data">Zwift and Real-Time Sensor Data</a></td>
+</tr>
+<tr>
+<td>Share rides and chase segments</td>
+<td><a href="/en/blog/export-ride-data-strava">Export Ride Data to Strava</a></td>
+</tr>
+<tr>
+<td>Follow a structured training plan</td>
+<td><a href="/en/blog/trainingpeaks-data-sync">TrainingPeaks Data Sync</a></td>
+</tr>
+<tr>
+<td>Do deep, free analysis</td>
+<td><a href="/en/blog/golden-cheetah-cycling-analysis">Golden Cheetah Cycling Analysis</a></td>
+</tr>
+<tr>
+<td>Track fitness over time automatically</td>
+<td><a href="/en/blog/intervals-icu-cycling">Intervals.icu Cycling</a></td>
+</tr>
+<tr>
+<td>Build a custom app or dashboard</td>
+<td><a href="/en/blog/cycling-sdk-libraries">Cycling SDK Libraries</a></td>
+</tr>
+</tbody></table>
+<h2>A note on data fidelity</h2>
+<p>Not all data is equal. A power number that drifts 5% over a season silently corrupts your training metrics — chronic training load (CTL), acute training load (ATL), and training stress balance (TSB) all inherit the error. The ecosystem rewards accuracy at the capture layer. A sensor with a stable calibration curve and high sampling rate on handling channels gives every downstream tool better raw material.</p>
+<h2>Getting started</h2>
+<p>If you are new to the ecosystem, the fastest path is:</p>
+<ol>
+<li>Mount the DIDI.BIKE sensor.</li>
+<li>Pair it with whatever head unit you already own — see the Garmin or Wahoo articles.</li>
+<li>Connect your Strava and TrainingPeaks accounts for automatic sync.</li>
+<li>When you want more than the dashboards offer, explore the Developer API and SDKs.</li>
+</ol>
+<p>Everything else — deep analysis, webhooks, custom coaching tools — builds on that foundation.</p>
+<h2>FAQ</h2>
+<p><strong>What is a cycling data ecosystem?</strong>
+A cycling data ecosystem is the network of sensors, head units, apps, and APIs that capture, transmit, store, and analyze ride data. It spans real-time protocols like ANT+ and BLE, cloud platforms like Strava, and developer tools for custom analysis.</p>
+<p><strong>Which protocols does the DIDI.BIKE sensor use?</strong>
+The DIDI.BIKE sensor broadcasts power, cadence, heart rate, and IMU data over both ANT+ and Bluetooth Low Energy (BLE) 5.0, making it compatible with Garmin, Wahoo, Hammerhead, and Zwift without extra bridges.</p>
+<p><strong>Can I stream raw sensor data to my own application?</strong>
+Yes. The DIDI.BIKE Developer API provides WebSocket streaming at 100 Hz, a REST interface for historical queries, and SDKs for Python and JavaScript so you can build custom dashboards and training tools.</p>
+<p><strong>How much does the DIDI.BIKE sensor cost?</strong>
+The DIDI.BIKE sensor retails for $299 and includes dual ANT+/BLE 5.0 broadcasting, cloud sync to major training platforms, and access to the Developer API.</p>
+<p><strong>Does the ecosystem work without internet during a ride?</strong>
+Yes. Sensor data streams to your head unit over ANT+/BLE in real time regardless of connectivity. Cloud sync to Strava, TrainingPeaks, and other platforms happens after the ride when your device reconnects.</p>
+<h2>References</h2>
+<ol>
+<li><em>Wireless Communications and Mobile Computing</em>: ANT+ vs BLE latency profiles in dynamic environments.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: API data retention, FIT file streaming, and developer SDK structures.</li>
+</ol>

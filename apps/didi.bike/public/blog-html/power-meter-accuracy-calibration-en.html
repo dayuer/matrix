@@ -1,0 +1,141 @@
+<h1>Power Meter Accuracy and Calibration</h1>
+<p>A power meter is only as useful as it is accurate. Power data feeds your training zones, fitness tracking, and pacing decisions — so even a few percent of error can put you in the wrong zone or distort your <a href="/en/blog/normalized-power-vs-average">normalized power</a>. Power meter accuracy calibration is the routine of zeroing, scaling, and temperature-compensating the strain gauges so that every watt reported reflects real mechanical output. We analyze what accuracy means, how to calibrate, and the drift sources that erode trust over time, as part of the <a href="/en/blog/cycling-power-pedaling-guide">cycling power pedaling guide</a>.</p>
+<h2>What Accuracy Means</h2>
+<p>Accuracy is the closeness of a meter&#39;s reported watts to the true mechanical power delivered. It is expressed as a percentage, for example ±1.5<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">%</span></span></span></span>. A reading of 200 W on a ±1.5<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">%</span></span></span></span> meter means true power is between 197 W and 203 W.</p>
+<p>There are two distinct properties:</p>
+<ul>
+<li><strong>Accuracy:</strong> how close reported power is to true power.</li>
+<li><strong>Precision (consistency):</strong> how repeatable the reading is from ride to ride at the same true load.</li>
+</ul>
+<p>A meter can be precise but inaccurate (consistently 5<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">%</span></span></span></span> high, for example), which is still usable for tracking your own progress, as long as the offset is stable. But for comparing data across devices, sharing with a coach, or trusting absolute numbers, both matter.</p>
+<table>
+<thead>
+<tr>
+<th>Accuracy Grade</th>
+<th>Typical Use</th>
+<th>Impact on Zone Training</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>±0.5<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">%</span></span></span></span></td>
+<td>Lab, elite racing</td>
+<td>Negligible</td>
+</tr>
+<tr>
+<td>±1.0–1.5<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">%</span></span></span></span></td>
+<td>Serious training, racing</td>
+<td>Minimal — recommended target</td>
+</tr>
+<tr>
+<td>±2.0–3.0<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">%</span></span></span></span></td>
+<td>General training</td>
+<td>Noticeable at narrow zones</td>
+</tr>
+<tr>
+<td>&gt;±3.0<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">%</span></span></span></span></td>
+<td>Entry-level</td>
+<td>Risk of wrong-zone errors</td>
+</tr>
+</tbody></table>
+<p>For most riders, ±1.5<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">%</span></span></span></span> is the sweet spot. The DIDI.BIKE pedal-based power meter delivers ±1.5<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">%</span></span></span></span> power correlation with a 6-axis IMU sampling at 100 Hz, placing it in the recommended band for structured training. See our <a href="/en/blog/power-meter-cost-guide">power meter cost guide</a> for how accuracy grades map to price.</p>
+<h2>How a Power Meter Measures Watts</h2>
+<p>A strain gauge deforms slightly under load, changing its electrical resistance. The meter measures this resistance change, converts it to torque (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi></mrow><annotation encoding="application/x-tex">\tau</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span></span></span></span>), and multiplies by angular velocity (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi></mrow><annotation encoding="application/x-tex">\omega</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">ω</span></span></span></span>) to get power:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>P</mi><mo>=</mo><mi>τ</mi><mo>⋅</mo><mi>ω</mi></mrow><annotation encoding="application/x-tex">P = \tau \cdot \omega</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4445em;"></span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">ω</span></span></span></span></span><p>For this to be correct, two things must be true: the gauge must read zero when there is no load, and the scaling that converts resistance change to torque must be correct. Calibration addresses both. The underlying mechanics are covered in <a href="/en/blog/how-power-meters-work-strain-gauges">how power meters work</a>.</p>
+<h2>Zero-Offset: Do This Every Ride</h2>
+<p>Zero-offset (also called &quot;zeroing&quot;) resets the sensor&#39;s no-load baseline. Over time and with temperature change, a gauge can drift so that it reads a small non-zero value even when unloaded. If uncorrected, this offset is added to (or subtracted from) every subsequent reading.</p>
+<p><strong>How to zero-offset:</strong></p>
+<ol>
+<li>Warm up for 10 minutes so the crank and gauge reach riding temperature.</li>
+<li>Stop, unclip, and ensure no load on the pedals or crank.</li>
+<li>Trigger the zero-offset command on your head unit or app.</li>
+<li>Confirm the reported offset value is within the manufacturer&#39;s normal range.</li>
+</ol>
+<p>This takes seconds and corrects the largest common source of error. Do it before every ride, and again if conditions change dramatically (e.g., climbing into much colder air). It is especially important for pedal-based systems, which are exposed to temperature swings and moisture.</p>
+<h2>Full Calibration: Setting the Scale</h2>
+<p>Full calibration sets the scaling factor that converts measured strain into torque and then watts. Unlike zero-offset, it does not usually need repeating every ride.</p>
+<h3>Factory calibration</h3>
+<p>Most meters arrive factory-calibrated against a known reference. High-quality meters are individually calibrated on a dynamometer so that the scale is set per unit, accounting for manufacturing variation in the strain gauges.</p>
+<h3>Field calibration with a known weight</h3>
+<p>Some riders perform a manual calibration by hanging a known weight from the pedal at a measured crank angle and checking the reported torque. The expected torque is:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>τ</mi><mo>=</mo><mi>m</mi><mo>⋅</mo><mi>g</mi><mo>⋅</mo><mi>L</mi><mo>⋅</mo><mi>sin</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>θ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\tau = m \cdot g \cdot L \cdot \sin(\theta)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4445em;"></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6389em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">sin</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0278em;">θ</span><span class="mclose">)</span></span></span></span></span><p>where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span></span></span></span> is mass, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">g</span></span></span></span> is gravitational acceleration, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span> is crank length, and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">θ</span></span></span></span> is crank angle from horizontal. Comparing the reported torque to this expected value reveals scale error. This is optional for most users but valuable if you suspect drift.</p>
+<h2>Temperature Drift</h2>
+<p>Strain gauges change resistance with temperature, which shifts the zero point and the scale. This is the single biggest accuracy challenge for outdoor riding. Moving from a 15°C indoor trainer to a 30°C summer road, or descending from a warm valley to a cold summit, can shift readings by several percent if uncompensated.</p>
+<p>Modern meters address this with:</p>
+<ul>
+<li><strong>Automatic temperature compensation:</strong> on-board temperature sensors adjust the offset and scale in real time.</li>
+<li><strong>Periodic auto-zeroing:</strong> some systems re-zero during coasting when they detect zero torque.</li>
+<li><strong>User zero-offset:</strong> the manual correction that catches residual drift.</li>
+</ul>
+<p>Despite compensation, a manual zero-offset in current riding conditions is still the most reliable correction. For a deep dive, see <a href="/en/blog/power-meter-temperature-drift">power meter temperature drift</a>. The DIDI.BIKE sensor (with its 100 Hz IMU and active compensation) is designed to hold its ±1.5<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">%</span></span></span></span> correlation across typical riding temperature ranges.</p>
+<h2>Common Sources of Error</h2>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Effect</th>
+<th>Correction</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Un-zeroed offset</td>
+<td>Constant additive error</td>
+<td>Zero-offset before ride</td>
+</tr>
+<tr>
+<td>Temperature change</td>
+<td>Offset and scale shift</td>
+<td>Auto-compensation + manual zero</td>
+</tr>
+<tr>
+<td>Moisture ingress</td>
+<td>Intermittent spikes</td>
+<td>Keep seals intact, dry contacts</td>
+</tr>
+<tr>
+<td>Low battery</td>
+<td>Erratic readings</td>
+<td>Charge or replace promptly</td>
+</tr>
+<tr>
+<td>Firmware bug</td>
+<td>Systematic error</td>
+<td>Apply firmware updates</td>
+</tr>
+<tr>
+<td>Loose mounting</td>
+<td>Torque artifacts</td>
+<td>Check torque on crank/pedal bolts</td>
+</tr>
+<tr>
+<td>Crank length mis-set</td>
+<td>Wrong torque calculation</td>
+<td>Verify crank length in head unit</td>
+</tr>
+</tbody></table>
+<h2>A Pre-Ride Calibration Routine</h2>
+<ol>
+<li><strong>Charge or replace the battery</strong> if low.</li>
+<li><strong>Verify crank length</strong> is set correctly in your head unit.</li>
+<li><strong>Warm up 10 minutes.</strong></li>
+<li><strong>Stop and zero-offset</strong> in the position you will ride.</li>
+<li><strong>Check the offset value</strong> is in the expected range from prior rides.</li>
+<li><strong>Re-zero</strong> if the temperature changes significantly mid-ride.</li>
+</ol>
+<p>Following this routine keeps data trustworthy and makes your <a href="/en/blog/cycling-power-zones-explained">cycling power zones</a> and training-load metrics reliable over time.</p>
+<h2>Why Accuracy Compound Effects</h2>
+<p>Small errors compound through your analysis. Because <a href="/en/blog/normalized-power-vs-average">normalized power</a> uses a fourth-power weighting, any erroneous high spike from drift gets amplified. Training Stress Score derives from NP, so the error propagates into your fitness and fatigue tracking. And if you compare rides from two differently-calibrated meters, the differences you see may be sensor error, not fitness change. This is why consistent, accurate calibration — and a meter that holds its accuracy — is the foundation of trustworthy power training.</p>
+<h2>FAQ</h2>
+<p><strong>How accurate should a power meter be?</strong>
+A quality power meter should read within ±1–2% of true power. Anything beyond ±3% starts to skew zone targets and make data comparisons unreliable, especially for normalized power and training load.</p>
+<p><strong>What is the difference between calibration and zero-offset?</strong>
+Zero-offset (zeroing) resets the sensor&#39;s reading at zero load so it measures force from a true baseline. Full calibration sets the scaling factor that converts measured strain into watts. Zero-offset is done before every ride; full calibration is done occasionally by the manufacturer or via a known-weight procedure.</p>
+<p><strong>How often should I calibrate my power meter?</strong>
+Perform a zero-offset before every ride, ideally after a 10-minute warm-up when the crank has reached riding temperature. Full calibration is rarely needed unless readings drift consistently or after a sensor firmware update.</p>
+<p><strong>Does temperature affect power meter accuracy?</strong>
+Yes. Strain gauges change resistance with temperature, so moving from a cool indoor trainer to a hot outdoor ride can shift readings. Most modern meters compensate automatically, but a fresh zero-offset in current conditions corrects residual drift.</p>
+<h2>References</h2>
+<ol>
+<li><em>Sports Medicine</em>: Biomechanical analysis of force application and pedaling effectiveness.</li>
+<li><em>European Journal of Applied Physiology</em>: Muscle co-contraction and efficiency in high-torque cycling.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: Strain gauge Wheatstone bridge calibration and bottom bracket flex calculations.</li>
+</ol>

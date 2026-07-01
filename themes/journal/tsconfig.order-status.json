@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ES2018",
+    "module": "None",
+    "lib": ["DOM", "DOM.Iterable", "ES2018"],
+    "outFile": "public/order-status.js",
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": []
+  },
+  "include": ["client/order-status.ts"]
+}

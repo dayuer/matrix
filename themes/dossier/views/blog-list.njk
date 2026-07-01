@@ -1,0 +1,472 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+{% set homePrefix = '/' + locale %}
+{% set isEn = locale == 'en' %}
+
+<script>
+  window.CLUSTERS_DATA = {
+    "aerodynamics-cda": {
+      slug: "aerodynamics-cda",
+      name: { en: "Aerodynamics & CdA", id: "Aerodinamika & CdA" },
+      desc: {
+        en: "Real-time drag measurement, CdA, yaw, and aero position.",
+        id: "Pengukuran hambatan real-time, CdA, yaw, dan posisi aerodinamis."
+      }
+    },
+    "bike-fitting": {
+      slug: "bike-fitting",
+      name: { en: "Bike Fitting & Biomechanics", id: "Bike Fitting & Biomekanika" },
+      desc: {
+        en: "Posture, pelvic stability, saddle and cleat data-driven fitting.",
+        id: "Postur, stabilitas panggul, fitting sadel dan cleat berbasis data."
+      }
+    },
+    "power-pedaling": {
+      slug: "power-pedaling",
+      name: { en: "Power & Pedaling Dynamics", id: "Daya & Dinamika Pengayuhan" },
+      desc: {
+        en: "Power meters, pedaling efficiency, torque and balance.",
+        id: "Power meter, efisiensi pengayuhan, torsi dan keseimbangan."
+      }
+    },
+    "sensor-telemetry": {
+      slug: "sensor-telemetry",
+      name: { en: "Sensors & Telemetry", id: "Sensor & Telemetri" },
+      desc: {
+        en: "IMU, sampling rate, ANT+/BLE, calibration and latency.",
+        id: "IMU, sampling rate, ANT+/BLE, kalibrasi dan latensi."
+      }
+    },
+    "training-racing": {
+      slug: "training-racing",
+      name: { en: "Training & Racing with Data", id: "Pelatihan & Balapan dengan Data" },
+      desc: {
+        en: "Using aero and telemetry data to train smarter and race faster.",
+        id: "Menggunakan data aero dan telemetri untuk latihan dan balapan."
+      }
+    },
+    "integrations": {
+      slug: "integrations",
+      name: { en: "Integrations & Ecosystem", id: "Integrasi & Ekosistem" },
+      desc: {
+        en: "Garmin, Wahoo, Strava, TrainingPeaks, Zwift and the API.",
+        id: "Garmin, Wahoo, Strava, TrainingPeaks, Zwift dan API."
+      }
+    },
+    "use-cases": {
+      slug: "use-cases",
+      name: { en: "Use Cases & Personas", id: "Kasus Penggunaan & Persona" },
+      desc: {
+        en: "Triathletes, time-trialists, fitters, coaches and labs.",
+        id: "Kasus Penggunaan & Persona"
+      }
+    },
+    "glossary": {
+      slug: "glossary",
+      name: { en: "Cycling Science Glossary", id: "Glosarium Sains Bersepeda" },
+      desc: {
+        en: "Plain-language definitions of cycling science terms.",
+        id: "Definisi istilah sains bersepeda dalam bahasa sederhana."
+      }
+    }
+  };
+  window.LEXICON_KEYWORDS = [
+    "CdA", "VO2max", "W-Prime", "Crr", "VLaMax", "Kalman Filter", "Reynolds Number",
+    "IMU", "Yaw Angle", "Boundary Layer", "Laminar Flow", "Turbulent Flow", "Pedal Smoothness",
+    "Torque Effectiveness", "Saddle Height", "Cleat Placement", "Crank Length", "Q-Factor",
+    "TSS", "CTL", "ATL", "TSB", "Normalized Power", "Cardiac Drift", "RER", "Goniometer",
+    "Telemetry", "ANT+", "BLE", "FIT File"
+  ];
+</script>
+
+{% set CLUSTERS = [
+  {
+    slug: 'aerodynamics-cda',
+    name: { en: 'Aerodynamics & CdA', id: 'Aerodinamika & CdA' },
+    description: {
+      en: 'Real-time drag measurement, CdA, yaw, and aero position.',
+      id: 'Pengukuran hambatan real-time, CdA, yaw, dan posisi aerodinamis.'
+    }
+  },
+  {
+    slug: 'bike-fitting',
+    name: { en: 'Bike Fitting & Biomechanics', id: 'Bike Fitting & Biomekanika' },
+    description: {
+      en: 'Posture, pelvic stability, saddle and cleat data-driven fitting.',
+      id: 'Postur, stabilitas panggul, fitting sadel dan cleat berbasis data.'
+    }
+  },
+  {
+    slug: 'power-pedaling',
+    name: { en: 'Power & Pedaling Dynamics', id: 'Daya & Dinamika Pengayuhan' },
+    description: {
+      en: 'Power meters, pedaling efficiency, torque and balance.',
+      id: 'Power meter, efisiensi pengayuhan, torsi dan keseimbangan.'
+    }
+  },
+  {
+    slug: 'sensor-telemetry',
+    name: { en: 'Sensors & Telemetry', id: 'Sensor & Telemetri' },
+    description: {
+      en: 'IMU, sampling rate, ANT+/BLE, calibration and latency.',
+      id: 'IMU, sampling rate, ANT+/BLE, kalibrasi dan latensi.'
+    }
+  },
+  {
+    slug: 'training-racing',
+    name: { en: 'Training & Racing with Data', id: 'Pelatihan & Balapan dengan Data' },
+    description: {
+      en: 'Using aero and telemetry data to train smarter and race faster.',
+      id: 'Menggunakan data aero dan telemetri untuk latihan dan balapan.'
+    }
+  },
+  {
+    slug: 'integrations',
+    name: { en: 'Integrations & Ecosystem', id: 'Integrasi & Ekosistem' },
+    description: {
+      en: 'Garmin, Wahoo, Strava, TrainingPeaks, Zwift and the API.',
+      id: 'Garmin, Wahoo, Strava, TrainingPeaks, Zwift dan API.'
+    }
+  },
+  {
+    slug: 'use-cases',
+    name: { en: 'Use Cases & Personas', id: 'Kasus Penggunaan & Persona' },
+    description: {
+      en: 'Triathletes, time-trialists, fitters, coaches and labs.',
+      id: 'Atlet triathlon, time-trial, fitter, pelatih dan laboratorium.'
+    }
+  },
+  {
+    slug: 'glossary',
+    name: { en: 'Cycling Science Glossary', id: 'Glosarium Sains Bersepeda' },
+    description: {
+      en: 'Plain-language definitions of cycling science terms.',
+      id: 'Definisi istilah sains bersepeda dalam bahasa sederhana.'
+    }
+  }
+] %}
+
+{% set LEXICON_KEYWORDS = [
+  'CdA', 'VO2max', 'W-Prime', 'Crr', 'VLaMax', 'Kalman Filter', 'Reynolds Number',
+  'IMU', 'Yaw Angle', 'Boundary Layer', 'Laminar Flow', 'Turbulent Flow', 'Pedal Smoothness',
+  'Torque Effectiveness', 'Saddle Height', 'Cleat Placement', 'Crank Length', 'Q-Factor',
+  'TSS', 'CTL', 'ATL', 'TSB', 'Normalized Power', 'Cardiac Drift', 'RER', 'Goniometer',
+  'Telemetry', 'ANT+', 'BLE', 'FIT File'
+] %}
+
+<!-- Breadcrumbs Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ site.baseUrl or 'https://didi.bike' }}{{ homePrefix }}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ 'Science Wiki' if isEn else 'Wiki Sains' }}",
+      "item": "{{ site.baseUrl or 'https://didi.bike' }}{{ homePrefix }}/blog"
+    }
+  ]
+}
+</script>
+
+<div class="blog-page">
+  <div class="container">
+    
+    <!-- Wiki Header (Shown when not filtering by category) -->
+    {% if not clusterParam %}
+      <header class="blog-header animate-on-scroll">
+        <h1 class="blog-title">
+          {{ 'Science Wiki' if isEn else 'Wiki Sains' }}
+        </h1>
+        <p class="blog-subtitle">
+          {{ 'The definitive open-access knowledge base for cycling aerodynamics, biomechanics, and telemetry.' if isEn else 'Pangkalan pengetahuan terbuka definitif untuk aerodinamika, biomekanika, dan telemetri sepeda.' }}
+        </p>
+      </header>
+    {% endif %}
+
+    <!-- Loading Skeleton -->
+    <div id="blogLoading" style="display: none; padding: 60px 0; text-align: center; color: var(--color-text-muted);">
+      <div class="spinner" style="margin-bottom: 16px;">⌛</div>
+      <p>{% if isEn %}Loading wiki entries...{% else %}Memuat entri wiki...{% endif %}</p>
+    </div>
+
+    <div id="postsListWrapper">
+      <!-- Search Section -->
+      <div class="blog-search-section animate-on-scroll delay-1">
+        <form action="{{ homePrefix }}/blog" method="GET" class="blog-search-form" id="searchForm">
+          <div class="blog-search-input-wrapper">
+            <span class="blog-search-icon">🔍</span>
+            <input
+              type="text"
+              name="q"
+              id="searchInput"
+              value="{{ qParam or '' }}"
+              placeholder="{% if isEn %}Search 1,000+ scientific wiki terms...{% else %}Cari 1.000+ istilah wiki sains...{% endif %}"
+              class="blog-search-input"
+            />
+            {% if clusterParam %}
+              <input type="hidden" name="cluster" value="{{ clusterParam }}" />
+            {% endif %}
+            <button
+              type="button"
+              id="clearBtn"
+              class="blog-clear-btn"
+              style="display: {% if qParam %}inline-block{% else %}none{% endif %};"
+              title="{{ 'Clear search' if isEn else 'Bersihkan pencarian' }}"
+            >
+              ✕
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Search Results Header -->
+      <div class="blog-search-results-header animate-on-scroll" id="searchResultsHeader" style="display: {% if qParam %}block{% else %}none{% endif %};">
+        <p class="blog-search-results-text" id="searchResultsText">
+          {% if qParam %}
+            {% if isEn %}
+              Showing results for "{{ qParam }}"{% if currentCluster %} in {{ currentCluster.name.en }}{% endif %}
+            {% else %}
+              Menampilkan hasil untuk "{{ qParam }}"{% if currentCluster %} di {{ currentCluster.name.id }}{% endif %}
+            {% endif %}
+          {% endif %}
+        </p>
+      </div>
+
+      <!-- Pathways Index (Shown only on default index view) -->
+      <div class="blog-pathways-section animate-on-scroll delay-2" id="pathwaysSection" style="display: {% if not clusterParam and not qParam %}block{% else %}none{% endif %};">
+        <h2 class="blog-pathway-title">
+          {{ 'Wiki Learning Pathways' if isEn else 'Direktori Jalur Belajar Wiki' }}
+        </h2>
+
+        <!-- Stage 1 -->
+        <div class="blog-pathway-stage">
+          <div class="blog-stage-header">
+            <div class="blog-stage-number">01</div>
+            <div class="blog-stage-info">
+              <h3 class="blog-stage-title">
+                {{ 'Foundation & Setup (Beginner)' if isEn else 'Dasar & Pengaturan (Pemula)' }}
+              </h3>
+              <p class="blog-stage-desc">
+                {{ 'Master essential cycling science terminology, establish a pain-free aerodynamic posture, and understand the physics of wattage.' if isEn else 'Kuasai istilah esensial sains bersepeda, bentuk postur aerodinamis bebas nyeri, dan pahami fisika pengukuran watt.' }}
+              </p>
+            </div>
+          </div>
+          <div class="blog-wiki-grid">
+            {% for c in CLUSTERS %}
+              {% if c.slug in ['glossary', 'bike-fitting', 'power-pedaling'] %}
+                <a href="{{ homePrefix }}/blog/category/{{ c.slug }}" class="blog-wiki-card">
+                  <div class="blog-wiki-card-header">
+                    <h3 class="blog-wiki-card-title">{{ c.name[locale] or c.name.en }}</h3>
+                    <p class="blog-wiki-card-desc">{{ c.description[locale] or c.description.en }}</p>
+                  </div>
+                  <div class="blog-wiki-card-footer">
+                    <span>{{ 'Explore Domain' if isEn else 'Telusuri Bidang' }}</span>
+                    <span class="blog-wiki-card-arrow">→</span>
+                  </div>
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Stage 2 -->
+        <div class="blog-pathway-stage">
+          <div class="blog-stage-header">
+            <div class="blog-stage-number">02</div>
+            <div class="blog-stage-info">
+              <h3 class="blog-stage-title">
+                {{ 'Aerodynamics & Sensor Physics (Intermediate)' if isEn else 'Aerodinamika & Fisika Sensor (Menengah)' }}
+              </h3>
+              <p class="blog-stage-desc">
+                {{ 'Dive deep into flow mechanics (CdA), real-time drag telemetry, 6-axis IMU sampling rates, and multi-device data integrations.' if isEn else 'Selami mekanika aliran (CdA), telemetri hambatan real-time, sampling rate IMU 6-axis, dan integrasi data multi-perangkat.' }}
+              </p>
+            </div>
+          </div>
+          <div class="blog-wiki-grid">
+            {% for c in CLUSTERS %}
+              {% if c.slug in ['aerodynamics-cda', 'sensor-telemetry', 'integrations'] %}
+                <a href="{{ homePrefix }}/blog/category/{{ c.slug }}" class="blog-wiki-card">
+                  <div class="blog-wiki-card-header">
+                    <h3 class="blog-wiki-card-title">{{ c.name[locale] or c.name.en }}</h3>
+                    <p class="blog-wiki-card-desc">{{ c.description[locale] or c.description.en }}</p>
+                  </div>
+                  <div class="blog-wiki-card-footer">
+                    <span>{{ 'Explore Domain' if isEn else 'Telusuri Bidang' }}</span>
+                    <span class="blog-wiki-card-arrow">→</span>
+                  </div>
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Stage 3 -->
+        <div class="blog-pathway-stage">
+          <div class="blog-stage-header">
+            <div class="blog-stage-number">03</div>
+            <div class="blog-stage-info">
+              <h3 class="blog-stage-title">
+                {{ 'Advanced Training & Telemetry (Specialist)' if isEn else 'Pelatihan & Telemetri Tingkat Lanjut (Spesialis)' }}
+              </h3>
+              <p class="blog-stage-desc">
+                {{ 'Train and race with professional metrics. Manage training load (TSS/CTL/ATL), target energy systems, and deploy custom sensor APIs.' if isEn else 'Latihan dan balapan dengan metrik profesional. Kelola beban latihan (TSS/CTL/ATL), targetkan sistem energi, dan pasang API sensor kustom.' }}
+              </p>
+            </div>
+          </div>
+          <div class="blog-wiki-grid">
+            {% for c in CLUSTERS %}
+              {% if c.slug in ['training-racing', 'use-cases'] %}
+                <a href="{{ homePrefix }}/blog/category/{{ c.slug }}" class="blog-wiki-card">
+                  <div class="blog-wiki-card-header">
+                    <h3 class="blog-wiki-card-title">{{ c.name[locale] or c.name.en }}</h3>
+                    <p class="blog-wiki-card-desc">{{ c.description[locale] or c.description.en }}</p>
+                  </div>
+                  <div class="blog-wiki-card-footer">
+                    <span>{{ 'Explore Domain' if isEn else 'Telusuri Bidang' }}</span>
+                    <span class="blog-wiki-card-arrow">→</span>
+                  </div>
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Domain Cluster Header (Shown when filtering by category) -->
+      <div class="blog-domain-header animate-on-scroll" id="domainHeader" style="display: {% if clusterParam and currentCluster %}block{% else %}none{% endif %};">
+        <div class="blog-post-meta">
+          <span class="blog-pillar-badge">
+            {{ 'Science Domain' if isEn else 'Topik Sains' }}
+          </span>
+        </div>
+        <h2 class="blog-domain-title" id="domainTitle">{% if clusterParam and currentCluster %}{{ currentCluster.name[locale] or currentCluster.name.en }}{% endif %}</h2>
+        <p class="blog-domain-desc" id="domainDesc">{% if clusterParam and currentCluster %}{{ currentCluster.description[locale] or currentCluster.description.en }}{% endif %}</p>
+        <a href="{{ homePrefix }}/blog" class="blog-back-btn">
+          ← {{ 'Back to Wiki Directory' if isEn else 'Kembali ke Direktori Wiki' }}
+        </a>
+      </div>
+
+      <!-- Tag Bar -->
+      <div class="blog-tag-bar animate-on-scroll delay-1" id="tagBar" style="display: {% if clusterParam %}flex{% else %}none{% endif %};">
+        <a href="{{ homePrefix }}/blog" class="blog-tag-btn" id="allDirectoryTag">
+          {{ 'All Directory' if isEn else 'Semua Direktori' }}
+        </a>
+        {% for c in CLUSTERS %}
+          <a
+            href="{{ homePrefix }}/blog/category/{{ c.slug }}"
+            class="blog-tag-btn {% if clusterParam == c.slug %}active{% endif %}"
+            data-tag="{{ c.slug }}"
+            {% if clusterParam == c.slug %}style="border-color: var(--color-accent); color: var(--color-accent); background: rgba(0, 212, 255, 0.05);"{% endif %}
+          >
+            {{ c.name[locale] or c.name.en }}
+          </a>
+        {% endfor %}
+      </div>
+
+      <!-- Main List Content -->
+      <div class="blog-main-content">
+        
+        <!-- Core Pillars (only shown on default index view) -->
+        <section class="blog-pillar-section" id="pillarSection" style="display: {% if not clusterParam and not qParam and pillars and pillars.length > 0 %}block{% else %}none{% endif %};">
+          {% if not clusterParam and not qParam and pillars %}
+            {% for p in pillars %}
+              <a href="{{ homePrefix }}/blog/{{ p.slug }}" class="blog-post-entry">
+                <div class="blog-post-meta">
+                  <span class="blog-pillar-badge">
+                    ★ {{ 'Core Pillar Guide' if isEn else 'Panduan Utama Wiki' }}
+                  </span>
+                </div>
+                <h2 class="blog-post-title">{{ p.title }}</h2>
+                {% if p.excerpt %}<p class="blog-post-excerpt">{{ p.excerpt }}</p>{% endif %}
+              </a>
+            {% endfor %}
+          {% endif %}
+        </section>
+
+        <!-- Standard Post List -->
+        <div class="blog-post-list" id="postList">
+          {% for post in posts %}
+            <a href="{{ homePrefix }}/blog/{{ post.slug }}" class="blog-post-entry">
+              <div class="blog-post-meta">
+                <time class="blog-post-date">{{ post.publishedAt }}</time>
+                {% if post.tags and post.tags.length > 0 %}
+                  <span class="blog-post-dot"></span>
+                  <span class="blog-post-tag">{{ post.tags[0] }}</span>
+                {% endif %}
+              </div>
+              <h2 class="blog-post-title">{{ post.title }}</h2>
+              {% if post.excerpt %}<p class="blog-post-excerpt">{{ post.excerpt }}</p>{% endif %}
+            </a>
+          {% endfor %}
+        </div>
+
+        <!-- Empty State -->
+        <div class="blog-empty" id="emptyNotice" style="display: {% if not posts or posts.length == 0 %}block{% else %}none{% endif %};">
+          <p id="emptyText">
+            {% if not posts or posts.length == 0 %}
+              {% if qParam %}
+                {{ 'No scientific articles found matching "' if isEn }}{{ qParam }}{{ '".' if isEn else '" tidak ditemukan.' }}
+              {% else %}
+                {{ 'No posts yet. Stay tuned.' if isEn else 'Belum ada artikel.' }}
+              {% endif %}
+            {% endif %}
+          </p>
+          <a href="{% if clusterParam %}{{ homePrefix }}/blog/category/{{ clusterParam }}{% else %}{{ homePrefix }}/blog{% endif %}" class="blog-reset-search-btn" style="display: {% if qParam %}inline-block{% else %}none{% endif %};">
+            {{ 'Reset Search' if isEn else 'Atur Ulang Pencarian' }}
+          </a>
+        </div>
+
+        <!-- Lexicon Tag Cloud -->
+        <div class="blog-lexicon-section animate-on-scroll">
+          <h3 class="blog-lexicon-title">
+            {{ 'Wiki Scientific Lexicon Index' if isEn else 'Indeks Leksikon Sains Wiki' }}
+          </h3>
+          <div class="blog-lexicon-cloud" id="lexiconCloud">
+            {% for word in LEXICON_KEYWORDS %}
+              <a
+                href="{% if clusterParam %}{{ homePrefix }}/blog/category/{{ clusterParam }}{% else %}{{ homePrefix }}/blog{% endif %}?q={{ word | urlencode }}"
+                class="blog-lexicon-tag"
+              >
+                #{{ word }}
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <nav class="blog-pagination" id="paginationNav" aria-label="Blog pagination" style="display: {% if totalPages and totalPages > 1 %}flex{% else %}none{% endif %};">
+          <a
+            href="{% if clusterParam %}{{ homePrefix }}/blog/category/{{ clusterParam }}{% else %}{{ homePrefix }}/blog{% endif %}?page={{ currentPage - 1 }}{% if qParam %}&q={{ qParam | urlencode }}{% endif %}"
+            class="blog-page-link"
+            id="prevPage"
+            style="display: {% if currentPage > 1 %}inline-block{% else %}none{% endif %};"
+          >
+            ← Previous
+          </a>
+          <span class="blog-page-info" id="pageInfo">
+            Page {{ currentPage }} of {{ totalPages }}
+          </span>
+          <a
+            href="{% if clusterParam %}{{ homePrefix }}/blog/category/{{ clusterParam }}{% else %}{{ homePrefix }}/blog{% endif %}?page={{ currentPage + 1 }}{% if qParam %}&q={{ qParam | urlencode }}{% endif %}"
+            class="blog-page-link"
+            id="nextPage"
+            style="display: {% if currentPage < totalPages %}inline-block{% else %}none{% endif %};"
+          >
+            Next →
+          </a>
+        </nav>
+        
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

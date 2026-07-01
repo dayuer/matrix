@@ -1,0 +1,50 @@
+name: Deploy edaijia
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'apps/edaijia/**'
+      - 'docs/edaijia-drafts/**'
+      - 'scripts/**'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Monorepo Dependencies
+        run: |
+          npm install
+
+      - name: Sync Articles to VPS B
+        env:
+          TARGET_SITE: edaijia
+          PB_URL: ${{ secrets.EDAIJIA_PB_URL }}
+          PB_IDENTITY: ${{ secrets.EDAIJIA_PB_IDENTITY }}
+          PB_PASSWORD: ${{ secrets.EDAIJIA_PB_PASSWORD }}
+        run: |
+          node scripts/publish-articles.mjs
+
+      - name: Build & Export edaijia
+        env:
+          POCKETBASE_URL: ${{ secrets.EDAIJIA_PB_URL }}
+        run: |
+          cd apps/edaijia
+          npm run build
+
+      - name: Deploy Static Web to VPS B
+        uses: easingthemes/ssh-deploy@v5.0.0
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.VPS_B_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.VPS_B_HOST }}
+          REMOTE_USER: 'root'
+          SOURCE: "apps/edaijia/out/"
+          TARGET: "/var/www/edaijia"

@@ -1,0 +1,14 @@
+{#
+  平台级通用页面模板（模板层级的最终兜底之一）。
+  任何主题即使不提供 page.njk，也能渲染「blocks 数组 / Markdown 正文（custom-html block）」型内容页。
+  主题想定制外观时，在自己的 views/templates/ 放同名文件即可覆盖。
+#}
+{% extends "layout.njk" %}
+
+{% block content %}
+<main class="page" id="main">
+  {% for block in page.blocks %}
+    {% include "blocks/" + block.type + ".njk" ignore missing %}
+  {% endfor %}
+</main>
+{% endblock %}

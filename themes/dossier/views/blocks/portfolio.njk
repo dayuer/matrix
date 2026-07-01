@@ -1,0 +1,51 @@
+{% set d = block.data %}
+{% set h = d.head %}
+<section class="section" id="{{ d.anchor or 'portfolio' }}">
+  {% include "blocks/_section-head.njk" %}
+
+  <div class="cases">
+    {% for case in d.cases %}
+      <article class="case reveal">
+        <div class="case__meta">
+          <span class="case__ref mono">{{ case.ref }}</span>
+          <span class="case__region mono">{{ case.region }}</span>
+          <span class="case__client">{{ case.clientType }}</span>
+        </div>
+        <div class="case__grid">
+          <div class="case__lead">
+            <h3 class="case__title">{{ case.title }}</h3>
+            <p class="case__desc">{{ case.desc }}</p>
+            <ul class="case__list">
+              {% for pt in case.bulletPoints %}<li>{{ pt }}</li>{% endfor %}
+            </ul>
+          </div>
+
+          <div class="case__data">
+            <div class="case__impact">
+              <span class="case__impact-label mono">重构收益 / IMPACT</span>
+              <p class="case__impact-val">{{ case.metrics }}</p>
+            </div>
+            <div class="charts">
+              {% for ch in case.charts %}
+                <figure class="chart">
+                  <figcaption class="chart__title">{{ ch.title }}</figcaption>
+                  <div class="chart__row">
+                    <span class="chart__key mono">{{ ch.beforeLabel }}</span>
+                    <span class="chart__track"><span class="chart__bar chart__bar--legacy" style="width: {{ ch.beforeRatio }}%"></span></span>
+                    <span class="chart__val mono">{{ ch.beforeVal }}</span>
+                  </div>
+                  <div class="chart__row">
+                    <span class="chart__key mono">{{ ch.afterLabel }}</span>
+                    <span class="chart__track"><span class="chart__bar chart__bar--synon" style="width: {{ ch.afterRatio }}%"></span></span>
+                    <span class="chart__val mono u-accent">{{ ch.afterVal }}</span>
+                  </div>
+                  <div class="chart__delta mono">Δ&nbsp;{{ ch.delta }}</div>
+                </figure>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>

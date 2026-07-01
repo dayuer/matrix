@@ -1,0 +1,67 @@
+<section id="sensor" class="section sensor">
+  <div class="sensor-glow-orb"></div>
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">{{ dict.sensor.label }}</span>
+      <h2 class="section-title">{{ dict.sensor.title }}</h2>
+      <p class="section-desc">{{ dict.sensor.desc }}</p>
+    </div>
+
+    <!-- Tabs Container -->
+    <div class="sensor-tabs" id="sensorTabs">
+      <button class="sensor-tab active" data-tab="specs">
+        {{ dict.sensor.tabSpecs }}
+      </button>
+      <button class="sensor-tab" data-tab="accuracy">
+        {{ dict.sensor.tabAccuracy }}
+      </button>
+      <button class="sensor-tab" data-tab="benchmark">
+        {{ dict.sensor.tabBenchmark }}
+      </button>
+    </div>
+
+    <!-- Specs Tab Panel -->
+    <div class="sensor-panel" id="panel-specs">
+      <div class="sensor-specs-grid">
+        {% for s in dict.sensor.specs %}
+          <div class="sensor-spec-item">
+            <span class="sensor-spec-label">{{ s.label }}</span>
+            <span class="sensor-spec-value">{{ s.value }}</span>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Accuracy Tab Panel -->
+    <div class="sensor-panel" id="panel-accuracy" style="display: none;">
+      <div class="sensor-accuracy-grid">
+        {% for a in dict.sensor.accuracy %}
+          <div class="glass-card sensor-accuracy-card">
+            <div class="sensor-acc-value">{{ a.value }}</div>
+            <div class="sensor-acc-label">{{ a.label }}</div>
+            <div class="sensor-acc-desc">{{ a.desc }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Benchmark Tab Panel -->
+    <div class="sensor-panel" id="panel-benchmark" style="display: none;">
+      <div class="sensor-bench-table">
+        <div class="sensor-bench-row sensor-bench-header">
+          {% for h in dict.sensor.benchmarkHeaders %}
+            <span>{{ h }}</span>
+          {% endfor %}
+        </div>
+        {% for c in dict.sensor.comparison %}
+          <div class="sensor-bench-row">
+            <span class="sensor-bench-metric">{{ c.metric }}</span>
+            <span class="sensor-bench-us">{{ c.us }}</span>
+            <span class="sensor-bench-them">{{ c.them }}</span>
+            <span class="sensor-bench-gain">{{ c.gain }}</span>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

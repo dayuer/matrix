@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="{{ locale or 'en' }}" suppressHydrationWarning>
+<head>
+  <meta charset="UTF-8">
+  {% if isRootRedirect %}
+  <script>
+    (function() {
+      var lang = navigator.language || navigator.userLanguage;
+      var target = '/en';
+      if (lang && lang.toLowerCase().startsWith('id')) {
+        target = '/id';
+      }
+      var redirectPath = "{{ redirectPath or '' }}";
+      window.location.replace(target + redirectPath);
+    })();
+  </script>
+  {% endif %}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>{{ page.title or 'DIDI.BIKE — Precision Cycling Sensor' }}</title>
+  <meta name="description" content="{{ page.description or 'Professional cycling telemetry hardware for aerodynamic profiling.' }}">
+  {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}">{% else %}
+  <meta name="keywords" content="cycling sensor, bike telemetry, cycling aerodynamics, CdA measurement, cycling power meter, bike fitting technology, posture analysis cycling, DIDI.BIKE, DIDI.BIKE Sensor">
+  {% endif %}
+  <meta name="author" content="DIDI.BIKE">
+  <meta name="creator" content="DIDI.BIKE">
+  <meta name="publisher" content="DIDI.BIKE">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#050a12">
+
+  <!-- Open Graph / OG -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ page.ogTitle or page.title or 'DIDI.BIKE — $299 Real-Time CdA Sensor' }}">
+  <meta property="og:description" content="{{ page.ogDescription or page.description }}">
+  <meta property="og:image" content="{{ site.baseUrl or 'https://didi.bike' }}/og-image.png">
+  <meta property="og:url" content="{{ site.baseUrl or 'https://didi.bike' }}{{ page.canonical or '/' }}">
+  <meta property="og:site_name" content="DIDI.BIKE">
+  <meta property="og:locale" content="{% if locale == 'id' %}id_ID{% else %}en_US{% endif %}">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page.ogTitle or page.title or 'DIDI.BIKE — $299 Real-Time CdA Sensor' }}">
+  <meta name="twitter:description" content="{{ page.ogDescription or page.description }}">
+  <meta name="twitter:image" content="{{ site.baseUrl or 'https://didi.bike' }}/og-image.png">
+
+  <link rel="canonical" href="{{ site.baseUrl or 'https://didi.bike' }}{{ page.canonical or '/' }}">
+  
+  <!-- Font Loaders -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  {% if themeTokensCss %}<style id="theme-tokens">{{ themeTokensCss | safe }}</style>{% endif %}
+  <link rel="stylesheet" href="{{ basePath }}/theme.css?v={{ assetVersion }}">
+
+  {% if page.jsonLd %}
+  <script type="application/ld+json">{{ page.jsonLd | dump | safe }}</script>
+  {% endif %}
+</head>
+<body>
+  <!-- Navigation Header -->
+  {% include "partials/navbar.njk" %}
+
+  <!-- Main Content Block -->
+  <main id="main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  {% include "partials/footer.njk" %}
+
+  <!-- Client Side Logic -->
+  <script src="{{ basePath }}/app.js?v={{ assetVersion }}"></script>
+</body>
+</html>

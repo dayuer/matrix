@@ -1,0 +1,119 @@
+{% set otherLocale = 'id' if locale == 'en' else 'en' %}
+{% set otherLabel = 'ID' if locale == 'en' else 'EN' %}
+{% set homePrefix = '/' + locale %}
+
+{% set canon = page.canonical or '' %}
+{% if locale == 'id' %}
+  {% set switchPath = '/en' + canon.slice(3) %}
+{% else %}
+  {% set switchPath = '/id' + canon.slice(3) %}
+{% endif %}
+
+<nav class="navbar" id="navbar" aria-label="Main navigation">
+  <div class="container navbar-inner">
+    <a href="{{ homePrefix }}/" class="navbar-logo">
+      <!-- DIDI.BIKE Logo SVG -->
+      <svg
+        viewBox="0 0 320 48"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="navbar-logo-img"
+        width="200"
+        height="30"
+        aria-label="DIDI.BIKE"
+        role="img"
+      >
+        <path
+          d="M0 6h14c11.5 0 19 7.5 19 18s-7.5 18-19 18H0V6zm9 7.5v21h4.5c7 0 11-4.5 11-10.5s-4-10.5-11-10.5H9z"
+          fill="currentColor"
+        />
+        <path d="M1 6l10-2v6z" fill="#4a9ead" opacity="0.45" />
+        <path d="M5 7l14-3v7z" fill="#3d8a99" opacity="0.25" />
+        <path d="M10 10l8-2v5z" fill="#2d7080" opacity="0.15" />
+        <rect x="40" y="6" width="9" height="36" rx="1" fill="currentColor" />
+        <path
+          d="M58 6h14c11.5 0 19 7.5 19 18s-7.5 18-19 18H58V6zm9 7.5v21h4.5c7 0 11-4.5 11-10.5s-4-10.5-11-10.5H67z"
+          fill="currentColor"
+        />
+        <rect x="98" y="6" width="9" height="36" rx="1" fill="currentColor" />
+        <circle cx="120" cy="38" r="4.5" fill="#00d4ff" class="navbar-logo-dot" />
+        <circle cx="120" cy="38" r="8" fill="#00d4ff" opacity="0.15" />
+        <path
+          d="M134 6h15c7.5 0 12 3.8 12 9.5 0 4-2.2 6.8-5.8 8.2 4.2 1.2 7 4.5 7 9.3 0 6.2-5 9-13 9h-15.2V6zm9 7v8.5h5c3.5 0 5.2-1.8 5.2-4.3S151.5 13 148 13h-5zm0 15v9h6c4 0 6-2 6-4.5S153 28 149 28h-6z"
+          fill="currentColor"
+        />
+        <rect x="170" y="6" width="9" height="36" rx="1" fill="currentColor" />
+        <path
+          d="M188 6h9v14.5L211.5 6H223l-16 16.5L224 42h-12l-12-14.5V42h-9V6z"
+          fill="currentColor"
+          opacity="0.95"
+        />
+        <path
+          d="M228 6h28v7.5h-19v7h16v7h-16v7.5h20V42h-29V6z"
+          fill="currentColor"
+        />
+      </svg>
+    </a>
+
+    <ul class="navbar-menu" id="navbarMenu">
+      {% set isAtHome = (page.canonical == '/' or page.canonical == '/en' or page.canonical == '/id' or page.canonical == '/en/' or page.canonical == '/id/') %}
+      {% for item in site.nav %}
+        {% set navKey = item.key %}
+        {% if item.key == 'use-cases' %}
+          {% set navKey = 'useCases' %}
+        {% endif %}
+        
+        {% set isHash = '#' in item.href %}
+        {% set hashId = '#' + item.href.split('#')[1] if isHash else '' %}
+        
+        <li>
+          {% if isHash and isAtHome %}
+            <a href="{{ hashId }}" data-hash class="navbar-link {% if page.activeNav == navKey %}active{% endif %}">
+              {{ dict.nav[navKey] or item.text }}
+            </a>
+          {% else %}
+            <a href="{{ homePrefix }}{{ item.href }}" class="navbar-link {% if page.activeNav == navKey or page.canonical == item.href %}active{% endif %}">
+              {{ dict.nav[navKey] or item.text }}
+            </a>
+          {% endif %}
+        </li>
+      {% endfor %}
+      
+      <li class="navbar-cta-wrap">
+        {% set ctaIsHash = '#' in site.cta.href %}
+        {% set ctaHashId = '#' + site.cta.href.split('#')[1] if ctaIsHash else '' %}
+        {% if ctaIsHash and isAtHome %}
+          <a href="{{ ctaHashId }}" data-hash class="btn btn-primary navbar-cta">
+            {{ dict.nav.getSensor or site.cta.text }}
+          </a>
+        {% else %}
+          <a href="{{ homePrefix }}{{ site.cta.href }}" class="btn btn-primary navbar-cta">
+            {{ dict.nav.getSensor or site.cta.text }}
+          </a>
+        {% endif %}
+      </li>
+      <li class="navbar-lang-wrap">
+        <a href="{{ switchPath }}" class="navbar-lang-switch" aria-label="Switch to {{ otherLabel }}">
+          {{ otherLabel }}
+        </a>
+      </li>
+    </ul>
+
+    <div class="navbar-right-controls">
+      <a href="{{ switchPath }}" class="navbar-lang-switch-desktop" aria-label="Switch to {{ otherLabel }}">
+        {{ otherLabel }}
+      </a>
+      <button
+        class="navbar-burger"
+        id="navbarBurger"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        aria-controls="navbarMenu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="zh-CN" translate="no" class="notranslate">
+
+<head>
+  {% include "partials/head.njk" %}
+  {% include "partials/analytics.njk" %}
+</head>
+
+<body{% if page.bodyClass %} class="{{ page.bodyClass }}"{% endif %}>
+
+  {% block content %}{% endblock %}
+
+  {% block extraScript %}{% endblock %}
+</body>
+
+</html>

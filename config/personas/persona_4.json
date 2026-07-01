@@ -1,0 +1,24 @@
+{
+  "id": "persona_4",
+  "name": "Yuki Tanaka",
+  "gender": "Female",
+  "age": 29,
+  "country": "Japan",
+  "ethnicity": "Japanese",
+  "sexualOrientation": "Heterosexual",
+  "industry": "Web & UI Design",
+  "knowledgeLevel": "Casual Hobbyist",
+  "interests": [
+    "Bicycle industrial design",
+    "Clean visual aesthetics",
+    "Cycling gadgets"
+  ],
+  "biases": [
+    "Skeptical of poorly formatted pages",
+    "Appreciates minimalist styles"
+  ],
+  "expectations": [
+    "Wants premium product teardowns",
+    "Values readability and clean UI"
+  ]
+}

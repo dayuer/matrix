@@ -1,0 +1,168 @@
+{
+  "metadata": {
+    "title": "DIDI.BIKE — Data-Integrated Dynamic Intelligence | Sensor Bersepeda Presisi",
+    "description": "DIDI.BIKE Sensor — Perangkat keras telemetri bersepeda profesional untuk profiling aerodinamis, analisis postur, dan pengukuran daya. 14g ultra-ringan, sampling 100Hz, latensi <10ms.",
+    "ogTitle": "DIDI.BIKE — Sensor CdA Real-Time $299 | 14g · 100Hz · ANT+/BLE",
+    "ogDescription": "Sensor tiang sadel 14g yang mengukur hambatan aerodinamis (CdA) secara real-time — tanpa terowongan angin. IMU 6-axis 100Hz, akurasi ±0.1°, baterai 120 jam. Streaming ke Garmin, Wahoo, Strava, TrainingPeaks. $299 vs setup motion capture $15.000+."
+  },
+  "nav": {
+    "sensor": "Sensor",
+    "technology": "Teknologi",
+    "specs": "Spesifikasi",
+    "useCases": "Penggunaan",
+    "faq": "FAQ",
+    "blog": "Blog",
+    "about": "Tentang",
+    "getSensor": "Dapatkan Sensor"
+  },
+  "hero": {
+    "tagline": "DIDI.BIKE Sensor",
+    "titleLine1": "Presisi di",
+    "titleLine2": "Setiap Kayuhan.",
+    "subtitle": "14 gram. Sampling 100Hz. Latensi kurang dari 10ms. Profiling aerodinamis real-time, analisis postur, dan dinamika kayuhan — semua dari satu sensor di tiang sadel Anda.",
+    "ctaPrimary": "Lihat Spesifikasi",
+    "ctaSecondary": "Integrasi OEM",
+    "weight": "Berat",
+    "sampleRate": "Laju Sampel",
+    "latency": "Latensi",
+    "battery": "Baterai",
+    "scroll": "Gulir"
+  },
+  "pillars": {
+    "items": [
+      {
+        "title": "Profiling Aerodinamis",
+        "desc": "Ukur koefisien hambatan (CdA) Anda secara real-time saat berkendara — tanpa perlu terowongan angin. Optimalkan posisi di jalan dan hemat 15–20W pada kecepatan balap."
+      },
+      {
+        "title": "Koreksi Postur",
+        "desc": "Lacak stabilitas panggul dan sudut tubuh dengan presisi ±0.1°. Deteksi asimetri sebelum menjadi cedera — data yang diimpikan oleh bike fitter Anda."
+      },
+      {
+        "title": "Kompatibilitas Universal",
+        "desc": "ANT+ dan Bluetooth LE 5.0 menyiarkan ke semua head unit dan platform utama. Garmin, Wahoo, Strava, TrainingPeaks — tanpa aplikasi proprietary."
+      }
+    ]
+  },
+  "sensor": {
+    "label": "Perangkat Keras",
+    "title": "Sensor",
+    "desc": "Direkayasa untuk presisi. Dibangun untuk ketahanan. Data biomekanika lab-grade, di mana pun Anda bersepeda.",
+    "tabSpecs": "Spesifikasi",
+    "tabAccuracy": "Presisi Terkalibrasi",
+    "tabBenchmark": "Benchmark Teknis",
+    "specs": [
+      { "label": "Berat", "value": "14g (Ultra-ringan)" },
+      { "label": "Masa Pakai Baterai", "value": "120 jam berkelanjutan" },
+      { "label": "Pengisian", "value": "Pengisian cepat magnetik (USB-C)" },
+      { "label": "Konektivitas", "value": "ANT+ & Bluetooth LE 5.0" },
+      { "label": "Pemasangan", "value": "Tiang sadel universal & cleat" },
+      { "label": "Perlindungan", "value": "IP67 tahan debu & air" },
+      { "label": "Laju Sampling", "value": "Pengambilan data 100Hz" },
+      { "label": "Latensi", "value": "Delay transmisi <10ms" },
+      { "label": "Presisi IMU", "value": "Gyro: ±2000°/s, Accel: ±16g" },
+      { "label": "Suhu Operasi", "value": "-20°C hingga 50°C" },
+      { "label": "Memori", "value": "8MB internal (buffer offline)" },
+      { "label": "Firmware", "value": "Pembaruan OTA via BLE" },
+      { "label": "MTBF", "value": "50.000 jam" }
+    ],
+    "accuracy": [
+      { "value": "±0.1°", "label": "Akurasi Sudut", "desc": "Presisi rentang penuh" },
+      { "value": "±1.5%", "label": "Korelasi Daya", "desc": "Dengan power meter" },
+      { "value": "99.9%", "label": "Retensi Data", "desc": "Tingkat pengiriman paket" },
+      { "value": "<5ms", "label": "Jitter", "desc": "Konsistensi waktu" }
+    ],
+    "benchmarkHeaders": ["Metrik", "DIDI.BIKE", "Sistem Optik", "Keunggulan"],
+    "comparison": [
+      { "metric": "Waktu Setup", "us": "<30 detik", "them": "30-45 menit", "gain": "60× lebih cepat" },
+      { "metric": "Deploy Lapangan", "us": "Dukungan outdoor penuh", "them": "Hanya lab indoor", "gain": "100% outdoor" },
+      { "metric": "Biaya", "us": "$299 USD", "them": "$15.000+ USD", "gain": "50× lebih murah" },
+      { "metric": "Data Poin/dtk", "us": "600 (6-axis@100Hz)", "them": "240 (4cam@60fps)", "gain": "2,5× lebih banyak" },
+      { "metric": "Pemrosesan", "us": "Real-time onboard", "them": "2-4 jam offline", "gain": "Instan" }
+    ]
+  },
+  "ecosystem": {
+    "label": "Ekosistem",
+    "title": "Data yang Bisa Ditindaklanjuti",
+    "desc": "Protokol terbuka. Tanpa vendor lock-in. Integrasikan ke alur kerja mana pun.",
+    "coreTelemetry": "Telemetri Inti",
+    "sampleOutput": "Contoh Output Real-Time",
+    "integration": "Integrasi Mulus",
+    "integrationDesc": "Tanpa aplikasi proprietary. Menyiarkan langsung ke semua head unit dan platform utama.",
+    "devApi": "API Pengembang",
+    "devApiDesc": "Akses data IMU 6-axis mentah. Bangun analitik kustom dengan REST API terbuka kami.",
+    "viewApiDocs": "Lihat Dokumentasi API"
+  },
+  "business": {
+    "label": "Untuk Bisnis",
+    "title": "Dibangun untuk Skala",
+    "desc": "Solusi integrasi untuk produsen, fitter profesional, dan tim riset.",
+    "readyTitle": "Siap mengintegrasikan?",
+    "readyDesc": "Hubungi tim pengembangan bisnis kami untuk solusi kustom.",
+    "readyCta": "Hubungi Tim Bisnis",
+    "plans": [
+      {
+        "tag": "OEM",
+        "title": "Integrasi OEM",
+        "desc": "Pasang sensor ke dalam frame Anda untuk data performa terkalibrasi langsung dari pabrik.",
+        "features": ["Integrasi firmware kustom", "Lisensi massal (1000+ unit: $180/unit)", "Solusi white-label", "SLA enterprise 24/7"]
+      },
+      {
+        "tag": "PRO",
+        "title": "Bike Fitting Pro",
+        "desc": "Gantikan rig motion-capture mahal dengan data sensor akurasi milimeter untuk fitting yang lebih cepat dan presisi.",
+        "features": ["Visualisasi kinematika real-time", "Analitik perbandingan sebelum/sesudah", "Pembuatan laporan fit PDF", "Dukungan multi-sensor (hingga 8)"]
+      },
+      {
+        "tag": "API",
+        "title": "Enterprise API",
+        "desc": "Data historis, analitik tim, dan alat algoritma kustom untuk tim bersepeda dan lab riset.",
+        "features": ["Dasbor tim (50+ pesepeda)", "Tren performa 6 bulan", "Ekspor data CSV/JSON/FIT", "Sandbox algoritma kustom"]
+      }
+    ]
+  },
+  "contact": {
+    "label": "Kontak",
+    "title": "Hubungi Kami",
+    "desc": "Pertanyaan, kemitraan, atau dukungan teknis — kami siap membantu.",
+    "location": "LOKASI",
+    "headquarters": "Kantor Pusat",
+    "address": "Kuningan District, Jakarta, Indonesia",
+    "emailLabel": "EMAIL",
+    "generalInquiries": "Pertanyaan Umum",
+    "businessLabel": "BISNIS",
+    "businessDev": "Pengembangan Bisnis",
+    "namePlaceholder": "Nama",
+    "emailPlaceholder": "Email",
+    "selectType": "Pilih Jenis Pertanyaan",
+    "typeGeneral": "Pertanyaan Umum",
+    "typeBusiness": "Kemitraan Bisnis",
+    "typeTechnical": "Dukungan Teknis",
+    "typePress": "Pers & Media",
+    "messagePlaceholder": "Pesan",
+    "sendMessage": "Kirim Pesan",
+    "sending": "Mengirim...",
+    "messageSent": "✓ Pesan Terkirim!",
+    "errorDefault": "Terjadi kesalahan. Silakan coba lagi."
+  },
+  "footer": {
+    "tagline": "Data-Integrated Dynamic Intelligence",
+    "taglineSub": "Perangkat keras telemetri bersepeda presisi",
+    "quickLinks": "Tautan Cepat",
+    "legal": "Hukum",
+    "connect": "Terhubung",
+    "linksSoon": "Tautan segera hadir",
+    "disclaimer": "DIDI.BIKE — singkatan dari \"Data-Integrated Dynamic Intelligence\" — adalah merek teknologi olahraga independen tanpa afiliasi, asosiasi, atau dukungan dari perusahaan ride-hailing, transportasi, atau mobilitas mana pun. DIDI.BIKE adalah produsen perangkat keras telemetri bersepeda yang khusus dalam teknologi sensor untuk profiling aerodinamis dan analisis biomekanika.",
+    "copyright": "© 2026 DIDI.BIKE. Hak cipta dilindungi.",
+    "privacyPolicy": "Kebijakan Privasi",
+    "termsOfService": "Ketentuan Layanan",
+    "cookiePolicy": "Kebijakan Cookie",
+    "trademarkNotice": "Pemberitahuan Merek Dagang",
+    "home": "Beranda",
+    "technology": "Teknologi",
+    "specifications": "Spesifikasi",
+    "useCases": "Penggunaan",
+    "faq": "FAQ",
+    "blog": "Blog"
+  }
+}

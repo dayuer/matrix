@@ -1,0 +1,39 @@
+{% set d = block.data %}
+<section class="features-section" id="{{ d.anchor or 'thesis' }}">
+  <div class="section-container">
+    <div class="section-header" data-reveal>
+      <p class="section-header__label">{{ d.head.label }}</p>
+      <h2 class="section-header__title">{{ d.head.titleHtml | safe }}</h2>
+      <p class="section-header__desc">{{ d.head.desc }}</p>
+    </div>
+
+    <div class="bento-grid">
+      {% for card in d.cards %}
+        <div class="bento-card{% if card.variant %} bento-card--{{ card.variant }}{% endif %}" data-reveal>
+          {% if card.chart %}
+          <div class="bento-card__content">
+            <span class="bento-card__tag">{{ card.tag }}</span>
+            <h3 class="bento-card__title">{{ card.title }}</h3>
+            <p class="bento-card__desc">
+              {{ card.desc }}
+            </p>
+          </div>
+          <div class="bento-card__visual bento-card__visual--chart">
+            <div class="chart-mock">
+              {% for bar in card.chart.bars %}
+                <div class="chart-bar chart-bar--{{ bar.kind }}"><span>{{ bar.label }}</span></div>
+              {% endfor %}
+            </div>
+          </div>
+          {% else %}
+          <span class="bento-card__tag">{{ card.tag }}</span>
+          <h3 class="bento-card__title">{{ card.title }}</h3>
+          <p class="bento-card__desc">
+            {{ card.desc }}
+          </p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

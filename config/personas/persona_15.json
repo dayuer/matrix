@@ -1,0 +1,24 @@
+{
+  "id": "persona_15",
+  "name": "David Kim",
+  "gender": "Male",
+  "age": 30,
+  "country": "South Korea",
+  "ethnicity": "Korean",
+  "sexualOrientation": "Heterosexual",
+  "industry": "Consumer Electronics PM",
+  "knowledgeLevel": "Casual Hobbyist",
+  "interests": [
+    "Smart wearables",
+    "IMU data logging",
+    "App integration ecosystem"
+  ],
+  "biases": [
+    "Enjoys automated sync features",
+    "Dislikes manual configuration"
+  ],
+  "expectations": [
+    "Wants Strava and Garmin sync reviews",
+    "Values sleek app companion designs"
+  ]
+}

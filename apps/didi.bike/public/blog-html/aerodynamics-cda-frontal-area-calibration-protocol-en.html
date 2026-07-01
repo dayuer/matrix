@@ -1,0 +1,77 @@
+<h1>Calibrating Projected Frontal Area in Professional Cycling</h1>
+<h2>Step 1: Equipment Validation and Torque Tolerances</h2>
+<p>Working in the service course requires absolute mechanical precision. To establish a reliable aerodynamic profile, a mechanic must focus on mounting tolerances and structural rigidity. The projected frontal area of a rider represents the primary physical boundary opposing forward motion. Any slight shift in the position of handlebars, elbow cups, or the head unit alters the planimetric area, invalidating telemetry streams.</p>
+<p>Begin by inspecting the cockpit assembly. Tighten all fastening bolts to the exact torque specification. A calibrated digital torque wrench is required for this step. Refer to the specifications below for typical torque tolerances:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Component</th>
+<th align="left">Fastener Size</th>
+<th align="left">Torque Tolerance (Nm)</th>
+<th align="left">Thread Lock Class</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Handlebar Clamp</td>
+<td align="left">M5</td>
+<td align="left">5.0 - 5.5</td>
+<td align="left">Medium Blue</td>
+</tr>
+<tr>
+<td align="left">Stem Steerer Bolts</td>
+<td align="left">M5</td>
+<td align="left">5.0 - 6.0</td>
+<td align="left">Medium Blue</td>
+</tr>
+<tr>
+<td align="left">Aero Extension Clamps</td>
+<td align="left">M4</td>
+<td align="left">4.0 - 4.5</td>
+<td align="left">Medium Blue</td>
+</tr>
+<tr>
+<td align="left">Saddle Rail Clamp</td>
+<td align="left">M6</td>
+<td align="left">9.0 - 10.0</td>
+<td align="left">High Strength</td>
+</tr>
+<tr>
+<td align="left">Spindle Strain Gauge Cover</td>
+<td align="left">M3</td>
+<td align="left">1.0 - 1.2</td>
+<td align="left">Low Strength</td>
+</tr>
+</tbody></table>
+<p>Apply a high-quality thread lock to prevent fastener backing under high-frequency vibrations. Run a manual play/slop detection check by applying alternating vertical forces to the aero extensions. Any detected movement indicates incorrect mating, which will compromise the frontal area measurement.</p>
+<h2>Step 2: Strain Gauge Centering and Calibration Offset</h2>
+<p>High-precision telemetry relies on the synchronization of biomechanical output and physical sensors. When calibrating the on-bike hardware, strain gauge centering is mandatory. This process ensures that the physical strain induced on the crank arm or spindle maps linearly to the power telemetry stream. </p>
+<p>Before starting the test session, perform a manual calibration offset. The bike must be positioned on a flat surface with no load on the pedals. Rotate the drive side crank arm to the 6 o&#39;clock position. Trigger the zero-offset command on the diagnostics console. Repeat this step three times to verify the stability of the calibration offset value. If the offset value drifts by more than two counts between iterations, inspect the bottom bracket shell for dirt ingress or bearing play. The bottom bracket interface requires clean thread contact to eliminate parasitic drag.</p>
+<h2>Step 3: Aerodynamic Boundary Calibration and Alignment</h2>
+<p>Under wind tunnel or velodrome testing protocols, the projected frontal area is measured dynamically. The aerodynamic drag force vector opposing the rider accounts for over $90%$ of total resistance on flat terrain at speeds exceeding $40\text{ km/h}$. To calibrate the system for these velocities, we analyze the fluid behavior near the rider&#39;s boundary. </p>
+<p>The primary physical behavior is modeled by the dimensionless Reynolds number. This parameter dictates the transition of the air flow around the rider&#39;s limbs:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>R</mi><mi>e</mi><mo>=</mo><mfrac><mrow><mi>ρ</mi><mi>v</mi><mi>L</mi></mrow><mi>μ</mi></mfrac></mrow><annotation encoding="application/x-tex">Re = \frac{\rho v L}{\mu}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.2408em;vertical-align:-0.8804em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">μ</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">ρ</span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="mord mathnormal">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><p>Where:</p>
+<ul>
+<li>$Re$ represents the Reynolds Number, characterizing the transition from laminar to turbulent flow along the rider&#39;s limbs and skinsuit panels.</li>
+<li>$\rho$ is the local barometric air density, adjusted dynamically for altitude (e.g., during high-altitude Alpine passes or altitude training in St. Moritz, Switzerland).</li>
+<li>$v$ is the relative wind velocity vector entering the frontal area profile.</li>
+<li>$L$ is the characteristic length scale of the rider, defining the physical boundary length.</li>
+<li>$\mu$ is the dynamic viscosity of the ambient air, which varies with temperature.</li>
+</ul>
+<p>Proper system calibration requires updating these variables in the processing software. Use a portable weather station to record air temperature, pressure, and relative humidity. Calculate the dynamic viscosity and air density before updating the calibration parameters. Adjusting the skinsuit material boundary layer can delay flow separation, lowering the drag coefficient $C_d$ by up to $5%$.</p>
+<h2>Step 4: Environmental Sealing and Troubleshooting</h2>
+<p>On-road field testing exposes delicate electronics to water, dust, and sweat. Environmental sealing of all sensors, cables, and junction ports is mandatory. Apply silicone grease to the sealing rings of battery compartments. Ensure that the USB charging port covers are securely locked.</p>
+<p>During test runs, moisture can compromise sensor performance, leading to data dropouts. If telemetry values drop to zero, follow this troubleshooting sequence:</p>
+<ol>
+<li><strong>Examine connection terminals</strong>: Check for corrosion or water intrusion inside the junction box.</li>
+<li><strong>Verify battery levels</strong>: Replace coin cell batteries if the voltage drops below 2.8 Volts.</li>
+<li><strong>Perform firmware reset</strong>: Power cycle the transmitter module to clear the buffer.</li>
+<li><strong>Confirm mechanical torque</strong>: Ensure the mounting brackets have not slipped from their calibrated angles.</li>
+</ol>
+<p>Minimizing friction losses in the mechanical drivetrain remains a parallel priority. A dirty chain or worn ceramic bearings can mask the aerodynamic gains achieved by reducing the rider&#39;s frontal area. Standardize the cleaning and lubrication workflow before each calibration run.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.tandfonline.com/toc/rjsp20/current" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Journal of Sports Sciences</a>: Biomechanical analysis and mechanical efficiency in elite cycling.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: High-frequency telemetry and sensor fusion calibrations.</li>
+<li><a href="https://www.uci.org/inside-uci/constitutions-regulations/regulations" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">UCI Cycling Regulations</a>: Part I: General Organisation of Cycling as a Sport (Aero &amp; Frame dimensions limits).</li>
+<li><a href="https://scholar.google.com/scholar?q=High-altitude+hypoxic+adaptation+and+cardiorespiratory+kinetics" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Swiss Federal Institute of Sport Magglingen</a>: High-altitude hypoxic adaptation and cardiorespiratory kinetics.</li>
+</ol>

@@ -1,0 +1,33 @@
+{# 共享 <head> 元数据。由 page + site 变量驱动，域名只在 config 配置一次。 #}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="google" content="notranslate">
+<meta http-equiv="Content-Language" content="zh-CN">
+<title>{{ page.title }}</title>
+<meta name="description" content="{{ page.description }}">
+{% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}">{% endif %}
+<link rel="canonical" href="{{ site.baseUrl }}{{ page.canonical }}">
+
+{# Open Graph #}
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.brand.name }}">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="{{ page.ogTitle or page.title }}">
+<meta property="og:description" content="{{ page.ogDescription or page.description }}">
+<meta property="og:url" content="{{ site.baseUrl }}{{ page.canonical }}">
+<meta property="og:image" content="{{ site.baseUrl }}{{ page.ogImage }}">
+<meta property="og:image:alt" content="{{ page.ogImageAlt or site.brand.name }}">
+
+{# Twitter Card #}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page.ogTitle or page.title }}">
+<meta name="twitter:description" content="{{ page.ogDescription or page.description }}">
+<meta name="twitter:image" content="{{ site.baseUrl }}{{ page.ogImage }}">
+
+<link rel="icon" type="image/x-icon" href="{{ site.brand.favicon }}">
+{% if themeTokensCss %}<style id="theme-tokens">{{ themeTokensCss | safe }}</style>{% endif %}
+<link rel="stylesheet" href="{{ basePath }}/theme.css?v={{ assetVersion }}">
+
+{% if page.jsonLd %}
+<script type="application/ld+json">{{ page.jsonLd | dump | safe }}</script>
+{% endif %}

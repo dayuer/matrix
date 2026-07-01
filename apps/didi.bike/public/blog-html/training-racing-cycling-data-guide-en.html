@@ -1,0 +1,159 @@
+<h1>Training &amp; Racing with Cycling Data: A Guide</h1>
+<p>Modern cycling training and racing is built on data. Power meters, heart-rate monitors, aerodynamic sensors, and GPS units produce streams of numbers that, used well, turn guesswork into measurable, repeatable progress. We analyze the full data stack — from FTP testing and power zones to real-time CdA and race-day telemetry — so you can train, pace, and race with confidence.</p>
+<p>Cycling training data is the foundation every training plan, race strategy, and equipment choice rests on. The cyclist who understands their numbers recovers smarter, paces better, and squeezes more speed from the same fitness. Whether you are building a winter base or chasing a time-trial personal best, the metrics below are the levers you pull.</p>
+<h2>In this guide</h2>
+<p>This is the pillar for our <strong>Training &amp; Racing</strong> cluster. Each spoke below dives deeper into one facet of cycling data:</p>
+<ul>
+<li><a href="/en/blog/using-aero-data-in-training">Using Aero Data in Training</a></li>
+<li><a href="/en/blog/pacing-time-trial-cda">Pacing a Time Trial With CdA Data</a></li>
+<li><a href="/en/blog/triathlon-bike-leg-aero-strategy">Triathlon Bike Leg: Aero and Position Strategy</a></li>
+<li><a href="/en/blog/reading-your-ride-data">Reading Your Ride Data: A Beginner&#39;s Guide</a></li>
+<li><a href="/en/blog/telemetry-race-day-decisions">Using Telemetry for Race-Day Decisions</a></li>
+<li><a href="/en/blog/cycling-interval-design">Interval Design: Structure for Adaptation</a></li>
+<li><a href="/en/blog/ftp-testing-protocol">FTP Testing Protocol</a></li>
+<li><a href="/en/blog/heat-and-altitude-cycling">Heat and Altitude for Cycling</a></li>
+<li><a href="/en/blog/tapering-cycling-peak">Tapering for a Cycling Peak</a></li>
+<li><a href="/en/blog/cycling-pacing-strategies">Cycling Pacing Strategies</a></li>
+<li><a href="/en/blog/wind-awareness-racing">Wind Awareness in Racing</a></li>
+<li><a href="/en/blog/data-driven-cycling-coaching">Data-Driven Cycling Coaching</a></li>
+</ul>
+<h2>The core metrics</h2>
+<h3>Power (watts)</h3>
+<p>Power is the single most important metric in modern cycling. Measured at the crank, pedal, or hub, it tells you exactly how much mechanical work you are doing in real time, independent of gradient, wind, or fatigue. Heart rate, by contrast, lags effort and is influenced by sleep, caffeine, and heat.</p>
+<p>The key derived metrics:</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>What it tells you</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FTP (Functional Threshold Power)</td>
+<td>~1-hour sustainable power</td>
+<td>Sets all training zones</td>
+</tr>
+<tr>
+<td>Normalized Power (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">NP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span></span></span></span>)</td>
+<td>The metabolic cost of a variable ride</td>
+<td>Gauges hard, stochastic efforts</td>
+</tr>
+<tr>
+<td>Intensity Factor (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mi>F</mi></mrow><annotation encoding="application/x-tex">IF</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span></span></span></span>)</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mi>F</mi><mo>=</mo><mi>N</mi><mi>P</mi><mi mathvariant="normal">/</mi><mi>F</mi><mi>T</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">IF = NP / FTP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span></span></span></span></td>
+<td>How hard a session was relative to your threshold</td>
+</tr>
+<tr>
+<td>Training Stress Score (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>S</mi><mi>S</mi></mrow><annotation encoding="application/x-tex">TSS</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span></span></span></span>)</td>
+<td>Training load of a ride</td>
+<td>Tracks fatigue and fitness over time</td>
+</tr>
+</tbody></table>
+<p>Normalized Power is calculated from a 30-second rolling average of power, raised to the fourth power, averaged, then rooted:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>N</mi><mi>P</mi><mo>=</mo><mroot><mrow><mfrac><mn>1</mn><mi>N</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msubsup><mover accent="true"><mi>P</mi><mo>ˉ</mo></mover><mrow><mn>30</mn><mo separator="true">,</mo><mi>i</mi></mrow><mrow><mtext> </mtext><mn>4</mn></mrow></msubsup></mrow><mn>4</mn></mroot></mrow><annotation encoding="application/x-tex">NP = \sqrt[4]{\frac{1}{N}\sum_{i=1}^{N} \bar{P}_{30,i}^{\,4}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:3.3338em;vertical-align:-1.2777em;"></span><span class="mord sqrt"><span class="root"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7893em;"><span style="top:-2.9671em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size6 size1 mtight"><span class="mord mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.0561em;"><span class="svg-align" style="top:-5.2938em;"><span class="pstrut" style="height:5.2938em;"></span><span class="mord" style="padding-left:1.056em;"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.109em;">N</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8201em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span></span><span style="top:-3.2523em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1667em;"><span class="mord">ˉ</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7959em;"><span style="top:-2.4231em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">30</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">i</span></span></span></span><span style="top:-3.0448em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mspace mtight" style="margin-right:0.1952em;"></span><span class="mord mtight">4</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.413em;"><span></span></span></span></span></span></span></span></span><span style="top:-4.0161em;"><span class="pstrut" style="height:5.2938em;"></span><span class="hide-tail" style="min-width:0.742em;height:3.3738em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="3.3738em" viewBox="0 0 400000 3373" preserveAspectRatio="xMinYMin slice"><path d="M702 80H40000040
+H742v3239l-4 4-4 4c-.667.7 -2 1.5-4 2.5s-4.167 1.833-6.5 2.5-5.5 1-9.5 1
+h-12l-28-84c-16.667-52-96.667 -294.333-240-727l-212 -643 -85 170
+c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
+219 661 l218 661zM702 80H400000v40H742z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span></span></span></span></span><p>This fourth-power weighting is why surges and attacks feel disproportionately costly — the math rewards steady pacing.</p>
+<h3>Heart rate</h3>
+<p>Heart rate (HR) remains valuable because it reflects the body&#39;s actual response to work, not just the demand. Use it alongside power to track cardiac drift, assess fatigue, and detect the effects of heat or dehydration. A rising HR at a fixed power often signals accumulating fatigue or thermal stress.</p>
+<h3>Cadence and torque</h3>
+<p>Cadence influences muscle fiber recruitment and fatigue. Most trained cyclists self-select 80–100 rpm on the flats. Torque data (from a power meter) reveals force per pedal stroke and is useful for low-cadence strength work and starts.</p>
+<h2>Power zones</h2>
+<p>Training zones are defined as percentages of FTP. The classic seven-zone model:</p>
+<table>
+<thead>
+<tr>
+<th>Zone</th>
+<th>Name</th>
+<th>% of FTP</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Active Recovery</td>
+<td>&lt; 55%</td>
+<td>Recovery, blood flow</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Endurance</td>
+<td>56–75%</td>
+<td>Aerobic base building</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Tempo</td>
+<td>76–90%</td>
+<td>Sustained aerobic power</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Sweet Spot / Threshold</td>
+<td>91–105%</td>
+<td>Raise FTP</td>
+</tr>
+<tr>
+<td>5</td>
+<td>VO₂max</td>
+<td>106–120%</td>
+<td>Maximal aerobic power</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Anaerobic Capacity</td>
+<td>121–150%</td>
+<td>Short, intense efforts</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Neuromuscular</td>
+<td>&gt; 150%</td>
+<td>Sprints, starts</td>
+</tr>
+</tbody></table>
+<p>Spending time in the right zone is what drives adaptation. See <a href="/en/blog/cycling-interval-design">Interval Design: Structure for Adaptation</a> for how to build sessions, and <a href="/en/blog/reading-your-ride-data">Reading Your Ride Data</a> for how to interpret them afterward.</p>
+<h2>Establishing your numbers: FTP testing</h2>
+<p>Everything starts with an accurate FTP. Without it, your zones are guesses. A structured test — typically a 20-minute effort with a 5-minute blowout beforehand, or a ramp test to exhaustion — gives you the baseline. Redo it every 6–8 weeks or after a meaningful training block.</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>F</mi><mi>T</mi><mi>P</mi><mo>≈</mo><mn>0.95</mn><mo>×</mo><msub><mi>P</mi><mrow><mn>20</mn><mtext>min</mtext></mrow></msub></mrow><annotation encoding="application/x-tex">FTP \approx 0.95 \times P_{20\text{min}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0.95</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3175em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">20</span><span class="mord text mtight"><span class="mord mtight">min</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span><p>For the full protocol, warm-up procedure, and how to avoid common pitfalls, read <a href="/en/blog/ftp-testing-protocol">FTP Testing Protocol</a>.</p>
+<h2>Aerodynamics: the CdA lever</h2>
+<p>Above roughly 20 km/h, aerodynamic drag dominates. Your aerodynamic drag area, CdA, is measured in m² and is the product of the drag coefficient (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>d</mi></msub></mrow><annotation encoding="application/x-tex">C_d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>) and frontal area (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span>). Reducing CdA is often the cheapest way to gain speed — no fitness required.</p>
+<p>A reduction in CdA of just 0.010 m² can save 25–40 watts at 40 km/h depending on rider size. Compare that to the months of training needed to add 25 W of threshold power, and the appeal is obvious.</p>
+<p>Historically, measuring CdA required a wind tunnel or a velodrome field test. Now, on-road aero sensors like the <strong>DIDI.BIKE</strong> sensor deliver real-time CdA during normal riding. It pairs a 6-axis IMU sampling at 100 Hz with barometric and positional data to isolate your drag from wind and gradient noise, then streams live CdA, posture, and telemetry to Garmin head units, Wahoo computers, Strava, and TrainingPeaks. At $299 it turns aero optimization from a once-a-year lab visit into a daily training tool.</p>
+<p>For how to put that data to work, see <a href="/en/blog/using-aero-data-in-training">Using Aero Data in Training</a> and <a href="/en/blog/pacing-time-trial-cda">Pacing a Time Trial With CdA Data</a>.</p>
+<h2>Race-day application: pacing and telemetry</h2>
+<p>Fitness only converts to results if you pace well. Time trials, triathlon bike legs, and breakaways all reward even or negative-split efforts — the fourth-power math in <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">NP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span></span></span></span> punishes surges.</p>
+<p>Real-time telemetry takes this further. Knowing your live CdA, speed, power, and gradient lets you hold a target on rolling courses, adjust for headwind sectors, and avoid the death-surge out of every corner. <a href="/en/blog/telemetry-race-day-decisions">Using Telemetry for Race-Day Decisions</a> and <a href="/en/blog/cycling-pacing-strategies">Cycling Pacing Strategies</a> cover the practical playbook.</p>
+<h3>Triathlon considerations</h3>
+<p>In a triathlon, the bike leg must leave enough for the run. That means riding to a capped Intensity Factor (often <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mi>F</mi><mo>≈</mo><mn>0.80</mn><mo lspace="0em" rspace="0em">−</mo><mn>0.85</mn></mrow><annotation encoding="application/x-tex">IF \approx 0.80{-}0.85</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0.80</span><span class="mord"><span class="mord">−</span></span><span class="mord">0.85</span></span></span></span> for long course) and minimizing aero drag without burning leg strength holding an aggressive position. <a href="/en/blog/triathlon-bike-leg-aero-strategy">Triathlon Bike Leg: Aero and Position Strategy</a> details the trade-offs.</p>
+<h2>Managing the bigger variables: heat, altitude, and tapering</h2>
+<p>Data-driven training also means accounting for environmental and biological context:</p>
+<ul>
+<li><strong>Heat</strong> raises heart rate and reduces sustainable power; acclimation shifts these back over 7–14 days. See <a href="/en/blog/heat-and-altitude-cycling">Heat and Altitude for Cycling</a>.</li>
+<li><strong>Altitude</strong> lowers VO₂max and FTP acutely; live-high/train-low protocols build adaptations over weeks.</li>
+<li><strong>Tapering</strong> reduces training load (~40–60% volume, intensity preserved) in the final 7–14 days to shed fatigue while keeping fitness. See <a href="/en/blog/tapering-cycling-peak">Tapering for a Cycling Peak</a>.</li>
+</ul>
+<h2>Coaching with data</h2>
+<p>A coach — or a data-driven self-coaching framework — turns the stream of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>S</mi><mi>S</mi></mrow><annotation encoding="application/x-tex">TSS</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mi>F</mi></mrow><annotation encoding="application/x-tex">IF</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span></span></span></span>, and CdA numbers into a coherent plan. The goal is balancing chronic training load (fitness), acute load (fatigue), and form so you arrive at key events sharp. Read <a href="/en/blog/data-driven-cycling-coaching">Data-Driven Cycling Coaching</a> for how to use the PMC (Performance Management Chart) and related tools.</p>
+<h2>Putting it together</h2>
+<p>The complete picture of cycling performance is a stack: accurate FTP sets your zones, structured intervals build fitness, aero data finds free speed, and telemetry turns all of it into smart race execution. No single metric is magic — but together they remove the guesswork that wastes years of amateur racing.</p>
+<p>Start where you have the biggest gap. If you have never done a proper FTP test, start there. If you train hard but never look at your files, learn to <a href="/en/blog/reading-your-ride-data">read your ride data</a>. If you are already fast but losing time into headwinds, invest in aero. The data will show you the next step.</p>
+<h2>FAQ</h2>
+<p><strong>What cycling data matters most for training?</strong>
+Power (watts), heart rate, cadence, and time-in-zone are the core metrics. Power is the most objective measure of workload because it is unaffected by fatigue, heat, or caffeine, unlike heart rate.</p>
+<p><strong>How often should I test my FTP?</strong>
+Test every 6 to 8 weeks, or whenever your training stimulus changes significantly. Avoid testing during a taper or after a hard block.</p>
+<p><strong>What is CdA and why does it matter for racing?</strong>
+CdA (drag area) quantifies your aerodynamic resistance. Lowering CdA by 0.005 m² can save roughly 20 to 30 watts at race speed, making it one of the largest free speed gains available.</p>
+<p><strong>Do I need a power meter to train effectively?</strong>
+A power meter unlocks the most precise training, but structured heart-rate and RPE-based plans still work well, especially for beginners.</p>
+<p><strong>How does the DIDI.BIKE sensor fit into training and racing?</strong>
+The DIDI.BIKE sensor provides real-time CdA, 6-axis IMU posture data at 100 Hz, and telemetry that streams to Garmin, Wahoo, Strava, and TrainingPeaks, letting you train and race with live aerodynamic feedback.</p>
+<h2>References</h2>
+<ol>
+<li><em>Medicine &amp; Science in Sports &amp; Exercise</em>: Modeling anaerobic work capacity (W&#39;) and fatigue dynamics.</li>
+<li><em>International Journal of Sports Physiology and Performance</em>: Altitude training block dynamics and VO2max recovery.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: Realtime physiological telemetry and training stress balance tracking.</li>
+</ol>

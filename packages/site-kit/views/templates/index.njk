@@ -1,0 +1,13 @@
+{#
+  平台级通用首页/归档兜底模板（resolveTemplate 的最后候选）。
+  与 page.njk 同构：按 page.blocks 分发渲染，主题可用自己的 templates/home.njk 等覆盖。
+#}
+{% extends "layout.njk" %}
+
+{% block content %}
+<main class="home" id="main">
+  {% for block in page.blocks %}
+    {% include "blocks/" + block.type + ".njk" ignore missing %}
+  {% endfor %}
+</main>
+{% endblock %}

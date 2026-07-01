@@ -1,0 +1,185 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+{% set homePrefix = '/' + locale %}
+{% set isId = locale == 'id' %}
+
+{% set specs = [
+  { 
+    category: 'Fisik' if isId else 'Physical', 
+    items: [
+      ['Berat' if isId else 'Weight', '14g (without mount)'],
+      ['Dimensi' if isId else 'Dimensions', '42 × 28 × 12mm'],
+      ['Bahan Casing' if isId else 'Housing', 'Carbon-reinforced polymer'],
+      ['Dudukan' if isId else 'Mount', 'Klip rel sadel (kompatibel bulat 7mm & oval 9mm)' if isId else 'Saddle rail clip (7mm, 9mm oval compatible)'],
+      ['Ketahanan Air' if isId else 'Water Resistance', 'IPX7 (submersible to 1m / 30 min)'],
+      ['Suhu Operasional' if isId else 'Operating Temperature', '−10°C to 60°C']
+    ]
+  },
+  { 
+    category: 'Sensor' if isId else 'Sensors', 
+    items: [
+      ['IMU', 'Bosch BMI270 — 6-axis (3× accelerometer, 3× gyroscope)'],
+      ['Frekuensi Sampel' if isId else 'Sampling Rate', '100Hz per axis (600 data points/sec total)'],
+      ['Presisi Sudut' if isId else 'Angular Precision', '±0.1°'],
+      ['Barometer', 'Bosch BMP390 — ±0.1m altitude accuracy'],
+      ['Strain Gauge' if isId else 'Strain Gauges', '4× bonded foil, full Wheatstone bridge'],
+      ['Rentang Gaya' if isId else 'Force Range', '0–2000N with 0.5N resolution']
+    ]
+  },
+  { 
+    category: 'Prosesor & Memori' if isId else 'Processor & Memory', 
+    items: [
+      ['SoC', 'Nordic nRF52840 — ARM Cortex-M4F @ 64MHz'],
+      ['RAM', '256KB'],
+      ['Flash', '1MB internal + 8MB eksternal (perekaman data)' if isId else '1MB internal + 8MB external (data logging)'],
+      ['Fusi Sensor' if isId else 'Sensor Fusion', 'Extended Kalman filter, latensi <10ms' if isId else 'Extended Kalman filter, <10ms latency']
+    ]
+  },
+  { 
+    category: 'Konektivitas' if isId else 'Connectivity', 
+    items: [
+      ['Bluetooth', 'LE 5.0 (koneksi ganda, hingga 3 perangkat)' if isId else 'LE 5.0 (multi-connection, up to 3 devices)'],
+      ['ANT+', 'Siaran saluran ganda' if isId else 'Dual-channel broadcast'],
+      ['Ekspor Data' if isId else 'Data Export', 'Format file .FIT (standar industri)' if isId else '.FIT file format (standard)'],
+      ['USB', 'USB-C untuk pengisian daya & pembaruan firmware' if isId else 'USB-C for charging & firmware updates'],
+      ['Pembaruan OTA' if isId else 'OTA Updates', 'Ya, melalui aplikasi pendamping' if isId else 'Yes, via companion app']
+    ]
+  },
+  { 
+    category: 'Daya & Baterai' if isId else 'Power', 
+    items: [
+      ['Baterai' if isId else 'Battery', '110mAh LiPo'],
+      ['Daya Tahan' if isId else 'Runtime', '40 jam (perekaman terus-menerus)' if isId else '40 hours (continuous recording)'],
+      ['Waktu Siaga' if isId else 'Standby', '6 bulan' if isId else '6 months'],
+      ['Pengisian Daya' if isId else 'Charging', 'USB-C, 45 menit hingga penuh' if isId else 'USB-C, 45 min to full'],
+      ['Siklus Pengisian' if isId else 'Charging Cycles', '500+ siklus hingga kapasitas 80%' if isId else '500+ cycles to 80% capacity']
+    ]
+  },
+  { 
+    category: 'Metrik Hasil Komputasi' if isId else 'Computed Metrics', 
+    items: [
+      ['CdA (Drag Coefficient × Area)', 'Real-time, ±2% dibandingkan terowongan angin' if isId else 'Real-time, ±2% vs wind tunnel'],
+      ['Deteksi Posisi Tubuh' if isId else 'Body Position', 'Hoods / drops / aero / climbing — terdeteksi otomatis' if isId else 'Hoods / drops / aero / climbing — auto-detected'],
+      ['Dinamika Pengayuhan' if isId else 'Pedaling Dynamics', 'Cadence, kehalusan, keseimbangan kiri-kanan' if isId else 'Cadence, smoothness, left-right balance'],
+      ['Estimasi Daya' if isId else 'Power Estimation', 'Daya virtual dari model gaya + kecepatan' if isId else 'Virtual power from force + velocity model'],
+      ['Ketinggian & Kemiringan' if isId else 'Altitude & Gradient', 'Barometrik, dikoreksi dengan GPS' if isId else 'Barometric, corrected against GPS'],
+      ['Kondisi Lingkungan' if isId else 'Environmental', 'Kepadatan udara, kompensasi suhu' if isId else 'Air density, temperature-compensated']
+    ]
+  }
+] %}
+
+{% set compat = [
+  { 
+    category: 'Komputer Sepeda' if isId else 'Head Units', 
+    devices: ['Garmin Edge 540/840/1040', 'Wahoo ELEMNT BOLT/ROAM', 'Hammerhead Karoo 2/3', 'Bryton Rider S800', 'Sigma ROX 12.1'] 
+  },
+  { 
+    category: 'Perangkat Lunak' if isId else 'Software', 
+    devices: ['Strava', 'TrainingPeaks', 'Golden Cheetah', 'intervals.icu', 'TrainerRoad', 'Zwift', 'WKO5'] 
+  },
+  { 
+    category: 'Aplikasi Seluler' if isId else 'Mobile', 
+    devices: ['Aplikasi DIDI.BIKE (iOS 15+ / Android 12+)' if isId else 'DIDI.BIKE App (iOS 15+ / Android 12+)', 'Garmin Connect', 'Wahoo ELEMNT App'] 
+  }
+] %}
+
+{% set boxItems = [
+  'Sensor DIDI.BIKE (14g)' if isId else 'DIDI.BIKE Sensor (14g)',
+  'Dudukan rel sadel (adaptor 7mm & 9mm)' if isId else 'Saddle rail mount (7mm & 9mm adapters)',
+  'Kabel pengisi daya USB-C (30cm)' if isId else 'USB-C charging cable (30cm)',
+  'Panduan memulai cepat' if isId else 'Quick start guide',
+  'Sertifikat kalibrasi (unit individu)' if isId else 'Calibration certificate (individual unit)',
+  'Kunci L untuk penyesuaian dudukan' if isId else 'Hex key for mount adjustment'
+] %}
+
+<!-- Breadcrumbs Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ site.baseUrl or 'https://didi.bike' }}{{ homePrefix }}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ 'Spesifikasi' if isId else 'Specifications' }}",
+      "item": "{{ site.baseUrl or 'https://didi.bike' }}{{ homePrefix }}/specs"
+    }
+  ]
+}
+</script>
+
+<div class="specs-main">
+  <!-- Hero Section -->
+  <section class="specs-hero">
+    <div class="container">
+      <span class="specs-badge">{{ 'Spesifikasi' if isId else 'Specifications' }}</span>
+      <h1 class="specs-page-title">
+        {{ 'Setiap Detail, Tanpa Rekayasa.' if isId else 'Every Detail, No Fluff.' }}
+      </h1>
+      <p class="specs-hero-desc">
+        {{ 'Kami mempublikasikan spesifikasi lengkap karena kami yakin Anda harus tahu persis apa yang Anda beli. Tidak ada klaim pemasaran yang samar — hanya angka.' if isId else "We publish full specs because we think you should know exactly what you're buying before you buy it. No vague marketing claims — just numbers." }}
+      </p>
+    </div>
+  </section>
+
+  <!-- Spec Tables -->
+  <section class="specs-section">
+    <div class="container">
+      {% for cat in specs %}
+        <div class="specs-spec-block">
+          <h2 class="specs-spec-category">{{ cat.category }}</h2>
+          <div class="specs-spec-table">
+            {% for item in cat.items %}
+              <div class="specs-spec-row">
+                <span class="specs-spec-label">{{ item[0] }}</span>
+                <span class="specs-spec-value">{{ item[1] }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Compatibility -->
+  <section class="specs-section specs-section-alt">
+    <div class="container">
+      <h2 class="specs-section-title">{{ 'Kompatibilitas' if isId else 'Compatibility' }}</h2>
+      <p class="specs-section-desc">
+        {{ 'Jika perangkat Anda mendukung ANT+ atau Bluetooth, itu akan berfungsi. Tanpa dongle khusus, tanpa aplikasi wajib untuk fungsi dasar.' if isId else 'If your device speaks ANT+ or Bluetooth, it works. No proprietary dongles, no companion app required for basic functionality.' }}
+      </p>
+      <div class="specs-compat-grid">
+        {% for cat in compat %}
+          <div class="specs-compat-block">
+            <h3>{{ cat.category }}</h3>
+            <ul>
+              {% for d in cat.devices %}
+                <li>{{ d }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Box Contents -->
+  <section class="specs-section">
+    <div class="container">
+      <h2 class="specs-section-title">{{ 'Apa yang Ada di Dalam Kotak' if isId else "What's In the Box" }}</h2>
+      <div class="specs-box-grid">
+        {% for item in boxItems %}
+          <div class="specs-box-item">{{ item }}</div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

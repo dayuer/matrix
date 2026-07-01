@@ -1,0 +1,132 @@
+<h1>TrainingPeaks Data Sync Explained</h1>
+<p>TrainingPeaks is the platform of choice for structured, coach-driven training. Syncing your DIDI.BIKE rides into it means every power, cadence, and heart-rate sample lands in a system that turns the data into planned workouts, fitness tracking, and fatigue management. We break down how to set up TrainingPeaks data sync and how to read the metrics it produces.</p>
+<h2>Why TrainingPeaks over (or alongside) Strava</h2>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Strava</th>
+<th>TrainingPeaks</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Focus</td>
+<td>Social, segments</td>
+<td>Coaching, planning</td>
+</tr>
+<tr>
+<td>Planned workouts</td>
+<td>No</td>
+<td>Yes, with structured intervals</td>
+</tr>
+<tr>
+<td>Performance Management Chart</td>
+<td>Basic (premium)</td>
+<td>Full CTL/ATL/TSB model</td>
+</tr>
+<tr>
+<td>Coach–athlete sharing</td>
+<td>Limited</td>
+<td>Native</td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>Free / Premium</td>
+<td>Free / Premium</td>
+</tr>
+</tbody></table>
+<p>Many riders run both: Strava for community, TrainingPeaks for the training plan. Because both can pull from the same head-unit account, the DIDI.BIKE sensor feeds both with no extra effort.</p>
+<h2>Method 1: Auto-sync through a head-unit account</h2>
+<p>This is the recommended, hands-off approach.</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Pair the DIDI.BIKE sensor to your Garmin or Wahoo head unit</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Sign in to TrainingPeaks and open <strong>Settings → Account → Devices &amp; Apps</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Find <strong>Garmin Connect</strong> or <strong>Wahoo ELEMNT</strong> and click <strong>Connect</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Authorize the link</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Finish a ride and sync the head unit to its companion app — the ride lands in TrainingPeaks within minutes</td>
+</tr>
+</tbody></table>
+<p>From then on, every ride uploads automatically with all sensor channels intact.</p>
+<h2>Method 2: Direct file upload</h2>
+<p>For a ride that did not auto-sync, upload the <code>.fit</code> file manually:</p>
+<ol>
+<li>Export the <code>.fit</code> file from the head unit or companion app.</li>
+<li>In TrainingPeaks, click <strong>+ Add Workout</strong> (top-right calendar).</li>
+<li>Choose <strong>Upload File</strong> and select the <code>.fit</code>.</li>
+<li>Confirm the date, activity type, and title.</li>
+</ol>
+<p>Always use <code>.fit</code>. A <code>.gpx</code> will import the route but strip the power, cadence, and heart-rate data that TrainingPeaks needs for its analytics.</p>
+<h2>Reading the Performance Management Chart</h2>
+<p>The Performance Management Chart (PMC) is the heart of TrainingPeaks. It models fitness and fatigue from your training load using exponentially weighted moving averages of daily TSS:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>CTL</mtext><mo>=</mo><msub><mtext>TSS</mtext><mtext>today</mtext></msub><mo>⋅</mo><mfrac><mn>1</mn><mn>42</mn></mfrac><mo>+</mo><msub><mtext>CTL</mtext><mtext>yesterday</mtext></msub><mo>⋅</mo><mrow><mo fence="true">(</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><mn>42</mn></mfrac><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\text{CTL} = \text{TSS}_{\text{today}} \cdot \frac{1}{42} + \text{CTL}_{\text{yesterday}} \cdot \left(1 - \frac{1}{42}\right)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">CTL</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord text"><span class="mord">TSS</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">today</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">42</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord text"><span class="mord">CTL</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">yesterday</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">42</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span></span></span></span></span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>ATL</mtext><mo>=</mo><msub><mtext>TSS</mtext><mtext>today</mtext></msub><mo>⋅</mo><mfrac><mn>1</mn><mn>7</mn></mfrac><mo>+</mo><msub><mtext>ATL</mtext><mtext>yesterday</mtext></msub><mo>⋅</mo><mrow><mo fence="true">(</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><mn>7</mn></mfrac><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\text{ATL} = \text{TSS}_{\text{today}} \cdot \frac{1}{7} + \text{ATL}_{\text{yesterday}} \cdot \left(1 - \frac{1}{7}\right)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">ATL</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord text"><span class="mord">TSS</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">today</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">7</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord text"><span class="mord">ATL</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">yesterday</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">7</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span></span></span></span></span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>TSB</mtext><mo>=</mo><mtext>CTL</mtext><mo>−</mo><mtext>ATL</mtext></mrow><annotation encoding="application/x-tex">\text{TSB} = \text{CTL} - \text{ATL}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">TSB</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord text"><span class="mord">CTL</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">ATL</span></span></span></span></span></span><p>Where:</p>
+<ul>
+<li><strong>CTL (Chronic Training Load)</strong> — fitness, a 42-day weighted average of TSS.</li>
+<li><strong>ATL (Acute Training Load)</strong> — fatigue, a 7-day weighted average.</li>
+<li><strong>TSB (Training Stress Balance)</strong> — form, the difference between fitness and fatigue. A slightly negative TSB means you are training hard; a positive TSB means you are tapered and ready to perform.</li>
+</ul>
+<p>Accurate TSS depends on accurate power, which is why sensor calibration matters. The DIDI.BIKE sensor&#39;s stable wattage keeps your CTL trend honest.</p>
+<h2>Setting your zones</h2>
+<p>TrainingPeaks applies your thresholds to every synced ride. To configure them:</p>
+<ol>
+<li>Go to <strong>Account → Zones</strong>.</li>
+<li>Under <strong>Power</strong>, enter your FTP (functional threshold power).</li>
+<li>Under <strong>Heart Rate</strong>, enter your lactate threshold heart rate (LTHR) or max HR, depending on the model you prefer.</li>
+<li>Save. Past rides recompute against the new zones automatically.</li>
+</ol>
+<p>Revisit these numbers every 4–6 weeks, or whenever you do a fresh FTP test, so the metrics reflect your current fitness.</p>
+<h2>Working with a coach</h2>
+<p>If you have a coach, TrainingPeaks is built for the relationship:</p>
+<ul>
+<li>Your coach builds structured workouts and pushes them to your head unit&#39;s calendar (Garmin and Wahoo both support workout sync).</li>
+<li>Your completed rides, with full sensor data, appear on the coach&#39;s dashboard automatically.</li>
+<li>The coach adjusts future workouts based on your TSB trend and the power profile of each ride.</li>
+</ul>
+<p>No manual file-sharing is required once the accounts are linked.</p>
+<h2>Troubleshooting</h2>
+<p><strong>Sync stopped working</strong>: in TrainingPeaks, go to <strong>Settings → Devices &amp; Apps</strong> and click <strong>Disconnect</strong>, then <strong>Connect</strong> again to refresh the authorization token.</p>
+<p><strong>Power missing from the activity</strong>: you uploaded a <code>.gpx</code> instead of <code>.fit</code>. Re-upload the original <code>.fit</code> file.</p>
+<p><strong>Duplicate rides</strong>: if both Garmin Connect and the DIDI.BIKE companion app push the same activity, delete the duplicate and disable one source.</p>
+<p>For deeper, free analysis outside the TrainingPeaks subscription paywall, export the same rides to Golden Cheetah — see <a href="/en/blog/golden-cheetah-cycling-analysis">Golden Cheetah Cycling Analysis</a>.</p>
+<h2>Related articles</h2>
+<ul>
+<li><a href="/en/blog/cycling-data-ecosystem-guide">The Cycling Data Ecosystem: Integrations &amp; API Guide</a></li>
+<li><a href="/en/blog/export-ride-data-strava">How to Export and Analyze Rides on Strava</a></li>
+<li><a href="/en/blog/intervals-icu-cycling">Intervals.icu Cycling</a></li>
+<li><a href="/en/blog/golden-cheetah-cycling-analysis">Golden Cheetah Cycling Analysis</a></li>
+</ul>
+<h2>FAQ</h2>
+<p><strong>How do I sync DIDI.BIKE rides to TrainingPeaks?</strong>
+The simplest path is auto-sync: pair the sensor to a Garmin or Wahoo head unit, then connect that device&#39;s account (Garmin Connect or Wahoo) to TrainingPeaks under Settings &gt; Account &gt; Sync. Rides flow in automatically after each ride.</p>
+<p><strong>Does TrainingPeaks support power, cadence, and heart rate from the sensor?</strong>
+Yes. When the uploaded .fit file includes those channels — which it does when recorded from the DIDI.BIKE sensor — TrainingPeaks displays full power curves, heart-rate zones, and cadence distribution in the activity detail view.</p>
+<p><strong>What is the difference between TrainingPeaks and Strava for analysis?</strong>
+Strava is social and segment-focused, while TrainingPeaks is built around structured coaching: planned workouts, the Performance Management Chart (CTL/ATL/TSB), and metrics like normalized power and efficiency factor that drive training decisions.</p>
+<p><strong>Can a coach see my rides automatically?</strong>
+Yes. Once your TrainingPeaks account is connected to a coach&#39;s account, every synced ride — including power data from the DIDI.BIKE sensor — appears in the coach&#39;s dashboard immediately after upload.</p>
+<p><strong>Why is my trainingpeaks data sync missing the power channel?</strong>
+The uploaded file is likely a .gpx, which drops power. Re-export the original .fit file from your head unit or companion app and re-upload — TrainingPeaks will then populate the power analysis.</p>
+<h2>References</h2>
+<ol>
+<li><em>Wireless Communications and Mobile Computing</em>: ANT+ vs BLE latency profiles in dynamic environments.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: API data retention, FIT file streaming, and developer SDK structures.</li>
+</ol>

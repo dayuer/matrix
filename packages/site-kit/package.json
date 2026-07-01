@@ -1,0 +1,33 @@
+{
+  "name": "@matrix/site-kit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "内容矩阵共享内核：Nunjucks 渲染运行时、静态导出、sitemap/robots 生成与部署模板。各站点退化为一份 site 配置 + 内容。",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@matrix/blocks": "1.0.0",
+    "compression": "^1.7.4",
+    "express": "^4.19.2",
+    "nunjucks": "^3.2.4"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.7.5",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.0",
+    "@types/nunjucks": "^3.2.6",
+    "typescript": "^5.5.0"
+  }
+}

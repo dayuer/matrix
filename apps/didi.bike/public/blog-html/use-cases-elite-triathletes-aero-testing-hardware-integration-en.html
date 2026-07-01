@@ -1,0 +1,107 @@
+<h1>Telemetry Hardware Stack: Sensors, Data Pipelines, and Register Mapping</h1>
+<p>The hardware architecture for real-world drag coefficient estimation requires real-time data fusion. This document describes the sensor telemetry specs, register mappings, and the math governing our calculations. Verify parameters.</p>
+<h2>Data Pipeline Architecture and Telemetry Routing</h2>
+<p>The system routes high-frequency data streams to an onboard memory card, while sending 1 Hz telemetry packets via ANT+ and BLE:</p>
+<pre><code>┌─────────────────────┐     ANT+ / BLE     ┌──────────────────┐
+│  DIDI.BIKE Sensor   │ ◄────────────────► │   GPS Head Unit  │
+│  (IMU + Baro)       │                     │   (Garmin/Wahoo) │
+└────────┬────────────┘                     └────────┬─────────┘
+         │ 100 Hz raw                                │ 1 Hz .FIT
+         │ data stream                               │
+         ▼                                           ▼
+┌─────────────────────┐                     ┌──────────────────┐
+│  Onboard Flash      │                     │  Head Unit .FIT  │
+│  (16 MB, ~8 hrs)    │                     │  file export     │
+└────────┬────────────┘                     └────────┬─────────┘
+         │ USB / BLE export                          │
+         ▼                                           ▼
+┌──────────────────────────────────────────────────────────────┐
+│                   Analysis Software                          │
+│  Merge: 100 Hz IMU/baro + 1 Hz power/speed/GPS              │
+│  Output: CdA per lap, air density, vibration metrics         │
+└──────────────────────────────────────────────────────────────┘
+</code></pre>
+<h2>Sensor Specifications and Register Maps</h2>
+<p>Our sensor integrates a 6-axis inertial measurement unit (IMU) and a digital pressure sensor connected via a shared bus. Confirm the setup.</p>
+<h3>Telemetry Register Definition and Sensor Specifications</h3>
+<table>
+<thead>
+<tr>
+<th>I2C Register Address</th>
+<th>Register Name</th>
+<th>Data Type &amp; Range</th>
+<th>UART Buffer Frame Offset</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>0x10</code></td>
+<td><code>ACCEL_X_OUT</code></td>
+<td>16-bit signed integer (±16 g)</td>
+<td>Byte 2-3</td>
+</tr>
+<tr>
+<td><code>0x12</code></td>
+<td><code>ACCEL_Y_OUT</code></td>
+<td>16-bit signed integer (±16 g)</td>
+<td>Byte 4-5</td>
+</tr>
+<tr>
+<td><code>0x14</code></td>
+<td><code>ACCEL_Z_OUT</code></td>
+<td>16-bit signed integer (±16 g)</td>
+<td>Byte 6-7</td>
+</tr>
+<tr>
+<td><code>0x20</code></td>
+<td><code>GYRO_X_OUT</code></td>
+<td>16-bit signed (±2000 °/s)</td>
+<td>Byte 8-9</td>
+</tr>
+<tr>
+<td><code>0x30</code></td>
+<td><code>BARO_P_OUT</code></td>
+<td>24-bit unsigned (BMP390 hPa)</td>
+<td>Byte 14-16</td>
+</tr>
+<tr>
+<td><code>0x40</code></td>
+<td><code>TEMP_OUT</code></td>
+<td>16-bit signed thermistor (°C)</td>
+<td>Byte 17-18</td>
+</tr>
+</tbody></table>
+<p>Firmware processes these registers to manage thread safety. It uses DMA to unload the UART buffer without causing interrupt latency issues.</p>
+<h2>UART Buffer and Data Serialization Protocol</h2>
+<p>Microcontroller interrupts serialize acceleration and rotation data into packets. The packet payload includes timestamp, acceleration, rotation, and pressure fields. Timestamp synchronization handles the alignment between the 100 Hz sensor log and the 1 Hz GPS .FIT files. Checksum verification checks packet integrity:</p>
+<pre><code>timestamp_ms,  acc_x,  acc_y,  acc_z,  gyro_x,  gyro_y,  gyro_z,  pressure_hPa,  temp_C
+0,             0.12,   -9.78,  0.34,   0.02,    -0.01,   0.03,    1013.25,       22.4
+10,            0.15,   -9.81,  0.31,   0.01,    -0.02,   0.02,    1013.24,       22.4
+20,            0.11,   -9.79,  0.35,   0.03,    -0.01,   0.04,    1013.25,       22.4
+</code></pre>
+<p>GPS head units write UTC-stamped fields:</p>
+<pre><code>timestamp,  latitude,  longitude,  altitude_m,  speed_mps,  power_w,  cadence_rpm,  hr_bpm
+2026-03-15T07:00:00Z,  38.7223,  -9.1393,  12.4,  11.2,  248,  88,  142
+</code></pre>
+<p>We synchronize files during analysis using the first peak acceleration event logged by both systems.</p>
+<h2>Computational Pipeline and Mathematical Formulas</h2>
+<h3>1. Air Density Estimation</h3>
+<p>The processor calculates air density using barometric pressure and temperature data:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>ρ</mi><mo>=</mo><mfrac><msub><mi>P</mi><mtext>dry</mtext></msub><mrow><msub><mi>R</mi><mtext>dry</mtext></msub><mo>⋅</mo><mi>T</mi></mrow></mfrac><mo>+</mo><mfrac><msub><mi>P</mi><mtext>vapor</mtext></msub><mrow><msub><mi>R</mi><mtext>vapor</mtext></msub><mo>⋅</mo><mi>T</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\rho = \frac{P_{\text{dry}}}{R_{\text{dry}} \cdot T} + \frac{P_{\text{vapor}}}{R_{\text{vapor}} \cdot T}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">ρ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.3324em;vertical-align:-0.9721em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">dry</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">dry</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9721em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.3324em;vertical-align:-0.9721em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">vapor</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">vapor</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9721em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><h3>2. Virtual Elevation Reconstruction</h3>
+<p>We compute drag coefficient using a virtual elevation method to solve for CdA:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>h</mi><mtext>virtual</mtext></msub><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>h</mi><mtext>virtual</mtext></msub><mo stretchy="false">(</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo>+</mo><mfrac><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mo>−</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>ρ</mi><mo>⋅</mo><mi>C</mi><mi>d</mi><mi>A</mi><mo>⋅</mo><mi>v</mi><mo stretchy="false">(</mo><mi>i</mi><msup><mo stretchy="false">)</mo><mn>3</mn></msup><mo>−</mo><msub><mi>C</mi><mrow><mi>r</mi><mi>r</mi></mrow></msub><mo>⋅</mo><mi>m</mi><mo>⋅</mo><mi>g</mi><mo>⋅</mo><mi>v</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow><mrow><mi>m</mi><mo>⋅</mo><mi>g</mi><mo>⋅</mo><mi>v</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></mfrac><mo>⋅</mo><mi mathvariant="normal">Δ</mi><mi>d</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h_{\text{virtual}}(i) = h_{\text{virtual}}(i-1) + \frac{P(i) - \frac{1}{2}\rho \cdot CdA \cdot v(i)^3 - C_{rr} \cdot m \cdot g \cdot v(i)}{m \cdot g \cdot v(i)} \cdot \Delta d(i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">virtual</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">virtual</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.5161em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.5801em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.735em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal">ρ</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mord mathnormal">d</span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0278em;">r</span><span class="mord mathnormal mtight" style="margin-right:0.0278em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">Δ</span><span class="mord mathnormal">d</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)</span></span></span></span></span><p>We filter raw telemetry arrays to optimize computational performance. The algorithm discards samples that exceed power bounds or fall below speed limits.</p>
+<h2>System Integration Checklist</h2>
+<p>Review these parameters to ensure proper product integration:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Upgrade firmware to version 2.4.</li>
+<li><input disabled="" type="checkbox"> Confirm power meter zero-offset calibration.</li>
+<li><input disabled="" type="checkbox"> Set GPS log rate to 1 Hz.</li>
+<li><input disabled="" type="checkbox"> Confirm I2C communication and ANT+ connectivity.</li>
+<li><input disabled="" type="checkbox"> Empty internal memory storage before testing.</li>
+</ul>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.tandfonline.com/toc/rjsp20/current" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Journal of Sports Sciences</a>: Biomechanical analysis and mechanical efficiency in elite cycling.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: High-frequency telemetry and sensor fusion calibrations.</li>
+<li><a href="https://www.uci.org/inside-uci/constitutions-regulations/regulations" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">UCI Cycling Regulations</a>: Part I: General Organisation of Cycling as a Sport (Aero &amp; Frame dimensions limits).</li>
+<li><a href="https://scholar.google.com/scholar?q=High-altitude+hypoxic+adaptation+and+cardiorespiratory+kinetics" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Swiss Federal Institute of Sport Magglingen</a>: High-altitude hypoxic adaptation and cardiorespiratory kinetics.</li>
+</ol>

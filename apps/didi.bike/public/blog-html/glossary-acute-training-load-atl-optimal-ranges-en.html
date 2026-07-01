@@ -1,0 +1,67 @@
+<h1>Acute Training Load ATL and Its Optimal Ranges</h1>
+<h2>Firmware Architecture and Data Pipeline</h2>
+<p>Tracking Acute Training Load ATL requires high-frequency telemetry streaming directly from local hardware sensors. While the internal microcontroller executes data serialization for high-frequency telemetry, the firmware must continuously clear the UART buffer to avoid packet drop and keep interrupt latency below five microseconds. This keeps the execution path clean. Direct memory access channels copy raw values into RAM. An interrupt service routine (ISR) then processes the payload. Firmware avoids crashes. Data flow remains clean.</p>
+<h2>Microcontroller Data Formatting and Registers</h2>
+<p>To read power telemetry, the firmware communicates with the primary sensor board via I2C. We query specific registers to extract the necessary metrics. Developers must enforce strict checks. Verify every byte. The following code snippet demonstrates how checksum verification is performed on the arriving serial packets:</p>
+<pre><code class="language-c">uint8_t calculate_checksum(const uint8_t *buffer, size_t length) {
+    uint32_t checksum = 0;
+    for (size_t i = 0; i &lt; length - 1; i++) {
+        checksum += buffer[i];
+    }
+    return (uint8_t)(checksum &amp; 0xFF);
+}
+</code></pre>
+<p>By implementing robust mutex locks within the real-time operating system scheduler, developers can guarantee thread safety during concurrent access to the primary sensor configurations. Watchdogs reset loops. Signal transitions remain crisp.</p>
+<h2>Optimal Range Math Blocks and Calculations</h2>
+<p>The firmware utilizes mathematical formulas to define optimal athlete ranges. The core algorithm is modeled as:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>TSS</mtext><mo>=</mo><mfrac><mrow><mi>t</mi><mo>⋅</mo><mi>P</mi><mo>⋅</mo><mtext>IF</mtext></mrow><mrow><mn>3600</mn><mo>⋅</mo><mtext>FTP</mtext></mrow></mfrac><mo>⋅</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">\text{TSS} = \frac{t \cdot P \cdot \text{IF}}{3600 \cdot \text{FTP}} \cdot 100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">TSS</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0463em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3600</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord text"><span class="mord">FTP</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord text"><span class="mord">IF</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">100</span></span></span></span></span><p>Where:</p>
+<ul>
+<li>$\text{TSS}$ and $\text{NP}$ reflect the exponential weighting of training stress, scaling with the 4th power of mechanical power output to match physiological load.</li>
+<li>$RER$ represents the Respiratory Exchange Ratio, indicating substrate oxidation ratios (carbohydrate vs. fat combustion).</li>
+<li>$W&#39;_{t}$ represents the instantaneous anaerobic work capacity remaining, measured in Joules (J), which drains non-linearly above FTP and reconstitutes exponentially during recovery.</li>
+</ul>
+<p>Engineers map these variables to specific registers. Memory allocations persist.</p>
+<h2>Serial Frame Specifications</h2>
+<p>We define the payload packet format for transmitting data across the serial interface as follows:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Byte Offset</th>
+<th align="left">Field Name</th>
+<th align="left">Description</th>
+<th align="left">Target I2C Register</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">0x00</td>
+<td align="left">Header</td>
+<td align="left">Sync marker (always 0xAA)</td>
+<td align="left">N/A</td>
+</tr>
+<tr>
+<td align="left">0x01</td>
+<td align="left">Payload Length</td>
+<td align="left">Number of active sensor channels</td>
+<td align="left">N/A</td>
+</tr>
+<tr>
+<td align="left">0x02</td>
+<td align="left">Primary Value</td>
+<td align="left">Raw digitized strain gauge output</td>
+<td align="left">0x3F</td>
+</tr>
+<tr>
+<td align="left">0x06</td>
+<td align="left">Checksum</td>
+<td align="left">Sum of bytes modulo 256 for transmission safety</td>
+<td align="left">0x40</td>
+</tr>
+</tbody></table>
+<p>Ensuring that hardware registers map perfectly to the telemetry values maintains overall system reliability. We prevent buffer overflows. Calculations match observations.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.tandfonline.com/toc/rjsp20/current" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Journal of Sports Sciences</a>: Biomechanical analysis and mechanical efficiency in elite cycling.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: High-frequency telemetry and sensor fusion calibrations.</li>
+<li><a href="https://www.uci.org/inside-uci/constitutions-regulations/regulations" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">UCI Cycling Regulations</a>: Part I: General Organisation of Cycling as a Sport (Aero &amp; Frame dimensions limits).</li>
+<li><a href="https://scholar.google.com/scholar?q=High-altitude+hypoxic+adaptation+and+cardiorespiratory+kinetics" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Swiss Federal Institute of Sport Magglingen</a>: High-altitude hypoxic adaptation and cardiorespiratory kinetics.</li>
+</ol>

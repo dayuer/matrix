@@ -1,0 +1,24 @@
+{
+  "id": "persona_18",
+  "name": "Nia Abebe",
+  "gender": "Female",
+  "age": 32,
+  "country": "Ethiopia",
+  "ethnicity": "Amhara",
+  "sexualOrientation": "Heterosexual",
+  "industry": "Athletic Coaching",
+  "knowledgeLevel": "Technical Professional",
+  "interests": [
+    "Running vs Cycling load conversion",
+    "Altitude training adjustments",
+    "Metabolic cost"
+  ],
+  "biases": [
+    "Focuses on elite training efficiency",
+    "Values proven cardiovascular models"
+  ],
+  "expectations": [
+    "Wants load quantification formulas",
+    "Needs altitude compensation guides"
+  ]
+}

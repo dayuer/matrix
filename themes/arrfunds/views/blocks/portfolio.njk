@@ -1,0 +1,23 @@
+{% set d = block.data %}
+<section class="portfolio-section" id="{{ d.anchor or 'portfolio' }}">
+  <div class="section-container">
+    <div class="section-header" data-reveal>
+      <p class="section-header__label">{{ d.head.label }}</p>
+      <h2 class="section-header__title">{{ d.head.title }}</h2>
+      <p class="section-header__desc">{{ d.head.desc }}</p>
+    </div>
+
+    <div class="portfolio-grid">
+      {% for card in d.cards %}
+        <div class="portfolio-card" data-reveal>
+          <div class="portfolio-card__icon">
+            {{ card.iconSvg | safe }}
+          </div>
+          <h3 class="portfolio-card__title">{{ card.title }}</h3>
+          <p class="portfolio-card__desc">{{ card.desc }}</p>
+          <span class="portfolio-card__tag">{{ card.tag }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

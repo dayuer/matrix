@@ -1,0 +1,51 @@
+<h1>Data Serialization Protocols for Force Vector Telemetry</h1>
+<h2>Telemetry Pipeline Architecture</h2>
+<p>Managing a high-frequency force vector telemetry stream requires robust serial architectures to prevent packet loss during active trials. Data serialization organizes bits. While mechanical fitters use alignment calculations to optimize rider torque, the embedded logging firmware must process strain gauge readings within a strict latency threshold. Timing dictates accuracy. By prioritizing thread safety in the main event loop and dedicating adequate UART buffer space, we prevent data corruption under high processing loads. Minimize hardware latency. The interrupt service routine (ISR) reads raw analog values and writes them to local I2C registers before serial transmission begins. Hexadecimal bytes format packets.</p>
+<h2>Bitwise Data Serialization</h2>
+<p>Table 1 defines the transmission payload format.</p>
+<table>
+<thead>
+<tr>
+<th>Register Hex</th>
+<th>Bit Offset</th>
+<th>Field Name</th>
+<th>Description and Functional Bitmask Definition</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0x1A</td>
+<td>[7:0]</td>
+<td>VECTOR_X_L</td>
+<td>Low byte of lateral force vector data field from left load cell</td>
+</tr>
+<tr>
+<td>0x1B</td>
+<td>[7:0]</td>
+<td>VECTOR_X_H</td>
+<td>High byte of lateral force vector data field from left load cell</td>
+</tr>
+<tr>
+<td>0x1C</td>
+<td>[1:0]</td>
+<td>ERROR_CODE</td>
+<td>Communication error status bits from active UART buffer</td>
+</tr>
+</tbody></table>
+<p>Firmware utilizes XOR-based checksum verification to ensure packet integrity. Incorrect packets are dropped.</p>
+<h2>Biomechanical Mathematical Representation</h2>
+<p>We use a custom Lemond baseline saddle formula to check initial vertical alignment parameters: Math validates sensor heights. The calculation is structured as follows:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>L</mi><mtext>saddle</mtext></msub><mo>=</mo><mn>1.09</mn><mo>⋅</mo><mtext>Inseam</mtext></mrow><annotation encoding="application/x-tex">L_{\text{saddle}} = 1.09 \cdot \text{Inseam}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">saddle</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1.09</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">Inseam</span></span></span></span></span></span><p>Where:</p>
+<ul>
+<li>$L_{\text{saddle}}$ is the saddle height calculated via the Lemond or 109% inseam formulas, serving as the baseline for joint flexion.</li>
+<li>$\theta_{\text{knee}}$ is the dynamic knee angle, modeled using the cosine rule where $a$, $b$, and $c$ represent the femur length, tibia length, and effective seat height.</li>
+<li>$F_{\text{joint}}$ represents the shear force acting on the knee joint as a function of the pedaling force and joint extension angles.</li>
+</ul>
+<h2>Firmware Synchronization Routine</h2>
+<p>To guarantee thread safety, the telemetry core executes on a dedicated microprocessor core. This separates network overhead from critical sensor reading loops. The system dynamically scales transmission frequencies relative to the observed rate of velocity change.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.tandfonline.com/toc/rjsp20/current" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Journal of Sports Sciences</a>: Biomechanical analysis and mechanical efficiency in elite cycling.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: High-frequency telemetry and sensor fusion calibrations.</li>
+<li><a href="https://www.uci.org/inside-uci/constitutions-regulations/regulations" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">UCI Cycling Regulations</a>: Part I: General Organisation of Cycling as a Sport (Aero &amp; Frame dimensions limits).</li>
+<li><a href="https://scholar.google.com/scholar?q=High-altitude+hypoxic+adaptation+and+cardiorespiratory+kinetics" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Swiss Federal Institute of Sport Magglingen</a>: High-altitude hypoxic adaptation and cardiorespiratory kinetics.</li>
+</ol>

@@ -1,0 +1,59 @@
+<h1>Racing Dynamics and Tire Rolling Resistance</h1>
+<h2>Where the Rubber Meets the Road</h2>
+<p>My legs burned. Hold the line. Tires gripped the road. Dust filled my throat. I kept pushing. Focus on the wheel. As a professional racer, my daily life is spent in the saddle. I spend hours behind the bars. When you are holding 50 km/h in the middle of a screaming peloton, you do not think about mathematical equations. You think about survival. You think about holding the wheel in front of you. </p>
+<p>Yet, sports science dictates who wins and who loses. The coefficient of rolling resistance crr is a silent opponent. It is always there, dragging at your tires and stealing your speed. On the smooth wood of a indoor velodrome, the bike feels like a rocket. Transitioning to rough outdoor roads changes everything. The hum of the tires turns into a vibration that rattles your bones. To illustrate this difference, I compiled my training feelings alongside the team sensor telemetry.</p>
+<table>
+<thead>
+<tr>
+<th>Environment</th>
+<th>Subjective Road Feel</th>
+<th>Measured Crr</th>
+<th>Average Power (W)</th>
+<th>Speed (km/h)</th>
+<th>Vibration Intensity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Velodrome Track</td>
+<td>Smooth, fast, zero drag</td>
+<td>0.0018</td>
+<td>320</td>
+<td>50.2</td>
+<td>Negligible</td>
+</tr>
+<tr>
+<td>Rough Asphalt</td>
+<td>Constant hum, mild resistance</td>
+<td>0.0035</td>
+<td>345</td>
+<td>45.1</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>Cobbled Sector</td>
+<td>Violent shaking, severe loss</td>
+<td>0.0085</td>
+<td>390</td>
+<td>38.4</td>
+<td>Extreme</td>
+</tr>
+</tbody></table>
+<h2>Fighting Frictional Drag on the Stones</h2>
+<p>Every cobble section is a battle. The bike bounces. The chain slaps. Winds blew hard. During these intense efforts, you burn through your anaerobic capacity. To analyze this load, our coaching staff calculates my normalized power from the raw telemetry. The math uses a thirty-second rolling average raised to the fourth power to reflect physiological stress:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>NP</mtext><mo>=</mo><msup><mrow><mo fence="true">(</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msubsup><mi>P</mi><mrow><mn>30</mn><mo separator="true">,</mo><mi>i</mi></mrow><mn>4</mn></msubsup><mo fence="true">)</mo></mrow><mfrac><mn>1</mn><mn>4</mn></mfrac></msup></mrow><annotation encoding="application/x-tex">\text{NP} = \left( \frac{1}{N} \sum_{i=1}^N P_{30,i}^4 \right)^{\frac{1}{4}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">NP</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:3.4499em;vertical-align:-1.2777em;"></span><span class="minner"><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">(</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.109em;">N</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-2.453em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">30</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">i</span></span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3831em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size4">)</span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:2.1723em;"><span style="top:-4.5812em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8443em;"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">4</span></span></span></span><span style="top:-3.2255em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span></span></span></span></span><p>Where:</p>
+<ul>
+<li>$\text{TSS}$ and $\text{NP}$ reflect the exponential weighting of training stress, scaling with the 4th power of mechanical power output to match physiological load.</li>
+<li>$RER$ represents the Respiratory Exchange Ratio, indicating substrate oxidation ratios (carbohydrate vs. fat combustion).</li>
+<li>$W&#39;_{t}$ represents the instantaneous anaerobic work capacity remaining, measured in Joules (J), which drains non-linearly above FTP and reconstitutes exponentially during recovery.</li>
+</ul>
+<p>When the coefficient of rolling resistance crr spikes on the rough cobbles, maintaining my position in the peloton dynamics requires massive torque. My average power increases, which drives the calculated normalized power upward. Even a minor increase in tire resistance forces my muscles to work harder. This extra workload drains my energy reserves, leaving less fuel for the final sprint. While holding fifty kilometers per hour behind the lead out train in the final kilometer, my screaming muscles demanded every ounce of energy as I fought to maintain traction on the loose gravel corner. </p>
+<h2>Telemetry Alignment and Subjective Perception</h2>
+<p>The telemetry worked. The sensors recorded every bump. In the past, racers relied purely on road feel. We pumped our tires to maximum pressure, thinking harder was faster. Now, we know better. High-frequency road vibration acts as a major source of drag, absorbing forward energy and fatiguing the rider.</p>
+<p>When the team mechanic altered my tire pressure by just half a bar before the start of the cobbled sector, the change in road vibration was immediately noticeable through the carbon bars. Although the scientific literature suggests that rolling resistance scales linearly with speed under controlled conditions, my personal experience behind the bars indicates that surface irregularities introduce significant transient drag forces. Lower pressure allowed the tire to conform to the stones, which reduced the coefficient of rolling resistance crr and smoothed out the ride. By trusting the telemetry data instead of old cycling traditions, we can optimize our equipment and save valuable watts. My qualifying split improved after we dialed in the pressure. In the final time trial, every single watt counts. If you waste energy fighting tire deformation, you lose the race. Sports science has given us the tools to analyze these losses. By combining my subjective road feel with high-resolution sensor metrics, we created a tire setup that was both fast and comfortable. This synergy between rider and machine is what makes modern racing so exciting. I can focus on pushing my limits, knowing that my equipment is performing at its absolute peak. This scientific approach is what keeps us competitive in the modern peloton.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.tandfonline.com/toc/rjsp20/current" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Journal of Sports Sciences</a>: Biomechanical analysis and mechanical efficiency in elite cycling.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: High-frequency telemetry and sensor fusion calibrations.</li>
+<li><a href="https://www.uci.org/inside-uci/constitutions-regulations/regulations" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">UCI Cycling Regulations</a>: Part I: General Organisation of Cycling as a Sport (Aero &amp; Frame dimensions limits).</li>
+<li><a href="https://scholar.google.com/scholar?q=High-altitude+hypoxic+adaptation+and+cardiorespiratory+kinetics" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Swiss Federal Institute of Sport Magglingen</a>: High-altitude hypoxic adaptation and cardiorespiratory kinetics.</li>
+</ol>

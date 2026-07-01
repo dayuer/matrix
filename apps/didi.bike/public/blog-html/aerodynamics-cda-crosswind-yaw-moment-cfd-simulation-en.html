@@ -1,0 +1,111 @@
+<h1>Pipeline Architecture and Embedded Sensor Interfaces</h1>
+<h2>Pipeline Architecture: Telemetry Serialization</h2>
+<p>Designing a high-frequency sensor network for real-time aerodynamic calculations requires strict data serialization protocols. When a bicycle travels on flat terrain at speeds exceeding $40\text{ km/h}$, aerodynamic drag accounts for over $90%$ of a rider&#39;s total resistance. Under the dimensional limits of the <strong>UCI Article 1.3.013</strong> and <strong>1.3.022</strong> (governing time trial bike dimensions and rider reach/elbow cup dimensions), steering torque must be tracked. We calculate the lateral forces acting on the front wheel to evaluate handling stability. The raw sensor signals are processed at $100\text{ Hz}$.</p>
+<p>The telemetry pipeline aggregates the analog voltage signals from the strain gauges. To protect signal integrity, the microcontroller uses a direct memory access channel to transfer data to the UART buffer. This configuration prevents CPU interruption during high-speed data serialization. We use a custom data frame format. The frame contains a start byte, the sensor payloads, a sequence counter, and a final checksum. The physical boundary layers of the airflow around the rider are characterized using the Reynolds number formula:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>R</mi><mi>e</mi><mo>=</mo><mfrac><mrow><mi>ρ</mi><mi>v</mi><mi>L</mi></mrow><mi>μ</mi></mfrac></mrow><annotation encoding="application/x-tex">Re = \frac{\rho v L}{\mu}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.2408em;vertical-align:-0.8804em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">μ</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">ρ</span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="mord mathnormal">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><p>Where:</p>
+<ul>
+<li>$F_d$ is the total drag force vector in Newtons, representing the net force opposing the rider&#39;s forward motion.</li>
+<li>$Re$ represents the Reynolds Number, characterizing the transition from laminar to turbulent flow along the rider&#39;s limbs and skinsuit panels.</li>
+<li>$\rho$ is the local barometric air density, adjusted dynamically for altitude (e.g., during high-altitude Alpine passes or altitude training in St. Moritz, Switzerland).</li>
+<li>$A$ is the planimetric frontal area, captured via 2D photogrammetry.</li>
+</ul>
+<p>This Reynolds number calculation is executed in the cloud after receiving the serialized packets. The onboard processor only handles data serialization and local packet validation. To reduce noise, the analog signals undergo hardware-level filtering prior to digitization. A multi-stage active low-pass Bessel filter is implemented. This filter design suppresses high-frequency structural vibrations. It ensures the downstream analog-to-digital converter receives a clean voltage signal.</p>
+<h2>Register Mapping and Peripheral Setup</h2>
+<p>To read the sensor values, the SPI interface is configured. We map the peripheral registers to specific memory locations. The analog-to-digital converter runs in continuous conversion mode. The register mapping ensures that the firmware can access the raw sensor data with minimum latency. The table below details the register address space and byte positions for the telemetry controller.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Register Name</th>
+<th align="center">Address</th>
+<th align="center">Bit Range</th>
+<th align="left">Description / Function</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>STEER_CTRL</code></td>
+<td align="center"><code>0x40021000</code></td>
+<td align="center"><code>[7:0]</code></td>
+<td align="left">Configuration register for steering sensor ADC channels</td>
+</tr>
+<tr>
+<td align="left"><code>ADC_VAL_L</code></td>
+<td align="center"><code>0x40021004</code></td>
+<td align="center"><code>[15:0]</code></td>
+<td align="left">Lower sixteen bits of the raw steering strain gauge reading</td>
+</tr>
+<tr>
+<td align="left"><code>ADC_VAL_H</code></td>
+<td align="center"><code>0x40021008</code></td>
+<td align="center"><code>[31:16]</code></td>
+<td align="left">Upper sixteen bits of the raw steering strain gauge reading</td>
+</tr>
+<tr>
+<td align="left"><code>FIFO_STAT</code></td>
+<td align="center"><code>0x4002100C</code></td>
+<td align="center"><code>[3:0]</code></td>
+<td align="left">Status flags for the UART buffer transmission queue</td>
+</tr>
+<tr>
+<td align="left"><code>CHK_SUM</code></td>
+<td align="center"><code>0x40021010</code></td>
+<td align="center"><code>[7:0]</code></td>
+<td align="left">Calculated checksum for the active data packet frame</td>
+</tr>
+</tbody></table>
+<p>We define these register addresses in the header file. The initialization code configures the interrupt service routine to trigger when the ADC finishes a conversion. Inside the configuration register <code>STEER_CTRL</code>, bits zero to two select the input channel, while bits three and four adjust the programmable gain amplifier. Bit five enables the internal voltage reference. Setting this register correctly prevents analog saturation. The direct memory access controller is configured to transfer two bytes from the <code>ADC_VAL_L</code> address directly to the system SRAM, bypassing CPU registers completely.</p>
+<p>To prevent data corruption, we calculate the Shannon entropy of the packet stream. This metric detects communication noise:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>H</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><mo>−</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mi>P</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mn>2</mn></msub><mi>P</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H(X) = -\sum_{i=1}^{n} P(x_i) \log_2 P(x_i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.9291em;vertical-align:-1.2777em;"></span><span class="mord">−</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span><p>Where:</p>
+<ul>
+<li>$H(X)$ is the information entropy of the telemetry channel.</li>
+<li>$P(x_i)$ is the probability of occurrence of the $i$-th byte value in the packet.</li>
+</ul>
+<p>A sudden increase in entropy indicates electromagnetic interference in the cable harness. We verify the register contents periodically to detect thermal drift.</p>
+<h2>Thread Safety and UART Buffer Processing</h2>
+<p>To guarantee thread safety during high-frequency telemetry transmission, the firmware uses a double-buffering scheme. The interrupt service routine writes the digitized sensor data to the active buffer. The main transmission loop reads from the secondary buffer. The pointers are swapped only when the active buffer is full. A mutex lock blocks access during the pointer swap. This design ensures that the data serialization pipeline remains deterministic.</p>
+<p>If the transmission buffer overflows, the firmware drops the oldest packets to preserve real-time performance. This ring-buffer mechanism prevents accumulation delays. To ensure reentrancy protection, interrupt nesting is disabled during pointer modifications. If a DMA transfer failure occurs, the hardware fault handler triggers a software reset of the SPI peripheral. This recovery process functions without interrupting the main system thread. </p>
+<p>We implement checksum verification at the receiving gateway. The parser decodes the byte stream. Below is the C code block used to parse the raw byte array and verify the checksum.</p>
+<pre><code class="language-c">#include &lt;stdint.h&gt;
+#include &lt;stdbool.h&gt;
+
+#define PACKET_SIZE 8
+#define START_BYTE 0xAA
+
+typedef struct {
+    uint8_t start;
+    int16_t yaw_moment;
+    uint16_t velocity;
+    uint8_t counter;
+    uint8_t checksum;
+} TelemetryPacket;
+
+bool parse_packet(const uint8_t *buffer, TelemetryPacket *packet) {
+    if (buffer[0] != START_BYTE) {
+        return false;
+    }
+    
+    uint8_t calculated_sum = 0;
+    for (int i = 0; i &lt; PACKET_SIZE - 1; i++) {
+        calculated_sum += buffer[i];
+    }
+    
+    if (calculated_sum != buffer[PACKET_SIZE - 1]) {
+        return false;
+    }
+    
+    packet-&gt;start = buffer[0];
+    packet-&gt;yaw_moment = (int16_t)((buffer[1] &lt;&lt; 8) | buffer[2]);
+    packet-&gt;velocity = (uint16_t)((buffer[3] &lt;&lt; 8) | buffer[4]);
+    packet-&gt;counter = buffer[5];
+    packet-&gt;checksum = buffer[6];
+    
+    return true;
+}
+</code></pre>
+<p>This parsing block runs in a dedicated thread on the receiving unit. It filters out corrupted packets, ensuring that the downstream pacing algorithms receive clean, uncorrupted yaw moment profiles. The thread safety of the parser loop prevents buffer overflows when processing high-frequency data. The main execution thread processes this packet queue, executing the drag estimation calculations. This integration loop is key to maintaining data alignment under all testing conditions. We verify the registers daily to maintain reliability.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.tandfonline.com/toc/rjsp20/current" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Journal of Sports Sciences</a>: Biomechanical analysis and mechanical efficiency in elite cycling.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: High-frequency telemetry and sensor fusion calibrations.</li>
+<li><a href="https://www.uci.org/inside-uci/constitutions-regulations/regulations" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">UCI Cycling Regulations</a>: Part I: General Organisation of Cycling as a Sport (Aero &amp; Frame dimensions limits).</li>
+<li><a href="https://scholar.google.com/scholar?q=High-altitude+hypoxic+adaptation+and+cardiorespiratory+kinetics" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Swiss Federal Institute of Sport Magglingen</a>: High-altitude hypoxic adaptation and cardiorespiratory kinetics.</li>
+</ol>

@@ -1,0 +1,175 @@
+<h1>Bike Fitting Without Motion Capture: Sensor-Based Fitting</h1>
+<p>A bike fit without motion capture is entirely possible and, for the majority of cyclists, sufficient. Static angle measurements, plumb-line checks, and modern inertial sensors capture the same biomechanical variables—joint angles, asymmetry, pelvic movement—that optical motion-capture systems measure, at a fraction of the cost. The key is knowing which measurements matter and how to act on them. We break down how to execute a rigorous fit using goniometers, video, and on-bike sensor data, and when motion capture is genuinely worth the premium.</p>
+<h2>Why Motion Capture Isn&#39;t Mandatory</h2>
+<p>Motion-capture systems—Vantage, Retül, LEOMO—use arrays of infrared cameras or inertial measurement units (IMUs) to track markers placed on anatomical landmarks, producing a 3D kinematic model at 60–200 Hz. They are precise and visually compelling. But the biomechanical principles that govern a good fit do not require real-time 3D reconstruction. They require correct joint angles at specific points in the pedal stroke, and those angles can be measured statically or sampled with a well-placed sensor.</p>
+<p>The variables that actually drive comfort and power output are finite:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>How It&#39;s Measured Without Motion Capture</th>
+<th>Target Range</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Knee extension angle (BDC)</td>
+<td>Goniometer or sensor at bottom dead center</td>
+<td>140–150°</td>
+</tr>
+<tr>
+<td>Knee over pedal spindle (KOPS)</td>
+<td>Plumb line from tibial tuberosity</td>
+<td>Over pedal axle</td>
+</tr>
+<tr>
+<td>Hip angle (torso-to-femur)</td>
+<td>Goniometer at top dead center</td>
+<td>≤45° (open), 30–40° typical</td>
+</tr>
+<tr>
+<td>Pelvic stability</td>
+<td>Sensor or video, bilateral comparison</td>
+<td>&lt;5° asymmetry</td>
+</tr>
+<tr>
+<td>Saddle height (leg extension)</td>
+<td>Heel method + goniometer confirmation</td>
+<td>25–35° knee flexion at BDC</td>
+</tr>
+</tbody></table>
+<p>Each of these can be obtained without a six-camera rig. For a deeper grounding in the underlying biomechanics, see the <a href="/en/blog/bike-fitting-biomechanics-guide">bike fitting biomechanics guide</a>.</p>
+<h2>The Static Fit Toolkit</h2>
+<h3>Goniometer and Inclinometer</h3>
+<p>A goniometer measures joint angles directly. Place the fulcrum at the joint center (lateral knee epicondyle, greater trochanter), align the arms with the long bones, and read the angle. A digital inclinometer improves repeatability to within ±1°, which is adequate for fitting decisions that typically adjust in 2–5° increments.</p>
+<p>The critical static measurements:</p>
+<ol>
+<li><strong>Knee angle at BDC</strong> — with the crank at 6 o&#39;clock, measure knee flexion. Target 25–35° (i.e., 145–155° extension). See <a href="/en/blog/knee-angle-bike-fit">knee angle bike fit</a> for the full protocol.</li>
+<li><strong>Hip angle at TDC</strong> — crank at 12 o&#39;clock, measure the angle between the torso line and femur line. Target 30–45° depending on discipline. Details in <a href="/en/blog/hip-angle-cycling">hip angle cycling</a>.</li>
+<li><strong>Shoulder angle</strong> — from acromion to handlebar. Helps set reach; see <a href="/en/blog/reach-and-stack-explained">reach and stack explained</a>.</li>
+</ol>
+<h3>Plumb Line</h3>
+<p>A plumb line from the tibial tuberosity with the crank horizontal should pass through or just behind the pedal axle. This is the KOPS check, covered in depth in <a href="/en/blog/saddle-fore-aft-position">saddle fore-aft position</a>. Forward of the axle shifts load to the quads; behind shifts it to the glutes and hamstrings.</p>
+<h3>Video Analysis</h3>
+<p>A smartphone at 60 or 120 fps filming from the sagittal plane (side view) functions as a basic motion-capture system. Free or low-cost apps (Kinovea, Coach&#39;s Eye, Hudl Technique) allow frame-by-frame joint-angle tracking. The limitation is 2D analysis from a single plane, which misses transverse-plane rotation—but for joint flexion/extension, which is what most fitting decisions depend on, 2D sagittal video is sufficient.</p>
+<h2>Sensor-Based Fitting: The Modern Alternative</h2>
+<p>Inertial measurement units have made sensor-based fitting accessible and, in some respects, superior to static goniometry. A sensor mounted on the bike or body samples continuously during real riding, capturing dynamic angles under load—something a static fit on a trainer cannot replicate.</p>
+<h3>What a Seat-Post Sensor Measures</h3>
+<p>The DIDI.BIKE sensor is a 14 g unit that mounts to the seat post and houses a 6-axis IMU (3-axis accelerometer + 3-axis gyroscope) sampling at 100 Hz, a barometric pressure sensor for altitude/grade, and a ±0.1° resolution tilt measurement. It transmits over ANT+ and Bluetooth 5.0, runs 120 hours on a coin cell, and is rated IP67.</p>
+<p>For fitting, the relevant outputs are:</p>
+<ul>
+<li><strong>Pelvic roll and yaw</strong> — bilateral asymmetry in pelvic movement indicates a saddle-height mismatch, leg-length discrepancy, or cleat misalignment. Asymmetry greater than 5° is a flag for <a href="/en/blog/cycling-posture-asymmetry-fixes">cycling posture asymmetry fixes</a>.</li>
+<li><strong>Cadence stability</strong> — oscillations in instantaneous cadence reveal force-application unevenness, often linked to saddle fore-aft or cleat position.</li>
+<li><strong>Vertical oscillation</strong> — excessive bounce (high vertical acceleration variance) suggests the saddle is too high; the rider reaches at the bottom of the stroke.</li>
+<li><strong>Saddle pressure proxy</strong> — combined acceleration and tilt data can infer weight distribution shifts, complementing dedicated <a href="/en/blog/saddle-pressure-mapping">saddle pressure mapping</a>.</li>
+</ul>
+<h3>Dynamic vs. Static: Why Under-Load Data Matters</h3>
+<p>A static fit positions the rider at rest. But pedaling at 250 W recruits muscles differently than sitting still—pelvic rotation increases, the spine flexes, and the effective saddle height changes as the foot drives down into the shoe. Dynamic fits, whether sensor- or motion-capture-based, capture these in-ride adjustments. The comparison is covered in <a href="/en/blog/dynamic-vs-static-bike-fit">dynamic vs. static bike fit</a>.</p>
+<p>The equation for effective leg length change under load illustrates why:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">Δ</mi><msub><mi>L</mi><mtext>eff</mtext></msub><mo>=</mo><msub><mi>L</mi><mtext>static</mtext></msub><mo>−</mo><mo stretchy="false">(</mo><msub><mi>L</mi><mtext>static</mtext></msub><mo>⋅</mo><mi>cos</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>θ</mi><mtext>ankle</mtext></msub><mo stretchy="false">)</mo><mo>⋅</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Delta L_{\text{eff}} = L_{\text{static}} - (L_{\text{static}} \cdot \cos(\theta_{\text{ankle}}) \cdot k)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord">Δ</span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">eff</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3175em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">static</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3175em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">static</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">cos</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">ankle</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mclose">)</span></span></span></span></span><p>where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi><mtext>ankle</mtext></msub></mrow><annotation encoding="application/x-tex">\theta_{\text{ankle}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">ankle</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> is the change in ankle dorsiflexion under load and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span> is a proportionality constant (~0.1–0.15). A rider who drops their heel 10° more under load effectively lengthens their leg, which can push a borderline-high saddle into pain territory.</p>
+<h2>Step-by-Step: A Sensor-Assisted Fit Protocol</h2>
+<h3>Step 1: Establish Baseline Static Measurements</h3>
+<p>On a trainer, set saddle height using the heel method (heel on pedal at BDC, leg fully straight). Confirm with a goniometer: 25–35° knee flexion. Set fore-aft with KOPS.</p>
+<h3>Step 2: Ride and Record Sensor Data</h3>
+<p>Ride at target power for 15–20 minutes. Let the sensor collect pelvic movement, cadence variance, and vertical oscillation.</p>
+<h3>Step 3: Analyze Asymmetry</h3>
+<p>Compare left-right pelvic roll. If one side shows consistently greater excursion, check:</p>
+<ul>
+<li>Cleat position (<a href="/en/blog/cleat-position-cycling">cleat position cycling</a>)</li>
+<li>Leg-length discrepancy (shim the shorter leg&#39;s cleat)</li>
+<li>Saddle tilt (nose should be level or 1–2° down)</li>
+</ul>
+<h3>Step 4: Iterate Based on Symptoms</h3>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely Cause</th>
+<th>Adjustment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Anterior knee pain</td>
+<td>Saddle too low / too far forward</td>
+<td>Raise 3–5 mm, move aft</td>
+</tr>
+<tr>
+<td>Posterior knee pain</td>
+<td>Saddle too high</td>
+<td>Lower 3–5 mm</td>
+</tr>
+<tr>
+<td>Lower back pain</td>
+<td>Reach too long / saddle nose down</td>
+<td>Shorten stem, level saddle</td>
+</tr>
+<tr>
+<td>Numb hands</td>
+<td>Weight too far forward</td>
+<td>Raise stem, move saddle aft</td>
+</tr>
+<tr>
+<td>Saddle numbness</td>
+<td>Saddle too high or tilted up</td>
+<td>Lower or level saddle</td>
+</tr>
+</tbody></table>
+<p>See also <a href="/en/blog/cycling-lower-back-pain-fit">cycling lower back pain fit</a> for spine-specific guidance.</p>
+<h3>Step 5: Re-Verify After Changes</h3>
+<p>After each adjustment, re-ride and re-measure. Sensor data should show reduced asymmetry and oscillation. Static angles should fall within target ranges.</p>
+<h2>When Motion Capture Adds Value</h2>
+<p>Sensor-based and static fitting handle 80–90% of cases. Motion capture is worth the investment when:</p>
+<ul>
+<li><strong>Persistent pain after a sensor/static fit</strong> — 3D analysis can reveal transverse-plane issues (hip rotation, knee tracking) that 2D video and seat-post sensors miss.</li>
+<li><strong>Elite performance optimization</strong> — sub-1° angle changes matter at the margin, and multi-segment tracking captures the full kinematic chain.</li>
+<li><strong>Post-injury or surgical rehabilitation</strong> — precise tracking of compensatory patterns is clinically valuable.</li>
+<li><strong>Asymmetry diagnosis</strong> — if sensor data flags asymmetry but the cause is unclear, motion capture can localize it.</li>
+</ul>
+<p>For most riders, the decision between <a href="/en/blog/professional-vs-diy-bike-fit">professional vs. DIY bike fit</a> comes down to budget and the complexity of the issue, not the technology alone.</p>
+<h2>Cost Comparison</h2>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>Typical Cost</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DIY static (goniometer + video)</td>
+<td>$0–$50 (tools only)</td>
+<td>Budget-conscious, simple fits</td>
+</tr>
+<tr>
+<td>DIY + sensor (e.g., DIDI.BIKE)</td>
+<td>$299</td>
+<td>Ongoing data, asymmetry detection</td>
+</tr>
+<tr>
+<td>Professional static fit</td>
+<td>$100–$200</td>
+<td>Validation, hardware changes</td>
+</tr>
+<tr>
+<td>Professional motion-capture fit</td>
+<td>$250–$500+</td>
+<td>Complex issues, performance focus</td>
+</tr>
+</tbody></table>
+<p>Full cost breakdown in <a href="/en/blog/bike-fit-cost-what-to-expect">bike fit cost: what to expect</a>.</p>
+<h2>FAQ</h2>
+<p><strong>Can you get a good bike fit without motion capture?</strong>
+Yes. Static measurements, goniometry, plumb lines, and on-bike sensor data can produce an accurate fit. Motion capture adds precision for complex cases, but it is not required for most cyclists.</p>
+<p><strong>What tools do you need for a fit without motion capture?</strong>
+A goniometer or digital inclinometer, plumb bob, tape measure, a trainer, and optionally a seat-post sensor or power meter. Video from a smartphone is a low-cost motion-analysis alternative.</p>
+<p><strong>How accurate is a sensor-based bike fit?</strong>
+Inertial sensors sampling at 100 Hz with ±0.1° accuracy can measure joint angles and movement asymmetries with comparable precision to optical motion capture for fitting purposes.</p>
+<p><strong>Is a DIY sensor fit as good as a professional fit?</strong>
+A sensor-assisted DIY fit captures most measurable variables, but a professional fitter adds experiential judgment, symptom diagnosis, and hardware changes that sensors alone cannot provide.</p>
+<p><strong>How much does a sensor-based fit cost?</strong>
+A standalone sensor such as the DIDI.BIKE seat-post unit is $299. Full professional fits using sensor or motion-capture systems typically range from $150 to $500.</p>
+<h2>References</h2>
+<ol>
+<li><em>Clinical Biomechanics</em>: Knee kinematics and muscle activation patterns in cycling fit protocols.</li>
+<li><em>Journal of Applied Biomechanics</em>: Saddle fore-aft positions and lower extremity joint mechanics.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: Precision sensor calibration for posture and skeletal angle mapping.</li>
+</ol>

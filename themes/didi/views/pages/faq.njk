@@ -1,0 +1,152 @@
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+{% set homePrefix = '/' + locale %}
+{% set isId = locale == 'id' %}
+
+{% set faqs = [
+  {
+    q: 'Seberapa akurat pengukuran CdA dibandingkan dengan terowongan angin?' if isId else 'How accurate is the CdA measurement compared to a wind tunnel?',
+    a: 'Sensor kami berkorelasi pada r² = 0.94 dengan nilai CdA terowongan angin, divalidasi melalui 200+ jam pengujian komparatif di terowongan angin RMIT di Melbourne. Secara praktis, itu berarti akurasi CdA ±2% — cukup akurat untuk mengambil keputusan posisi berkendara yang optimal, meskipun kami tetap merekomendasikan sesi terowongan angin untuk optimasi final balapan di tingkat WorldTour.' if isId else "Our sensor correlates at r² = 0.94 with wind tunnel CdA values, validated across 200+ hours of comparative testing at the RMIT wind tunnel in Melbourne. In practical terms, that translates to ±2% CdA accuracy — close enough to make meaningful position decisions, though we'd always recommend a tunnel session for final race-day optimization at the WorldTour level."
+  },
+  {
+    q: 'Apakah saya memerlukan power meter untuk menggunakan sensor ini?' if isId else 'Do I need a power meter to use the sensor?',
+    a: 'Tidak wajib. Sensor menghitung daya virtual dari model gaya dan kecepatannya sendiri. Namun, jika Anda memasangkannya dengan power meter khusus (berbasis crank, pedal, atau hub), perhitungan CdA akan menjadi lebih akurat karena kami menggunakan daya terukur alih-alih daya estimasi. Sebagian besar pengendara melihat peningkatan akurasi sebesar 1-2% dengan menggunakan power meter eksternal.' if isId else "No. The sensor computes virtual power from its own force and velocity model. However, if you pair it with a dedicated power meter (crank-based, pedal, or hub), the CdA calculation becomes more accurate because we can use measured power instead of estimated power. Most riders see a 1-2% accuracy improvement with a paired power meter."
+  },
+  {
+    q: 'Bagaimana cara memasangnya di sepeda?' if isId else 'How does it mount to the bike?',
+    a: 'Menggunakan klip rel sadel — hanya butuh waktu sekitar 30 detik. Dudukan ini kompatibel dengan rel bulat standar 7mm dan rel oval 9mm (umum pada sadel serat karbon). Setelah terpasang, sensor berada di bawah sadel Anda secara aerodinamis, sehingga tidak menambah hambatan udara sama sekali. Kami menyertakan kunci L 3mm untuk penyesuaian sudut halus.' if isId else "Saddle rail clip — takes about 30 seconds. The mount accommodates both standard 7mm round rails and 9mm oval rails (common on carbon saddles). Once clipped, the sensor sits in the aerodynamic shadow behind your saddle, so it has zero drag impact on your ride. The clip is tool-free, but we include a 3mm hex key for fine angle adjustment."
+  },
+  {
+    q: 'Apa yang terjadi saat hujan atau jika saya melewati genangan air?' if isId else 'What happens in rain or if I ride through a puddle?',
+    a: 'Sensor memiliki peringkat ketahanan air IPX7 — yang berarti dapat direndam dalam air kedalaman 1 meter selama 30 menit tanpa kerusakan. Hujan lebat atau genangan air tidak menjadi masalah. Kami telah menguji unit ini dalam berbagai kondisi cuaca basah tanpa satu pun kegagalan.' if isId else "The sensor is rated IPX7 — that means it can be submerged in 1 meter of water for 30 minutes without damage. Belgian cobbles in November rain? No problem. We tested units through an entire Australian winter (yes, the wet one) without a single failure."
+  },
+  {
+    q: 'Berapa lama daya tahan baterainya?' if isId else 'How long does the battery last?',
+    a: '40 jam perekaman terus-menerus dengan semua sensor aktif dan siaran ANT+ serta Bluetooth. Untuk pesepeda dengan latihan 12–15 jam seminggu, ini berarti sekitar 3 minggu penggunaan dalam sekali pengisian daya. Pengisian daya memakan waktu 45 menit melalui USB-C. Waktu siaga sekitar 6 bulan.' if isId else "40 hours of continuous recording with all sensors active and both ANT+ and Bluetooth broadcasting. In practice, for a rider training 12–15 hours per week, that's roughly 3 weeks between charges. Charging takes 45 minutes via USB-C. Standby time is approximately 6 months."
+  },
+  {
+    q: 'Komputer sepeda dan aplikasi apa saja yang didukung?' if isId else 'Which head units and apps does it work with?',
+    a: 'Perangkat apa pun yang mendukung ANT+ atau Bluetooth LE. Kami telah memverifikasi kompatibilitas dengan Garmin Edge (540, 840, 1040), Wahoo ELEMNT (BOLT, ROAM), Hammerhead Karoo 2 & 3, serta Bryton Rider S800. Di sisi perangkat lunak: Strava, TrainingPeaks, Golden Cheetah, intervals.icu, TrainerRoad, dan Zwift semuanya dapat membaca file .FIT kami secara native.' if isId else "Anything that supports ANT+ or Bluetooth LE. We've verified compatibility with Garmin Edge (540, 840, 1040), Wahoo ELEMNT (BOLT, ROAM), Hammerhead Karoo 2 and 3, and Bryton Rider S800. On the software side: Strava, TrainingPeaks, Golden Cheetah, intervals.icu, TrainerRoad, and Zwift all read the .FIT files natively."
+  },
+  {
+    q: 'Bisakah saya menggunakannya di sepeda TT dengan tiang sadel aero tebal?' if isId else 'Can I use it on a TT bike with a deep aero seatpost?',
+    a: 'Bisa, meskipun dudukannya sedikit berbeda. Untuk sepeda TT tanpa rel sadel bulat standar, kami menyediakan adaptor klem tiang sadel opsional (dijual terpisah, $29) yang sesuai dengan tiang sadel silinder dan aero berdiameter 25–36mm.' if isId else "Yes, though the mounting is slightly different. For TT bikes without standard saddle rails, we offer an optional seatpost clamp adapter (sold separately, $29) that fits cylindrical and aero-shaped seatposts from 25–36mm diameter. The sensor functionality is identical regardless of mount type."
+  },
+  {
+    q: 'Apa perbedaan antara alat ini dan Metode Chung di Golden Cheetah?' if isId else "What's the difference between this and just using the Chung Method in Golden Cheetah?",
+    a: 'Metode Chung adalah alat gratis pasca-bersepeda yang memperkirakan CdA dari data daya dan GPS. Perbedaan utamanya: (1) sensor kami memberikan umpan balik langsung (real-time) saat Anda bersepeda, bukan analisis pasca-bersepeda, (2) kami mengukur posisi tubuh secara langsung menggunakan IMU, dan (3) akurasi Metode Chung menurun drastis di bawah kondisi angin tidak menentu — sedangkan data barometer dan IMU kami mengompensasi hal tersebut.' if isId else "The Chung Method is a great free tool for estimating CdA from power and GPS data post-ride. The key differences: (1) our sensor gives real-time feedback during the ride, not post-ride analysis, (2) we measure body position directly via IMU rather than inferring it from power residuals, and (3) Chung Method accuracy degrades significantly in variable wind conditions — our barometric and IMU data compensate for that. Think of Chung as a rough GPS versus our approach as a proper survey instrument."
+  },
+  {
+    q: 'Apakah pelacakan posisi tubuh berfungsi untuk sepeda gunung (MTB)?' if isId else 'Does body position tracking work for mountain biking?',
+    a: 'Untuk aerodinamika, kecepatan MTB umumnya terlalu rendah untuk membuat CdA relevan (hambatan udara mulai relevan di atas ~25km/jam). Namun, fitur analisis postur — dinamika pengayuhan, klasifikasi posisi tubuh, dan distribusi gaya — berfungsi sempurna pada sepeda gunung dan sangat berguna untuk pelatihan teknik berkendara serta pencegahan cedera.' if isId else "For aerodynamics, MTB speeds are generally too low for CdA to be meaningful (drag becomes relevant above ~25km/h). However, the posture analysis features — pedaling dynamics, body position classification, and force distribution — work perfectly on mountain bikes and are useful for technique coaching and injury prevention."
+  },
+  {
+    q: 'Bagaimana cara kerja program OEM?' if isId else 'How does the OEM program work?',
+    a: 'Kami menyediakan modul sensor sebagai komponen OEM dengan antarmuka I²C dan SPI yang terekspos. Anda dapat mengintegrasikannya langsung ke dalam desain perangkat keras Anda sendiri (seperti sadel, helm, atau stem). Pemesanan minimum adalah 500 unit, dan harga bergantung pada volume. Hubungi partners@didi.bike untuk lembar data OEM.' if isId else "We supply the sensor module as a component with exposed I²C and SPI interfaces. You integrate it into your own hardware design — saddle, helmet, stem, wherever makes sense for your product. Minimum order is 500 units, pricing is volume-dependent. We handle sensor calibration and provide a white-label firmware option. Contact partners@didi.bike for the OEM datasheet and pricing."
+  },
+  {
+    q: 'Apakah format datanya berpemilik (proprietary)?' if isId else 'Is the data format proprietary?',
+    a: 'Tidak. Semua data diekspor sebagai file .FIT standar — format yang sama yang digunakan oleh Garmin, Wahoo, dan hampir setiap platform pelatihan. Kami juga menyediakan API developer (REST + WebSocket) yang terbuka. Kami percaya pada keterbukaan data demi kemajuan pesepeda.' if isId else "No. All data exports as standard .FIT files — the same format used by Garmin, Wahoo, and virtually every training platform. We also provide a developer API (REST + WebSocket) for partners who want to build real-time applications. We believe in open data because locking cyclists into a single ecosystem benefits nobody except the company doing the locking."
+  },
+  {
+    q: 'Pembaruan firmware apa saja yang dirilis baru-baru ini?' if isId else 'What firmware updates have you released recently?',
+    a: 'Firmware v2.4 (Januari 2026) menambahkan deteksi keseimbangan pengayuhan kiri-kanan dan meningkatkan waktu konvergensi filter Kalman dari 45 detik menjadi di bawah 15 detik. Versi v2.3 (Oktober 2025) memperkenalkan perekaman otomatis saat mendeteksi gerakan. Pembaruan gratis dan dapat diinstal via udara (OTA) melalui aplikasi pendamping.' if isId else "Firmware v2.4 (January 2026) added left-right pedaling balance detection and improved the Kalman filter convergence time from 45 seconds to under 15 seconds. v2.3 (October 2025) introduced automatic ride detection — the sensor starts recording when it detects movement and stops after 5 minutes idle. All updates are free and install over-the-air via the companion app."
+  },
+  {
+    q: 'Bagaimana Anda menangani angin samping dalam perhitungan CdA?' if isId else 'How do you handle crosswinds in CdA calculations?',
+    a: 'Ini adalah tantangan terberat dalam pengujian aerodinamika luar ruangan. Pendekatan kami menggunakan IMU untuk mendeteksi gangguan gaya lateral (hembusan angin samping mendorong Anda ke samping — accelerometer mendeteksi hal itu) dikombinasikan dengan tanda turbulensi barometrik. Kami kemudian menerapkan faktor koreksi dinamis pada estimasi CdA.' if isId else "This is the hardest problem in outdoor aero testing, and honestly, no method solves it perfectly. Our approach uses the IMU to detect lateral force perturbations (crosswinds push you sideways — the accelerometer sees that) combined with barometric turbulence signatures. We then apply a correction factor to the CdA estimate. In steady crosswinds, our correction works well. In gusty, variable conditions, we mark those segments with lower confidence scores so you know which data to trust."
+  },
+  {
+    q: 'Bisakah dua pesepeda berbagi satu sensor?' if isId else 'Can two riders share one sensor?',
+    a: 'Ya. Sensor menyimpan beberapa profil pesepeda secara internal. Saat Anda menghubungkannya via aplikasi, Anda cukup memilih profil Anda, dan sensor akan menggunakan parameter berat, height, dan dimensi sepeda Anda untuk perhitungan.' if isId else "Yes. The sensor stores rider profiles internally. When you pair it via the app, you select your profile, and the sensor uses your weight, height, and bike parameters for calculations. Switching profiles takes about 10 seconds. We tested this with a husband-wife pair who share a TT bike (different saddle heights, same sensor) and it works seamlessly."
+  },
+  {
+    q: 'Di mana sensor ini diproduksi?' if isId else 'Where is the sensor manufactured?',
+    a: 'Perakitan akhir dan kalibrasi presisi tinggi dilakukan di fasilitas kami di Jakarta, Indonesia. Sensor IMU dan barometer bersumber dari Bosch (Jerman), SoC nRF52840 dari Nordic Semiconductor (Norwegia), dan strain gauge dari Vishay (AS). Setiap unit menjalani kalibrasi individu sebelum dikirim dan disertai sertifikat kalibrasi unik.' if isId else "Final assembly and calibration happen at our facility in Jakarta, Indonesia. The IMU and barometer are sourced from Bosch (Germany), the nRF52840 SoC from Nordic Semiconductor (Norway), and the strain gauges from Vishay (USA). Each unit undergoes individual calibration on a 6-axis Stewart platform before shipping — that's why your box includes a calibration certificate with your specific unit's serial number."
+  }
+] %}
+
+<!-- FAQ Page Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% for faq in faqs %}
+      {
+        "@type": "Question",
+        "name": "{{ faq.q }}",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "{{ faq.a }}"
+        }
+      }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+
+<!-- Breadcrumbs Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ site.baseUrl or 'https://didi.bike' }}{{ homePrefix }}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "FAQ",
+      "item": "{{ site.baseUrl or 'https://didi.bike' }}{{ homePrefix }}/faq"
+    }
+  ]
+}
+</script>
+
+<div class="faq-main">
+  <!-- Hero Section -->
+  <section class="faq-hero">
+    <div class="container">
+      <span class="faq-badge">FAQ</span>
+      <h1 class="faq-page-title">
+        {{ 'Pertanyaan yang Sering Diajukan' if isId else 'Questions We Actually Get Asked' }}
+      </h1>
+      <p class="faq-hero-desc">
+        {{ 'Bukan sekadar FAQ pemasaran — ini adalah pertanyaan nyata dari pesepeda, fitter, dan insinyur yang mengirim email kepada kami.' if isId else "Not a marketing FAQ — these are real questions from riders, fitters, and engineers who've emailed us or cornered us at trade shows." }}
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="faq-list">
+        {% for faq in faqs %}
+          <details class="faq-item">
+            <summary class="faq-q">{{ faq.q }}</summary>
+            <p class="faq-a">{{ faq.a }}</p>
+          </details>
+        {% endfor %}
+      </div>
+
+      <!-- Bottom Contact -->
+      <div class="faq-contact">
+        <h2>{{ 'Masih punya pertanyaan?' if isId else 'Still have questions?' }}</h2>
+        <p>
+          {% if isId %}
+            Hubungi kami melalui email di <a href="mailto:info@didi.bike">info@didi.bike</a> — manusia asli akan menjawab dalam waktu 24 jam. Untuk kerja sama OEM: <a href="mailto:partners@didi.bike">partners@didi.bike</a>.
+          {% else %}
+            Email us at <a href="mailto:info@didi.bike">info@didi.bike</a> — a human will reply within 24 hours. For OEM inquiries: <a href="mailto:partners@didi.bike">partners@didi.bike</a>.
+          {% endif %}
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

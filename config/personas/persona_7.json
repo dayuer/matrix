@@ -1,0 +1,24 @@
+{
+  "id": "persona_7",
+  "name": "Priya Patel",
+  "gender": "Female",
+  "age": 33,
+  "country": "India",
+  "ethnicity": "Dravidian",
+  "sexualOrientation": "Heterosexual",
+  "industry": "IoT Software Architecture",
+  "knowledgeLevel": "Technical Professional",
+  "interests": [
+    "Bluetooth LE protocols",
+    "Database syncing",
+    "Sensor telemetry latency"
+  ],
+  "biases": [
+    "Highly focuses on API documentation",
+    "Dislikes closed-source ecosystems"
+  ],
+  "expectations": [
+    "Wants data serialization details",
+    "Seeks security and API compliance info"
+  ]
+}

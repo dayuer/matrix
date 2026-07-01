@@ -1,0 +1,48 @@
+{% set d = block.data %}
+<section class="hero">
+  <div class="hero__grid" aria-hidden="true"></div>
+  <div class="hero__inner">
+    <div class="hero__copy reveal">
+      <p class="hero__kicker mono">{{ d.kicker | safe }}</p>
+      <h1 class="hero__title">{{ d.titleHtml | safe }}</h1>
+      <p class="hero__lead">{{ d.lead }}</p>
+      <div class="hero__actions">
+        {% for a in d.actions %}
+          <a href="{{ a.href }}" class="btn btn--{{ a.variant }}">{{ a.text }}{% if a.arrow %} <span aria-hidden="true">→</span>{% endif %}</a>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if d.panel %}
+    <aside class="hero__panel reveal" aria-label="重构概览">
+      <div class="specsheet">
+        <div class="specsheet__head">
+          <span class="mono">{{ d.panel.head }}</span>
+          <span class="mono specsheet__ref">{{ d.panel.ref }}</span>
+        </div>
+        <div class="specsheet__flow">
+          <div class="flow-node flow-node--legacy">
+            <span class="flow-node__tag mono">{{ d.panel.legacy.tag }}</span>
+            <span class="flow-node__name">{{ d.panel.legacy.name }}</span>
+            <span class="flow-node__sub mono">{{ d.panel.legacy.sub }}</span>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">
+            <span class="flow-arrow__line"></span>
+            <span class="flow-arrow__label mono">{{ d.panel.arrow | safe }}</span>
+          </div>
+          <div class="flow-node flow-node--target">
+            <span class="flow-node__tag mono">{{ d.panel.target.tag }}</span>
+            <span class="flow-node__name">{{ d.panel.target.name }}</span>
+            <span class="flow-node__sub mono">{{ d.panel.target.sub }}</span>
+          </div>
+        </div>
+        <dl class="specsheet__stats">
+          {% for s in d.panel.stats %}
+            <div class="stat"><dt>{{ s.label }}</dt><dd class="mono{% if s.accent %} u-accent{% endif %}">{{ s.value }}</dd></div>
+          {% endfor %}
+        </dl>
+      </div>
+    </aside>
+    {% endif %}
+  </div>
+</section>

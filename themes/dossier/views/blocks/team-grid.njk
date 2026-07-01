@@ -1,0 +1,23 @@
+{% set d = block.data %}
+{% set h = d.head %}
+<section class="section" id="{{ d.anchor or 'team' }}">
+  {% include "blocks/_section-head.njk" %}
+
+  <div class="teams">
+    {% for team in d.teams %}
+      <article class="team reveal">
+        <div class="team__head">
+          <span class="team__mark mono" aria-hidden="true">{{ team.name[0] }}</span>
+          <div>
+            <h3 class="team__name">{{ team.name }}</h3>
+            <p class="team__role mono">{{ team.role }}</p>
+          </div>
+        </div>
+        <p class="team__desc">{{ team.desc }}</p>
+        <ul class="team__list">
+          {% for point in team.points %}<li>{{ point }}</li>{% endfor %}
+        </ul>
+      </article>
+    {% endfor %}
+  </div>
+</section>

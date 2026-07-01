@@ -1,0 +1,24 @@
+{
+  "id": "persona_20",
+  "name": "Kimberly Vance",
+  "gender": "Female",
+  "age": 41,
+  "country": "Canada",
+  "ethnicity": "Indigenous (First Nations)",
+  "sexualOrientation": "Asexual",
+  "industry": "Outdoor Education Coordinator",
+  "knowledgeLevel": "Casual Hobbyist",
+  "interests": [
+    "Wilderness trail safety",
+    "Vibration damping testing",
+    "GPS accuracy in forests"
+  ],
+  "biases": [
+    "Prefers rugged utility and off-grid resilience",
+    "Dislikes city road setups"
+  ],
+  "expectations": [
+    "Wants vibration damping performance",
+    "Seeks GPS sensor fusion details"
+  ]
+}

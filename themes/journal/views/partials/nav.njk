@@ -1,0 +1,18 @@
+{# 共享导航。active 高亮由 page.activeNav 决定，不再各页手写。 #}
+<nav class="nav{{ ' scrolled' if page.activeNav }}" id="navbar">
+  <div class="nav__inner">
+    <a href="{{ basePath }}/" class="nav__logo">
+      <img src="{{ basePath }}{{ site.brand.logo }}" alt="{{ site.brand.name }} Logo" class="nav__logo-img">
+    </a>
+    <div class="nav__right" id="navLinks">
+      {% for item in site.nav %}
+      <a href="{{ basePath }}{{ item.href }}" class="nav__link{{ ' active' if item.key == page.activeNav }}">{{ item.text }}</a>
+      {% endfor %}
+      <a href="{{ basePath }}{{ site.cta.href }}" class="nav__cta">{{ site.cta.text }}</a>
+    </div>
+    <button class="nav__toggle" id="navToggle" aria-label="切换导航菜单">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-overlay" id="navOverlay"></div>

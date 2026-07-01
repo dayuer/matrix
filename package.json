@@ -1,0 +1,13 @@
+{
+  "name": "didi-matrix",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "themes/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build:platform": "npm run build -w @matrix/blocks && npm run build -w @matrix/site-kit && npm run build -w @matrix/cli",
+    "matrix": "node packages/cli/dist/cli.js"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "persona_13",
+  "name": "Mateo Rossi",
+  "gender": "Male",
+  "age": 23,
+  "country": "Italy",
+  "ethnicity": "Italian",
+  "sexualOrientation": "Gay",
+  "industry": "Sports Physiology Research",
+  "knowledgeLevel": "Advanced Academic",
+  "interests": [
+    "VO2max estimation models",
+    "Heart rate variability",
+    "Nyquist sampling rate"
+  ],
+  "biases": [
+    "Relies strictly on peer-reviewed papers",
+    "Skeptical of commercial wear-tech"
+  ],
+  "expectations": [
+    "Wants formula derivations for fatigue",
+    "Demands sensor fusion validations"
+  ]
+}

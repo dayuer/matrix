@@ -1,0 +1,40 @@
+{# 共享页脚。栏目/链接/法务/社交全部来自 config/site.js。 #}
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__brand-name">
+          <img src="{{ basePath }}{{ site.brand.logo }}" alt="{{ site.brand.name }} Logo" class="footer__logo-img">
+        </div>
+        <p class="footer__brand-desc">{{ site.brand.desc }}</p>
+        <a href="tel:{{ site.brand.hotline }}" class="footer__hotline">客服热线 {{ site.brand.hotline }}</a>
+      </div>
+
+      {% for col in site.footer.columns %}
+      <div class="footer__col">
+        <h4 class="footer__col-title">{{ col.title }}</h4>
+        {% for link in col.links %}
+        <a href="{% if link.external %}{{ link.href }}{% else %}{{ basePath }}{{ link.href }}{% endif %}" class="footer__link"{% if link.external %} target="_blank"{% endif %}>{{ link.text }}</a>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="footer__divider"></div>
+
+    <div class="footer__bottom">
+      <div class="footer__legal">
+        {{ site.footer.legal.contact }}<br>
+        <a href="{{ site.footer.legal.icp.href }}" target="_blank">{{ site.footer.legal.icp.text }}</a> ·
+        <a href="{{ site.footer.legal.police.href }}" target="_blank">{{ site.footer.legal.police.text }}</a><br>
+        © <span id="copyrightYear">{{ site.footer.legal.foundingYear }} - {{ currentYear }}</span>
+        <a href="{{ site.footer.legal.company.href }}" target="_blank">{{ site.footer.legal.company.text }}</a> 版权所有
+      </div>
+      <div class="footer__social">
+        {% for s in site.footer.social %}
+          {% if s.href %}<a href="{{ s.href }}" target="_blank">{{ s.text }}</a>{% else %}<span>{{ s.text }}</span>{% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</footer>

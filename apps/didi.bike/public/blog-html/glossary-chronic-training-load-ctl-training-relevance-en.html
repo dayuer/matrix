@@ -1,0 +1,101 @@
+<h1>CTL System Architecture and Sensor Data Pipelines</h1>
+<p>In the domain of high-performance cycling telemetry, chronic training load ctl functions as a metric reflecting long-term physical conditioning. Instead of viewing this parameter purely from a physiological perspective, embedded system engineers must analyze how sensor data streams are compiled, serialized, and processed. Telemetry hardware mounted on the bicycle crankset continuously gathers torque and angular velocity at a sampling frequency of 100 Hz. These high-fidelity data streams are transmitted via a Serial Peripheral Interface (SPI) to the primary microcontroller. The microcontroller processes these inputs to calculate instantaneous power and cadence before updating the rolling average.</p>
+<p>Data integrity is paramount. If transmission errors occur, downstream calculation becomes unreliable. To solve this, the microcontroller implements rigid data serialization before sending telemetry frames over the wireless transmitter.</p>
+<h2>Data Pipeline Architecture</h2>
+<p>The firmware layout divides operations into asynchronous tasks to prevent timing jitter. Sensor acquisition runs in a high-priority timer interrupt, while calculation and storage occur in the background thread. Thread safety must be enforced when accessing shared variables. If the background thread is reading the raw torque values while the interrupt service routine updates them, memory corruption occurs. We employ double-buffering and mutex locks to eliminate race conditions. The raw ADC values are written to an active buffer while the math engine reads from a shadow buffer. This architecture maintains deterministic behavior.</p>
+<h2>Serialization Protocols and Memory Optimization</h2>
+<p>Telemetry packets are structured to minimize payload size and transmission overhead. A custom binary serialization protocol ensures that every byte in the UART buffer contains meaningful data. The MCU packages the raw telemetry metrics into a fixed-length struct before execution.</p>
+<p>Below is the design of the serial packet struct utilized in the DIDI.BIKE firmware:</p>
+<pre><code class="language-c">#define BUFFER_SIZE 256
+typedef struct {
+    uint8_t sync_byte;
+    uint8_t payload_len;
+    uint16_t power_watts;
+    uint16_t cadence_rpm;
+    uint32_t timestamp;
+    uint8_t checksum;
+} TelemetryPacket;
+
+uint8_t compute_checksum(const TelemetryPacket* pkt) {
+    uint8_t sum = 0;
+    const uint8_t* ptr = (const uint8_t*)pkt;
+    for (size_t i = 0; i &lt; sizeof(TelemetryPacket) - 1; ++i) {
+        sum ^= ptr[i];
+    }
+    return sum;
+}
+</code></pre>
+<p>During operations, the DMA controller transfers the contents of this struct directly to the UART buffer. Checksum verification is performed at the receiving end. If the computed checksum does not match the received checksum byte, the packet is rejected. This prevents corrupt data from contaminating the historical log used to determine chronic training load ctl.</p>
+<h2>Mathematical Formulation</h2>
+<p>The mathematical representation of <strong>Chronic Training Load CTL</strong> and its corresponding metabolic/physical relation is modeled as:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>TSS</mtext><mo>=</mo><mfrac><mrow><mi>t</mi><mo>⋅</mo><mi>P</mi><mo>⋅</mo><mtext>IF</mtext></mrow><mrow><mn>3600</mn><mo>⋅</mo><mtext>FTP</mtext></mrow></mfrac><mo>⋅</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">\text{TSS} = \frac{t \cdot P \cdot \text{IF}}{3600 \cdot \text{FTP}} \cdot 100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">TSS</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0463em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3600</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord text"><span class="mord">FTP</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord text"><span class="mord">IF</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">100</span></span></span></span></span><p>Where:</p>
+<ul>
+<li>$\text{TSS}$ and $\text{NP}$ reflect the exponential weighting of training stress, scaling with the 4th power of mechanical power output to match physiological load.</li>
+<li>$RER$ represents the Respiratory Exchange Ratio, indicating substrate oxidation ratios (carbohydrate vs. fat combustion).</li>
+<li>$W&#39;_{t}$ represents the instantaneous anaerobic work capacity remaining, measured in Joules (J), which drains non-linearly above FTP and reconstitutes exponentially during recovery.</li>
+</ul>
+<h2>Interrupt Service Routine and Checksum Verification</h2>
+<p>When a new packet arrives at the receiver, the hardware triggers a UART receive interrupt. The interrupt service routine (ISR) reads the incoming byte from the I2C register or serial interface. It places the byte into a circular ring FIFO buffer. If the CPU experiences interrupt latency due to other high-priority tasks, the hardware UART FIFO acts as a temporary buffer to prevent packet loss.</p>
+<p>Let us examine the packet parsing routine:</p>
+<pre><code class="language-c">typedef enum {
+    STATE_SYNC,
+    STATE_LEN,
+    STATE_DATA,
+    STATE_CHECK
+} ParserState;
+
+void parse_uart_byte(uint8_t byte) {
+    static ParserState state = STATE_SYNC;
+    static uint8_t idx = 0;
+    static TelemetryPacket temp_pkt;
+    
+    switch(state) {
+        case STATE_SYNC:
+            if (byte == 0xAA) {
+                temp_pkt.sync_byte = byte;
+                state = STATE_LEN;
+            }
+            break;
+        case STATE_LEN:
+            temp_pkt.payload_len = byte;
+            idx = 0;
+            state = STATE_DATA;
+            break;
+        case STATE_DATA:
+            ((uint8_t*)&amp;temp_pkt)[idx + 2] = byte;
+            idx++;
+            if (idx &gt;= temp_pkt.payload_len) {
+                state = STATE_CHECK;
+            }
+            break;
+        case STATE_CHECK:
+            temp_pkt.checksum = byte;
+            if (compute_checksum(&amp;temp_pkt) == temp_pkt.checksum) {
+                // Packet valid, enqueue for processing
+                enqueue_packet(&amp;temp_pkt);
+            }
+            state = STATE_SYNC;
+            break;
+    }
+}
+</code></pre>
+<p>This state machine runs entirely within the interrupt context. Minimal execution time inside the ISR prevents nested interrupts and maintains system responsiveness. The parsed power telemetry data is then utilized in the rolling accumulation algorithm. Because chronic training load ctl uses an exponential moving average over a 42-day period, missing or corrupt data packets will skew the calculation. Therefore, robust packet validation is a requirement for sports performance tracking.</p>
+<h2>Hardware Register Configuration</h2>
+<p>To achieve maximum power efficiency on the cycling computer, the microcontroller must configure its peripheral registers correctly. For instance, the I2C register control block must enable fast-mode operations (400 kHz) to query the accelerometer sensor.</p>
+<pre><code class="language-c">void configure_i2c_registers(void) {
+    // Enable I2C clock
+    RCC-&gt;APB1ENR |= RCC_APB1ENR_I2C1EN;
+    // Configure I2C Speed Control Register
+    I2C1-&gt;CCR = 0x50; // Set clock speed
+    // Enable I2C Peripheral
+    I2C1-&gt;CR1 |= I2C_CR1_PE;
+}
+</code></pre>
+<p>This low-level setup bypasses high-level software abstraction layers, minimizing processing overhead. Standard deviation of sensor polling intervals must remain below one millisecond. Any deviation leads to inaccuracies when integrating power over time. Any compilation error should be captured. The accumulation of these precision errors will distort the resulting chronic training load ctl over multi-week training cycles.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.tandfonline.com/toc/rjsp20/current" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Journal of Sports Sciences</a>: Biomechanical analysis and mechanical efficiency in elite cycling.</li>
+<li><a href="/technology" style="color: var(--color-accent); text-decoration: underline;">DIDI.BIKE Technical Reprints</a>: High-frequency telemetry and sensor fusion calibrations.</li>
+<li><a href="https://www.uci.org/inside-uci/constitutions-regulations/regulations" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">UCI Cycling Regulations</a>: Part I: General Organisation of Cycling as a Sport (Aero &amp; Frame dimensions limits).</li>
+<li><a href="https://scholar.google.com/scholar?q=High-altitude+hypoxic+adaptation+and+cardiorespiratory+kinetics" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Swiss Federal Institute of Sport Magglingen</a>: High-altitude hypoxic adaptation and cardiorespiratory kinetics.</li>
+</ol>

@@ -1,0 +1,24 @@
+{
+  "id": "persona_3",
+  "name": "Carlos Sanchez",
+  "gender": "Male",
+  "age": 45,
+  "country": "Spain",
+  "ethnicity": "Hispanic",
+  "sexualOrientation": "Heterosexual",
+  "industry": "Professional Cycling Coaching",
+  "knowledgeLevel": "Advanced Academic",
+  "interests": [
+    "Lactate threshold modeling",
+    "Power-duration curves",
+    "Saddle height mechanics"
+  ],
+  "biases": [
+    "Highly critical of non-scientific claims",
+    "Wants elite athletic protocols"
+  ],
+  "expectations": [
+    "Demands biochemical and physiological rigor",
+    "Seeks elite training plans"
+  ]
+}
