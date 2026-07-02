@@ -424,16 +424,17 @@ h1, h2, h3, h4 {
 
 .bento-card__tag {
   align-self: flex-start;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 11px;
-  color: var(--primary-light);
-  background-color: rgba(10, 54, 34, 0.05);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 10px;
+  color: var(--accent) !important;
+  background-color: rgba(214, 175, 55, 0.08) !important;
+  border: 1px solid rgba(214, 175, 55, 0.2) !important;
   padding: 4px 10px;
   border-radius: 6px;
   margin-bottom: 24px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.08em;
 }
 
 .bento-card__title {
