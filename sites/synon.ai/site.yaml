@@ -27,9 +27,8 @@ themeOptions:
     '--border-color': 'rgba(212, 175, 55, 0.15)'
 
 baseUrl: https://synon.ai
-
 brand:
-  name: Synon Global
+  name: Synon AI
   desc: 全球化 FDE (Forward Deployed Engineering) 交付与 AI 数字化重构平台。我们不做一次性外包，而是以技术为投资的联营模式，深度驻场进行旧系统逆向工程与 AI 原生系统重构，与客户长期共赢。
   favicon: /images/favicon.svg
 
@@ -61,7 +60,7 @@ footer:
         - { text: 申请技术合作, href: "/#apply" }
   legal:
     contact: 咨询与合作投递：contact@synon.ai
-    company: { text: Synon Global Group Limited, href: "#" }
+    company: { text: Synon AI Group Limited, href: "#" }
     foundingYear: 2026
   social:
     - { text: LinkedIn, href: "#" }

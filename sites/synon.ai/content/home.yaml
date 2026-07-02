@@ -3,17 +3,17 @@
 template: home
 
 meta:
-  title: Synon Global — 全球化 FDE 交付与 AI 数字化重构平台
+  title: Synon AI — 全球化 FDE 交付与 AI 数字化重构平台
   description: Synon.ai 专注于全球异构遗留系统的数据库逆向工程、流程诊断与 AI-Native 架构重构。我们派出驻场的 Echo 与 Delta 团队，交付具备高度自主自治能力的智能企业操作系统，与客户深度共赢。
   keywords: Synon,Synon.ai,FDE,Forward Deployed Engineer,AI重构,逆向工程,遗留系统升级,Echo Delta,AI企业OS
-  ogImageAlt: Synon Global — FDE 交付与 AI 重构平台
+  ogImageAlt: Synon AI — FDE 交付与 AI 重构平台
   activeNav: fde
   priority: 1.0
   changefreq: weekly
   jsonLd:
     "@context": https://schema.org
     "@type": Organization
-    name: Synon Global
+    name: Synon AI
     url: https://synon.ai
     description: 全球化 FDE (Forward Deployed Engineering) 交付与 AI 数字化重构平台。我们不做一次性外包，而是以技术为投资的联营模式，深度驻场进行旧系统逆向工程与 AI 原生系统重构，与客户长期共赢。
     areaServed: [CN, HK, ID, GB, AE]
@@ -32,7 +32,7 @@ blocks:
     data:
       kicker: FORWARD&nbsp;DEPLOYED&nbsp;ENGINEERING · 技术档案
       titleHtml: 把数十年的<span class="u-mark">遗留系统</span>，<br>逆向重构为 <span class="u-accent">AI 原生企业 OS</span>
-      lead: Synon Global 派遣驻场的 Echo 与 Delta 团队，深入解析旧代码与数据库，以 AI 智能体为核心重写业务流程。我们以技术为投资，与客户共担风险、共享增量红利。
+      lead: Synon AI 派遣驻场的 Echo 与 Delta 团队，深入解析旧代码与数据库，以 AI 智能体为核心重写业务流程。我们以技术为投资，与客户共担风险、共享增量红利。
       actions:
         - { text: 申请技术合作, href: "#apply", variant: primary, arrow: true }
         - { text: 查看 FDE 交付框架, href: "#fde", variant: ghost }
