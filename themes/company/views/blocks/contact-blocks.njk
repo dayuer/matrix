@@ -1,0 +1,33 @@
+{# 联系人分块列表：每块含标题、业务范围与明细行。
+   明细行类型：href（链接，tel/外链）、copy（复制按钮）、纯文本；note 为行尾备注。 #}
+{% set d = block.data %}
+{% set p = d.prefix or 'serves' %}
+<section class="{{ d.sectionClass or (p + '-contacts') }}" data-reveal>
+  <h2 class="{{ p }}-section-title">{{ d.title }}</h2>
+  <p class="{{ p }}-section-desc">{{ d.desc }}</p>
+
+  <div class="contact-list-wrap">
+    {% for b in d.blocks %}
+    <div class="contact-block">
+      <h3 class="contact-block__title">{{ b.title }}</h3>
+      <p class="contact-block__scope">{{ b.scope }}</p>
+      {% for row in b.details %}
+      <div class="contact-block__detail">
+        <span class="contact-block__label">{{ row.label }}</span>
+        {% if row.href %}
+        <a href="{{ row.href }}"{% if row.external %} target="_blank"{% endif %} class="contact-block__value contact-block__link"{% if row.external %} data-track="outbound_click"{% endif %}>{{ row.value }}{% if row.external %} ↗{% endif %}</a>
+        {% else %}
+        <span class="contact-block__value">{{ row.value }}</span>
+        {% endif %}
+        {% if row.copy %}
+        <button class="contact-block__copy copy-btn" data-copy="{{ row.value }}" data-type="{{ row.copyLabel or '邮箱' }}" data-track="copy_contact" data-track-type="{{ row.copyTrackType or 'email' }}">复制</button>
+        {% endif %}
+        {% if row.note %}<span class="contact-block__note">{{ row.note }}</span>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+
+    {% if d.footnoteHtml %}<p class="contact-list-note">{{ d.footnoteHtml | safe }}</p>{% endif %}
+  </div>
+</section>

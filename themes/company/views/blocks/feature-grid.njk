@@ -1,0 +1,20 @@
+{# 图标利益点卡组（benefit-card）。prefix 决定标题风格类（recruit / serves），
+   item.icon 为 24×24 线性图标的 <svg> 内部标记。 #}
+{% set d = block.data %}
+{% set p = d.prefix or 'recruit' %}
+<section class="{{ d.sectionClass or (p + '-benefits') }}" data-reveal>
+  <h2 class="{{ p }}-section-title">{{ d.title }}</h2>
+  <p class="{{ p }}-section-desc">{{ d.desc }}</p>
+
+  <div class="benefit-grid">
+    {% for item in d.items %}
+    <div class="benefit-card">
+      <div class="benefit-card__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{{ item.icon | safe }}</svg>
+      </div>
+      <h3 class="benefit-card__title">{{ item.title }}</h3>
+      <p class="benefit-card__desc">{{ item.desc }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>

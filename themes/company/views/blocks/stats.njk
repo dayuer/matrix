@@ -1,0 +1,19 @@
+{# 数据卡：counter 支持 data-target（数字动画）与 data-founding（按成立年份算年数），
+   否则渲染静态文本。suffix 跟在数字后（如 + / 年+）。 #}
+{% set d = block.data %}
+<section class="trust" id="{{ d.id or 'trust' }}" data-screen-label="{{ d.screenLabel or 'Trust' }}">
+  <div class="section-header" data-reveal>
+    <p class="section-header__label">{{ d.header.label }}</p>
+    <h2 class="section-header__title">{{ d.header.titleHtml | safe }}</h2>
+    <p class="section-header__desc">{{ d.header.desc }}</p>
+  </div>
+
+  <div class="stats-grid">
+    {% for item in d.items %}
+    <div class="stat-card" data-reveal>
+      <div class="stat-card__number">{% if item.counter %}<span class="counter"{% if item.counter.target %} data-target="{{ item.counter.target }}"{% endif %}{% if item.counter.founding %} data-founding="{{ item.counter.founding }}"{% endif %}>0</span>{{ item.suffix }}{% else %}{{ item.text }}{% endif %}</div>
+      <div class="stat-card__label">{{ item.label }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</section>

@@ -1,0 +1,21 @@
+{# 常见问答手风琴（自动编号）。aHtml 可含 <br> 等富文本。 #}
+{% set d = block.data %}
+<section class="faq" id="{{ d.id or 'faq' }}" data-screen-label="{{ d.screenLabel or 'FAQ' }}">
+  <div class="faq__inner">
+    <div class="faq__list">
+      {% for item in d.items %}
+      <div class="faq__item">
+        <div class="faq__question">
+          <span class="faq__title">{{ loop.index }}. {{ item.q }}</span>
+          <svg class="faq__arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+        <div class="faq__answer">
+          <p>{{ item.aHtml | safe }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

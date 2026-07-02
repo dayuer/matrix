@@ -1,0 +1,44 @@
+{# 首页服务 Bento：区块头 + 卡片组。variant: featured（左大卡）/ standard（右副卡）/ flat（底部扁平卡）。 #}
+{% set d = block.data %}
+<section class="services" id="{{ d.id or 'services' }}" data-screen-label="{{ d.screenLabel or 'Services' }}">
+  <div class="section-header" data-reveal>
+    <p class="section-header__label">{{ d.header.label }}</p>
+    <h2 class="section-header__title">{{ d.header.titleHtml | safe }}</h2>
+    <p class="section-header__desc">{{ d.header.desc }}</p>
+  </div>
+
+  <div class="bento">
+    {% for card in d.cards %}
+    {% if card.variant == 'flat' %}
+    <div class="bento__card bento__card--flat" data-reveal>
+      <div class="bento__flat-inner">
+        <div class="bento__flat-text">
+          {% if card.tag %}<span class="bento__tag">{{ card.tag }}</span>{% endif %}
+          <h3 class="bento__title bento__title--sm">{{ card.title }}</h3>
+          <p class="bento__desc bento__desc--sm">{{ card.desc }}</p>
+          <div class="bento__flat-links">
+            {% for link in card.links %}
+            <a href="{% if link.external %}{{ link.href }}{% else %}{{ basePath }}{{ link.href }}{% endif %}"{% if link.external %} target="_blank"{% endif %} class="link-arrow"{% if link.track %} data-track="{{ link.track }}"{% endif %}{% if link.trackPlatform %} data-track-platform="{{ link.trackPlatform }}"{% endif %}>{{ link.text }}&nbsp;›</a>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="bento__flat-image-wrapper">
+          <img class="bento__img bento__img--flat" src="{{ basePath }}{{ card.img.src }}" alt="{{ card.img.alt }}" loading="lazy">
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="bento__card bento__card--{{ card.variant }}" data-reveal>
+      <div class="bento__card-content">
+        <h3 class="bento__title{% if card.variant == 'featured' %} bento__title--lg{% endif %}">{{ card.title }}</h3>
+        <p class="bento__desc">{{ card.desc }}</p>
+        {% for link in card.links %}
+        <a href="{% if link.external %}{{ link.href }}{% else %}{{ link.href }}{% endif %}"{% if link.external %} target="_blank"{% endif %} class="link-arrow"{% if link.track %} data-track="{{ link.track }}"{% endif %}{% if link.trackPlatform %} data-track-platform="{{ link.trackPlatform }}"{% endif %}>{{ link.text }}&nbsp;›</a>
+        {% endfor %}
+      </div>
+      <img class="bento__img" src="{{ basePath }}{{ card.img.src }}" alt="{{ card.img.alt }}" loading="lazy">
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+</section>

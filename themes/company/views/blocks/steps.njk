@@ -1,0 +1,19 @@
+{# 流程步骤（自动编号）。 #}
+{% set d = block.data %}
+{% set p = d.prefix or 'recruit' %}
+<section class="{{ d.sectionClass or (p + '-flow') }}" data-reveal>
+  <div class="{{ d.sectionClass or (p + '-flow') }}__inner">
+    <h2 class="{{ p }}-section-title">{{ d.title }}</h2>
+    <p class="{{ p }}-section-desc">{{ d.desc }}</p>
+
+    <div class="flow-steps">
+      {% for item in d.items %}
+      <div class="flow-step">
+        <div class="flow-step__number">{{ loop.index }}</div>
+        <h3 class="flow-step__title">{{ item.title }}</h3>
+        <p class="flow-step__desc">{{ item.desc }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,22 @@
+{# 图标产品/支持卡组（support-card）。prefix 决定标题风格类（serves / partner），
+   innerClass 可选内层包裹（partner 用），gridClass 默认 support-grid。 #}
+{% set d = block.data %}
+{% set p = d.prefix or 'serves' %}
+<section class="{{ d.sectionClass }}" data-reveal>
+  {% if d.innerClass %}<div class="{{ d.innerClass }}">{% endif %}
+  <h2 class="{{ p }}-section-title">{{ d.title }}</h2>
+  <p class="{{ p }}-section-desc">{{ d.desc }}</p>
+
+  <div class="{{ d.gridClass or 'support-grid' }}">
+    {% for item in d.items %}
+    <div class="support-card">
+      <div class="support-card__icon-wrapper">
+        <svg class="support-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{{ item.icon | safe }}</svg>
+      </div>
+      <h3 class="support-card__title">{{ item.title }}</h3>
+      <p class="support-card__desc">{{ item.desc }}</p>
+    </div>
+    {% endfor %}
+  </div>
+  {% if d.innerClass %}</div>{% endif %}
+</section>

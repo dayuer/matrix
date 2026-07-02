@@ -1,0 +1,10 @@
+{# 子页头部：label + h1 + 描述。sectionClass 决定页面风格（recruit-header / serves-header /
+   partner-header / questions-header），innerClass 可选内层包裹（partner 用）。 #}
+{% set d = block.data %}
+<section class="{{ d.sectionClass or 'recruit-header' }}" data-reveal>
+  {% if d.innerClass %}<div class="{{ d.innerClass }}">{% endif %}
+  <p class="section-header__label">{{ d.label }}</p>
+  <h1 class="section-header__title">{{ d.title }}</h1>
+  <p class="section-header__desc">{{ d.descHtml | safe }}</p>
+  {% if d.innerClass %}</div>{% endif %}
+</section>

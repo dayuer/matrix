@@ -1,0 +1,21 @@
+{# 须知/明细盒组：可选节标题 + 多个 notice-box（盒标题带图标 + 富文本列表项）。
+   box.icon 为 24×24 线性图标的 <svg> 内部标记；itemsHtml 项可含 <strong>/<a>。 #}
+{% set d = block.data %}
+{% set p = d.prefix or 'recruit' %}
+<section class="{{ d.sectionClass or (p + '-notice') }}" data-reveal>
+  {% if d.title %}<h2 class="{{ p }}-section-title">{{ d.title }}</h2>{% endif %}
+
+  {% for box in d.boxes %}
+  <div class="notice-box">
+    <div class="notice-box__title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{{ box.icon | safe }}</svg>
+      {{ box.title }}
+    </div>
+    <ul class="notice-list">
+      {% for item in box.itemsHtml %}
+      <li>{{ item | safe }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endfor %}
+</section>

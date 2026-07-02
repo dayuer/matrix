@@ -1,0 +1,27 @@
+{# 首页 Hero：眉题 + 大标题 + 副题 + 链接组 + 可选二维码悬浮盒。 #}
+<section class="hero" data-screen-label="Hero">
+  <div class="hero__bg">
+    <div class="hero__bg-inner"></div>
+  </div>
+  <div class="hero__inner">
+    <div class="hero__text" data-reveal>
+      <p class="hero__eyebrow">{{ block.data.eyebrow }}</p>
+      <h1 class="hero__title">{{ block.data.titleHtml | safe }}</h1>
+      <p class="hero__subtitle">{{ block.data.subtitle }}</p>
+      <div class="hero__links">
+        {% for link in block.data.links %}
+        <a href="{{ link.href }}" class="link-arrow link-arrow--light"{% if link.track %} data-track="{{ link.track }}"{% endif %}{% if link.trackPlatform %} data-track-platform="{{ link.trackPlatform }}"{% endif %}>{{ link.text }}&nbsp;›</a>
+        {% endfor %}
+      </div>
+      {% if block.data.qr %}
+      <div class="hero__qr-badge">
+        <img src="{{ basePath }}{{ block.data.qr.img }}" alt="{{ block.data.qr.alt }}" class="hero__qr-img">
+        <div class="hero__qr-info">
+          <span class="hero__qr-title">{{ block.data.qr.title }}</span>
+          <span class="hero__qr-subtitle">{{ block.data.qr.subtitle }}</span>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>

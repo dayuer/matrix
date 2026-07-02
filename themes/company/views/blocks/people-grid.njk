@@ -1,0 +1,14 @@
+{# 负责人名片网格（复用 card-manager 宏：电话/复制微信/复制邮箱）。 #}
+{% from "partials/card-manager.njk" import managerCard %}
+{% set d = block.data %}
+{% set p = d.prefix or 'partner' %}
+<section class="{{ d.sectionClass or (p + '-managers') }}" data-reveal>
+  {% if d.innerClass %}<div class="{{ d.innerClass }}">{% endif %}
+  <h2 class="{{ p }}-section-title">{{ d.title }}</h2>
+  <p class="{{ p }}-section-desc">{{ d.desc }}</p>
+
+  <div class="managers-grid">
+    {% for m in d.managers %}{{ managerCard(m) }}{% endfor %}
+  </div>
+  {% if d.innerClass %}</div>{% endif %}
+</section>

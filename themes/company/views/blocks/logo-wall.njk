@@ -1,0 +1,15 @@
+{# 合作伙伴 Logo 墙。item.svgHtml 为完整 <svg> 标记（各家图标属性不同），mod 为卡片修饰类后缀。 #}
+{% set d = block.data %}
+<section class="partners" data-screen-label="{{ d.screenLabel or 'Partners' }}">
+  <div class="partners__inner" data-reveal>
+    <p class="partners__label">{{ d.label }}</p>
+    <div class="partners__grid">
+      {% for item in d.items %}
+      <div class="partners__card{% if item.mod %} partners__card--{{ item.mod }}{% endif %}">
+        {{ item.svgHtml | safe }}
+        <span class="partners__name">{{ item.name }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

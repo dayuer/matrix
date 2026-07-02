@@ -1,0 +1,29 @@
+{# 页尾行动面板：标题 + 描述 + 可选二维码卡 / 可选按钮 + 热线行。
+   button.svgHtml 为完整 <svg>；phonesHtml 可含 tel: 链接。 #}
+{% set d = block.data %}
+{% set p = d.prefix or 'recruit' %}
+<section class="{{ d.sectionClass or (p + '-cta') }}" data-reveal>
+  <div class="{{ d.sectionClass or (p + '-cta') }}__inner">
+    <h2 class="{{ p }}-cta__title">{{ d.title }}</h2>
+    <p class="{{ p }}-cta__desc">{{ d.desc }}</p>
+
+    {% if d.qr %}
+    <div class="recruit-qr">
+      <div class="recruit-qr__card">
+        <img src="{{ basePath }}{{ d.qr.img }}" alt="{{ d.qr.alt }}" class="recruit-qr__img">
+        <p class="recruit-qr__hint">{{ d.qr.hint }}</p>
+        {% if d.qr.steps %}<p class="recruit-qr__steps">{{ d.qr.steps }}</p>{% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if d.button %}
+    <a href="{{ d.button.href }}" class="recruit-cta__btn">
+      {{ d.button.svgHtml | safe }}
+      {{ d.button.text }}
+    </a>
+    {% endif %}
+
+    {% if d.phonesHtml %}<span class="recruit-cta__phone">{{ d.phonesHtml | safe }}</span>{% endif %}
+  </div>
+</section>

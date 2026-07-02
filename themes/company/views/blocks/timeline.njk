@@ -1,0 +1,22 @@
+{# 发展历程时间线。accent 高亮年份（如「未来」）。 #}
+{% set d = block.data %}
+<section class="timeline-section" id="{{ d.id or 'timeline' }}" data-screen-label="{{ d.screenLabel or 'Timeline' }}">
+  <div class="section-header" data-reveal>
+    <p class="section-header__label">{{ d.header.label }}</p>
+    <h2 class="section-header__title">{{ d.header.titleHtml | safe }}</h2>
+    <p class="section-header__desc">{{ d.header.desc }}</p>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline__line"></div>
+    {% for item in d.items %}
+    <div class="timeline__item" data-reveal>
+      <div class="timeline__year{% if item.accent %} timeline__year--accent{% endif %}">{{ item.year }}</div>
+      <div class="timeline__body">
+        <span class="timeline__dot"></span>
+        <p>{{ item.text }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>

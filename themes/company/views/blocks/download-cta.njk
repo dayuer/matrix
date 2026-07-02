@@ -1,0 +1,34 @@
+{# 下载/行动 CTA 面板：标题 + 二维码列 + 下载按钮列 + 尾部链接组。button.svgHtml 为完整 <svg>。 #}
+{% set d = block.data %}
+<section class="cta" id="{{ d.id or 'download' }}" data-screen-label="{{ d.screenLabel or 'CTA' }}">
+  <div class="cta__inner" data-reveal>
+    <h2 class="cta__title">{{ d.title }}</h2>
+    <p class="cta__desc">{{ d.desc }}</p>
+
+    <div class="download-panel">
+      <div class="download-panel__qr-col">
+        <div class="download-panel__qr-box">
+          <img src="{{ basePath }}{{ d.qr.img }}" alt="{{ d.qr.alt }}" class="download-panel__qr">
+        </div>
+        <span class="download-panel__qr-label">{{ d.qr.label }}</span>
+      </div>
+      <div class="download-panel__buttons-col">
+        {% for btn in d.buttons %}
+        <a href="{{ btn.href }}" target="_blank" class="download-btn" data-track="download_click" data-track-platform="{{ btn.platform }}">
+          {{ btn.svgHtml | safe }}
+          <div class="download-btn__text">
+            <span class="download-btn__sub">{{ btn.sub }}</span>
+            <span class="download-btn__main">{{ btn.main }}</span>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="cta__links">
+      {% for link in d.links %}
+      <a href="{% if link.external %}{{ link.href }}{% else %}{{ basePath }}{{ link.href }}{% endif %}"{% if link.external %} target="_blank"{% endif %} class="cta__link"{% if link.track %} data-track="{{ link.track }}"{% endif %}>{{ link.text }}&nbsp;›</a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
