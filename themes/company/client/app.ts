@@ -1,5 +1,5 @@
 /**
- * e代驾官网 · 客户端交互逻辑（TypeScript）
+ * 平台官网 · 客户端交互逻辑（TypeScript）
  * 编译产物：public/app.js（见 tsconfig.client.json）
  *
  * 1. 导航栏滚动透明度变化

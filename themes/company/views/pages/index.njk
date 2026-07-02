@@ -68,7 +68,7 @@
             <p class="bento__desc bento__desc--sm">二手车异地流通的可信代理。提供跨省代提车、代送到门、过户陪跑——一口价、全程可追踪。</p>
             <div class="bento__flat-links">
               <a href="{{ basePath }}/serves" class="link-arrow">商务合作咨询&nbsp;›</a>
-              <a href="https://www.edaijia.cn/vip.html" target="_blank" class="link-arrow" data-track="outbound_click">企业 VIP 办理&nbsp;›</a>
+              <a href="{{ site.brand.vipUrl | default("https://www.edaijia.cn/vip.html") }}" target="_blank" class="link-arrow" data-track="outbound_click">企业 VIP 办理&nbsp;›</a>
             </div>
           </div>
           <div class="bento__flat-image-wrapper">
@@ -241,7 +241,7 @@
   <!-- CTA -->
   <section class="cta" id="download" data-screen-label="CTA">
     <div class="cta__inner" data-reveal>
-      <h2 class="cta__title">开始使用 e代驾</h2>
+      <h2 class="cta__title">开始使用 {{ site.brand.name }}</h2>
       <p class="cta__desc">叫代驾、企业合作，或加入我们的司机团队，一切从这里开始。</p>
 
       <!-- 真实的下载通道面板 -->
@@ -275,7 +275,7 @@
       </div>
 
       <div class="cta__links">
-        <a href="https://www.edaijia.cn/vip.html" target="_blank" class="cta__link" data-track="outbound_click">企业 VIP 办理&nbsp;›</a>
+        <a href="{{ site.brand.vipUrl | default("https://www.edaijia.cn/vip.html") }}" target="_blank" class="cta__link" data-track="outbound_click">企业 VIP 办理&nbsp;›</a>
         <a href="{{ basePath }}/entry" class="cta__link">加盟与司机招募&nbsp;›</a>
       </div>
     </div>
