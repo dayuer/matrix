@@ -16,9 +16,6 @@ brand:
   driverAgreementUrl: 'https://www.edaijia.cn/edj-agreement.html'
   infoAgreementUrl: 'https://www.edaijia.cn/agreement.html'
 nav:
-  - key: order
-    text: 叫代驾
-    href: /order
   - key: blog
     text: 行业洞察
     href: /blog
