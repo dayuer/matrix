@@ -346,9 +346,9 @@ export const getSiteDefinition = async (): Promise<SiteDefinition> => {
     pages,
     extraAssets: [
       'public/posts-index.json',
-      'public/logo-icon.png',
-      'public/logo-wordmark.png',
-      'public/og-image.png'
+      'src/assets/logo-icon.png',
+      'src/assets/logo-wordmark.png',
+      'src/assets/og-image.png'
     ],
     notFound: {
       path: '/404',

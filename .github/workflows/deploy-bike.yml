@@ -37,8 +37,10 @@ jobs:
         env:
           POCKETBASE_URL: ${{ secrets.BIKE_PB_URL }}
         run: |
+          npm run build:platform
+          npm run build -w @matrix/theme-didi
           cd apps/didi.bike
-          npm run build
+          npm run export
 
       - name: Deploy Static Web to VPS A
         uses: easingthemes/ssh-deploy@v5.0.0
