@@ -1,31 +1,14 @@
 import path from 'path';
-import type { ThemeManifest } from './types';
+import type { ThemeManifest, ThemeOptions } from './types';
 
-/** 合并主题默认 token 与站点覆盖，生成注入用的 :root{} 字符串。无主题时返回 ''。 */
-export function buildTokensCss(theme?: ThemeManifest, options?: Record<string, string>): string {
+/**
+ * 合并主题默认 token 与站点覆盖，生成注入用的 :root{} 字符串。无主题时返回 ''。
+ * 颜色只来自两处：主题清单的 tokens 默认值（模板参数），site.yaml 的 themeOptions.tokens（站点内容）。
+ * 站点覆盖永远最后合并、永远生效——这里不允许出现任何按站点分支的硬编码配色。
+ */
+export function buildTokensCss(theme?: ThemeManifest, options?: ThemeOptions): string {
   if (!theme) return '';
-  
-  // 动态黑金主题上色检测
-  if (theme.id === 'arrfunds') {
-    const isSynon = process.argv.some(arg => arg.includes('synon.ai')) || process.cwd().includes('synon.ai');
-    if (isSynon) {
-      theme.tokens = {
-        ...theme.tokens,
-        '--primary': '#050505',
-        '--primary-light': '#1e1e1e',
-        '--primary-dark': '#000000',
-        '--accent': '#d4af37', // 奢华金/香槟金
-        '--accent-rgb': '212, 175, 55',
-        '--bg-light': '#050505',
-        '--bg-gray': '#121212',
-        '--text-dark': '#ffffff',
-        '--text-muted': 'rgba(255, 255, 255, 0.65)',
-        '--border-color': 'rgba(212, 175, 55, 0.15)',
-      };
-    }
-  }
-
-  const merged = { ...theme.tokens, ...(options || {}) };
+  const merged = { ...theme.tokens, ...(options?.tokens || {}) };
   const entries = Object.entries(merged);
   if (entries.length === 0) return ''; // 主题未暴露 token（如 edaijia），不注入空 :root
   const body = entries.map(([k, v]) => `${k}: ${v};`).join(' ');

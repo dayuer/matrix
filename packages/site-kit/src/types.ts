@@ -101,6 +101,12 @@ export interface ThemeManifest {
   defaultFavicon?: string;
 }
 
+/** 站点级主题定制（site.yaml → themeOptions）。 */
+export interface ThemeOptions {
+  /** 覆盖主题 token 的子集，如 { '--accent': '#1f5fbf' }。站点配色的唯一来源。 */
+  tokens?: Record<string, string>;
+}
+
 /** 一个站点的完整定义：根目录 + 配置 + 页面清单 + 404。 */
 export interface SiteDefinition {
   /** app 根目录（含 views/、style.css、public/、images/），通常是 path.resolve(__dirname, '..') */
@@ -110,8 +116,8 @@ export interface SiteDefinition {
   notFound: PageDef;
   /** 激活的主题（可选）。未设置时站点用自有 views/ + style.css（向后兼容）。 */
   theme?: ThemeManifest;
-  /** 覆盖主题 token 的子集，如 { '--accent': '#1f5fbf' }。 */
-  themeOptions?: Record<string, string>;
+  /** 站点级主题定制（token 覆盖等）。 */
+  themeOptions?: ThemeOptions;
   /** 导出时额外需要拷贝到 out/ 根的文件（相对 root），如自定义脚本、清单等 */
   extraAssets?: string[];
   /** 导出时把 theme.css 额外复制成这些文件名（兼容旧缓存 HTML 引用的资源名，如 ['style.css']）。 */

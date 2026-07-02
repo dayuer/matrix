@@ -1,7 +1,7 @@
 import path from 'path';
 import nunjucks from 'nunjucks';
 import { blocksViewsDir } from '@matrix/blocks';
-import type { BaseSiteConfig, ThemeManifest } from './types';
+import type { BaseSiteConfig, ThemeManifest, ThemeOptions } from './types';
 import { buildTokensCss, themeViewsDir } from './theme';
 
 export interface RenderContext {
@@ -10,7 +10,7 @@ export interface RenderContext {
   assetVersion: string;
   noCache: boolean;
   theme?: ThemeManifest;
-  themeOptions?: Record<string, string>;
+  themeOptions?: ThemeOptions;
 }
 
 /**

@@ -18,8 +18,9 @@
   
   <link rel="canonical" href="{{ site.baseUrl }}{{ page.canonical }}">
   <link rel="shortcut icon" href="{{ site.brand.favicon }}" type="image/x-icon">
-  {% if themeTokensCss %}<style id="theme-tokens">{{ themeTokensCss | safe }}</style>{% endif %}
   <link rel="stylesheet" href="{{ basePath }}/theme.css?v={{ assetVersion }}">
+  {# token 注入必须在 theme.css 之后：同为 :root 声明时后者生效，保证站点配色覆盖模板默认值 #}
+  {% if themeTokensCss %}<style id="theme-tokens">{{ themeTokensCss | safe }}</style>{% endif %}
   
   <!-- Google Fonts Outfit & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

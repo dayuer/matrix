@@ -1,6 +1,9 @@
 /* ARR Funds Premium Fintech Design System */
-/* Design tokens are injected by @matrix/site-kit from theme.ts manifest      */
-/* (see themeTokensCss). Override per-site via siteDefinition.themeOptions.    */
+/* Design tokens are injected by @matrix/site-kit from theme.ts manifest       */
+/* (see themeTokensCss). Override per-site via site.yaml themeOptions.tokens.  */
+/* 配色纪律：本文件不允许出现任何品牌色/方案色的硬编码——一律引用 var(--*) token；*/
+/* 允许硬编码的只有与色系无关的中性色（纯白文字、rgba(255,255,255,*) 玻璃叠层、  */
+/* rgba(0,0,0,*) 阴影）。新增样式时请遵守，否则会污染共用此模板的其他站点。      */
 
 * {
   box-sizing: border-box;
@@ -39,7 +42,7 @@ h1, h2, h3, h4 {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #00bfa6 0%, #1c5239 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--primary-light) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
@@ -67,7 +70,7 @@ h1, h2, h3, h4 {
 
 .btn--primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 191, 166, 0.3);
+  box-shadow: 0 8px 20px rgba(var(--accent-rgb), 0.3);
 }
 
 .btn--secondary {
@@ -98,7 +101,7 @@ h1, h2, h3, h4 {
   backdrop-filter: blur(20px);
   padding: 14px 0;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
-  border-bottom: 1px solid rgba(10, 54, 34, 0.05);
+  border-bottom: 1px solid rgba(var(--primary-rgb), 0.05);
 }
 
 .nav__inner {
@@ -188,7 +191,7 @@ h1, h2, h3, h4 {
   display: block;
   width: 24px;
   height: 2px;
-  background-color: var(--text-dark);
+  background-color: var(--nav-text);
   transition: all 0.25s ease;
 }
 
@@ -220,14 +223,14 @@ h1, h2, h3, h4 {
 }
 
 .hero__badge {
-  background-color: rgba(0, 191, 166, 0.15);
+  background-color: rgba(var(--accent-rgb), 0.15);
   color: var(--accent);
   padding: 6px 14px;
   border-radius: 980px;
   font-size: 13px;
   font-weight: 600;
   margin-bottom: 24px;
-  border: 1px solid rgba(0, 191, 166, 0.2);
+  border: 1px solid rgba(var(--accent-rgb), 0.2);
 }
 
 .hero__title {
@@ -348,12 +351,12 @@ h1, h2, h3, h4 {
   font-weight: 700;
   font-size: 15px;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 15px rgba(0, 191, 166, 0.2);
+  box-shadow: 0 4px 15px rgba(var(--accent-rgb), 0.2);
 }
 
 .snapshot-card__btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(0, 191, 166, 0.3);
+  box-shadow: 0 6px 20px rgba(var(--accent-rgb), 0.3);
 }
 
 /* ─── Section Header ─── */
@@ -412,7 +415,7 @@ h1, h2, h3, h4 {
 
 .bento-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(10, 54, 34, 0.04);
+  box-shadow: 0 12px 30px rgba(var(--primary-rgb), 0.04);
 }
 
 .bento-card--large {
@@ -439,8 +442,8 @@ h1, h2, h3, h4 {
   font-weight: 700;
   font-size: 10px;
   color: var(--accent) !important;
-  background-color: rgba(214, 175, 55, 0.08) !important;
-  border: 1px solid rgba(214, 175, 55, 0.2) !important;
+  background-color: rgba(var(--accent-rgb), 0.08) !important;
+  border: 1px solid rgba(var(--accent-rgb), 0.2) !important;
   padding: 4px 10px;
   border-radius: 6px;
   margin-bottom: 24px;
@@ -526,8 +529,8 @@ h1, h2, h3, h4 {
 
 .portfolio-card:hover {
   transform: translateY(-4px);
-  background-color: #fff;
-  box-shadow: 0 12px 30px rgba(10, 54, 34, 0.04);
+  background-color: var(--surface);
+  box-shadow: 0 12px 30px rgba(var(--primary-rgb), 0.04);
 }
 
 .portfolio-card__icon {
@@ -566,7 +569,7 @@ h1, h2, h3, h4 {
   font-size: 11px;
   font-weight: 600;
   color: var(--accent);
-  background-color: rgba(0, 191, 166, 0.1);
+  background-color: rgba(var(--accent-rgb), 0.1);
   padding: 4px 10px;
   border-radius: 6px;
 }
@@ -585,7 +588,7 @@ h1, h2, h3, h4 {
 }
 
 .process-step {
-  background-color: #fff;
+  background-color: var(--surface);
   border: 1px solid var(--border-color);
   border-radius: 20px;
   padding: 40px;
@@ -596,7 +599,7 @@ h1, h2, h3, h4 {
   font-family: var(--font-display);
   font-size: 40px;
   font-weight: 800;
-  color: rgba(0, 191, 166, 0.15);
+  color: rgba(var(--accent-rgb), 0.15);
   position: absolute;
   top: 20px;
   right: 24px;
@@ -635,7 +638,7 @@ h1, h2, h3, h4 {
   grid-template-columns: 1fr 1.1fr;
   gap: 64px;
   align-items: center;
-  box-shadow: 0 20px 40px rgba(5, 26, 18, 0.15);
+  box-shadow: 0 20px 40px rgba(var(--primary-dark-rgb), 0.15);
 }
 
 .apply-card__title {
@@ -725,13 +728,13 @@ h1, h2, h3, h4 {
 
 .lead-form select option {
   color: var(--text-dark);
-  background-color: #fff;
+  background-color: var(--surface);
 }
 
 .lead-form input:focus, .lead-form select:focus, .lead-form textarea:focus {
   border-color: var(--accent);
   background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 0 0 3px rgba(0, 191, 166, 0.15);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.15);
 }
 
 .form-submit-btn {
@@ -750,7 +753,7 @@ h1, h2, h3, h4 {
 
 .form-submit-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 15px rgba(0, 191, 166, 0.3);
+  box-shadow: 0 4px 15px rgba(var(--accent-rgb), 0.3);
 }
 
 .form-submit-btn:disabled {
@@ -797,7 +800,7 @@ h1, h2, h3, h4 {
   justify-content: center;
   border-radius: 50%;
   margin-bottom: 20px;
-  box-shadow: 0 0 20px rgba(0, 191, 166, 0.4);
+  box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.4);
 }
 
 .form-success-toast h4 {
@@ -924,6 +927,7 @@ h1, h2, h3, h4 {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--bg-light-sec); /* 基底 --bg-light 可能是深色，404 内容固定在浅色区呈现 */
 }
 
 .not-found {
@@ -933,7 +937,7 @@ h1, h2, h3, h4 {
 .not-found__code {
   font-size: 120px;
   font-weight: 800;
-  color: rgba(10, 54, 34, 0.05);
+  color: rgba(var(--primary-rgb), 0.05);
   line-height: 1;
 }
 
@@ -1058,7 +1062,7 @@ h1, h2, h3, h4 {
     right: 0;
     width: 260px;
     height: 100vh;
-    background-color: #fff;
+    background-color: var(--primary-dark);
     padding: 80px 24px 40px;
     flex-direction: column;
     align-items: stretch;
@@ -1210,7 +1214,7 @@ h1, h2, h3, h4 {
 }
 .section__lead {
   font-size: 1.1rem;
-  color: var(--text-muted);
+  color: var(--text-muted-light);
   max-width: 600px;
   line-height: 1.6;
   margin: 0;
@@ -1249,7 +1253,7 @@ h1, h2, h3, h4 {
   margin: 0 0 12px 0;
 }
 .step__desc {
-  color: var(--text-muted);
+  color: var(--text-muted-light);
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 24px;
@@ -1264,7 +1268,7 @@ h1, h2, h3, h4 {
 }
 .step__list li {
   font-size: 0.9rem;
-  color: var(--text-muted);
+  color: var(--text-muted-light);
   padding-left: 18px;
   position: relative;
 }
@@ -1296,7 +1300,7 @@ h1, h2, h3, h4 {
 .team:hover {
   border-color: var(--accent);
   background: rgba(255, 255, 255, 0.03);
-  box-shadow: 0 8px 30px rgba(214, 175, 55, 0.05);
+  box-shadow: 0 8px 30px rgba(var(--accent-rgb), 0.05);
 }
 .team__head {
   display: flex;
@@ -1337,7 +1341,7 @@ h1, h2, h3, h4 {
   text-transform: uppercase;
 }
 .team__desc {
-  color: var(--text-muted);
+  color: var(--text-muted-light);
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 20px;
@@ -1349,7 +1353,7 @@ h1, h2, h3, h4 {
 }
 .team__list li {
   font-size: 0.9rem;
-  color: var(--text-muted);
+  color: var(--text-muted-light);
   padding: 10px 0 10px 24px;
   border-top: 1px solid var(--border-color);
   position: relative;
@@ -1395,14 +1399,14 @@ h1, h2, h3, h4 {
 .faq__q-no {
   font-family: var(--font-display);
   font-size: 0.9rem;
-  background: rgba(214, 175, 55, 0.1);
+  background: rgba(var(--accent-rgb), 0.1);
   color: var(--accent);
   padding: 4px 8px;
   border-radius: 4px;
   font-weight: 700;
 }
 .faq__a {
-  color: var(--text-muted);
+  color: var(--text-muted-light);
   font-size: 0.95rem;
   line-height: 1.6;
   margin: 0;
@@ -1430,12 +1434,13 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   Navigation Bar Premium Black & Gold Adaptations
+   Navigation Bar Premium Dark Adaptations
+   （颜色全部由品牌 token 派生，站点可在 themeOptions.tokens 里直接覆盖 --nav-*）
    ========================================================================== */
 :root {
   --nav-text: rgba(255, 255, 255, 0.7);
-  --nav-bg-scrolled: rgba(10, 10, 10, 0.9);
-  --nav-border-scrolled: rgba(212, 175, 55, 0.15);
+  --nav-bg-scrolled: rgba(var(--primary-dark-rgb), 0.9);
+  --nav-border-scrolled: rgba(var(--accent-rgb), 0.15);
 }
 .nav__logo {
   color: #ffffff !important;
@@ -1466,7 +1471,7 @@ h1, h2, h3, h4 {
   color: var(--primary-dark) !important;
 }
 .nav__cta:hover {
-  background-color: #ffffff !important;
+  background-color: var(--surface) !important;
   color: var(--primary-dark) !important;
   transform: translateY(-1px);
 }
@@ -1476,7 +1481,7 @@ h1, h2, h3, h4 {
    ========================================================================== */
 .specsheet {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.005) 100%) !important;
-  border: 1px solid rgba(212, 175, 55, 0.15) !important;
+  border: 1px solid rgba(var(--accent-rgb), 0.15) !important;
   border-radius: 16px !important;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5) !important;
   backdrop-filter: blur(12px);
@@ -1484,7 +1489,7 @@ h1, h2, h3, h4 {
   text-align: left;
 }
 .specsheet__head {
-  border-bottom: 1px solid rgba(212, 175, 55, 0.15) !important;
+  border-bottom: 1px solid rgba(var(--accent-rgb), 0.15) !important;
   color: rgba(255, 255, 255, 0.5) !important;
   padding: 14px 18px !important;
 }
@@ -1492,7 +1497,7 @@ h1, h2, h3, h4 {
   color: var(--accent) !important;
 }
 .flow-node {
-  border: 1px solid rgba(212, 175, 55, 0.12) !important;
+  border: 1px solid rgba(var(--accent-rgb), 0.12) !important;
   background: rgba(255, 255, 255, 0.015) !important;
   border-radius: 12px !important;
   padding: 18px 20px !important;
@@ -1569,14 +1574,14 @@ h1, h2, h3, h4 {
   letter-spacing: 0.05em;
 }
 .specsheet__stats {
-  border-top: 1px solid rgba(212, 175, 55, 0.15) !important;
+  border-top: 1px solid rgba(var(--accent-rgb), 0.15) !important;
 }
 .stat {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px !important;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.08) !important;
+  border-bottom: 1px solid rgba(var(--accent-rgb), 0.08) !important;
 }
 .stat:last-child {
   border-bottom: none !important;
@@ -1596,14 +1601,14 @@ h1, h2, h3, h4 {
    Typography Highlight Enhancements
    ========================================================================== */
 .u-mark {
-  background: linear-gradient(120deg, rgba(214, 175, 55, 0.15) 0%, rgba(214, 175, 55, 0.05) 100%);
+  background: linear-gradient(120deg, rgba(var(--accent-rgb), 0.15) 0%, rgba(var(--accent-rgb), 0.05) 100%);
   padding: 0 8px;
   border-radius: 4px;
   color: var(--accent);
 }
 .u-accent {
   color: var(--accent) !important;
-  text-shadow: 0 0 20px rgba(214, 175, 55, 0.3);
+  text-shadow: 0 0 20px rgba(var(--accent-rgb), 0.3);
 }
 
 /* ==========================================================================
@@ -1664,7 +1669,7 @@ h1, h2, h3, h4 {
 }
 .case__desc {
   font-size: 0.95rem;
-  color: var(--text-muted);
+  color: var(--text-muted-light);
   line-height: 1.6;
   margin-bottom: 24px;
 }
@@ -1677,7 +1682,7 @@ h1, h2, h3, h4 {
 }
 .case__list li {
   font-size: 0.9rem;
-  color: var(--text-muted);
+  color: var(--text-muted-light);
   padding: 8px 0 8px 20px;
   position: relative;
 }
@@ -1811,21 +1816,21 @@ h1, h2, h3, h4 {
 #thesis .section-header__title,
 #team .section__title,
 #faq .section__title {
-  color: #0b0c10 !important;
+  color: var(--text-dark) !important;
 }
 #thesis .section-header__desc,
 #team .section__lead,
 #faq .section__lead {
-  color: rgba(11, 12, 16, 0.6) !important;
+  color: rgba(var(--text-dark-rgb), 0.6) !important;
 }
 #team .label__no,
 #faq .label__no {
-  color: #0b0c10 !important;
+  color: var(--text-dark) !important;
 }
 
 /* Bento卡片在浅色区的白金美学重塑 */
 #thesis .bento-card {
-  background-color: #ffffff !important;
+  background-color: var(--surface) !important;
   border: 1px solid rgba(var(--accent-rgb), 0.15) !important;
   box-shadow: 0 8px 32px rgba(var(--accent-rgb), 0.04) !important;
 }
@@ -1834,10 +1839,10 @@ h1, h2, h3, h4 {
   border-color: var(--accent) !important;
 }
 #thesis .bento-card__title {
-  color: #0b0c10 !important;
+  color: var(--text-dark) !important;
 }
 #thesis .bento-card__desc {
-  color: rgba(11, 12, 16, 0.7) !important;
+  color: rgba(var(--text-dark-rgb), 0.7) !important;
 }
 #thesis .bento-card__tag {
   color: var(--accent) !important;
@@ -1847,7 +1852,7 @@ h1, h2, h3, h4 {
 
 /* Team卡片在浅色区的白金美学重塑 */
 #team .team {
-  background-color: #ffffff !important;
+  background-color: var(--surface) !important;
   border: 1px solid rgba(var(--accent-rgb), 0.15) !important;
   box-shadow: 0 8px 32px rgba(var(--accent-rgb), 0.04) !important;
 }
@@ -1856,16 +1861,16 @@ h1, h2, h3, h4 {
   border-color: var(--accent) !important;
 }
 #team .team__name {
-  color: #0b0c10 !important;
+  color: var(--text-dark) !important;
 }
 #team .team__role {
   color: var(--accent) !important;
 }
 #team .team__desc {
-  color: rgba(11, 12, 16, 0.7) !important;
+  color: rgba(var(--text-dark-rgb), 0.7) !important;
 }
 #team .team__list li {
-  color: rgba(11, 12, 16, 0.6) !important;
+  color: rgba(var(--text-dark-rgb), 0.6) !important;
   border-top: 1px solid rgba(var(--accent-rgb), 0.1) !important;
 }
 #team .team__mark {
@@ -1874,7 +1879,7 @@ h1, h2, h3, h4 {
 
 /* FAQ卡片在浅色区的白金美学重塑 */
 #faq .faq {
-  background-color: #ffffff !important;
+  background-color: var(--surface) !important;
   border: 1px solid rgba(var(--accent-rgb), 0.15) !important;
   box-shadow: 0 8px 32px rgba(var(--accent-rgb), 0.04) !important;
 }
@@ -1883,14 +1888,14 @@ h1, h2, h3, h4 {
   border-color: var(--accent) !important;
 }
 #faq .faq__q {
-  color: #0b0c10 !important;
+  color: var(--text-dark) !important;
 }
 #faq .faq__q-no {
   background: rgba(var(--accent-rgb), 0.1) !important;
   color: var(--accent) !important;
 }
 #faq .faq__a {
-  color: rgba(11, 12, 16, 0.7) !important;
+  color: rgba(var(--text-dark-rgb), 0.7) !important;
 }
 
 .section-wrapper {
@@ -1902,19 +1907,15 @@ h1, h2, h3, h4 {
   background-color: var(--bg-dark-sec) !important; /* 动态深色交替背景色 */
 }
 
-.hero {
-  background: #030303 !important; /* 首屏设定为最纯净极致的极夜黑 */
-}
-
 /* 投资流程在浅色区的白金美学重塑 */
 #process .section-header__title {
-  color: #0b0c10 !important;
+  color: var(--text-dark) !important;
 }
 #process .section-header__label {
   color: var(--accent) !important;
 }
 #process .process-step {
-  background-color: #ffffff !important;
+  background-color: var(--surface) !important;
   border: 1px solid rgba(var(--accent-rgb), 0.15) !important;
   box-shadow: 0 8px 32px rgba(var(--accent-rgb), 0.04) !important;
   transition: all 0.25s ease;
@@ -1929,8 +1930,8 @@ h1, h2, h3, h4 {
   font-size: 56px !important;
 }
 #process .process-step__title {
-  color: #0b0c10 !important;
+  color: var(--text-dark) !important;
 }
 #process .process-step__desc {
-  color: rgba(11, 12, 16, 0.7) !important;
+  color: rgba(var(--text-dark-rgb), 0.7) !important;
 }

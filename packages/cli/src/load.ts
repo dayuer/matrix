@@ -21,13 +21,14 @@ import type {
   PageMeta,
   SiteDefinition,
   ThemeManifest,
+  ThemeOptions,
 } from '@matrix/site-kit';
 import { expandCollection, type CollectionConfig } from './blog';
 
 /** site.yaml 的形状：BaseSiteConfig + 平台字段。 */
 interface SiteYaml extends BaseSiteConfig {
   theme?: string;
-  themeOptions?: Record<string, string>;
+  themeOptions?: ThemeOptions;
   extraAssets?: string[];
   cssAliases?: string[];
   /** 页面 meta 的站点级默认值（ogImage、changefreq 等）。 */

@@ -1,11 +1,30 @@
 # synon.ai —— 站点品牌级配置（纯数据，由 matrix CLI 驱动，无需任何 node 工程）
 theme: arrfunds
+# 站点色系（黑金 dossier 风：与 arrfunds 共用模板，靠这套 token 换肤）
 themeOptions:
   tokens:
+    # 品牌主色：锌黑
+    '--primary': '#18181b'
+    '--primary-light': '#27272a'
+    '--primary-dark': '#09090b'
+    '--primary-rgb': '24, 24, 27'
+    '--primary-dark-rgb': '9, 9, 11'
+    # 强调色：香槟金（#d4af37 = 212,175,55）
     '--accent': '#d4af37'
-    '--accent-rgb': '214, 175, 55'
+    '--accent-rgb': '212, 175, 55'
+    # 文字
+    '--text-dark': '#1d1d1f'
+    '--text-dark-rgb': '29, 29, 31'
+    '--text-muted': '#515154'
+    '--text-light': '#f5f5f7'
+    '--text-muted-light': 'rgba(255, 255, 255, 0.65)'
+    # 背景与表面
+    '--bg-light': '#09090b'
+    '--bg-gray': '#1f1f23'
     '--bg-light-sec': '#f6f4f1'
-    '--bg-dark-sec': '#0d0f12'
+    '--bg-dark-sec': '#161618'
+    '--surface': '#ffffff'
+    '--border-color': 'rgba(212, 175, 55, 0.15)'
 
 baseUrl: https://synon.ai
 

@@ -4,19 +4,19 @@
     {
       "name": "synon-static",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["-y", "http-server", "apps/synon.ai/out", "-p", "4599", "-c-1"],
+      "runtimeArgs": ["-y", "http-server", "sites/synon.ai/out", "-p", "4599", "-c-1"],
       "port": 4599
     },
     {
       "name": "arrfunds-static",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["-y", "http-server", "apps/arrfunds/out", "-p", "4600", "-c-1"],
+      "runtimeArgs": ["-y", "http-server", "sites/arrfunds/out", "-p", "4600", "-c-1"],
       "port": 4600
     },
     {
       "name": "edaijia-static",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["-y", "http-server", "apps/edaijia/out", "-p", "4601", "-c-1"],
+      "runtimeArgs": ["-y", "http-server", "sites/edaijia/out", "-p", "4601", "-c-1"],
       "port": 4601
     }
   ]
