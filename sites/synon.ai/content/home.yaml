@@ -274,18 +274,6 @@ blocks:
           companyName: { label: 企业名称, placeholder: 例如：亚洲综合金融集团 }
           contactName: { label: 联系人姓名, placeholder: 张先生 / 女士 }
           contactEmail: { label: 工作邮箱, placeholder: contact@company.com }
-          systemType:
-            label: 待重构遗留系统类型
-            placeholder: 选择您的遗留技术栈
-            options:
-              - value: ibm
-                text: "IBM i / AS400（RPG, Java, CA 2E）"
-              - value: legacy-db
-                text: 臃肿复杂的传统 SQL 存储过程系统
-              - value: monolith
-                text: "庞大的 Java / C# 单体架构 ERP/CRM"
-              - value: other
-                text: 其他非结构化历史代码系统
           description:
             label: 核心重构诉求与痛点描述
             placeholder: 请简述系统当前的业务规模、开发维护瓶颈，以及期望用 AI 智能体替代哪些传统流程……

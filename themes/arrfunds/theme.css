@@ -641,7 +641,7 @@ h1, h2, h3, h4 {
   display: grid;
   grid-template-columns: 1fr 1.1fr;
   gap: 64px;
-  align-items: center;
+  align-items: flex-start;
   box-shadow: 0 20px 40px rgba(var(--primary-dark-rgb), 0.15);
 }
 

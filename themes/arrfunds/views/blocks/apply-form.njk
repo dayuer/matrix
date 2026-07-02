@@ -38,6 +38,7 @@
               <input type="email" id="contactEmail" required placeholder="{{ f.contactEmail.placeholder }}">
             </div>
           </div>
+          {% if selectField %}
           <div class="form-group">
             <label for="systemType">{{ selectField.label }}</label>
             <select id="systemType" required>
@@ -47,6 +48,7 @@
               {% endfor %}
             </select>
           </div>
+          {% endif %}
           <div class="form-group">
             <label for="aiDesc">{{ descField.label }}</label>
             <textarea id="aiDesc" placeholder="{{ descField.placeholder }}" rows="3" class="form-textarea"></textarea>
