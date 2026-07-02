@@ -1,5 +1,5 @@
 # synon.ai —— 站点品牌级配置（纯数据，由 matrix CLI 驱动，无需任何 node 工程）
-theme: dossier
+theme: arrfunds
 themeOptions: {}
 
 baseUrl: https://synon.ai

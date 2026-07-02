@@ -13,7 +13,7 @@ REPO_ROOT="$(cd "$SITE_DIR/../.." && pwd)"
 SITE_NAME="$(basename "$SITE_DIR")"
 
 # 平台包（blocks → site-kit → cli）与主题必须先构建为 dist/
-(cd "$REPO_ROOT" && npm run build:platform && npm run build -w @matrix/theme-dossier)
+(cd "$REPO_ROOT" && npm run build:platform && npm run build -w @matrix/theme-arrfunds)
 
 export EXPORT_CMD="npm --prefix '$REPO_ROOT' run matrix -- export '$SITE_NAME'"
 

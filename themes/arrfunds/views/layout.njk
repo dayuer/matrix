@@ -33,7 +33,16 @@
   <nav class="nav" id="navbar">
     <div class="nav__inner">
       <a href="{{ basePath }}/" class="nav__logo">
-        <span class="nav__logo-accent">ARR</span> Funds
+        {% if site.brand.logo %}
+          <img src="{{ basePath }}{{ site.brand.logo }}" alt="{{ site.brand.name }}" class="nav__logo-img">
+        {% else %}
+          {% set logoParts = site.brand.name.split(' ') %}
+          {% if logoParts.length > 1 %}
+            <span class="nav__logo-accent">{{ logoParts[0] }}</span> {{ site.brand.name | replace(logoParts[0], "", 1) | trim }}
+          {% else %}
+            {{ site.brand.name }}
+          {% endif %}
+        {% endif %}
       </a>
       <div class="nav__right" id="navLinks">
         {% for item in site.nav %}
@@ -56,7 +65,16 @@
     <div class="footer__inner">
       <div class="footer__brand">
         <a href="{{ basePath }}/" class="footer__logo">
-          <span class="footer__logo-accent">ARR</span> Funds
+          {% if site.brand.logo %}
+            <img src="{{ basePath }}{{ site.brand.logo }}" alt="{{ site.brand.name }}" class="footer__logo-img">
+          {% else %}
+            {% set logoParts = site.brand.name.split(' ') %}
+            {% if logoParts.length > 1 %}
+              <span class="footer__logo-accent">{{ logoParts[0] }}</span> {{ site.brand.name | replace(logoParts[0], "", 1) | trim }}
+            {% else %}
+              {{ site.brand.name }}
+            {% endif %}
+          {% endif %}
         </a>
         <p class="footer__desc">{{ site.brand.desc }}</p>
         <div class="footer__social">
