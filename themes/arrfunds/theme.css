@@ -1783,3 +1783,110 @@ h1, h2, h3, h4 {
     margin-top: 4px;
   }
 }
+
+/* ==========================================================================
+   Premium Alternate Light-Theme Sections (Bento Grid Zebra Alternate)
+   ========================================================================== */
+#thesis, #team, #faq {
+  background-color: #f6f4f1 !important; /* 优雅的冷象牙白金 */
+  width: 100vw !important;
+  position: relative !important;
+  left: 50% !important;
+  margin-left: -50vw !important;
+  padding-left: calc(50vw - 576px) !important;
+  padding-right: calc(50vw - 576px) !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 1200px) {
+  #thesis, #team, #faq {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+}
+
+/* 浅色区的公共文字重塑 */
+#thesis .section-header__title,
+#team .section__title,
+#faq .section__title {
+  color: #0b0c10 !important;
+}
+#thesis .section-header__desc,
+#team .section__lead,
+#faq .section__lead {
+  color: rgba(11, 12, 16, 0.6) !important;
+}
+#team .label__no,
+#faq .label__no {
+  color: #0b0c10 !important;
+}
+
+/* Bento卡片在浅色区的白金美学重塑 */
+#thesis .bento-card {
+  background-color: #ffffff !important;
+  border: 1px solid rgba(214, 175, 55, 0.15) !important;
+  box-shadow: 0 8px 32px rgba(214, 175, 55, 0.04) !important;
+}
+#thesis .bento-card:hover {
+  box-shadow: 0 12px 40px rgba(214, 175, 55, 0.08) !important;
+  border-color: var(--accent) !important;
+}
+#thesis .bento-card__title {
+  color: #0b0c10 !important;
+}
+#thesis .bento-card__desc {
+  color: rgba(11, 12, 16, 0.7) !important;
+}
+#thesis .bento-card__tag {
+  color: var(--accent) !important;
+  background-color: rgba(214, 175, 55, 0.08) !important;
+  border: 1px solid rgba(214, 175, 55, 0.2) !important;
+}
+
+/* Team卡片在浅色区的白金美学重塑 */
+#team .team {
+  background-color: #ffffff !important;
+  border: 1px solid rgba(214, 175, 55, 0.15) !important;
+  box-shadow: 0 8px 32px rgba(214, 175, 55, 0.04) !important;
+}
+#team .team:hover {
+  box-shadow: 0 12px 40px rgba(214, 175, 55, 0.08) !important;
+  border-color: var(--accent) !important;
+}
+#team .team__name {
+  color: #0b0c10 !important;
+}
+#team .team__role {
+  color: var(--accent) !important;
+}
+#team .team__desc {
+  color: rgba(11, 12, 16, 0.7) !important;
+}
+#team .team__list li {
+  color: rgba(11, 12, 16, 0.6) !important;
+  border-top: 1px solid rgba(214, 175, 55, 0.1) !important;
+}
+#team .team__mark {
+  color: rgba(214, 175, 55, 0.08) !important;
+}
+
+/* FAQ卡片在浅色区的白金美学重塑 */
+#faq .faq {
+  background-color: #ffffff !important;
+  border: 1px solid rgba(214, 175, 55, 0.15) !important;
+  box-shadow: 0 8px 32px rgba(214, 175, 55, 0.04) !important;
+}
+#faq .faq:hover {
+  box-shadow: 0 12px 40px rgba(214, 175, 55, 0.08) !important;
+  border-color: var(--accent) !important;
+}
+#faq .faq__q {
+  color: #0b0c10 !important;
+}
+#faq .faq__q-no {
+  background: rgba(214, 175, 55, 0.1) !important;
+  color: var(--accent) !important;
+}
+#faq .faq__a {
+  color: rgba(11, 12, 16, 0.7) !important;
+}
