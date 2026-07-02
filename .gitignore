@@ -9,7 +9,9 @@ node_modules/
 
 # 构建产物（各 app / package / theme 的 tsc 输出与静态导出）
 dist/
+**/dist/
 out/
+**/out/
 .next/
 
 # 主题包编译出的客户端脚本（源码在 themes/*/client/*.ts，此为产物）
