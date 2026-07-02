@@ -193,5 +193,6 @@ export function loadSite(siteDir: string): SiteDefinition {
     theme: themeId ? resolveTheme(themeId, siteFile) : undefined,
     themeOptions,
     extraAssets,
+    cssAliases,
   };
 }
