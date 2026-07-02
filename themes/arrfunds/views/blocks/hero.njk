@@ -2,45 +2,85 @@
 <section class="hero">
   <div class="hero__inner">
     <div class="hero__content" data-reveal>
-      <span class="hero__badge">{{ d.badge }}</span>
+      <span class="hero__badge">{{ d.badge or d.kicker | safe }}</span>
       <h1 class="hero__title">{{ d.titleHtml | safe }}</h1>
       <p class="hero__desc">
-        {{ d.desc }}
+        {{ d.desc or d.lead }}
       </p>
       <div class="hero__ctas">
-        {% for c in d.ctas %}
-          <a href="{{ c.href }}" class="btn btn--{{ c.variant }}">{{ c.text }}</a>
-        {% endfor %}
+        {% if d.actions %}
+          {% for a in d.actions %}
+            <a href="{{ a.href }}" class="btn btn--{{ a.variant }}">{{ a.text }}{% if a.arrow %} <span aria-hidden="true">→</span>{% endif %}</a>
+          {% endfor %}
+        {% else %}
+          {% for c in d.ctas %}
+            <a href="{{ c.href }}" class="btn btn--{{ c.variant }}">{{ c.text }}</a>
+          {% endfor %}
+        {% endif %}
       </div>
     </div>
 
-    {% if d.snapshot %}
-    <div class="hero__widget" data-reveal>
-      <div class="snapshot-card" id="calculator">
-        <h3 class="snapshot-card__title">{{ d.snapshot.title }}</h3>
-        <p class="snapshot-card__desc">{{ d.snapshot.desc }}</p>
-
-        <div class="snapshot-grid">
-          {% for item in d.snapshot.grid %}
-            <div class="snapshot-item">
-              <span class="snapshot-item__value{% if item.gradient %} text-gradient{% endif %}">{{ item.value }}</span>
-              <span class="snapshot-item__label">{{ item.label }}</span>
+    {# Polyfill: 优先渲染 dossier 的 specsheet 板块，次之渲染原计算器 widget #}
+    {% if d.panel %}
+      <aside class="hero__panel" data-reveal>
+        <div class="specsheet">
+          <div class="specsheet__head">
+            <span class="mono">{{ d.panel.head }}</span>
+            <span class="mono specsheet__ref">{{ d.panel.ref }}</span>
+          </div>
+          <div class="specsheet__flow">
+            <div class="flow-node flow-node--legacy">
+              <span class="flow-node__tag mono">{{ d.panel.legacy.tag }}</span>
+              <span class="flow-node__name">{{ d.panel.legacy.name }}</span>
+              <span class="flow-node__sub mono">{{ d.panel.legacy.sub }}</span>
             </div>
-          {% endfor %}
-        </div>
-
-        <div class="snapshot-metrics">
-          {% for m in d.snapshot.metrics %}
-            <div class="metric-box">
-              <span class="metric-box__label">{{ m.label }}</span>
-              <span class="metric-box__value{% if m.green %} highlight-green{% endif %}">{{ m.value }}</span>
+            <div class="flow-arrow">
+              <span class="flow-arrow__line"></span>
+              <span class="flow-arrow__label mono">{{ d.panel.arrow | safe }}</span>
             </div>
-          {% endfor %}
+            <div class="flow-node flow-node--target">
+              <span class="flow-node__tag mono">{{ d.panel.target.tag }}</span>
+              <span class="flow-node__name">{{ d.panel.target.name }}</span>
+              <span class="flow-node__sub mono">{{ d.panel.target.sub }}</span>
+            </div>
+          </div>
+          <dl class="specsheet__stats">
+            {% for s in d.panel.stats %}
+              <div class="stat">
+                <dt>{{ s.label }}</dt>
+                <dd class="mono{% if s.accent %} u-accent{% endif %}">{{ s.value }}</dd>
+              </div>
+            {% endfor %}
+          </dl>
         </div>
+      </aside>
+    {% elif d.snapshot %}
+      <div class="hero__widget" data-reveal>
+        <div class="snapshot-card" id="calculator">
+          <h3 class="snapshot-card__title">{{ d.snapshot.title }}</h3>
+          <p class="snapshot-card__desc">{{ d.snapshot.desc }}</p>
 
-        <a href="{{ d.snapshot.cta.href }}" class="snapshot-card__btn">{{ d.snapshot.cta.text }}</a>
+          <div class="snapshot-grid">
+            {% for item in d.snapshot.grid %}
+              <div class="snapshot-item">
+                <span class="snapshot-item__value{% if item.gradient %} text-gradient{% endif %}">{{ item.value }}</span>
+                <span class="snapshot-item__label">{{ item.label }}</span>
+              </div>
+            {% endfor %}
+          </div>
+
+          <div class="snapshot-metrics">
+            {% for m in d.snapshot.metrics %}
+              <div class="metric-box">
+                <span class="metric-box__label">{{ m.label }}</span>
+                <span class="metric-box__value{% if m.green %} highlight-green{% endif %}">{{ m.value }}</span>
+              </div>
+            {% endfor %}
+          </div>
+
+          <a href="{{ d.snapshot.cta.href }}" class="snapshot-card__btn">{{ d.snapshot.cta.text }}</a>
+        </div>
       </div>
-    </div>
     {% endif %}
   </div>
 </section>

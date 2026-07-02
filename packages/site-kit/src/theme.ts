@@ -16,8 +16,10 @@ export function buildTokensCss(theme?: ThemeManifest, options?: Record<string, s
         '--primary-dark': '#000000',
         '--accent': '#d4af37', // 奢华金/香槟金
         '--accent-rgb': '212, 175, 55',
-        '--bg-light': '#ffffff',
-        '--bg-gray': '#faf9f5',
+        '--bg-light': '#050505',
+        '--bg-gray': '#121212',
+        '--text-dark': '#ffffff',
+        '--text-muted': 'rgba(255, 255, 255, 0.65)',
         '--border-color': 'rgba(212, 175, 55, 0.15)',
       };
     }

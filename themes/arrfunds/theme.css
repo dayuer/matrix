@@ -1399,3 +1399,125 @@ h1, h2, h3, h4 {
     gap: 20px;
   }
 }
+
+/* ==========================================================================
+   Navigation Bar Premium Black & Gold Adaptations
+   ========================================================================== */
+:root {
+  --nav-text: rgba(255, 255, 255, 0.7);
+  --nav-bg-scrolled: rgba(10, 10, 10, 0.9);
+  --nav-border-scrolled: rgba(212, 175, 55, 0.15);
+}
+.nav__logo {
+  color: #ffffff !important;
+}
+.nav__logo:hover {
+  color: var(--accent) !important;
+}
+.nav__link {
+  color: var(--nav-text) !important;
+}
+.nav__link:hover, .nav__link.active {
+  color: var(--accent) !important;
+}
+.nav.scrolled {
+  background: var(--nav-bg-scrolled) !important;
+  border-bottom: 1px solid var(--nav-border-scrolled) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(20px) !important;
+}
+.nav.scrolled .nav__link {
+  color: var(--nav-text) !important;
+}
+.nav.scrolled .nav__link:hover {
+  color: var(--accent) !important;
+}
+.nav__cta {
+  background-color: var(--accent) !important;
+  color: var(--primary-dark) !important;
+}
+.nav__cta:hover {
+  background-color: #ffffff !important;
+  color: var(--primary-dark) !important;
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   Specsheet Dark Premium Glassmorphism (Black & Gold)
+   ========================================================================== */
+.specsheet {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.005) 100%) !important;
+  border: 1px solid rgba(212, 175, 55, 0.15) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+  text-align: left;
+}
+.specsheet__head {
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15) !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+  padding: 14px 18px !important;
+}
+.specsheet__ref {
+  color: var(--accent) !important;
+}
+.flow-node {
+  border: 1px solid rgba(212, 175, 55, 0.12) !important;
+  background: rgba(255, 255, 255, 0.015) !important;
+  border-radius: 12px !important;
+  padding: 16px !important;
+  text-align: left;
+}
+.flow-node--target {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+.flow-node--target .flow-node__name {
+  color: var(--primary-dark) !important;
+}
+.flow-node--target .flow-node__sub {
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+.flow-node--target .flow-node__tag {
+  color: var(--primary-dark) !important;
+  opacity: 0.8;
+}
+.flow-node__name {
+  color: #ffffff;
+}
+.flow-node__sub {
+  color: rgba(255, 255, 255, 0.5);
+}
+.flow-arrow__label {
+  color: var(--accent) !important;
+}
+.flow-arrow__line {
+  background: var(--accent) !important;
+}
+.specsheet__stats {
+  border-top: 1px solid rgba(212, 175, 55, 0.15) !important;
+}
+.stat {
+  border-bottom: 1px solid rgba(212, 175, 55, 0.08) !important;
+}
+.stat dt {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+.stat dd {
+  color: var(--accent) !important;
+}
+
+/* ==========================================================================
+   Typography Highlight Enhancements
+   ========================================================================== */
+.u-mark {
+  background: linear-gradient(120deg, rgba(214, 175, 55, 0.15) 0%, rgba(214, 175, 55, 0.05) 100%);
+  padding: 0 8px;
+  border-radius: 4px;
+  color: var(--accent);
+}
+.u-accent {
+  color: var(--accent) !important;
+  text-shadow: 0 0 20px rgba(214, 175, 55, 0.3);
+}
