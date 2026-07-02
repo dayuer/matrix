@@ -47,6 +47,32 @@ blocks:
           - { label: 平均效率提升, value: 5.5× }
           - { label: 运营成本变化, value: −60%, accent: true }
 
+  - type: thesis
+    data:
+      anchor: thesis
+      head:
+        label: PARADIGM SHIFT / 范式变革
+        titleHtml: 从人响应诉求，转向 <span class="u-accent">Agent 在业务地图上安全运行</span>
+        desc: AI-Native 企业 OS 将零散的数据与系统重塑为 AI 可理解的业务模型。全岗位 Agent 协同与组织经验闭环沉淀，为企业运营带来全方位的范式质变。
+      cards:
+        - tag: PARADIGM SHIFT / 范式革命
+          title: 从“人响应诉求”转向“Agent 在业务地图上安全自主运行”
+          desc: 传统公司依赖人工分派与跨系统处理，存在严重的被动等待与人效瓶颈。AI-Native 企业 OS 构建统一的业务模型智能服务层，在权限边界与数据护栏内，调度销售、风控、财务等多 Agent 7x24 小时自主履约，将业务流程推进速度提升至秒级。
+          variant: wide
+        - tag: KNOWLEDGE ASSETS / 经验复利
+          title: 个人专家经验无损转化为企业可传承的知识资产
+          desc: 通过“任务执行 - 经验萃取 - SOP 沉淀 - 团队复用”的闭环机制。将一线业务人员应对异常处理、规则判断的个人隐性经验，自动凝练沉淀为数字员工可随时调用的 Skill、SOP 与企业知识中枢，实现组织能力的无休止倍增。
+        - tag: ASSET VALUE-ADD / 旧资产增值
+          title: 无需重构旧数据库，非侵入式激活数据资产价值
+          desc: 无需经历高风险的旧系统推倒重来。通过底层理解引擎（DBAgent），直接连接已有的客户库、财务库及 ERP 存储过程，智能解析业务关系并翻译成 AI 理解的语义模型，以非侵入方式彻底让既有的 IT 投入重新释放巨大生产力。
+        - tag: ROLE-BASED AGENTS / 全员全岗位协同
+          title: 描述目标即可自动编排企业能力，完成全岗位流程流转
+          desc: 业务人员只需通过自然语言描述业务目标（如“查询退款并通知售后”或“合同库条款风险校验”），系统即可跨越 OMS、CRM、ERP 等多部门系统自动进行能力编排与任务流转。高频运营动作自动沉淀，使企业从僵化的系统束缚中彻底解放。
+          variant: wide
+        - tag: COMPLIANCE & SECURITY / 数据合规
+          title: 7x24小时全智能闭环，全链审计与权限防越位
+          desc: 建立企业私有数据生产资料的安全护栏。数字员工的每一次数据读取、指令调用、流程流转都置于严格的权限审计、日志闭环以及关键卡点（人确认门禁）之下，确保全天候无人值守运行中的数据安全与合规审计。
+
   - type: fde-steps
     data:
       anchor: fde
@@ -124,7 +150,7 @@ blocks:
       head:
         no: §03
         tag: GLOBAL-CASEBOOK
-        title: 全球重构版图与标杆案例
+        title: 全球案例
         lead: 在中国、东南亚、英国及中东，对关键核心系统进行 AI 深度重写，实现非凡业务收益。
       cases:
         - id: insurance

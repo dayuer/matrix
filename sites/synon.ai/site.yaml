@@ -10,6 +10,7 @@ brand:
   favicon: /images/favicon.svg
 
 nav:
+  - { key: thesis, text: 范式变革, href: "/#thesis" }
   - { key: fde, text: FDE 框架, href: "/#fde" }
   - { key: team, text: 交付团队, href: "/#team" }
   - { key: portfolio, text: 全球版图, href: "/#portfolio" }
