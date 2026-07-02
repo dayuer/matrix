@@ -1,0 +1,137 @@
+# e代驾（busae.ai）—— 纯数据站点，由 matrix CLI 驱动：company 主题占位 + 本目录数据。
+theme: company
+themeOptions: {}
+cssAliases:
+  - style.css
+baseUrl: 'https://www.edaijia.cn'
+brand:
+  name: e代驾
+  hotline: '95139'
+  logo: /images/logo.png
+  desc: 您的车，放心交给我们。实惠更安全，美好车生活。
+  favicon: 'https://www.edaijia.cn/img/favicon20151021.ico'
+  appStoreUrl: 'https://apps.apple.com/cn/app/e-dai-jia/id468591734'
+  androidApkUrl: 'https://d.edaijia.cn/client/edaijia_v9.18.3.apk'
+  userRuleUrl: 'https://www.edaijia.cn/userrule.html'
+  driverAgreementUrl: 'https://www.edaijia.cn/edj-agreement.html'
+  infoAgreementUrl: 'https://www.edaijia.cn/agreement.html'
+nav:
+  - key: order
+    text: 叫代驾
+    href: /order
+  - key: blog
+    text: 行业洞察
+    href: /blog
+  - key: questions
+    text: 常见问答
+    href: /questions
+  - key: partner
+    text: 城市加盟
+    href: /partner
+  - key: entry
+    text: 司机招募
+    href: /entry
+  - key: serves
+    text: 商务合作
+    href: /serves
+cta:
+  text: 下载 App
+  href: /#download
+footer:
+  columns:
+    - title: 服务
+      links:
+        - text: 酒后代驾
+          href: /#services
+        - text: 车辆履约
+          href: /#services
+        - text: 车管家
+          href: /#services
+        - text: 商务代驾
+          href: 'https://www.edaijia.cn/business.html'
+          external: true
+    - title: 合作
+      links:
+        - text: 企业 VIP 办理
+          href: 'https://www.edaijia.cn/vip.html'
+          external: true
+        - text: 商务合作
+          href: /serves
+        - text: 城市加盟
+          href: /partner
+        - text: 司机招募
+          href: /entry
+    - title: 关于
+      links:
+        - text: 关于 e代驾
+          href: /#trust
+        - text: 发展历程
+          href: /#timeline
+        - text: 常见问答
+          href: /questions
+        - text: 法律条款
+          href: 'https://www.edaijia.cn/platform-rules.html'
+          external: true
+  legal:
+    contact: 'VIP 办理 010-6439-2767（10:00-19:00）· 司机咨询 010-58103866'
+    icp:
+      text: 京ICP备13048976号-1
+      href: 'https://beian.miit.gov.cn'
+    police:
+      text: 京公网安备 11010502030468号
+      href: 'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502030468'
+    company:
+      text: 北京亿心宜行汽车技术开发服务有限公司
+      href: 'http://h5.edaijia.cn/user-app-client/deleteAccount/companyCertificate.html'
+    foundingYear: 2011
+  social:
+    - text: 微博 @e代驾
+      href: 'http://weibo.com/edaijia?s=6cm7D0'
+    - text: 微信号 edaijia
+analytics:
+  provider: none
+  id: ''
+defaults:
+  ogImage: /images/bento-service-driver.png
+collections:
+  - name: blog
+    from: ../../docs/edaijia-drafts
+    exclude:
+      - sample-article
+      - redundancy_report
+    authorsDir: ../../config/authors
+    groupBy: cluster
+    relatedLimit: 3
+    authorDefault:
+      bio: e代驾安全合规与智能算法研究运营团队
+    authorOverrides:
+      analyst:
+        name: 王建国
+        bio: e代驾资深运营数据分析师，专注于代驾定价模型、供需平衡算法与出行热力分析。
+      journalist:
+        name: 李明
+        bio: e代驾安全合规运营专家，长期深耕代驾保险理赔政策、交通安全法规与责任划分规则。
+      pm:
+        name: 陈经理
+        bio: e代驾企业服务（B2B）产品线负责人，致力于二手车商及金融机构车辆履约效率提升。
+      academic:
+        name: 张华
+        bio: e代驾司机运营及服务质量研究员，长期从事代驾司机准入培训、实操路考与服务标准规范设计。
+    list:
+      path: /blog
+      template: blogList
+      localsKey: articles
+      meta:
+        title: 代驾行业资讯与前沿洞察 | e代驾 — 您的车，放心交给我们
+        description: e代驾行业洞察频道：聚焦代驾出行行业动态、车险增值服务标准化、智能驾驶人机协同及车辆履约等前沿深度研究与指南。
+        activeNav: blog
+        bodyClass: subpage
+    detail:
+      pathPrefix: /blog
+      template: blogDetail
+      localsKey: article
+      relatedKey: relatedArticles
+      titleSuffix: ' | e代驾 — 您的车，放心交给我们'
+      meta:
+        activeNav: blog
+        bodyClass: subpage

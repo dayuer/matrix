@@ -1,0 +1,182 @@
+# 首页 —— 内容即数据：blocks 数组按序渲染，结构由 company 主题 views/blocks/*.njk 决定。
+template: home
+
+meta:
+  title: e代驾 — 您的车，放心交给我们
+  description: e代驾 — 您的车，放心交给我们。酒后代驾、跨城送车、代保养代检车，覆盖全国300+城市，实惠更安全。
+  keywords: e代驾,代驾,酒后代驾,二手车履约,车管家,商务代驾,代保养,代检车
+  ogImageAlt: e代驾专业代驾司机
+  jsonLd:
+    "@context": https://schema.org
+    "@type": Organization
+    name: e代驾
+    legalName: 北京亿心宜行汽车技术开发服务有限公司
+    url: https://www.edaijia.cn/
+    logo: https://www.edaijia.cn/images/logo.png
+    image: https://www.edaijia.cn/images/bento-service-driver.png
+    description: e代驾提供酒后代驾、跨城送车、代保养代检车等服务，覆盖全国 300+ 城市，实惠更安全，代驾行业国家标准主笔单位。
+    foundingDate: "2011"
+    slogan: 您的车，放心交给我们
+    areaServed: CN
+    contactPoint:
+      - "@type": ContactPoint
+        telephone: "95139"
+        contactType: customer service
+        areaServed: CN
+        availableLanguage: zh-CN
+    sameAs:
+      - https://weibo.com/edaijia
+
+blocks:
+  - type: hero
+    data:
+      eyebrow: 实惠更安全 · 覆盖全国 300+ 城市
+      titleHtml: 您的车，<br>放心交给我们。
+      subtitle: 喝了酒，我们送您和车安全到家；车要跨省，我们替您提车送到门；没空保养，我们帮您全程打理。
+      links:
+        - { text: 立即下载 App, href: "#download", track: download_click, trackPlatform: hero }
+        - { text: 了解我们的服务, href: "#services" }
+      qr:
+        img: /images/qr-download.png
+        alt: 下载 App 二维码
+        title: 扫码一键叫代驾
+        subtitle: 支持 iOS & Android
+
+  - type: bento-grid
+    data:
+      id: services
+      header:
+        label: 核心服务
+        titleHtml: 总有一种，<br>刚好适合你的车。
+        desc: 三张服务网络，一份省心托付——全天候、全场景，始终更安全。
+      cards:
+        - variant: featured
+          title: 酒后代驾
+          desc: 到达快、服务好、价格低、保障全。国家标准主笔单位，安全呼叫一键即达。
+          links:
+            - { text: 扫码下载 App 叫车, href: "#download", track: download_click, trackPlatform: bento }
+          img: { src: /images/bento-service-driver.png, alt: 专业代驾司机 }
+        - variant: standard
+          title: 车管家
+          desc: 您的私人用车管家。代保养、代检车、机场接送、爱车托管，其余交给我们。
+          links:
+            - { text: 了解车管家服务, href: "#download" }
+          img: { src: /images/bento-car-butler.png, alt: 车管家专业保养 }
+        - variant: flat
+          tag: 企业级服务 / B2B
+          title: 车辆履约
+          desc: 二手车异地流通的可信代理。提供跨省代提车、代送到门、过户陪跑——一口价、全程可追踪。
+          links:
+            - { text: 商务合作咨询, href: /serves }
+            - { text: 企业 VIP 办理, href: "https://www.edaijia.cn/vip.html", external: true, track: outbound_click }
+          img: { src: /images/bento-car-delivery.png, alt: 跨省车辆运送 }
+
+  - type: stats
+    data:
+      id: trust
+      header:
+        label: 值得信赖
+        titleHtml: '<span id="trustYears">十五</span>年，把信任做厚。'
+        desc: 从国家标准到 AI 安全体系，每一步都在加深信任。
+      items:
+        - { counter: { target: 300 }, suffix: "+", label: 服务城市覆盖 }
+        - { counter: { founding: 2011 }, suffix: 年+, label: 行业深耕 }
+        - { text: 国家标准, label: 代驾行业标准主笔单位 }
+        - { text: AI 护航, label: 车况核验 · 路线监测 }
+
+  - type: timeline
+    data:
+      id: timeline
+      header:
+        label: 发展历程
+        titleHtml: 安全这件事，我们坚持了<span id="timelineYears">十五</span>年。
+        desc: 每一次产品迭代，都在让您的出行更安心一点。
+      items:
+        - { year: 2011, text: 在北京成立，用 LBS 定位取代呼叫中心，开创互联网代驾。 }
+        - { year: 2015, text: 首推代驾责任险，最高赔付 1000 万。首创司机人身意外险。 }
+        - { year: 2016, text: 覆盖全国 300+ 城市。上线人脸识别，实现「人证合一」。 }
+        - { year: 2019, text: 主笔确立代驾行业国家标准。入驻微信九宫格出行服务。 }
+        - { year: 2021, text: 发布首个代驾安全团体标准。AI 派单上线，平均 5 分钟接驾。 }
+        - { year: 2023, text: 品牌升级「实惠更安全」。构建全链路数字化安全闭环。 }
+        - { year: 2024, text: 入驻京东、抖音，全渠道覆盖。服务延伸至代保养、代年检。 }
+        - { year: 未来, text: 安全不是终点，而是对每一位车主的承诺。, accent: true }
+
+  - type: logo-wall
+    data:
+      label: 生态合作伙伴
+      items:
+        - name: 微信出行服务
+          mod: wechat
+          svgHtml: |-
+            <svg class="partners__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8.25 3C4.246 3 1 5.798 1 9.25c0 1.954 1.077 3.69 2.766 4.793.184.12.247.346.23.518-.046.467-.286 1.3-.286 1.3-.042.17.15.31.286.232 0 0 1.134-.638 1.642-.924.167-.094.38-.077.53-.02a7.71 7.71 0 0 0 2.082.251c4.004 0 7.25-2.798 7.25-6.25S12.254 3 8.25 3z" fill="#07C160"/>
+              <circle cx="5.75" cy="8.25" r="0.75" fill="white"/>
+              <circle cx="10.75" cy="8.25" r="0.75" fill="white"/>
+              <path d="M15.75 9.5c-.322 0-.638.026-.948.077.347.534.548 1.164.548 1.84 0 2.825-2.593 5.123-5.834 5.228.167.004.335.005.504.005.42 0 .835-.043 1.24-.127.15-.03.327-.008.455.064l1.248.703c.1.056.244-.047.213-.174 0 0-.181-.703-.217-1.076-.013-.13.033-.3.17-.39 1.286-.842 2.107-2.17 2.107-3.659 0-2.485-2.612-4.5-5.834-4.5z" fill="#07C160" style="opacity: 0.9; mix-blend-mode: multiply;"/>
+              <path d="M15.75 9.5c.34-.132.697-.24 1.066-.318C16.48 9.04 16.24 9 16 9c3.038 0 5.5 2.015 5.5 4.5 0 1.408-.8 2.658-2.073 3.453-.137.086-.183.256-.17.387.036.373.17 1.076.17 1.076.03.127-.113.23-.213.174l-1.248-.703a.352.352 0 0 0-.455-.064 6.786 6.786 0 0 1-1.24.127c-3.038 0-5.5-2.015-5.5-4.5a3.9 3.9 0 0 1 .534-1.928c2.812-.09 5.097-2.1 5.34-4.52z" fill="#07C160"/>
+              <circle cx="13.75" cy="13.25" r="0.65" fill="white"/>
+              <circle cx="17.75" cy="13.25" r="0.65" fill="white"/>
+            </svg>
+        - name: 美团打车
+          mod: meituan
+          svgHtml: |-
+            <svg class="partners__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="24" height="24" rx="6" fill="#FFC300"/>
+              <path d="M6 13.5C6 11.5 7.5 7.5 9 5.5C9.5 4.8 10.3 5 10.1 6C9.7 7.8 9.2 10.2 9.2 11.5C9.2 12.5 10 13.5 12 13.5C14 13.5 14.8 12.5 14.8 11.5C14.8 10.2 14.3 7.8 13.9 6C13.7 5 14.5 4.8 15 5.5C16.5 7.5 18 11.5 18 13.5C18 17 15.3 19.5 12 19.5C8.7 19.5 6 17 6 13.5Z" fill="#111111"/>
+            </svg>
+        - name: 京东
+          mod: jd
+          svgHtml: |-
+            <svg class="partners__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="24" height="24" rx="6" fill="#E1251B"/>
+              <path d="M6 8h1.8v5.2c0 .9-.5 1.4-1.3 1.4H6V16h.7c1.7 0 2.9-1 2.9-3V8H11.5V16H13V8H11.5v-1.5H6V8zm7.5-1.5H19c2 0 3.5 1.4 3.5 3.5v2c0 2.1-1.5 3.5-3.5 3.5h-5.5v-9zm1.8 1.8V13.7H19c1 0 1.7-.7 1.7-1.7v-2c0-1-.7-1.7-1.7-1.7h-3.7z" fill="white"/>
+            </svg>
+        - name: 抖音本地生活
+          mod: douyin
+          svgHtml: |-
+            <svg class="partners__icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <rect width="24" height="24" rx="6" fill="#18181C"/>
+              <g transform="translate(1, 1)">
+                <path d="M15.5 8.5a4 4 0 0 1-3.5-2.25v6.5A4.25 4.25 0 1 1 7.75 8.5a4.2 4.2 0 0 1 1.25.19v2.11a2.21 2.21 0 0 0-1.25-.3A2.25 2.25 0 1 0 10 12.75V4h2a4 4 0 0 0 3.5 4.5z" fill="#25F4EE" transform="translate(-0.5, -0.5)"/>
+                <path d="M15.5 8.5a4 4 0 0 1-3.5-2.25v6.5A4.25 4.25 0 1 1 7.75 8.5a4.2 4.2 0 0 1 1.25.19v2.11a2.21 2.21 0 0 0-1.25-.3A2.25 2.25 0 1 0 10 12.75V4h2a4 4 0 0 0 3.5 4.5z" fill="#FE2C55" transform="translate(0.5, 0.5)" style="mix-blend-mode: screen;"/>
+                <path d="M15.5 8.5a4 4 0 0 1-3.5-2.25v6.5A4.25 4.25 0 1 1 7.75 8.5a4.2 4.2 0 0 1 1.25.19v2.11a2.21 2.21 0 0 0-1.25-.3A2.25 2.25 0 1 0 10 12.75V4h2a4 4 0 0 0 3.5 4.5z" fill="#FFFFFF"/>
+              </g>
+            </svg>
+        - name: 淘宝
+          mod: taobao
+          svgHtml: |-
+            <svg class="partners__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="24" height="24" rx="6" fill="#FF5000"/>
+              <path d="M9 16.5c1.8 0 3-.6 3.5-1.8V9.5h-2.5V8h2.5V5h1.5v3h3v1.5h-3v5.2c0 1.2.6 1.8 1.8 1.8h1.2v1.5h-1.5c-2.2 0-3.5-1-3.5-3.3V9.5H9v7z" fill="white"/>
+              <path d="M6 13.5c1.5 2 4.5 2 6 0" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+
+  - type: download-cta
+    data:
+      id: download
+      title: 开始使用 e代驾
+      desc: 叫代驾、企业合作，或加入我们的司机团队，一切从这里开始。
+      qr:
+        img: /images/qr-download.png
+        alt: 微信扫码下载
+        label: 微信扫码 / 手机直接下载
+      buttons:
+        - href: "https://apps.apple.com/cn/app/e-dai-jia/id468591734"
+          platform: ios
+          sub: Download on the
+          main: App Store
+          svgHtml: |-
+            <svg class="download-btn__icon" viewBox="0 0 170 170" width="24" height="24">
+              <path fill="#fff" d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.34.13-9.13-1.92-14.35-6.15-3.57-2.85-7.39-7.51-11.46-13.97-9.66-15.34-16.14-34.01-19.45-56.03-2.04-13.82-1.93-25.92.35-36.27 2.28-10.35 6.35-18.42 12.22-24.2 5.86-5.78 12.87-8.75 21.02-8.9 7.6-.15 14.95 2.28 22.06 7.29 4.3 3.03 8.01 4.54 11.13 4.54 3.03 0 6.67-1.51 10.9-4.54 7.72-5.41 15.22-7.98 22.48-7.7 13 .54 22.95 5.25 29.87 14.13-10.22 6.24-15.18 14.88-14.89 25.93.3 11.05 4.8 20.15 13.5 27.3 8.7 7.15 18.57 11.06 29.6 11.75-2.02 5.92-4.59 11.64-7.73 17.15zm-26.68-112.5c0 8.03-3.18 15.65-9.54 22.87-6.36 7.22-13.62 11.39-21.78 12.5-.23-1.52-.35-3.05-.35-4.58 0-7.81 3.25-15.29 9.77-22.45 6.52-7.16 13.85-11.23 21.99-12.2.06 1.3.09 2.58.09 3.86z"/>
+            </svg>
+        - href: "https://d.edaijia.cn/client/edaijia_v9.18.3.apk"
+          platform: android
+          sub: Download for
+          main: Android APK
+          svgHtml: |-
+            <svg class="download-btn__icon" viewBox="0 0 24 24" width="24" height="24">
+              <path fill="#fff" d="M17.523 15.3l1.816 3.146a.5.5 0 0 1-.183.683c-.244.14-.555.059-.696-.183L16.62 15.75c-1.396.612-2.955.955-4.62.955s-3.224-.343-4.62-.955l-1.84 3.196a.508.508 0 0 1-.696.183.5.5 0 0 1-.183-.683L6.477 15.3C3.784 13.596 2 10.519 2 7h20c0 3.519-1.784 6.596-4.477 8.3zM7 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM12 1.5a.5.5 0 0 1 .5.5v1.2c2.812.203 5.378 1.488 7.159 3.518L12 6.718 4.341 6.718C6.122 4.688 8.688 3.403 11.5 3.2V2a.5.5 0 0 1 .5-.5z"/>
+            </svg>
+      links:
+        - { text: 企业 VIP 办理, href: "https://www.edaijia.cn/vip.html", external: true, track: outbound_click }
+        - { text: 加盟与司机招募, href: /entry }

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-CN" translate="no" class="notranslate">
+
+<head>
+  {% include "partials/head.njk" %}
+  {% include "partials/analytics.njk" %}
+</head>
+
+<body{% if page.bodyClass %} class="{{ page.bodyClass }}"{% endif %}>
+
+  {% include "partials/nav.njk" %}
+
+  {% block content %}{% endblock %}
+
+  {% include "partials/footer.njk" %}
+
+  <script src="{{ basePath }}/app.js?v={{ assetVersion }}"></script>
+  {% block extraScript %}{% endblock %}
+</body>
+
+</html>
