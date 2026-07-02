@@ -1800,20 +1800,6 @@ h1, h2, h3, h4 {
    ========================================================================== */
 #thesis, #team, #faq {
   background-color: #f6f4f1 !important; /* 优雅的冷象牙白金 */
-  width: 100vw !important;
-  position: relative !important;
-  left: 50% !important;
-  margin-left: -50vw !important;
-  padding-left: calc(50vw - 576px) !important;
-  padding-right: calc(50vw - 576px) !important;
-  box-sizing: border-box !important;
-}
-
-@media (max-width: 1200px) {
-  #thesis, #team, #faq {
-    padding-left: 24px !important;
-    padding-right: 24px !important;
-  }
 }
 
 /* 浅色区的公共文字重塑 */
@@ -1900,4 +1886,13 @@ h1, h2, h3, h4 {
 }
 #faq .faq__a {
   color: rgba(11, 12, 16, 0.7) !important;
+}
+
+.section-wrapper {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+#fde, #portfolio, #apply {
+  background-color: #050505 !important;
 }

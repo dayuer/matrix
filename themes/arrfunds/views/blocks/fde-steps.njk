@@ -1,34 +1,36 @@
 {% set d = block.data %}
 {% set h = d.head %}
-<section class="section-container" id="{{ d.anchor or 'fde' }}">
-  <header class="section__head" data-reveal>
-    <div class="label">
-      <span class="label__no">{{ h.no }}</span>
-      <span class="label__tick"></span>
-      <span class="label__txt">{{ h.tag }}</span>
-    </div>
-    <h2 class="section__title">{{ h.title }}</h2>
-    <p class="section__lead">{{ h.lead }}</p>
-  </header>
+<section class="section-wrapper" id="{{ d.anchor or 'fde' }}">
+  <div class="section-container">
+    <header class="section__head" data-reveal>
+      <div class="label">
+        <span class="label__no">{{ h.no }}</span>
+        <span class="label__tick"></span>
+        <span class="label__txt">{{ h.tag }}</span>
+      </div>
+      <h2 class="section__title">{{ h.title }}</h2>
+      <p class="section__lead">{{ h.lead }}</p>
+    </header>
 
-  <ol class="steps">
-    {% for step in d.steps %}
-      <li class="step" data-reveal>
-        <div class="step__index">
-          <span class="step__num">{{ step.num }}</span>
-        </div>
-        <div class="step__body">
-          <h3 class="step__title">{{ step.title }}</h3>
-          <p class="step__desc">{{ step.desc }}</p>
-          {% if step.subItems %}
-            <ul class="step__list">
-              {% for item in step.subItems %}
-                <li>{{ item }}</li>
-              {% endfor %}
-            </ul>
-          {% endif %}
-        </div>
-      </li>
-    {% endfor %}
-  </ol>
+    <ol class="steps">
+      {% for step in d.steps %}
+        <li class="step" data-reveal>
+          <div class="step__index">
+            <span class="step__num">{{ step.num }}</span>
+          </div>
+          <div class="step__body">
+            <h3 class="step__title">{{ step.title }}</h3>
+            <p class="step__desc">{{ step.desc }}</p>
+            {% if step.subItems %}
+              <ul class="step__list">
+                {% for item in step.subItems %}
+                  <li>{{ item }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
 </section>

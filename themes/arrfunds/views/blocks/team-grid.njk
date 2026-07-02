@@ -1,33 +1,35 @@
 {% set d = block.data %}
 {% set h = d.head %}
-<section class="section-container" id="{{ d.anchor or 'team' }}">
-  <header class="section__head" data-reveal>
-    <div class="label">
-      <span class="label__no">{{ h.no }}</span>
-      <span class="label__tick"></span>
-      <span class="label__txt">{{ h.tag }}</span>
-    </div>
-    <h2 class="section__title">{{ h.title }}</h2>
-    <p class="section__lead">{{ h.lead }}</p>
-  </header>
+<section class="section-wrapper" id="{{ d.anchor or 'team' }}">
+  <div class="section-container">
+    <header class="section__head" data-reveal>
+      <div class="label">
+        <span class="label__no">{{ h.no }}</span>
+        <span class="label__tick"></span>
+        <span class="label__txt">{{ h.tag }}</span>
+      </div>
+      <h2 class="section__title">{{ h.title }}</h2>
+      <p class="section__lead">{{ h.lead }}</p>
+    </header>
 
-  <div class="teams">
-    {% for team in d.teams %}
-      <article class="team" data-reveal>
-        <div class="team__head">
-          <span class="team__mark" aria-hidden="true">{{ team.name[0] }}</span>
-          <div>
-            <h3 class="team__name">{{ team.name }}</h3>
-            <p class="team__role">{{ team.role }}</p>
+    <div class="teams">
+      {% for team in d.teams %}
+        <article class="team" data-reveal>
+          <div class="team__head">
+            <span class="team__mark" aria-hidden="true">{{ team.name[0] }}</span>
+            <div>
+              <h3 class="team__name">{{ team.name }}</h3>
+              <p class="team__role">{{ team.role }}</p>
+            </div>
           </div>
-        </div>
-        <p class="team__desc">{{ team.desc }}</p>
-        <ul class="team__list">
-          {% for point in team.points %}
-            <li>{{ point }}</li>
-          {% endfor %}
-        </ul>
-      </article>
-    {% endfor %}
+          <p class="team__desc">{{ team.desc }}</p>
+          <ul class="team__list">
+            {% for point in team.points %}
+              <li>{{ point }}</li>
+            {% endfor %}
+          </ul>
+        </article>
+      {% endfor %}
+    </div>
   </div>
 </section>

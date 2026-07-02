@@ -1,25 +1,27 @@
 {% set d = block.data %}
 {% set h = d.head %}
-<section class="section-container" id="{{ d.anchor or 'faq' }}">
-  <header class="section__head" data-reveal>
-    <div class="label">
-      <span class="label__no">{{ h.no }}</span>
-      <span class="label__tick"></span>
-      <span class="label__txt">{{ h.tag }}</span>
-    </div>
-    <h2 class="section__title">{{ h.title }}</h2>
-    <p class="section__lead">{{ h.lead }}</p>
-  </header>
+<section class="section-wrapper" id="{{ d.anchor or 'faq' }}">
+  <div class="section-container">
+    <header class="section__head" data-reveal>
+      <div class="label">
+        <span class="label__no">{{ h.no }}</span>
+        <span class="label__tick"></span>
+        <span class="label__txt">{{ h.tag }}</span>
+      </div>
+      <h2 class="section__title">{{ h.title }}</h2>
+      <p class="section__lead">{{ h.lead }}</p>
+    </header>
 
-  <div class="faqs">
-    {% for item in d.faqs %}
-      <article class="faq" data-reveal>
-        <h3 class="faq__q">
-          <span class="faq__q-no">Q{{ loop.index }}</span>
-          {{ item.question }}
-        </h3>
-        <p class="faq__a">{{ item.answer }}</p>
-      </article>
-    {% endfor %}
+    <div class="faqs">
+      {% for item in d.faqs %}
+        <article class="faq" data-reveal>
+          <h3 class="faq__q">
+            <span class="faq__q-no">Q{{ loop.index }}</span>
+            {{ item.question }}
+          </h3>
+          <p class="faq__a">{{ item.answer }}</p>
+        </article>
+      {% endfor %}
+    </div>
   </div>
 </section>
