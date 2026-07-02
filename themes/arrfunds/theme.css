@@ -1798,7 +1798,7 @@ h1, h2, h3, h4 {
 /* ==========================================================================
    Premium Alternate Light-Theme Sections (Bento Grid Zebra Alternate)
    ========================================================================== */
-#thesis, #team, #faq {
+#thesis, #process, #team, #faq {
   background-color: #f6f4f1 !important; /* 优雅的冷象牙白金 */
 }
 
@@ -1894,5 +1894,38 @@ h1, h2, h3, h4 {
 }
 
 #fde, #portfolio, #apply {
-  background-color: #050505 !important;
+  background-color: #0d0f12 !important; /* 钛炭石墨灰色，比首屏纯黑略浅，极富工程哑光感 */
+}
+
+.hero {
+  background: #030303 !important; /* 首屏设定为最纯净极致的极夜黑 */
+}
+
+/* 投资流程在浅色区的白金美学重塑 */
+#process .section-header__title {
+  color: #0b0c10 !important;
+}
+#process .section-header__label {
+  color: var(--accent) !important;
+}
+#process .process-step {
+  background-color: #ffffff !important;
+  border: 1px solid rgba(214, 175, 55, 0.15) !important;
+  box-shadow: 0 8px 32px rgba(214, 175, 55, 0.04) !important;
+  transition: all 0.25s ease;
+}
+#process .process-step:hover {
+  box-shadow: 0 12px 40px rgba(214, 175, 55, 0.08) !important;
+  border-color: var(--accent) !important;
+}
+#process .process-step__number {
+  color: var(--accent) !important;
+  opacity: 0.12 !important;
+  font-size: 56px !important;
+}
+#process .process-step__title {
+  color: #0b0c10 !important;
+}
+#process .process-step__desc {
+  color: rgba(11, 12, 16, 0.7) !important;
 }

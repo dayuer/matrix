@@ -139,6 +139,7 @@ blocks:
         notice: 提交即代表您同意我们的《隐私政策》。所有提交信息将严格保密处理。
         fields:
           companyName: { label: 公司名称, placeholder: 如：北京XX智能科技有限公司 }
+          contactName: { label: 创始人姓名, placeholder: 如：张先生 / 女士 }
           currentArr:
             label: 当前 ARR 规模
             placeholder: 选择 ARR 规模

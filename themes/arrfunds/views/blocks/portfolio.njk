@@ -1,65 +1,80 @@
 {% set d = block.data %}
 {% set h = d.head %}
-<section class="section-container" id="{{ d.anchor or 'portfolio' }}">
-  <header class="section__head" data-reveal>
-    <div class="label">
-      <span class="label__no">{{ h.no }}</span>
-      <span class="label__tick"></span>
-      <span class="label__txt">{{ h.tag }}</span>
-    </div>
-    <h2 class="section__title">{{ h.title }}</h2>
-    <p class="section__lead">{{ h.lead }}</p>
-  </header>
+<section class="section-wrapper" id="{{ d.anchor or 'portfolio' }}">
+  <div class="section-container">
+    <header class="section__head" data-reveal>
+      <div class="label">
+        <span class="label__no">{{ h.no or "§02" }}</span>
+        <span class="label__tick"></span>
+        <span class="label__txt">{{ h.label or h.tag }}</span>
+      </div>
+      <h2 class="section__title">{{ h.title }}</h2>
+      <p class="section__lead">{{ h.desc or h.lead }}</p>
+    </header>
 
-  <div class="cases">
-    {% for case in d.cases %}
-      <article class="case" data-reveal>
-        <div class="case__meta">
-          <span class="case__ref">{{ case.ref }}</span>
-          <span class="case__region">{{ case.region }}</span>
-          <span class="case__client">{{ case.clientType }}</span>
-        </div>
-        <div class="case__grid">
-          <div class="case__lead">
-            <h3 class="case__title">{{ case.title }}</h3>
-            <p class="case__desc">{{ case.desc }}</p>
-            <ul class="case__list">
-              {% for pt in case.bulletPoints %}
-                <li>{{ pt }}</li>
-              {% endfor %}
-            </ul>
-          </div>
+    {% if d.cases %}
+      <div class="cases">
+        {% for case in d.cases %}
+          <article class="case" data-reveal>
+            <div class="case__meta">
+              <span class="case__ref">{{ case.ref }}</span>
+              <span class="case__region">{{ case.region }}</span>
+              <span class="case__client">{{ case.clientType }}</span>
+            </div>
+            <div class="case__grid">
+              <div class="case__lead">
+                <h3 class="case__title">{{ case.title }}</h3>
+                <p class="case__desc">{{ case.desc }}</p>
+                <ul class="case__list">
+                  {% for pt in case.bulletPoints %}
+                    <li>{{ pt }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
 
-          <div class="case__data">
-            <div class="case__impact">
-              <span class="case__impact-label">重构收益 / IMPACT</span>
-              <p class="case__impact-val">{{ case.metrics }}</p>
+              <div class="case__data">
+                <div class="case__impact">
+                  <span class="case__impact-label">重构收益 / IMPACT</span>
+                  <p class="case__impact-val">{{ case.metrics }}</p>
+                </div>
+                <div class="charts">
+                  {% for ch in case.charts %}
+                    <figure class="chart">
+                      <figcaption class="chart__title">{{ ch.title }}</figcaption>
+                      <div class="chart__row">
+                        <span class="chart__key">{{ ch.beforeLabel }}</span>
+                        <span class="chart__track">
+                          <span class="chart__bar chart__bar--legacy" style="width: {{ ch.beforeRatio }}%"></span>
+                        </span>
+                        <span class="chart__val">{{ ch.beforeVal }}</span>
+                      </div>
+                      <div class="chart__row">
+                        <span class="chart__key">{{ ch.afterLabel }}</span>
+                        <span class="chart__track">
+                          <span class="chart__bar chart__bar--synon" style="width: {{ ch.afterRatio }}%"></span>
+                        </span>
+                        <span class="chart__val u-accent">{{ ch.afterVal }}</span>
+                      </div>
+                      <div class="chart__delta">Δ&nbsp;{{ ch.delta }}</div>
+                    </figure>
+                  {% endfor %}
+                </div>
+              </div>
             </div>
-            <div class="charts">
-              {% for ch in case.charts %}
-                <figure class="chart">
-                  <figcaption class="chart__title">{{ ch.title }}</figcaption>
-                  <div class="chart__row">
-                    <span class="chart__key">{{ ch.beforeLabel }}</span>
-                    <span class="chart__track">
-                      <span class="chart__bar chart__bar--legacy" style="width: {{ ch.beforeRatio }}%"></span>
-                    </span>
-                    <span class="chart__val">{{ ch.beforeVal }}</span>
-                  </div>
-                  <div class="chart__row">
-                    <span class="chart__key">{{ ch.afterLabel }}</span>
-                    <span class="chart__track">
-                      <span class="chart__bar chart__bar--synon" style="width: {{ ch.afterRatio }}%"></span>
-                    </span>
-                    <span class="chart__val u-accent">{{ ch.afterVal }}</span>
-                  </div>
-                  <div class="chart__delta">Δ&nbsp;{{ ch.delta }}</div>
-                </figure>
-              {% endfor %}
-            </div>
+          </article>
+        {% endfor %}
+      </div>
+    {% elif d.cards %}
+      <div class="portfolio-grid">
+        {% for card in d.cards %}
+          <div class="portfolio-card" data-reveal>
+            <div class="portfolio-card__icon">{{ card.iconSvg | safe }}</div>
+            <span class="portfolio-card__tag">{{ card.tag }}</span>
+            <h3 class="portfolio-card__title">{{ card.title }}</h3>
+            <p class="portfolio-card__desc">{{ card.desc }}</p>
           </div>
-        </div>
-      </article>
-    {% endfor %}
+        {% endfor %}
+      </div>
+    {% endif %}
   </div>
 </section>
