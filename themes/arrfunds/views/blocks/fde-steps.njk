@@ -1,0 +1,27 @@
+{% set d = block.data %}
+<section class="process-section" id="{{ d.anchor or 'fde' }}">
+  <div class="section-container">
+    <div class="section-header" data-reveal>
+      <p class="section-header__label">{{ d.head.tag }}</p>
+      <h2 class="section-header__title">{{ d.head.title }}</h2>
+      <p class="section-header__desc" style="margin-top: 12px; color: var(--text-muted);">{{ d.head.lead }}</p>
+    </div>
+
+    <div class="process-timeline">
+      {% for step in d.steps %}
+        <div class="process-step" data-reveal>
+          <div class="process-step__number">{{ step.num }}</div>
+          <h3 class="process-step__title">{{ step.title }}</h3>
+          <p class="process-step__desc">{{ step.desc }}</p>
+          {% if step.subItems %}
+            <ul class="process-step__list" style="margin-top: 12px; padding-left: 18px; color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; text-align: left;">
+              {% for item in step.subItems %}
+                <li style="margin-bottom: 4px; list-style-type: disc;">{{ item }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

@@ -4,6 +4,25 @@ import type { ThemeManifest } from './types';
 /** 合并主题默认 token 与站点覆盖，生成注入用的 :root{} 字符串。无主题时返回 ''。 */
 export function buildTokensCss(theme?: ThemeManifest, options?: Record<string, string>): string {
   if (!theme) return '';
+  
+  // 动态黑金主题上色检测
+  if (theme.id === 'arrfunds') {
+    const isSynon = process.argv.some(arg => arg.includes('synon.ai')) || process.cwd().includes('synon.ai');
+    if (isSynon) {
+      theme.tokens = {
+        ...theme.tokens,
+        '--primary': '#050505',
+        '--primary-light': '#1e1e1e',
+        '--primary-dark': '#000000',
+        '--accent': '#d4af37', // 奢华金/香槟金
+        '--accent-rgb': '212, 175, 55',
+        '--bg-light': '#ffffff',
+        '--bg-gray': '#faf9f5',
+        '--border-color': 'rgba(212, 175, 55, 0.15)',
+      };
+    }
+  }
+
   const merged = { ...theme.tokens, ...(options || {}) };
   const entries = Object.entries(merged);
   if (entries.length === 0) return ''; // 主题未暴露 token（如 edaijia），不注入空 :root

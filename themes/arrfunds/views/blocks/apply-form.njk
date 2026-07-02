@@ -1,0 +1,50 @@
+{% set d = block.data %}
+{% set f = d.form.fields %}
+<section class="apply-section" id="{{ d.anchor or 'apply' }}">
+  <div class="apply-container" data-reveal>
+    <div class="apply-card">
+      <div class="apply-card__info">
+        <h2 class="apply-card__title">{{ d.title }}</h2>
+        <p class="apply-card__desc">{{ d.desc }}</p>
+        <div class="apply-highlights">
+          {% for h in d.highlights %}
+            <div class="highlight-item">✓ {{ h }}</div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="apply-card__form">
+        <form class="lead-form" id="applyForm">
+          <div class="form-group">
+            <label for="companyName">{{ f.companyName.label }}</label>
+            <input type="text" id="companyName" required placeholder="{{ f.companyName.placeholder }}">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="currentArr">{{ f.currentArr.label }}</label>
+              <select id="currentArr" required>
+                <option value="" disabled selected>{{ f.currentArr.placeholder }}</option>
+                {% for opt in f.currentArr.options %}<option value="{{ opt.value }}">{{ opt.text }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">{{ f.contactEmail.label }}</label>
+              <input type="email" id="contactEmail" required placeholder="{{ f.contactEmail.placeholder }}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="aiDesc">{{ f.aiDesc.label }}</label>
+            <input type="text" id="aiDesc" placeholder="{{ f.aiDesc.placeholder }}">
+          </div>
+          <button type="submit" class="form-submit-btn" id="submitBtn">{{ d.form.submitText }}</button>
+          <p class="form-notice">{{ d.form.notice }}</p>
+        </form>
+        <div class="form-success-toast" id="successToast">
+          <div class="success-icon">✓</div>
+          <h4>{{ d.toast.title }}</h4>
+          <p>{{ d.toast.desc }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
