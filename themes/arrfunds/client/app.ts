@@ -81,6 +81,60 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ─── 导航滚动监听高亮 (ScrollSpy) ───
+  const spyLinks = document.querySelectorAll('.nav__link');
+  const spySections = Array.from(spyLinks).map(link => {
+    const href = link.getAttribute('href');
+    if (!href) return null;
+    const hashIndex = href.indexOf('#');
+    if (hashIndex === -1) return null;
+    const id = href.substring(hashIndex);
+    try {
+      return document.querySelector(id);
+    } catch (e) {
+      return null;
+    }
+  }).filter((el): el is HTMLElement => el !== null);
+
+  if (spyLinks.length > 0 && spySections.length > 0) {
+    const handleScrollSpy = () => {
+      const navHeight = navbar ? navbar.offsetHeight : 80;
+      const scrollPos = window.scrollY + navHeight + 120; // 配合阈值提早亮起
+      let activeId = '';
+
+      spySections.forEach(sec => {
+        const top = sec.offsetTop;
+        const height = sec.offsetHeight;
+        if (scrollPos >= top && scrollPos < top + height) {
+          activeId = sec.getAttribute('id') || '';
+        }
+      });
+
+      // 顶部边界情况处理
+      if (window.scrollY < 100) {
+        activeId = '';
+      }
+
+      // 底部边界情况处理
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50) {
+        activeId = spySections[spySections.length - 1].getAttribute('id') || '';
+      }
+
+      spyLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && activeId && (href === `#${activeId}` || href.endsWith(`#${activeId}`))) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScrollSpy);
+    window.addEventListener('resize', handleScrollSpy);
+    handleScrollSpy();
+  }
+
   // ─── IntersectionObserver 动画载入 ───
   const revealElements = document.querySelectorAll('[data-reveal]');
   if ('IntersectionObserver' in window && revealElements.length > 0) {

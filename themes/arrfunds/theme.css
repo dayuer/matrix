@@ -135,16 +135,27 @@ h1, h2, h3, h4 {
   position: relative;
 }
 
-.nav__link:hover {
-  color: var(--accent);
+.nav__link:hover, .nav__link.active {
+  color: var(--accent) !important;
+}
+
+.nav__link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent);
+  border-radius: 2px;
 }
 
 .nav.scrolled .nav__link {
   color: var(--text-dark);
 }
 
-.nav.scrolled .nav__link:hover {
-  color: var(--accent);
+.nav.scrolled .nav__link:hover, .nav.scrolled .nav__link.active {
+  color: var(--accent) !important;
 }
 
 .nav__cta {
@@ -682,7 +693,7 @@ h1, h2, h3, h4 {
   color: rgba(255, 255, 255, 0.8);
 }
 
-.lead-form input, .lead-form select {
+.lead-form input, .lead-form select, .lead-form textarea {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
@@ -693,7 +704,7 @@ h1, h2, h3, h4 {
   transition: all 0.2s ease;
 }
 
-.lead-form input::placeholder {
+.lead-form input::placeholder, .lead-form textarea::placeholder {
   color: rgba(255, 255, 255, 0.35);
 }
 
@@ -712,7 +723,7 @@ h1, h2, h3, h4 {
   background-color: #fff;
 }
 
-.lead-form input:focus, .lead-form select:focus {
+.lead-form input:focus, .lead-form select:focus, .lead-form textarea:focus {
   border-color: var(--accent);
   background: rgba(255, 255, 255, 0.12);
   box-shadow: 0 0 0 3px rgba(0, 191, 166, 0.15);
