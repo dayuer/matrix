@@ -56,6 +56,8 @@ export interface CollectionConfig {
     path: string;
     template: string;
     localsKey?: string; // 注入模板的变量名，默认 articles
+    /** 站点自定义模板变量（页头文案、分类名映射等），生成数据优先。 */
+    locals?: Record<string, unknown>;
     meta: PageMetaTemplate;
   };
   detail: {
@@ -63,6 +65,8 @@ export interface CollectionConfig {
     template: string;
     localsKey?: string; // 默认 article
     relatedKey?: string; // 默认 relatedArticles
+    /** 站点自定义模板变量，生成数据优先。 */
+    locals?: Record<string, unknown>;
     /** 详情页标题后缀，如 " | e代驾"。 */
     titleSuffix?: string;
     meta: PageMetaTemplate;
@@ -197,7 +201,7 @@ export function expandCollection(
   pages.push({
     path: cfg.list.path,
     template: cfg.list.template,
-    locals: { [listKey]: articles },
+    locals: { ...(cfg.list.locals || {}), [listKey]: articles },
     page: meta(cfg.list.path, cfg.list.meta, defaults, {}),
   });
 
@@ -216,7 +220,7 @@ export function expandCollection(
     pages.push({
       path: route,
       template: cfg.detail.template,
-      locals: { [detailKey]: article, [relatedKey]: related },
+      locals: { ...(cfg.detail.locals || {}), [detailKey]: article, [relatedKey]: related },
       page: meta(route, cfg.detail.meta, defaults, {
         title,
         description: cfg.detail.meta.description || article.excerpt,
