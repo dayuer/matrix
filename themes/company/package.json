@@ -1,14 +1,14 @@
 {
-  "name": "@matrix/theme-journal",
+  "name": "@matrix/theme-company",
   "version": "1.0.0",
   "private": true,
-  "description": "内容矩阵主题：企业官网资讯（Corporate Journal）—— 包含 Bento 卡片、多页博客与服务下单板块。表现层，应用逻辑仍在 apps/edaijia。",
+  "description": "内容矩阵主题：通用企业官网（Company）—— Bento 卡片、多页 block 占位与博客板块。纯表现层，零业务内容；由 sites/<站点> 数据驱动，经 @matrix/cli 渲染。",
   "main": "dist/theme.js",
   "types": "dist/theme.d.ts",
   "exports": { ".": { "types": "./dist/theme.d.ts", "default": "./dist/theme.js" } },
   "scripts": {
     "build:manifest": "tsc -p tsconfig.json",
-    "build:client": "tsc -p tsconfig.client.json && tsc -p tsconfig.order.json && tsc -p tsconfig.order-status.json",
+    "build:client": "tsc -p tsconfig.client.json",
     "build": "npm run build:manifest && npm run build:client"
   },
   "engines": { "node": ">=20" },
