@@ -26,7 +26,7 @@ function copyDir(src: string, dest: string): void {
  * 页面、404、theme.css/style.css、app.js、images/、sitemap.xml、robots.txt 一次产出。
  */
 export function exportSite(def: SiteDefinition): void {
-  const { root, site, pages, notFound, extraAssets = [], theme, themeOptions } = def;
+  const { root, site, pages, notFound, extraAssets = [], cssAliases = [], theme, themeOptions } = def;
   const OUT = path.join(root, 'out');
   const basePath = (process.env.BASE_PATH || '').replace(/\/$/, '');
 
@@ -75,6 +75,11 @@ export function exportSite(def: SiteDefinition): void {
   if (theme) {
     fs.copyFileSync(path.join(theme.dir, theme.css), path.join(OUT, 'theme.css'));
     console.log('  ✅ theme.css');
+    // 兼容别名：把 theme.css 再复制成旧缓存 HTML 引用的资源名（如 style.css）
+    for (const alias of cssAliases) {
+      fs.copyFileSync(path.join(theme.dir, theme.css), path.join(OUT, alias));
+      console.log(`  ✅ ${alias}（theme.css 别名）`);
+    }
   }
   const siteCss = path.join(root, 'style.css');
   if (fs.existsSync(siteCss)) {

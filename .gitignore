@@ -13,6 +13,7 @@ dist/
 out/
 **/out/
 .next/
+**/public/blog-html/
 
 # 主题包编译出的客户端脚本（源码在 themes/*/client/*.ts，此为产物）
 # 注意：含 / 的规则默认锚定仓库根，必须用 **/ 前缀才能匹配 themes/*/public/ 这种嵌套路径

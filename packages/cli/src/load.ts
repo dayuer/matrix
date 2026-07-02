@@ -22,14 +22,18 @@ import type {
   SiteDefinition,
   ThemeManifest,
 } from '@matrix/site-kit';
+import { expandCollection, type CollectionConfig } from './blog';
 
 /** site.yaml 的形状：BaseSiteConfig + 平台字段。 */
 interface SiteYaml extends BaseSiteConfig {
   theme?: string;
   themeOptions?: Record<string, string>;
   extraAssets?: string[];
+  cssAliases?: string[];
   /** 页面 meta 的站点级默认值（ogImage、changefreq 等）。 */
   defaults?: Partial<PageMeta>;
+  /** 博客/文档等集合：从草稿目录展开为列表页 + 详情页。 */
+  collections?: CollectionConfig[];
 }
 
 /** content 文件（yaml 或 md frontmatter）里允许的页面级字段。 */
@@ -38,6 +42,8 @@ interface ContentDoc {
   template?: string;
   meta?: Partial<PageMeta> & { title?: string };
   blocks?: BlockInstance[];
+  /** 透传给模板的额外变量（如 journal 主题的 faq / partner）。 */
+  locals?: Record<string, unknown>;
 }
 
 function fail(file: string, msg: string): never {
@@ -124,7 +130,9 @@ function loadContentFile(contentDir: string, rel: string, defaults: Partial<Page
   const meta = buildMeta(file, route, doc.meta, defaults);
   if (blocks.length > 0) meta.blocks = blocks;
 
-  return { path: route, template, page: meta };
+  const def: PageDef = { path: route, template, page: meta };
+  if (doc.locals && Object.keys(doc.locals).length > 0) def.locals = doc.locals;
+  return def;
 }
 
 /** 把 sites/<站点> 纯数据目录加载为 SiteDefinition。 */
@@ -134,7 +142,15 @@ export function loadSite(siteDir: string): SiteDefinition {
   if (!fs.existsSync(siteFile)) fail(siteFile, '不存在。一个站点目录至少需要 site.yaml。');
 
   const raw = (yaml.load(fs.readFileSync(siteFile, 'utf-8')) || {}) as SiteYaml;
-  const { theme: themeId, themeOptions, extraAssets, defaults = {}, ...site } = raw;
+  const {
+    theme: themeId,
+    themeOptions,
+    extraAssets,
+    cssAliases,
+    defaults = {},
+    collections = [],
+    ...site
+  } = raw;
   if (!site.baseUrl) fail(siteFile, '缺少必填字段 baseUrl');
   if (!site.brand?.name) fail(siteFile, '缺少必填字段 brand.name');
   if (!Array.isArray(site.nav)) fail(siteFile, '缺少必填字段 nav（数组）');
@@ -161,6 +177,12 @@ export function loadSite(siteDir: string): SiteDefinition {
     else pages.push(def);
   }
   if (!notFound) fail(contentDir, '缺少 404 页（content/404.yaml 或 404.md）。');
+
+  // 集合（博客等）：从草稿目录展开为列表页 + 详情页
+  for (const cfg of collections) {
+    pages.push(...expandCollection(root, cfg, defaults));
+  }
+
   if (pages.length === 0) fail(contentDir, '除 404 外没有任何页面。');
 
   return {

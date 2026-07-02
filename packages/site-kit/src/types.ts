@@ -114,4 +114,6 @@ export interface SiteDefinition {
   themeOptions?: Record<string, string>;
   /** 导出时额外需要拷贝到 out/ 根的文件（相对 root），如自定义脚本、清单等 */
   extraAssets?: string[];
+  /** 导出时把 theme.css 额外复制成这些文件名（兼容旧缓存 HTML 引用的资源名，如 ['style.css']）。 */
+  cssAliases?: string[];
 }
