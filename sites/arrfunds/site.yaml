@@ -1,6 +1,11 @@
 # arrfunds.com —— 站点品牌级配置（纯数据，由 matrix CLI 驱动）
 theme: arrfunds
-themeOptions: {}
+themeOptions:
+  tokens:
+    '--accent': '#00bfa6'
+    '--accent-rgb': '0, 191, 166'
+    '--bg-light-sec': '#f2f6f4'
+    '--bg-dark-sec': '#04150e'
 
 baseUrl: https://arrfunds.com
 

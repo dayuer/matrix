@@ -616,9 +616,14 @@ h1, h2, h3, h4 {
 
 /* ─── Apply Section ─── */
 .apply-section {
-  padding: 100px 24px;
+  padding: 100px 0;
+  width: 100%;
+}
+
+.apply-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 24px;
 }
 
 .apply-card {
@@ -1799,7 +1804,7 @@ h1, h2, h3, h4 {
    Premium Alternate Light-Theme Sections (Bento Grid Zebra Alternate)
    ========================================================================== */
 #thesis, #process, #team, #faq {
-  background-color: #f6f4f1 !important; /* 优雅的冷象牙白金 */
+  background-color: var(--bg-light-sec) !important; /* 动态浅色交替背景色，在 site.yaml 里通过 tokens 控制 */
 }
 
 /* 浅色区的公共文字重塑 */
@@ -1821,11 +1826,11 @@ h1, h2, h3, h4 {
 /* Bento卡片在浅色区的白金美学重塑 */
 #thesis .bento-card {
   background-color: #ffffff !important;
-  border: 1px solid rgba(214, 175, 55, 0.15) !important;
-  box-shadow: 0 8px 32px rgba(214, 175, 55, 0.04) !important;
+  border: 1px solid rgba(var(--accent-rgb), 0.15) !important;
+  box-shadow: 0 8px 32px rgba(var(--accent-rgb), 0.04) !important;
 }
 #thesis .bento-card:hover {
-  box-shadow: 0 12px 40px rgba(214, 175, 55, 0.08) !important;
+  box-shadow: 0 12px 40px rgba(var(--accent-rgb), 0.08) !important;
   border-color: var(--accent) !important;
 }
 #thesis .bento-card__title {
@@ -1836,18 +1841,18 @@ h1, h2, h3, h4 {
 }
 #thesis .bento-card__tag {
   color: var(--accent) !important;
-  background-color: rgba(214, 175, 55, 0.08) !important;
-  border: 1px solid rgba(214, 175, 55, 0.2) !important;
+  background-color: rgba(var(--accent-rgb), 0.08) !important;
+  border: 1px solid rgba(var(--accent-rgb), 0.2) !important;
 }
 
 /* Team卡片在浅色区的白金美学重塑 */
 #team .team {
   background-color: #ffffff !important;
-  border: 1px solid rgba(214, 175, 55, 0.15) !important;
-  box-shadow: 0 8px 32px rgba(214, 175, 55, 0.04) !important;
+  border: 1px solid rgba(var(--accent-rgb), 0.15) !important;
+  box-shadow: 0 8px 32px rgba(var(--accent-rgb), 0.04) !important;
 }
 #team .team:hover {
-  box-shadow: 0 12px 40px rgba(214, 175, 55, 0.08) !important;
+  box-shadow: 0 12px 40px rgba(var(--accent-rgb), 0.08) !important;
   border-color: var(--accent) !important;
 }
 #team .team__name {
@@ -1861,27 +1866,27 @@ h1, h2, h3, h4 {
 }
 #team .team__list li {
   color: rgba(11, 12, 16, 0.6) !important;
-  border-top: 1px solid rgba(214, 175, 55, 0.1) !important;
+  border-top: 1px solid rgba(var(--accent-rgb), 0.1) !important;
 }
 #team .team__mark {
-  color: rgba(214, 175, 55, 0.08) !important;
+  color: rgba(var(--accent-rgb), 0.08) !important;
 }
 
 /* FAQ卡片在浅色区的白金美学重塑 */
 #faq .faq {
   background-color: #ffffff !important;
-  border: 1px solid rgba(214, 175, 55, 0.15) !important;
-  box-shadow: 0 8px 32px rgba(214, 175, 55, 0.04) !important;
+  border: 1px solid rgba(var(--accent-rgb), 0.15) !important;
+  box-shadow: 0 8px 32px rgba(var(--accent-rgb), 0.04) !important;
 }
 #faq .faq:hover {
-  box-shadow: 0 12px 40px rgba(214, 175, 55, 0.08) !important;
+  box-shadow: 0 12px 40px rgba(var(--accent-rgb), 0.08) !important;
   border-color: var(--accent) !important;
 }
 #faq .faq__q {
   color: #0b0c10 !important;
 }
 #faq .faq__q-no {
-  background: rgba(214, 175, 55, 0.1) !important;
+  background: rgba(var(--accent-rgb), 0.1) !important;
   color: var(--accent) !important;
 }
 #faq .faq__a {
@@ -1894,7 +1899,7 @@ h1, h2, h3, h4 {
 }
 
 #fde, #portfolio, #apply {
-  background-color: #0d0f12 !important; /* 钛炭石墨灰色，比首屏纯黑略浅，极富工程哑光感 */
+  background-color: var(--bg-dark-sec) !important; /* 动态深色交替背景色 */
 }
 
 .hero {
@@ -1910,12 +1915,12 @@ h1, h2, h3, h4 {
 }
 #process .process-step {
   background-color: #ffffff !important;
-  border: 1px solid rgba(214, 175, 55, 0.15) !important;
-  box-shadow: 0 8px 32px rgba(214, 175, 55, 0.04) !important;
+  border: 1px solid rgba(var(--accent-rgb), 0.15) !important;
+  box-shadow: 0 8px 32px rgba(var(--accent-rgb), 0.04) !important;
   transition: all 0.25s ease;
 }
 #process .process-step:hover {
-  box-shadow: 0 12px 40px rgba(214, 175, 55, 0.08) !important;
+  box-shadow: 0 12px 40px rgba(var(--accent-rgb), 0.08) !important;
   border-color: var(--accent) !important;
 }
 #process .process-step__number {

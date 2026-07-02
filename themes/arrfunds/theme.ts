@@ -24,6 +24,8 @@ const arrfunds: ThemeManifest = {
     '--text-light': '#f5f5f7',
     '--bg-light': '#ffffff',
     '--bg-gray': '#f4f7f6',
+    '--bg-light-sec': '#f2f6f4', /* 默认浅绿象牙色 */
+    '--bg-dark-sec': '#04150e',  /* 默认墨绿黑色 */
     '--border-color': 'rgba(10, 54, 34, 0.08)',
     '--font-sans': "'Inter', -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
     '--font-display': "'Outfit', -apple-system, BlinkMacSystemFont, sans-serif",

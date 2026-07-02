@@ -1,6 +1,11 @@
 # synon.ai —— 站点品牌级配置（纯数据，由 matrix CLI 驱动，无需任何 node 工程）
 theme: arrfunds
-themeOptions: {}
+themeOptions:
+  tokens:
+    '--accent': '#d4af37'
+    '--accent-rgb': '214, 175, 55'
+    '--bg-light-sec': '#f6f4f1'
+    '--bg-dark-sec': '#0d0f12'
 
 baseUrl: https://synon.ai
 
