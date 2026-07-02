@@ -1077,10 +1077,13 @@ img.bento__img--flat {
   opacity: 1;
 }
 
-/* 独立分页面布局与导航激活 */
+/* 独立分页面布局与导航激活（页面类挂 body，作用于通用 main 容器） */
 .questions-page,
 .partner-page,
-.entry-page {
+.entry-page,
+body.questions-page main,
+body.partner-page main,
+body.entry-page main {
   padding-top: 80px;
   background: #ffffff;
 }

@@ -1,0 +1,9 @@
+{# 通用 block 页面：内容即数据。page.blocks 按序渲染，结构由 views/blocks/{type}.njk 决定；
+   页面级布局类（如 entry-page）经 meta.bodyClass 挂在 body 上，theme.css 以 body.xxx main 作用域。
+   无规律的一次性内容用 @matrix/blocks 的 custom-html 兜底。 #}
+{% extends "layouts/base.njk" %}
+{% block content %}
+<main id="main">
+  {% for block in page.blocks %}{% include "blocks/" + block.type + ".njk" ignore missing %}{% endfor %}
+</main>
+{% endblock %}
