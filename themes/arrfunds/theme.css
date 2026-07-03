@@ -1817,17 +1817,19 @@ h1, h2, h3, h4 {
 /* ==========================================================================
    Premium Alternate Light-Theme Sections (Bento Grid Zebra Alternate)
    ========================================================================== */
-#thesis, #process, #team, #faq {
+#thesis, .features-section, #process, #team, #faq {
   background-color: var(--bg-light-sec) !important; /* 动态浅色交替背景色，在 site.yaml 里通过 tokens 控制 */
 }
 
 /* 浅色区的公共文字重塑 */
 #thesis .section-header__title,
+.features-section .section-header__title,
 #team .section__title,
 #faq .section__title {
   color: var(--text-dark) !important;
 }
 #thesis .section-header__desc,
+.features-section .section-header__desc,
 #team .section__lead,
 #faq .section__lead {
   color: rgba(var(--text-dark-rgb), 0.6) !important;
@@ -1838,22 +1840,27 @@ h1, h2, h3, h4 {
 }
 
 /* Bento卡片在浅色区的白金美学重塑 */
-#thesis .bento-card {
+#thesis .bento-card,
+.features-section .bento-card {
   background-color: var(--surface) !important;
   border: 1px solid rgba(var(--accent-rgb), 0.15) !important;
   box-shadow: 0 8px 32px rgba(var(--accent-rgb), 0.04) !important;
 }
-#thesis .bento-card:hover {
+#thesis .bento-card:hover,
+.features-section .bento-card:hover {
   box-shadow: 0 12px 40px rgba(var(--accent-rgb), 0.08) !important;
   border-color: var(--accent) !important;
 }
-#thesis .bento-card__title {
+#thesis .bento-card__title,
+.features-section .bento-card__title {
   color: var(--text-dark) !important;
 }
-#thesis .bento-card__desc {
+#thesis .bento-card__desc,
+.features-section .bento-card__desc {
   color: rgba(var(--text-dark-rgb), 0.7) !important;
 }
-#thesis .bento-card__tag {
+#thesis .bento-card__tag,
+.features-section .bento-card__tag {
   color: var(--accent) !important;
   background-color: rgba(var(--accent-rgb), 0.08) !important;
   border: 1px solid rgba(var(--accent-rgb), 0.2) !important;
