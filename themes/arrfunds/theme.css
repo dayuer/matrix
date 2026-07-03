@@ -1817,100 +1817,90 @@ h1, h2, h3, h4 {
 /* ==========================================================================
    Premium Alternate Light-Theme Sections (Bento Grid Zebra Alternate)
    ========================================================================== */
-#thesis, .features-section, #process, #team, #faq {
+[data-theme="light-alternate"] {
   background-color: var(--bg-light-sec) !important; /* 动态浅色交替背景色，在 site.yaml 里通过 tokens 控制 */
 }
 
 /* 浅色区的公共文字重塑 */
-#thesis .section-header__title,
-.features-section .section-header__title,
-#team .section__title,
-#faq .section__title {
+[data-theme="light-alternate"] .section-header__title,
+[data-theme="light-alternate"] .section__title {
   color: var(--text-dark) !important;
 }
-#thesis .section-header__desc,
-.features-section .section-header__desc,
-#team .section__lead,
-#faq .section__lead {
+[data-theme="light-alternate"] .section-header__desc,
+[data-theme="light-alternate"] .section__lead {
   color: rgba(var(--text-dark-rgb), 0.6) !important;
 }
-#team .label__no,
-#faq .label__no {
+[data-theme="light-alternate"] .label__no {
   color: var(--text-dark) !important;
 }
 
 /* Bento卡片在浅色区的白金美学重塑 */
-#thesis .bento-card,
-.features-section .bento-card {
+[data-theme="light-alternate"] .bento-card {
   background-color: var(--surface) !important;
   border: 1px solid rgba(var(--accent-rgb), 0.15) !important;
   box-shadow: 0 8px 32px rgba(var(--accent-rgb), 0.04) !important;
 }
-#thesis .bento-card:hover,
-.features-section .bento-card:hover {
+[data-theme="light-alternate"] .bento-card:hover {
   box-shadow: 0 12px 40px rgba(var(--accent-rgb), 0.08) !important;
   border-color: var(--accent) !important;
 }
-#thesis .bento-card__title,
-.features-section .bento-card__title {
+[data-theme="light-alternate"] .bento-card__title {
   color: var(--text-dark) !important;
 }
-#thesis .bento-card__desc,
-.features-section .bento-card__desc {
+[data-theme="light-alternate"] .bento-card__desc {
   color: rgba(var(--text-dark-rgb), 0.7) !important;
 }
-#thesis .bento-card__tag,
-.features-section .bento-card__tag {
+[data-theme="light-alternate"] .bento-card__tag {
   color: var(--accent) !important;
   background-color: rgba(var(--accent-rgb), 0.08) !important;
   border: 1px solid rgba(var(--accent-rgb), 0.2) !important;
 }
 
 /* Team卡片在浅色区的白金美学重塑 */
-#team .team {
+[data-theme="light-alternate"] .team {
   background-color: var(--surface) !important;
   border: 1px solid rgba(var(--accent-rgb), 0.15) !important;
   box-shadow: 0 8px 32px rgba(var(--accent-rgb), 0.04) !important;
 }
-#team .team:hover {
+[data-theme="light-alternate"] .team:hover {
   box-shadow: 0 12px 40px rgba(var(--accent-rgb), 0.08) !important;
   border-color: var(--accent) !important;
 }
-#team .team__name {
+[data-theme="light-alternate"] .team__name {
   color: var(--text-dark) !important;
 }
-#team .team__role {
+[data-theme="light-alternate"] .team__role {
   color: var(--accent) !important;
 }
-#team .team__desc {
+[data-theme="light-alternate"] .team__desc {
   color: rgba(var(--text-dark-rgb), 0.7) !important;
 }
-#team .team__list li {
+[data-theme="light-alternate"] .team__list li {
   color: rgba(var(--text-dark-rgb), 0.6) !important;
   border-top: 1px solid rgba(var(--accent-rgb), 0.1) !important;
 }
-#team .team__mark {
+[data-theme="light-alternate"] .team__mark {
   color: rgba(var(--accent-rgb), 0.08) !important;
 }
 
 /* FAQ卡片在浅色区的白金美学重塑 */
-#faq .faq {
+[data-theme="light-alternate"] .faq {
   background-color: var(--surface) !important;
   border: 1px solid rgba(var(--accent-rgb), 0.15) !important;
   box-shadow: 0 8px 32px rgba(var(--accent-rgb), 0.04) !important;
 }
-#faq .faq:hover {
+[data-theme="light-alternate"] .faq:hover {
   box-shadow: 0 12px 40px rgba(var(--accent-rgb), 0.08) !important;
   border-color: var(--accent) !important;
 }
-#faq .faq__q {
+[data-theme="light-alternate"] .faq__q {
   color: var(--text-dark) !important;
 }
-#faq .faq__q-no {
+[data-theme="light-alternate"] .faq__q-no {
   background: rgba(var(--accent-rgb), 0.1) !important;
   color: var(--accent) !important;
 }
-#faq .faq__a {
+[data-theme="light-alternate"] .faq__a {
   color: rgba(var(--text-dark-rgb), 0.7) !important;
 }
 
@@ -1924,30 +1914,27 @@ h1, h2, h3, h4 {
 }
 
 /* 投资流程在浅色区的白金美学重塑 */
-#process .section-header__title {
-  color: var(--text-dark) !important;
-}
-#process .section-header__label {
+[data-theme="light-alternate"] .section-header__label {
   color: var(--accent) !important;
 }
-#process .process-step {
+[data-theme="light-alternate"] .process-step {
   background-color: var(--surface) !important;
   border: 1px solid rgba(var(--accent-rgb), 0.15) !important;
   box-shadow: 0 8px 32px rgba(var(--accent-rgb), 0.04) !important;
   transition: all 0.25s ease;
 }
-#process .process-step:hover {
+[data-theme="light-alternate"] .process-step:hover {
   box-shadow: 0 12px 40px rgba(var(--accent-rgb), 0.08) !important;
   border-color: var(--accent) !important;
 }
-#process .process-step__number {
+[data-theme="light-alternate"] .process-step__number {
   color: var(--accent) !important;
   opacity: 0.12 !important;
   font-size: 56px !important;
 }
-#process .process-step__title {
+[data-theme="light-alternate"] .process-step__title {
   color: var(--text-dark) !important;
 }
-#process .process-step__desc {
+[data-theme="light-alternate"] .process-step__desc {
   color: rgba(var(--text-dark-rgb), 0.7) !important;
 }
