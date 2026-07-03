@@ -1,0 +1,68 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+<section class="hero" style="padding-bottom: 40px;">
+  <div class="container">
+    <h1>{{ dict.solutions.title | default('AI 驱动的解决方案') }}</h1>
+    <p>{{ dict.solutions.subtitle | default('针对不同行业和业务场景，提供深度定制的智能流程再造方案。') }}</p>
+  </div>
+</section>
+
+<section class="section" style="padding: 60px 0 100px;">
+  <div class="container">
+    <div style="display: flex; flex-direction: column; gap: 40px;">
+      
+      <!-- 方案一 -->
+      <div style="display: flex; gap: 48px; align-items: center; background: var(--bg-surface); padding: 48px; border-radius: var(--r-3); border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+        <div style="flex: 1;">
+          <div style="display: inline-block; padding: 6px 12px; background: var(--accent-soft); color: var(--accent); font-weight: 600; border-radius: var(--r-1); margin-bottom: 16px; font-size: 0.875rem;">智能制造与供应链</div>
+          <h3 style="font-size: 1.75rem; margin-bottom: 16px;">供应链大脑 & 柔性排程</h3>
+          <p style="color: var(--text-secondary); font-size: 1.125rem; margin-bottom: 24px;">通过多模态数据分析，打通 ERP、MES 与外部市场数据。大模型自主预测需求波动，动态调整排产计划，将供应链异常响应时间从天级缩短至分钟级。</p>
+          <ul style="color: var(--text-secondary); line-height: 2; margin-bottom: 0; padding-left: 20px;">
+            <li>非结构化订单自动抽取与校验</li>
+            <li>智能库存水位预测模型</li>
+            <li>异常供应链断点自动预警与备选方案生成</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 方案二 -->
+      <div style="display: flex; gap: 48px; align-items: center; background: var(--bg-surface); padding: 48px; border-radius: var(--r-3); border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+        <div style="flex: 1;">
+          <div style="display: inline-block; padding: 6px 12px; background: var(--accent-soft); color: var(--accent); font-weight: 600; border-radius: var(--r-1); margin-bottom: 16px; font-size: 0.875rem;">金融风控与合规</div>
+          <h3 style="font-size: 1.75rem; margin-bottom: 16px;">全自动研报分析与合规审查</h3>
+          <p style="color: var(--text-secondary); font-size: 1.125rem; margin-bottom: 24px;">利用 FDE 引擎，AI Agent 能够像资深分析师一样阅读海量研报、招股书及合同，自动提取关键财务指标、风险条款，并生成合规建议。</p>
+          <ul style="color: var(--text-secondary); line-height: 2; margin-bottom: 0; padding-left: 20px;">
+            <li>合同条款智能比对与风险标记</li>
+            <li>跨系统客户尽调 (KYC) 信息整合</li>
+            <li>审计底稿自动生成</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 方案三 -->
+      <div style="display: flex; gap: 48px; align-items: center; background: var(--bg-surface); padding: 48px; border-radius: var(--r-3); border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+        <div style="flex: 1;">
+          <div style="display: inline-block; padding: 6px 12px; background: var(--accent-soft); color: var(--accent); font-weight: 600; border-radius: var(--r-1); margin-bottom: 16px; font-size: 0.875rem;">企业通用服务</div>
+          <h3 style="font-size: 1.75rem; margin-bottom: 16px;">HR 与财务流程数智化</h3>
+          <p style="color: var(--text-secondary); font-size: 1.125rem; margin-bottom: 24px;">彻底告别传统的审批流。AI 接管报销审核、简历筛选、员工入职培训等环节，不仅执行规则，更能理解意图并做出合理判断。</p>
+          <ul style="color: var(--text-secondary); line-height: 2; margin-bottom: 0; padding-left: 20px;">
+            <li>报表票据智能审理与舞弊检测</li>
+            <li>企业内部知识库问答与业务助手</li>
+            <li>智能岗位匹配与面试意向自动化沟通</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding: 80px 0; background-color: var(--bg-surface-hover); border-top: 1px solid var(--border);">
+  <div class="container" style="text-align: center;">
+    <h2 style="font-size: 2rem; margin-bottom: 24px;">没有找到您的行业？</h2>
+    <p style="color: var(--text-secondary); font-size: 1.125rem; margin-bottom: 32px;">曜行智能拥有强大的底层模型微调与流程引擎构建能力，支持为任意行业打造专属解决方案。</p>
+    <a href="/contact" class="btn btn-primary">预约架构师咨询</a>
+  </div>
+</section>
+{% endblock %}

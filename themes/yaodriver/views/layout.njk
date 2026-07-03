@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="{{ locale | default('zh') }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{ page.title }}</title>
+  {% if page.description %}
+  <meta name="description" content="{{ page.description }}">
+  {% endif %}
+  <link rel="icon" href="{{ site.themeOptions.favicon | default('/favicon.ico') }}">
+  <style>
+    {{ themeTokensCss | safe }}
+  </style>
+  <link rel="stylesheet" href="/theme.css">
+</head>
+<body class="{{ page.bodyClass | default('') }}">
+  <header class="site-header">
+    <div class="container">
+      <div class="logo">
+        <a href="/" class="logo-text">{{ site.title }}</a>
+      </div>
+      <nav class="nav-links">
+        <a href="/" class="{% if page.activeNav == 'home' %}active{% endif %}">首页</a>
+        <a href="/solutions" class="{% if page.activeNav == 'solutions' %}active{% endif %}">解决方案</a>
+        <a href="/about" class="{% if page.activeNav == 'about' %}active{% endif %}">关于我们</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; {{ site.year | default('2026') }} {{ site.title }}. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -12,3 +12,9 @@
 - **2026-07-01 23:48**: 修改并对齐了 `apps/didi.bike` 里的 `site-def.ts` 和 `site.ts` 配置，解决全部 TypeScript 静态检查报错。
 - **2026-07-01 23:50**: 运行 didi-bike-website 的编译与静态导出冒烟测试 (`npm run export -w didi-bike-website`)，全量 HTML 页面导出 100% 成功。
 - **2026-07-01 23:52**: 更新架构文档 `AGENTS.md` 完毕，重构计划全部完成。
+
+## Yaodriver 网站开发完成
+
+- 成功创建 themes/yaodriver 并完成构建
+- 成功创建 apps/yaodriver 站点并完成静态导出测试
+- 成功配置站点及开发环境依赖

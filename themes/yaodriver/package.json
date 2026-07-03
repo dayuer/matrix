@@ -1,0 +1,20 @@
+{
+  "name": "@matrix/theme-yaodriver",
+  "version": "1.0.0",
+  "private": true,
+  "description": "曜行智能（yaodriver.com）官方主题：企业 AI 流程再造实施，深色/高对比科技风。",
+  "main": "dist/theme.js",
+  "types": "dist/theme.d.ts",
+  "exports": { ".": { "types": "./dist/theme.d.ts", "default": "./dist/theme.js" } },
+  "scripts": {
+    "build:manifest": "tsc -p tsconfig.json",
+    "build:client": "echo 'no client js for now'",
+    "build": "npm run build:manifest && npm run build:client"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": { "@matrix/site-kit": "1.0.0" },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^5.5.0"
+  }
+}

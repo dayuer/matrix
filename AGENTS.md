@@ -10,12 +10,14 @@ matrix/
 │   ├── dossier/        # synon.ai 激活（工程档案风）
 │   ├── arrfunds/       # arrfunds 激活（深绿金融风）
 │   ├── journal/        # journal 激活（企业官网资讯类主题，多页+博客+下单，表现层）
-│   └── didi/           # didi 激活（didi.bike 独立暗色科技风主题表现层）
+│   ├── didi/           # didi 激活（didi.bike 独立暗色科技风主题表现层）
+│   └── yaodriver/      # yaodriver 激活（曜行智能企业 AI 流程再造官网主题）
 ├── apps/
 │   ├── arrfunds/       # ARR Funds AI 订阅收入投资基金官网
 │   ├── didi.bike/      # didi.bike 站点
 │   ├── edaijia/        # edaijia 代驾行业资讯与前沿洞察站点
-│   └── synon.ai/       # Synon Global 全球化 FDE 交付与 AI 数字化重构平台官网
+│   ├── synon.ai/       # Synon Global 全球化 FDE 交付与 AI 数字化重构平台官网
+│   └── yaodriver/      # yaodriver 站点（曜行智能）
 ├── config/             # 全局/子应用配置文件
 ├── docs/               # 行业洞察、研报与草稿目录
 ├── scripts/            # 辅助脚本（如网站地图生成等）

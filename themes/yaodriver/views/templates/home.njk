@@ -1,0 +1,71 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+<section class="hero">
+  <div class="container">
+    <h1>{{ dict.hero.title | default('重构企业 AI 生产力') }}</h1>
+    <p>{{ dict.hero.subtitle | default('曜行智能提供下一代 AI 流程再造实施方案，让智能原生深入核心业务。') }}</p>
+    <div class="hero-actions">
+      <a href="/solutions" class="btn btn-primary">探索解决方案</a>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="container">
+    <div class="grid-3">
+      <div class="card">
+        <h3>智能原生架构</h3>
+        <p>基于大模型的底层重构，而非简单的表面集成。将 AI 能力深入每一个业务节点的决策回路。</p>
+      </div>
+      <div class="card">
+        <h3>全链路流程再造</h3>
+        <p>打破传统系统的孤岛效应，端到端自动化业务流，从信息抽取到自动执行闭环。</p>
+      </div>
+      <div class="card">
+        <h3>企业级数据安全</h3>
+        <p>支持私有化部署和企业级权限隔离，在确保绝对数据安全的前提下释放 AI 潜力。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" style="padding: 100px 0; background-color: var(--bg-surface-hover);">
+  <div class="container">
+    <h2 style="text-align: center; margin-bottom: 64px; font-size: 2.5rem; letter-spacing: -0.02em;">以 AI 为核心的业务再造闭环</h2>
+    <div style="display: flex; flex-direction: column; gap: 48px;">
+      
+      <div style="display: flex; gap: 32px; align-items: center; background: var(--bg-surface); padding: 40px; border-radius: var(--r-3); border: 1px solid var(--border);">
+        <div style="flex: 1;">
+          <h3 style="font-size: 1.5rem; color: var(--accent); margin-bottom: 16px;">01. 智能洞察与流程切片</h3>
+          <p style="color: var(--text-secondary); font-size: 1.05rem;">深入企业内部，利用 AI 探针捕捉真实业务数据。对现有庞杂的人工流转节点进行颗粒化解构，发现被效率黑洞吞噬的价值洼地。</p>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 32px; align-items: center; background: var(--bg-surface); padding: 40px; border-radius: var(--r-3); border: 1px solid var(--border);">
+        <div style="flex: 1;">
+          <h3 style="font-size: 1.5rem; color: var(--accent); margin-bottom: 16px;">02. FDE (Foundation Model Driven Execution) 引擎注入</h3>
+          <p style="color: var(--text-secondary); font-size: 1.05rem;">打破孤立的 RPA 模式。我们将领域定制的大语言模型直接嵌入决策链条，让系统拥有“理解上下文”、“处理非结构化数据”和“自主推理”的能力。</p>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 32px; align-items: center; background: var(--bg-surface); padding: 40px; border-radius: var(--r-3); border: 1px solid var(--border);">
+        <div style="flex: 1;">
+          <h3 style="font-size: 1.5rem; color: var(--accent); margin-bottom: 16px;">03. 数字化重塑与柔性演进</h3>
+          <p style="color: var(--text-secondary); font-size: 1.05rem;">不只是降本增效，更是生产关系的重构。AI Agent 将与人类专家协同工作，业务流随着模型能力的迭代自动实现柔性演进，让企业真正迈向智能化。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding: 100px 0;">
+  <div class="container" style="text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 24px; letter-spacing: -0.02em;">准备好开启智能转型了吗？</h2>
+    <p style="color: var(--text-secondary); font-size: 1.125rem; max-width: 600px; margin: 0 auto 40px;">联系曜行智能的咨询专家，获取为您企业量身定制的 AI 流程再造评估报告。</p>
+    <a href="/contact" class="btn btn-primary" style="padding: 0 40px;">预约评估</a>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+<section class="hero" style="padding-bottom: 60px;">
+  <div class="container">
+    <h1>{{ dict.about.title | default('重新定义企业运作方式') }}</h1>
+    <p>{{ dict.about.subtitle | default('我们是曜行智能，一群相信 AI 可以重构世界运行效率的工程师、科学家与架构师。') }}</p>
+  </div>
+</section>
+
+<section class="section" style="padding: 40px 0 100px;">
+  <div class="container">
+    <div style="background: var(--bg-surface); padding: 64px; border-radius: var(--r-3); border: 1px solid var(--border); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);">
+      <h2 style="font-size: 2rem; margin-bottom: 24px; color: var(--text-primary);">我们的使命</h2>
+      <p style="font-size: 1.125rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 32px;">
+        长期以来，企业的信息化建设受困于僵化的规则引擎和信息孤岛。人们每天耗费大量时间在系统之间搬运数据，执行枯燥的审批与录入。
+        <br><br>
+        曜行智能 (Yaodriver) 成立于 2024 年，我们致力于将前沿的大语言模型 (LLM) 和多模态技术，深入融合到企业的核心生产流程中。我们不提供简单的“聊天机器人”，而是交付能够**自主感知、推理并行动**的 AI Agent 网络。
+        <br><br>
+        我们相信，未来的伟大企业，其 80% 的业务流程将由智能体网络自动化驱动，让人类回归创造力的本质。
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px; border-top: 1px solid var(--border); padding-top: 48px;">
+        <div>
+          <div style="font-size: 3rem; font-weight: 700; color: var(--accent); margin-bottom: 8px;">10x</div>
+          <h3 style="font-size: 1.125rem; margin-bottom: 8px;">效率提升</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin: 0;">重塑冗长业务链条，将流转周期从数周压缩至数小时。</p>
+        </div>
+        <div>
+          <div style="font-size: 3rem; font-weight: 700; color: var(--accent); margin-bottom: 8px;">100%</div>
+          <h3 style="font-size: 1.125rem; margin-bottom: 8px;">数据隔离安全</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin: 0;">支持完整的 VPC 及物理机私有化部署，捍卫企业数据主权。</p>
+        </div>
+        <div>
+          <div style="font-size: 3rem; font-weight: 700; color: var(--accent); margin-bottom: 8px;">AI-Native</div>
+          <h3 style="font-size: 1.125rem; margin-bottom: 8px;">原生架构设计</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin: 0;">抛弃“套壳”玩法，从数据库到路由全面为 AI 引擎优化。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding: 80px 0; background-color: var(--bg-main);">
+  <div class="container" style="text-align: center;">
+    <h2 style="font-size: 2rem; margin-bottom: 24px;">加入我们，创造未来</h2>
+    <p style="color: var(--text-secondary); font-size: 1.125rem; margin-bottom: 32px;">我们在寻找顶尖的算法工程师、全栈开发者以及业务架构师。</p>
+    <a href="mailto:careers@yaodriver.com" class="btn btn-primary" style="background-color: var(--text-primary); color: var(--bg-main);">查看在招职位 (Careers)</a>
+  </div>
+</section>
+{% endblock %}
