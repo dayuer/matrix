@@ -200,32 +200,32 @@ blocks:
             - 完全基于云原生微服务架构，后续系统迭代与演进成本降低 85%
         - id: retail
           ref: CASE-02
-          title: 跨国零售与商业地产 · 智能库存与供应链重塑
-          clientType: 东南亚领先的零售、医疗与商业地产集团
-          region: 亚太区（香港 / 印尼）
-          metrics: 库存周转效率提升 42%，冷链生鲜损耗大降 35%
-          desc: 该集团商超冷链与地产供应链数据每日午夜批量异步同步，预测全凭采购部门经验提报，导致高额的安全库存占用和生鲜腐损。Synon 通过逆向还原其异构 ERP 表结构，构建了毫秒级同步管道（Datalark），并在业务层嵌入自适应补货 Agent，依据实时销售、客流与天气实现「零安全库存」自动订货。
+          title: 跨国零售与商业地产 · 智算中心与活约束供应链重塑
+          clientType: 全球领先的智算基础设施与商业地产集团
+          region: 亚太区（香港 / 新加坡）
+          metrics: 供应链评估时效由 72h 降至秒级，规避集群空转日均百万美元损失
+          desc: 该集团在建造300兆瓦AI数据中心等重大项目时，任何部件延迟都可能导致整个项目停摆——GPU集群空转一天的成本高达百万美元，且硬件迭代周期极短。Synon 协助其将整个供应链建模为“活的约束系统”，将供应商交期浮动、替代物料认证状态及施工节点前置依赖实时映射到本体中。当部件延迟时，系统能立刻推演下游冲击、自动计算延迟损失与加速替代成本，并在人还没看完邮件标题时就完成模拟评估执行，自动给出最优替代路径。
           charts:
-            - title: 冷链生鲜运营损耗率
-              beforeLabel: 传统遗留
-              beforeVal: 18%
-              beforeRatio: 100
-              afterLabel: Synon OS
-              afterVal: 11.7%
-              afterRatio: 65
-              delta: −35%
-            - title: 采购补货流程周期
-              beforeLabel: 传统遗留
+            - title: 供应链冲击推演评估时效
+              beforeLabel: 传统人工
               beforeVal: 72h
               beforeRatio: 100
               afterLabel: Synon OS
-              afterVal: 10min
-              afterRatio: 3
-              delta: 72h → 10min
+              afterVal: 秒级
+              afterRatio: 2
+              delta: 72h → 秒级
+            - title: GPU集群日空转损失风险
+              beforeLabel: 传统被动
+              beforeVal: $100万
+              beforeRatio: 100
+              afterLabel: Synon OS
+              afterVal: 趋于零
+              afterRatio: 2
+              delta: 规避百万级/日损失
           bulletPoints:
-            - 数据流毫秒级对齐，补货 Agent 自主感知全国门店动态销售脉搏
-            - AI 整合天气、周边客群属性与节日，自适应计算最优进货量并自动下单
-            - 92% 采购计划托管至自适应 Agent，库存周转效率提升 42%，全集团库容资金减半
+            - 将整个智算供应链建模为“活的约束系统”，供应商交期与前置依赖实时映射可视化
+            - 异常发生时，自动推演下游节点冲击并对比“延迟损失”与“加速替代成本”
+            - 从“被动告警”升级为“毫秒级闭环模拟与执行”，在人类看邮件前已生成最优替代路径
         - id: energy
           ref: CASE-03
           title: 跨国能源与资源巨头 · 设备全生命周期预防性维护
