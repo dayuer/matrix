@@ -18,6 +18,9 @@ matrix/
 │   ├── edaijia/        # edaijia 代驾行业资讯与前沿洞察站点
 │   ├── synon.ai/       # Synon Global 全球化 FDE 交付与 AI 数字化重构平台官网
 │   └── yaodriver/      # yaodriver 站点（曜行智能）
+├── sites/              # 纯数据驱动站点（site.yaml + content/*.yaml，无 TS 代码）
+│   ├── synon.ai/       # Synon Global 官网（dossier 主题）
+│   └── silkline.id/    # SilkLine 印尼企业数字基础设施平台（arrfunds 主题，EN/ID 双语）
 ├── config/             # 全局/子应用配置文件
 ├── docs/               # 行业洞察、研报与草稿目录
 ├── scripts/            # 辅助脚本（如网站地图生成等）
