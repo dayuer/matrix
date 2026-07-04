@@ -72,20 +72,12 @@ blocks:
           title: 7x24小时全智能闭环，全链审计与权限防越位
           desc: 建立企业私有数据生产资料的安全护栏。数字员工的每一次数据读取、指令调用、流程流转都置于严格的权限审计、日志闭环以及关键卡点（人确认门禁）之下，确保全天候无人值守运行中的数据安全与合规审计。
 
-  - type: thesis
-    data:
-      anchor: economics
-      head:
-        label: ECONOMIC VALIDATION / 经济性验证期
-        titleHtml: 把无序的 token 消耗，变成<span class="u-accent">有序且可量化的企业算力成本</span>
-        desc: 行业正从“能力验证期”进入“经济性验证期”。Synon OS 致力于消除隐蔽的 Prompt 债与“废话税”，通过精细的计费体系、模型分级与工程速记优化，重塑企业的 AI 算力 ROI（投入产出比）。
-      cards:
         - tag: COST STRUCTURE / 成本重构
           title: 算力成本超越人力，Token 经济面临重构
-          desc: 行业数据显示，工程师的年均算力支出已达人力成本的 2.3 倍。头部企业正从早期的“Token 炫耀”转向效率优先。Synon OS 为企业内置模型分级调度（拦截低性价比调用）、个人限额管控与熔断回收机制，实现算力资源的精准靶向投放。
-        - tag: TECHNOLOGY PARADIGM / 范式转变
+          desc: 行业数据显示，工程师的年均算力支出已达人力成本的 2.3 倍。头部企业正从早期的"Token 炫耀"转向效率优先。Synon OS 为企业内置模型分级调度（拦截低性价比调用）、个人限额管控与熔断回收机制，实现算力资源的精准靶向投放。
+        - tag: TECHNOLOGY PARADIGM / 推理效率
           title: 摒弃指令堆砌，走向极致的推理效率优化
-          desc: 传统动辄数万 Token 的 Prompt 堆砌不仅带来“废话税”，更限制了新一代模型的想象力。Synon 引入精简 Prompt 哲学与“工程速记”式的内部推理流，最高可压缩 65-75% 无效 token，大幅降低高频业务调用的边际成本。
+          desc: 传统动辄数万 Token 的 Prompt 堆砌不仅带来"废话税"，更限制了新一代模型的想象力。Synon 引入精简 Prompt 哲学与"工程速记"式的内部推理流，最高可压缩 65-75% 无效 token，大幅降低高频业务调用的边际成本。
         - tag: INDUSTRY ECOLOGY / 生态调整
           title: 建立预算熔断护栏，应对隐蔽的 AI 技术债务
           desc: Prompt 债带来的性能衰减极具隐蔽性。我们通过底层的护栏框架，解决模型迭代与 Prompt 更新的协同挑战，并为业务单元自发建立 Token 优化文化，以极具经济性的架构维持全岗位 Agent 的健康长期运作。
