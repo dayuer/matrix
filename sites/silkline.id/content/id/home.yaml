@@ -1,14 +1,13 @@
-# SilkLine — Halaman Utama Bahasa Indonesia
+# SilkLine — Halaman Utama Bahasa Indonesia (satu layar)
 template: home
 path: /id
 
 meta:
   lang: id
   title: SilkLine — Infrastruktur Digital Enterprise untuk Indonesia
-  description: SilkLine membangun infrastruktur digital enterprise kelas dunia untuk perusahaan-perusahaan paling ambisius di Indonesia, dengan operasi berbasis AI dan modernisasi sistem warisan.
+  description: SilkLine membangun infrastruktur digital enterprise kelas dunia untuk perusahaan-perusahaan paling ambisius di Indonesia.
   keywords: SilkLine,enterprise,infrastruktur digital,Indonesia,operasi AI,integrasi sistem,Jakarta,Singapura
   ogImageAlt: SilkLine — Infrastruktur Digital Enterprise
-  activeNav: services
   priority: 1.0
   changefreq: weekly
   jsonLd:
@@ -30,8 +29,8 @@ blocks:
       titleHtml: Kami membangun <span class="u-accent">arsitektur tak terlihat</span><br>yang menggerakkan enterprise paling ambisius di Indonesia
       lead: SilkLine menghadirkan lapisan operasi berbasis AI, memodernisasi sistem warisan dengan presisi bedah, dan membangun infrastruktur digital kelas enterprise — agar bisnis Anda beroperasi secepat niat Anda.
       actions:
-        - { text: Mulai Percakapan, href: "#contact", variant: primary, arrow: true }
-        - { text: Jelajahi Platform, href: "#platform", variant: ghost }
+        - { text: Mulai Percakapan, href: "mailto:hello@silkline.id", variant: primary, arrow: true }
+        - { text: English, href: "/", variant: ghost }
       panel:
         head: STATUS INFRASTRUKTUR
         ref: REF / SLK-CORE
@@ -42,174 +41,3 @@ blocks:
           - { label: Region Aktif, value: "03" }
           - { label: Rata-rata Peningkatan, value: 4.8× }
           - { label: Pengurangan Biaya, value: −52%, accent: true }
-
-  - type: thesis
-    data:
-      anchor: services
-      head:
-        label: LAYANAN INTI / Yang Kami Bangun
-        titleHtml: Tiga pilar <span class="u-accent">infrastruktur digital kelas enterprise</span>
-        desc: Kami tidak menjual software. Kami merekayasa sistem fondasi yang memungkinkan enterprise beroperasi dengan kelincahan startup dan ketahanan negara.
-      cards:
-        - tag: OPERASI AI / Otomasi Cerdas
-          title: Agen AI yang menjalankan operasi Anda saat Anda tidur
-          desc: Deploy agen AI otonom di seluruh pengadaan, keuangan, HR, dan operasi pelanggan. Setiap agen beroperasi dalam guardrail kepatuhan yang ketat, mengeskalasi kasus tepi ke manusia, dan terus belajar dari pengetahuan institusional organisasi Anda.
-          variant: wide
-        - tag: MODERNISASI WARISAN / Arkeologi Sistem
-          title: Modernisasi bedah tanpa operasi jantung terbuka
-          desc: Kami merekayasa balik sistem SAP, Oracle, dan AS/400 yang berusia puluhan tahun, mengekstrak logika bisnis yang tersimpan, dan membangunnya kembali sebagai microservices cloud-native — tanpa satu hari downtime atau satu transaksi yang hilang.
-        - tag: INFRASTRUKTUR CLOUD / Lapisan Fondasi
-          title: Infrastruktur multi-cloud yang direkayasa untuk skala Indonesia
-          desc: Arsitektur hybrid cloud yang dibangun khusus mencakup Jakarta, Singapura, dan edge node global. Dirancang untuk lanskap regulasi unik Indonesia, kebutuhan latensi, dan trajektori pertumbuhan eksplosif enterprise Asia Tenggara.
-        - tag: KECERDASAN PROSES / Lapisan Visibilitas
-          title: Setiap kendala terlihat, setiap hambatan terkuantifikasi
-          desc: Transformasi proses bisnis yang buram menjadi peta kendala hidup. Ketika pemasok terlambat, sistem langsung memodelkan dampak hilir, menghitung biaya keterlambatan versus biaya akselerasi, dan menghasilkan jalur pemulihan optimal — sebelum siapa pun membaca email.
-        - tag: ARSITEKTUR BIAYA / Mesin Ekonomi
-          title: Dari pengeluaran kacau menjadi unit economics yang presisi
-          desc: Biaya AI enterprise kini melebihi biaya SDM. SilkLine menanamkan routing tier model, circuit-breaker anggaran, dan pipeline kompresi prompt yang memangkas 65-75% komputasi yang terbuang — mengubah AI dari pusat biaya menjadi pengganda kekuatan.
-
-  - type: fde-steps
-    data:
-      anchor: platform
-      head:
-        no: §01
-        tag: PLATFORM
-        title: Model Engagement SilkLine
-        lead: Dari discovery hingga operasi otonom — kerangka deployment yang transparan dan berbasis milestone.
-      steps:
-        - num: "01"
-          title: Arkeologi Sistem
-          desc: Rekayasa balik mendalam atas infrastruktur dan logika bisnis yang ada.
-          subItems:
-            - Petakan setiap skema database, stored procedure, dan titik integrasi
-            - Ekstrak aturan bisnis tak terdokumentasi dari puluhan tahun kode yang terakumulasi
-            - Hasilkan digital twin lengkap dari topologi operasional Anda saat ini
-        - num: "02"
-          title: Kecerdasan Proses
-          desc: Kuantifikasi inefisiensi dan rancang arsitektur target.
-          subItems:
-            - Tempatkan analis di dalam operasi Anda untuk audit alur kerja end-to-end
-            - Identifikasi hambatan lintas departemen dan diskontinuitas data
-            - Sajikan laporan kelayakan modernisasi dengan proyeksi ROI yang solid
-        - num: "03"
-          title: Arsitektur & Bangun
-          desc: Rekayasa lapisan operasi AI-native dengan migrasi tanpa downtime.
-          subItems:
-            - Bangun ulang sistem inti dengan TypeScript, Go, atau Rust dengan pola cloud-native
-            - Deploy agen otonom untuk alur kerja operasional berfrekuensi tinggi
-            - Implementasi guardrail kepatuhan, jejak audit, dan checkpoint human-in-the-loop
-        - num: "04"
-          title: Peluncuran & Skalasi
-          desc: Go live dengan optimasi berkelanjutan dan transfer operasional penuh.
-          subItems:
-            - Peluncuran bertahap dengan monitoring real-time dan kemampuan rollback instan
-            - Transfer pengetahuan dan program pemberdayaan tim internal
-            - Kemitraan optimasi berkelanjutan dengan insentif berbasis hasil bersama
-
-  - type: portfolio
-    data:
-      anchor: portfolio
-      head:
-        no: §02
-        tag: STUDI-KASUS
-        title: Bukti Dampak
-        lead: Hasil nyata dari enterprise nyata di Indonesia dan Asia Tenggara.
-      cases:
-        - id: logistics
-          ref: CASE-01
-          title: Jaringan Logistik Nasional · Orkestrasi Armada Berbasis AI
-          clientType: Penyedia logistik cold-chain terbesar di Indonesia
-          region: Indonesia (Jawa · Sumatera · Kalimantan)
-          metrics: Utilisasi armada naik 38%, pelanggaran SLA pengiriman turun 72%
-          desc: Armada 5.000 kendaraan yang dikelola dengan spreadsheet dan telepon. Rute direncanakan berdasarkan intuisi, kepatuhan cold-chain dicatat di atas kertas. SilkLine mendeploy lapisan orkestrasi AI yang memodelkan lalu lintas, cuaca, suhu kargo, dan kelelahan pengemudi secara real-time untuk menghasilkan rute optimal setiap 90 detik.
-          charts:
-            - title: Tingkat Utilisasi Armada
-              lowerIsBetter: false
-              beforeLabel: Warisan
-              beforeVal: 54%
-              beforeRatio: 54
-              afterLabel: SilkLine
-              afterVal: 92%
-              afterRatio: 92
-              delta: +38%
-            - title: Pelanggaran SLA Pengiriman
-              beforeLabel: Warisan
-              beforeVal: 12.4%
-              beforeRatio: 100
-              afterLabel: SilkLine
-              afterVal: 3.5%
-              afterRatio: 28
-              delta: −72%
-          bulletPoints:
-            - Optimasi rute real-time setiap 90 detik untuk 5.000 kendaraan
-            - Monitoring kepatuhan cold-chain dengan peringatan pelanggaran otomatis
-            - Perawatan prediktif mengurangi kerusakan di jalan sebesar 60%
-        - id: fintech
-          ref: CASE-02
-          title: Platform Perbankan Digital · Modernisasi Sistem Inti
-          clientType: Top-5 bank digital Indonesia
-          region: Asia Tenggara (Jakarta · Singapura)
-          metrics: Throughput transaksi meningkat 12×, latensi sistem berkurang 85%
-          desc: Bank digital yang mentok skalabilitas dengan core Java monolitik yang dibangun untuk 100K pengguna, kini melayani 8 juta. SilkLine merekayasa balik mesin transaksi, mendekomposisi menjadi microservices event-driven, dan mendeploy deteksi fraud AI — mencapai throughput 12× tanpa satu detik pun downtime.
-          charts:
-            - title: Throughput Transaksi Puncak
-              lowerIsBetter: false
-              beforeLabel: Warisan
-              beforeVal: 800/dtk
-              beforeRatio: 8
-              afterLabel: SilkLine
-              afterVal: 9.600/dtk
-              afterRatio: 96
-              delta: 12×
-            - title: Latensi Respons P99
-              beforeLabel: Warisan
-              beforeVal: 1.200ms
-              beforeRatio: 100
-              afterLabel: SilkLine
-              afterVal: 180ms
-              afterRatio: 15
-              delta: −85%
-          bulletPoints:
-            - Migrasi tanpa downtime dari monolith ke microservices event-driven
-            - Deteksi fraud AI memproses 50 juta transaksi harian secara real-time
-            - Biaya infrastruktur per transaksi berkurang 67%
-
-  - type: faq-list
-    data:
-      anchor: faq
-      head:
-        no: §03
-        tag: FAQ
-        title: Pertanyaan Umum
-        lead: Bagaimana kami bekerja, berapa biayanya, dan apa yang membuat kami berbeda.
-      faqs:
-        - question: Apa bedanya SilkLine dengan konsultan atau outsourcer?
-          answer: Kami tidak menjual jam atau tenaga. Kami mendeploy tim engineering yang tertanam dan membangun infrastruktur permanen di dalam organisasi Anda. Model komersial kami terikat pada hasil yang terukur — kami sukses hanya ketika sistem Anda berkinerja.
-        - question: Bisakah Anda memodernisasi sistem kami tanpa downtime?
-          answer: Ya. Kami spesialis migrasi tanpa downtime. Pendekatan kami menggunakan validasi parallel-run, pengujian shadow traffic, dan cutover bertahap — bisnis Anda tidak pernah berhenti sementara kami membangun ulang mesinnya.
-        - question: Industri apa saja yang Anda layani?
-          answer: Layanan keuangan, logistik, manufaktur, retail, dan energi — setiap enterprise dengan sistem warisan yang kompleks dan target pertumbuhan yang ambisius. Sweet spot kami adalah organisasi yang memproses volume transaksi tinggi pada infrastruktur yang menua.
-        - question: Berapa lama engagement tipikal berlangsung?
-          answer: Discovery memakan waktu 2-4 minggu. Program modernisasi penuh berjalan 4-8 bulan tergantung kompleksitas. Anda akan melihat dampak terukur dalam 60 hari pertama.
-
-  - type: apply-form
-    data:
-      anchor: contact
-      head:
-        no: §04
-        tag: ENGAGEMENT
-        title: Mulai Percakapan
-        lead: Ceritakan tantangan infrastruktur Anda. Kami akan merespons dalam 24 jam dengan penilaian awal.
-      promise:
-        - { no: "01", text: Respons dalam 24 jam dari arsitek senior }
-        - { no: "02", text: Discovery sprint gratis 2 minggu untuk enterprise yang memenuhi syarat }
-        - { no: "03", text: Roadmap modernisasi detail dengan proyeksi ROI }
-      form:
-        submitText: Kirim Pertanyaan
-        fields:
-          companyName: { label: Nama Perusahaan, placeholder: "contoh: PT Nusantara Digital" }
-          contactName: { label: Nama Anda, placeholder: Budi Santoso }
-          contactEmail: { label: Email Kantor, placeholder: budi@perusahaan.co.id }
-          description:
-            label: Ceritakan tantangan infrastruktur Anda
-            placeholder: "Jelaskan sistem Anda saat ini, skala operasi, dan apa yang ingin Anda capai dengan modernisasi..."

@@ -3,29 +3,24 @@ theme: arrfunds
 lang: en
 themeOptions:
   tokens:
-    # 品牌主色：午夜深蓝
     '--primary': '#0a0e1a'
     '--primary-light': '#131933'
     '--primary-dark': '#050810'
     '--primary-rgb': '10, 14, 26'
     '--primary-dark-rgb': '5, 8, 16'
-    # 强调色：电光蓝
     '--accent': '#3b82f6'
     '--accent-rgb': '59, 130, 246'
-    # 文字
     '--text-dark': '#e2e8f0'
     '--text-dark-rgb': '226, 232, 240'
     '--text-muted': '#94a3b8'
     '--text-light': '#f8fafc'
     '--text-muted-light': 'rgba(255, 255, 255, 0.55)'
-    # 背景与表面
     '--bg-light': '#0a0e1a'
     '--bg-gray': '#111827'
     '--bg-light-sec': '#0f1629'
     '--bg-dark-sec': '#060a14'
     '--surface': 'rgba(30, 41, 59, 0.6)'
     '--border-color': 'rgba(59, 130, 246, 0.12)'
-    # 导航
     '--nav-text': '#e2e8f0'
     '--nav-bg-scrolled': 'rgba(10, 14, 26, 0.85)'
     '--nav-border-scrolled': 'rgba(59, 130, 246, 0.1)'
@@ -33,33 +28,19 @@ themeOptions:
 baseUrl: https://silkline.id
 brand:
   name: SilkLine
-  desc: Enterprise digital infrastructure platform powering Indonesia's next-generation businesses with AI-driven operations, seamless integrations, and world-class engineering.
+  desc: Enterprise digital infrastructure for Indonesia.
   favicon: /images/favicon.svg
 
-nav:
-  - { key: services, text: Services, href: "/#services" }
-  - { key: platform, text: Platform, href: "/#platform" }
-  - { key: portfolio, text: Portfolio, href: "/#portfolio" }
-  - { key: faq, text: FAQ, href: "/#faq" }
-
-cta: { text: Get Started, href: "/#contact" }
+nav: []
+cta: { text: Contact Us, href: "mailto:hello@silkline.id" }
 
 footer:
   columns:
-    - title: Platform
-      links:
-        - { text: Enterprise AI, href: "/#services" }
-        - { text: System Integration, href: "/#services" }
-        - { text: Cloud Infrastructure, href: "/#platform" }
-    - title: Company
-      links:
-        - { text: Portfolio, href: "/#portfolio" }
-        - { text: FAQ, href: "/#faq" }
-        - { text: Contact, href: "/#contact" }
     - title: Connect
       links:
-        - { text: Jakarta Office, href: "#" }
-        - { text: Singapore Hub, href: "#" }
+        - { text: hello@silkline.id, href: "mailto:hello@silkline.id" }
+        - { text: Jakarta, href: "#" }
+        - { text: Singapore, href: "#" }
   legal:
     contact: hello@silkline.id
     company: { text: PT SilkLine Digital Indonesia, href: "#" }
