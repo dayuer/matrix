@@ -4,10 +4,10 @@ path: /id
 
 meta:
   lang: id
-  title: SilkLine — Infrastruktur Digital Enterprise untuk Indonesia
-  description: SilkLine membangun infrastruktur digital enterprise kelas dunia untuk perusahaan-perusahaan paling ambisius di Indonesia.
-  keywords: SilkLine,enterprise,infrastruktur digital,Indonesia,operasi AI,integrasi sistem,Jakarta,Singapura
-  ogImageAlt: SilkLine — Infrastruktur Digital Enterprise
+  title: SilkLine — Transformasi AI-Native Menyeluruh untuk Enterprise Indonesia
+  description: SilkLine mentransformasi enterprise Indonesia secara end-to-end — dari operasi bisnis hingga infrastruktur IT hingga pengalaman pelanggan — menjadi organisasi AI-native.
+  keywords: SilkLine,AI-native,transformasi enterprise,Indonesia,operasi bisnis,modernisasi IT,pengalaman pelanggan,Jakarta
+  ogImageAlt: SilkLine — Transformasi AI-Native Enterprise
   priority: 1.0
   changefreq: weekly
   jsonLd:
@@ -15,7 +15,7 @@ meta:
     "@type": Organization
     name: SilkLine
     url: https://silkline.id
-    description: Platform infrastruktur digital enterprise yang menggerakkan bisnis generasi baru Indonesia.
+    description: Transformasi AI-native menyeluruh untuk enterprise Indonesia.
     areaServed: [ID, SG, MY]
     contactPoint:
       "@type": ContactPoint
@@ -25,19 +25,19 @@ meta:
 blocks:
   - type: hero
     data:
-      kicker: INFRASTRUKTUR&nbsp;DIGITAL&nbsp;ENTERPRISE · Indonesia
-      titleHtml: Kami membangun <span class="u-accent">arsitektur tak terlihat</span><br>yang menggerakkan enterprise paling ambisius di Indonesia
-      lead: SilkLine menghadirkan lapisan operasi berbasis AI, memodernisasi sistem warisan dengan presisi bedah, dan membangun infrastruktur digital kelas enterprise — agar bisnis Anda beroperasi secepat niat Anda.
+      kicker: TRANSFORMASI&nbsp;ENTERPRISE&nbsp;AI-NATIVE · Indonesia
+      titleHtml: Bisnis · IT · Pelanggan<br>Transformasi <span class="u-accent">AI-Native</span> menyeluruh
+      lead: Kami tidak menempelkan AI pada proses yang sudah ada. Kami merekayasa ulang seluruh rantai nilai — dari operasi back-office melalui infrastruktur IT hingga titik sentuh pelanggan — menjadi sistem operasi AI-native terpadu di mana agen mengeksekusi, belajar, dan berkembang secara otonom.
       actions:
         - { text: Mulai Percakapan, href: "mailto:hello@silkline.id", variant: primary, arrow: true }
         - { text: English, href: "/", variant: ghost }
       panel:
-        head: STATUS INFRASTRUKTUR
-        ref: REF / SLK-CORE
-        legacy: { tag: INPUT, name: Stack Enterprise Warisan, sub: SAP · Oracle · On-Prem }
+        head: CAKUPAN TRANSFORMASI
+        ref: REF / SLK-ENTERPRISE
+        legacy: { tag: SEBELUM, name: Stack Warisan Tersilo, sub: Ops Manual · IT Terfragmentasi · CX Pasif }
         arrow: SilkLine&nbsp;OS
-        target: { tag: OUTPUT, name: Operasi AI-Native, sub: Microservices · Agents · Guardrails }
+        target: { tag: SESUDAH, name: Enterprise AI-Native, sub: Agent Ops · Infra Terpadu · CX Proaktif }
         stats:
-          - { label: Region Aktif, value: "03" }
-          - { label: Rata-rata Peningkatan, value: 4.8× }
-          - { label: Pengurangan Biaya, value: −52%, accent: true }
+          - { label: Otomasi Proses, value: 85% }
+          - { label: Pengurangan Biaya IT, value: −47% }
+          - { label: Respons Pelanggan, value: <1d, accent: true }

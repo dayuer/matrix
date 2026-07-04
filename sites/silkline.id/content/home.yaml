@@ -2,10 +2,10 @@
 template: home
 
 meta:
-  title: SilkLine — Enterprise Digital Infrastructure for Indonesia
-  description: SilkLine powers Indonesia's most ambitious enterprises with AI-driven operations, legacy system modernization, and world-class digital infrastructure.
-  keywords: SilkLine,enterprise,digital infrastructure,Indonesia,AI operations,system integration,Jakarta,Singapore
-  ogImageAlt: SilkLine — Enterprise Digital Infrastructure
+  title: SilkLine — Full-Stack AI-Native Transformation for Indonesian Enterprises
+  description: SilkLine transforms Indonesian enterprises end-to-end — from business operations to IT infrastructure to customer experience — into AI-native organizations.
+  keywords: SilkLine,AI-native,enterprise transformation,Indonesia,business operations,IT modernization,customer experience,Jakarta
+  ogImageAlt: SilkLine — AI-Native Enterprise Transformation
   priority: 1.0
   changefreq: weekly
   jsonLd:
@@ -13,7 +13,7 @@ meta:
     "@type": Organization
     name: SilkLine
     url: https://silkline.id
-    description: Enterprise digital infrastructure platform powering Indonesia's next-generation businesses.
+    description: Full-stack AI-native transformation for Indonesian enterprises.
     areaServed: [ID, SG, MY]
     contactPoint:
       "@type": ContactPoint
@@ -23,19 +23,19 @@ meta:
 blocks:
   - type: hero
     data:
-      kicker: ENTERPRISE&nbsp;DIGITAL&nbsp;INFRASTRUCTURE · Indonesia
-      titleHtml: We build the <span class="u-accent">invisible architecture</span><br>that runs Indonesia's boldest enterprises
-      lead: SilkLine deploys AI-native operating layers, modernizes legacy systems at surgical precision, and delivers enterprise-grade digital infrastructure — so your business operates at the speed of intent.
+      kicker: AI-NATIVE&nbsp;ENTERPRISE&nbsp;TRANSFORMATION · Indonesia
+      titleHtml: Business · IT · Customer<br><span class="u-accent">End-to-end AI-Native</span> transformation
+      lead: We don't bolt AI onto your existing processes. We re-engineer the entire value chain — from back-office operations through IT infrastructure to customer touchpoints — into a unified, AI-native operating system where agents execute, learn, and scale autonomously.
       actions:
         - { text: Start a Conversation, href: "mailto:hello@silkline.id", variant: primary, arrow: true }
         - { text: Bahasa Indonesia, href: "/id/", variant: ghost }
       panel:
-        head: INFRASTRUCTURE STATUS
-        ref: REF / SLK-CORE
-        legacy: { tag: INPUT, name: Legacy Enterprise Stack, sub: SAP · Oracle · On-Prem }
+        head: TRANSFORMATION SCOPE
+        ref: REF / SLK-ENTERPRISE
+        legacy: { tag: BEFORE, name: Siloed Legacy Stack, sub: Manual Ops · Fragmented IT · Passive CX }
         arrow: SilkLine&nbsp;OS
-        target: { tag: OUTPUT, name: AI-Native Operations, sub: Microservices · Agents · Guardrails }
+        target: { tag: AFTER, name: AI-Native Enterprise, sub: Agent Ops · Unified Infra · Proactive CX }
         stats:
-          - { label: Active Regions, value: "03" }
-          - { label: Avg. Efficiency Gain, value: 4.8× }
-          - { label: Infra Cost Reduction, value: −52%, accent: true }
+          - { label: Process Automation, value: 85% }
+          - { label: IT Cost Reduction, value: −47% }
+          - { label: Customer Response, value: <1s, accent: true }
