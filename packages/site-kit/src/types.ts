@@ -70,6 +70,8 @@ export interface PageMeta {
   priority?: number;
   changefreq?: string;
   jsonLd?: Record<string, unknown> | null;
+  /** 页面语言覆盖（可选）：覆盖 site.lang，注入 &lt;html lang="..."&gt;。 */
+  lang?: string;
   /** 页面内容块（可选）：由内容层组装，主题通用模板据此按 block.type 分发渲染。 */
   blocks?: BlockInstance[];
 }

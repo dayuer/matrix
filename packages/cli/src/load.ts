@@ -100,6 +100,7 @@ function buildMeta(
     priority: m.priority,
     changefreq: m.changefreq,
     jsonLd: m.jsonLd ?? null,
+    lang: m.lang,
     blocks: m.blocks,
   };
 }

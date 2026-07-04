@@ -1,0 +1,6 @@
+# SilkLine — 404 Page
+template: notFound
+
+meta:
+  title: "404 — Page Not Found | SilkLine"
+  description: The page you are looking for does not exist.

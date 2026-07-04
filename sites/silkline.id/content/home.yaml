@@ -1,0 +1,213 @@
+# SilkLine — English Homepage
+template: home
+
+meta:
+  title: SilkLine — Enterprise Digital Infrastructure for Indonesia
+  description: SilkLine powers Indonesia's most ambitious enterprises with AI-driven operations, legacy system modernization, and world-class digital infrastructure.
+  keywords: SilkLine,enterprise,digital infrastructure,Indonesia,AI operations,system integration,Jakarta,Singapore
+  ogImageAlt: SilkLine — Enterprise Digital Infrastructure
+  activeNav: services
+  priority: 1.0
+  changefreq: weekly
+  jsonLd:
+    "@context": https://schema.org
+    "@type": Organization
+    name: SilkLine
+    url: https://silkline.id
+    description: Enterprise digital infrastructure platform powering Indonesia's next-generation businesses.
+    areaServed: [ID, SG, MY]
+    contactPoint:
+      "@type": ContactPoint
+      email: hello@silkline.id
+      contactType: sales
+
+blocks:
+  - type: hero
+    data:
+      kicker: ENTERPRISE&nbsp;DIGITAL&nbsp;INFRASTRUCTURE · Indonesia
+      titleHtml: We build the <span class="u-accent">invisible architecture</span><br>that runs Indonesia's boldest enterprises
+      lead: SilkLine deploys AI-native operating layers, modernizes legacy systems at surgical precision, and delivers enterprise-grade digital infrastructure — so your business operates at the speed of intent.
+      actions:
+        - { text: Start a Conversation, href: "#contact", variant: primary, arrow: true }
+        - { text: Explore Platform, href: "#platform", variant: ghost }
+      panel:
+        head: INFRASTRUCTURE STATUS
+        ref: REF / SLK-CORE
+        legacy: { tag: INPUT, name: Legacy Enterprise Stack, sub: SAP · Oracle · On-Prem }
+        arrow: SilkLine&nbsp;OS
+        target: { tag: OUTPUT, name: AI-Native Operations, sub: Microservices · Agents · Guardrails }
+        stats:
+          - { label: Active Regions, value: "03" }
+          - { label: Avg. Efficiency Gain, value: 4.8× }
+          - { label: Infra Cost Reduction, value: −52%, accent: true }
+
+  - type: thesis
+    data:
+      anchor: services
+      head:
+        label: CORE SERVICES / What We Build
+        titleHtml: Three pillars of <span class="u-accent">enterprise-grade digital infrastructure</span>
+        desc: We don't sell software. We engineer the foundational systems that let enterprises operate with the agility of a startup and the resilience of a nation-state.
+      cards:
+        - tag: AI OPERATIONS / Intelligent Automation
+          title: AI agents that run your operations while you sleep
+          desc: Deploy autonomous AI agents across procurement, finance, HR, and customer operations. Each agent operates within strict compliance guardrails, escalates edge cases to humans, and continuously learns from your organization's institutional knowledge.
+          variant: wide
+        - tag: LEGACY MODERNIZATION / System Archaeology
+          title: Surgical modernization without the open-heart surgery
+          desc: We reverse-engineer decades-old SAP, Oracle, and AS/400 systems, extract the encoded business logic, and rebuild it as cloud-native microservices — without a single day of downtime or a single lost transaction.
+        - tag: CLOUD INFRASTRUCTURE / Foundation Layer
+          title: Multi-cloud infrastructure engineered for Indonesian scale
+          desc: Purpose-built hybrid cloud architecture spanning Jakarta, Singapore, and global edge nodes. Designed for Indonesia's unique regulatory landscape, latency requirements, and the explosive growth trajectory of Southeast Asian enterprises.
+        - tag: PROCESS INTELLIGENCE / Visibility Layer
+          title: Every constraint visible, every bottleneck quantified
+          desc: Transform opaque business processes into live constraint maps. When a supplier delays, the system instantly models downstream impact, calculates delay cost versus acceleration cost, and generates the optimal recovery path — before anyone reads the email.
+        - tag: COST ARCHITECTURE / Economic Engine
+          title: From chaotic spend to precision-engineered unit economics
+          desc: Enterprise AI costs now exceed headcount. SilkLine embeds model-tier routing, budget circuit-breakers, and prompt compression pipelines that cut 65-75% of wasted compute — turning AI from a cost center into a force multiplier.
+
+  - type: fde-steps
+    data:
+      anchor: platform
+      head:
+        no: §01
+        tag: PLATFORM
+        title: The SilkLine Engagement Model
+        lead: From discovery to autonomous operation — a transparent, milestone-driven deployment framework.
+      steps:
+        - num: "01"
+          title: System Archaeology
+          desc: Deep reverse-engineering of your existing infrastructure and business logic.
+          subItems:
+            - Map every database schema, stored procedure, and integration point
+            - Extract undocumented business rules from decades of accumulated code
+            - Produce a complete digital twin of your current operational topology
+        - num: "02"
+          title: Process Intelligence
+          desc: Quantify inefficiencies and design the target architecture.
+          subItems:
+            - Embed analysts in your operations for end-to-end workflow auditing
+            - Identify cross-departmental bottlenecks and data discontinuities
+            - Deliver a modernization feasibility report with hard ROI projections
+        - num: "03"
+          title: Architecture & Build
+          desc: Engineer the AI-native operating layer with zero-downtime migration.
+          subItems:
+            - Rebuild core systems in TypeScript, Go, or Rust with cloud-native patterns
+            - Deploy autonomous agents for high-frequency operational workflows
+            - Implement compliance guardrails, audit trails, and human-in-the-loop checkpoints
+        - num: "04"
+          title: Launch & Scale
+          desc: Go live with continuous optimization and full operational transfer.
+          subItems:
+            - Phased rollout with real-time monitoring and instant rollback capability
+            - Knowledge transfer and internal team enablement program
+            - Ongoing optimization partnership with shared outcome incentives
+
+  - type: portfolio
+    data:
+      anchor: portfolio
+      head:
+        no: §02
+        tag: CASE-STUDIES
+        title: Proof of Impact
+        lead: Real results from real enterprises across Indonesia and Southeast Asia.
+      cases:
+        - id: logistics
+          ref: CASE-01
+          title: National Logistics Network · AI-Powered Fleet Orchestration
+          clientType: Indonesia's largest cold-chain logistics provider
+          region: Indonesia (Java · Sumatra · Kalimantan)
+          metrics: Fleet utilization up 38%, delivery SLA violations down 72%
+          desc: A 5,000-vehicle fleet managed by spreadsheets and phone calls. Routes planned by gut feel, cold-chain compliance tracked on paper. SilkLine deployed an AI orchestration layer that models real-time traffic, weather, cargo temperature, and driver fatigue to generate optimal routes every 90 seconds.
+          charts:
+            - title: Fleet Utilization Rate
+              lowerIsBetter: false
+              beforeLabel: Legacy
+              beforeVal: 54%
+              beforeRatio: 54
+              afterLabel: SilkLine
+              afterVal: 92%
+              afterRatio: 92
+              delta: +38%
+            - title: Delivery SLA Violations
+              beforeLabel: Legacy
+              beforeVal: 12.4%
+              beforeRatio: 100
+              afterLabel: SilkLine
+              afterVal: 3.5%
+              afterRatio: 28
+              delta: −72%
+          bulletPoints:
+            - Real-time route optimization every 90 seconds across 5,000 vehicles
+            - Cold-chain compliance monitoring with automated violation alerts
+            - Predictive maintenance reduced roadside breakdowns by 60%
+        - id: fintech
+          ref: CASE-02
+          title: Digital Banking Platform · Core System Modernization
+          clientType: Top-5 Indonesian digital bank
+          region: Southeast Asia (Jakarta · Singapore)
+          metrics: Transaction throughput 12× increase, system latency reduced 85%
+          desc: A digital bank hitting scaling walls with a monolithic Java core built for 100K users, now serving 8M. SilkLine reverse-engineered the transaction engine, decomposed it into event-driven microservices, and deployed AI fraud detection — achieving 12× throughput without a single second of downtime.
+          charts:
+            - title: Peak Transaction Throughput
+              lowerIsBetter: false
+              beforeLabel: Legacy
+              beforeVal: 800/s
+              beforeRatio: 8
+              afterLabel: SilkLine
+              afterVal: 9,600/s
+              afterRatio: 96
+              delta: 12×
+            - title: P99 Response Latency
+              beforeLabel: Legacy
+              beforeVal: 1,200ms
+              beforeRatio: 100
+              afterLabel: SilkLine
+              afterVal: 180ms
+              afterRatio: 15
+              delta: −85%
+          bulletPoints:
+            - Zero-downtime migration from monolith to event-driven microservices
+            - AI fraud detection processing 50M daily transactions in real-time
+            - Infrastructure cost per transaction reduced by 67%
+
+  - type: faq-list
+    data:
+      anchor: faq
+      head:
+        no: §03
+        tag: FAQ
+        title: Common Questions
+        lead: How we work, what we charge, and what makes us different.
+      faqs:
+        - question: How is SilkLine different from a consulting firm or outsourcer?
+          answer: We don't sell hours or bodies. We deploy embedded engineering teams that build permanent infrastructure inside your organization. Our commercial model is tied to measurable outcomes — we succeed only when your systems perform.
+        - question: Can you modernize our systems without downtime?
+          answer: Yes. We specialize in zero-downtime migrations. Our approach uses parallel-run validation, shadow traffic testing, and phased cutover — your business never stops while we rebuild the engine underneath.
+        - question: What industries do you serve?
+          answer: Financial services, logistics, manufacturing, retail, and energy — any enterprise with complex legacy systems and ambitious growth targets. Our sweet spot is organizations processing high transaction volumes on aging infrastructure.
+        - question: How long does a typical engagement take?
+          answer: Discovery takes 2-4 weeks. A full modernization program runs 4-8 months depending on complexity. You'll see measurable impact within the first 60 days.
+
+  - type: apply-form
+    data:
+      anchor: contact
+      head:
+        no: §04
+        tag: ENGAGEMENT
+        title: Start the Conversation
+        lead: Tell us about your infrastructure challenge. We'll respond within 24 hours with a preliminary assessment.
+      promise:
+        - { no: "01", text: Response within 24 hours from a senior architect }
+        - { no: "02", text: Free 2-week discovery sprint for qualified enterprises }
+        - { no: "03", text: Detailed modernization roadmap with ROI projections }
+      form:
+        submitText: Submit Inquiry
+        fields:
+          companyName: { label: Company Name, placeholder: "e.g. PT Nusantara Digital" }
+          contactName: { label: Your Name, placeholder: Budi Santoso }
+          contactEmail: { label: Work Email, placeholder: budi@company.co.id }
+          description:
+            label: Tell us about your infrastructure challenge
+            placeholder: "Describe your current systems, scale of operations, and what you'd like to achieve with modernization..."
