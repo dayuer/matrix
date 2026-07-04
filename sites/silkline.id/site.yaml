@@ -29,6 +29,7 @@ themeOptions:
     '--nav-text': '#1e293b'
     '--nav-bg-scrolled': 'rgba(248, 250, 252, 0.88)'
     '--nav-border-scrolled': 'rgba(14, 165, 233, 0.08)'
+    '--nav-logo-scrolled': '#0f172a'
 
 baseUrl: https://silkline.id
 brand:

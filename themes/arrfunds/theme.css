@@ -1469,6 +1469,12 @@ h1, h2, h3, h4 {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
   backdrop-filter: blur(20px) !important;
 }
+.nav.scrolled .nav__logo {
+  color: var(--nav-logo-scrolled, #ffffff) !important;
+}
+.nav.scrolled .nav__logo .nav__logo-accent {
+  color: var(--accent) !important;
+}
 .nav.scrolled .nav__link {
   color: var(--nav-text) !important;
 }
