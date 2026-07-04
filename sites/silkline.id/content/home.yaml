@@ -6,6 +6,7 @@ meta:
   description: SilkLine transforms Indonesian enterprises end-to-end — from business operations to IT infrastructure to customer experience — into AI-native organizations.
   keywords: SilkLine,AI-native,enterprise transformation,Indonesia,business operations,IT modernization,customer experience,Jakarta
   ogImageAlt: SilkLine — AI-Native Enterprise Transformation
+  activeNav: en
   priority: 1.0
   changefreq: weekly
   jsonLd:
@@ -28,7 +29,6 @@ blocks:
       lead: We don't bolt AI onto your existing processes. We re-engineer the entire value chain — from back-office operations through IT infrastructure to customer touchpoints — into a unified, AI-native operating system where agents execute, learn, and scale autonomously.
       actions:
         - { text: Start a Conversation, href: "mailto:hello@silkline.id", variant: primary, arrow: true }
-        - { text: Bahasa Indonesia, href: "/id/", variant: ghost }
       panel:
         head: TRANSFORMATION SCOPE
         ref: REF / SLK-ENTERPRISE

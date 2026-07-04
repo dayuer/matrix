@@ -3,35 +3,42 @@ theme: arrfunds
 lang: en
 themeOptions:
   tokens:
-    '--primary': '#0a0e1a'
-    '--primary-light': '#131933'
-    '--primary-dark': '#050810'
-    '--primary-rgb': '10, 14, 26'
-    '--primary-dark-rgb': '5, 8, 16'
-    '--accent': '#3b82f6'
-    '--accent-rgb': '59, 130, 246'
-    '--text-dark': '#e2e8f0'
-    '--text-dark-rgb': '226, 232, 240'
-    '--text-muted': '#94a3b8'
+    # 品牌主色：深石板（仅 footer/深色区）
+    '--primary': '#1e293b'
+    '--primary-light': '#334155'
+    '--primary-dark': '#0f172a'
+    '--primary-rgb': '30, 41, 59'
+    '--primary-dark-rgb': '15, 23, 42'
+    # 强调色：天空蓝
+    '--accent': '#0ea5e9'
+    '--accent-rgb': '14, 165, 233'
+    # 文字
+    '--text-dark': '#0f172a'
+    '--text-dark-rgb': '15, 23, 42'
+    '--text-muted': '#64748b'
     '--text-light': '#f8fafc'
-    '--text-muted-light': 'rgba(255, 255, 255, 0.55)'
-    '--bg-light': '#0a0e1a'
-    '--bg-gray': '#111827'
-    '--bg-light-sec': '#0f1629'
-    '--bg-dark-sec': '#060a14'
-    '--surface': 'rgba(30, 41, 59, 0.6)'
-    '--border-color': 'rgba(59, 130, 246, 0.12)'
-    '--nav-text': '#e2e8f0'
-    '--nav-bg-scrolled': 'rgba(10, 14, 26, 0.85)'
-    '--nav-border-scrolled': 'rgba(59, 130, 246, 0.1)'
+    '--text-muted-light': 'rgba(255, 255, 255, 0.6)'
+    # 背景与表面：清爽浅色
+    '--bg-light': '#f8fafc'
+    '--bg-gray': '#f1f5f9'
+    '--bg-light-sec': '#f1f5f9'
+    '--bg-dark-sec': '#0f172a'
+    '--surface': '#ffffff'
+    '--border-color': 'rgba(14, 165, 233, 0.10)'
+    # 导航
+    '--nav-text': '#1e293b'
+    '--nav-bg-scrolled': 'rgba(248, 250, 252, 0.88)'
+    '--nav-border-scrolled': 'rgba(14, 165, 233, 0.08)'
 
 baseUrl: https://silkline.id
 brand:
-  name: SilkLine
+  name: SilkLine.AI
   desc: Enterprise digital infrastructure for Indonesia.
   favicon: /images/favicon.svg
 
-nav: []
+nav:
+  - { key: en, text: EN, href: "/" }
+  - { key: id, text: ID, href: "/id/" }
 cta: { text: Contact Us, href: "mailto:hello@silkline.id" }
 
 footer:
