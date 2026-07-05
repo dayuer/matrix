@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+    <loc>https://voicebridge.top/</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://voicebridge.top/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://voicebridge.top/index_en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voicebridge.top/"/>
+  </url>
+
+  <url>
+    <loc>https://voicebridge.top/index_en.html</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://voicebridge.top/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://voicebridge.top/index_en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voicebridge.top/"/>
+  </url>
+
+  <url>
+    <loc>https://voicebridge.top/support.html</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://voicebridge.top/support.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://voicebridge.top/support_en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voicebridge.top/support.html"/>
+  </url>
+
+  <url>
+    <loc>https://voicebridge.top/support_en.html</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://voicebridge.top/support.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://voicebridge.top/support_en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voicebridge.top/support.html"/>
+  </url>
+
+  <url>
+    <loc>https://voicebridge.top/privacy.html</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://voicebridge.top/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://voicebridge.top/privacy_en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voicebridge.top/privacy.html"/>
+  </url>
+
+  <url>
+    <loc>https://voicebridge.top/privacy_en.html</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://voicebridge.top/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://voicebridge.top/privacy_en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voicebridge.top/privacy.html"/>
+  </url>
+
+  <url>
+    <loc>https://voicebridge.top/terms.html</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://voicebridge.top/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://voicebridge.top/terms_en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voicebridge.top/terms.html"/>
+  </url>
+
+  <url>
+    <loc>https://voicebridge.top/terms_en.html</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://voicebridge.top/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://voicebridge.top/terms_en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voicebridge.top/terms.html"/>
+  </url>
+
+</urlset>
