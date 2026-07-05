@@ -10,8 +10,8 @@ SITE_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 REPO_ROOT="$(cd "$SITE_DIR/../.." && pwd)"
 SITE_NAME="$(basename "$SITE_DIR")"
 
-# 静态渲染导出：仅把 translate/docs 的所有 HTML 文件拷贝到 sites/voicebridge.top/out/，排除内部 Markdown 文档
-export EXPORT_CMD="mkdir -p '$SITE_DIR/out' && rm -rf '$SITE_DIR/out/'* && cp '$REPO_ROOT/../translate/docs/'*.html '$SITE_DIR/out/'"
+# 静态渲染导出：把本站点根目录下的所有 HTML 源文件拷贝到 out/ 进行发布
+export EXPORT_CMD="mkdir -p '$SITE_DIR/out' && rm -rf '$SITE_DIR/out/'* && cp '$SITE_DIR/'*.html '$SITE_DIR/out/'"
 
 cd "$SITE_DIR"
 source "$REPO_ROOT/packages/site-kit/deploy/deploy.template.sh"
