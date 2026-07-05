@@ -1,0 +1,6 @@
+theme: null
+lang: zh-CN
+baseUrl: https://voicebridge.top
+brand:
+  name: VoiceBridge
+  desc: 端侧 AI 语音转写与实时纪要

@@ -18,9 +18,10 @@ matrix/
 │   ├── edaijia/        # edaijia 代驾行业资讯与前沿洞察站点
 │   ├── synon.ai/       # Synon Global 全球化 FDE 交付与 AI 数字化重构平台官网
 │   └── yaodriver/      # yaodriver 站点（曜行智能）
-├── sites/              # 纯数据驱动站点（site.yaml + content/*.yaml，无 TS 代码）
+├── sites/              # 纯数据驱动与纯静态站点（site.yaml + 配置文件/页面）
 │   ├── synon.ai/       # Synon Global 官网（dossier 主题）
-│   └── silkline.id/    # SilkLine 印尼企业数字基础设施平台（arrfunds 主题，EN/ID 双语）
+│   ├── silkline.id/    # SilkLine 印尼企业数字基础设施平台（arrfunds 主题，EN/ID 双语）
+│   └── voicebridge.top/ # VoiceBridge 畅译 App 官网（纯静态 HTML 页面同步）
 ├── config/             # 全局/子应用配置文件
 ├── docs/               # 行业洞察、研报与草稿目录
 ├── scripts/            # 辅助脚本（如网站地图生成等）
@@ -43,6 +44,7 @@ matrix/
 - `apps/<site>/src/config/site.ts`: 站点单源内容与配置。
 - `apps/<site>/views/` · `style.css`: 站点专属表现层（各站设计语言独立）。
 - `apps/synon.ai/docs/DESIGN.md`: Synon Global「工程档案」设计规范（配色/字体/组件/动效）。
+- `sites/voicebridge.top/deploy/deploy.sh` · `nginx.conf`: VoiceBridge 官网发布与 Nginx 路由配置。
 - `config/authors/` · `config/edaijia-keywords.json`: 全局作者元数据与关键词库。
 
 ## 模块间依赖关系
