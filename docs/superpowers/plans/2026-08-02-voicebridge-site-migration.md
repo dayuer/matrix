@@ -1740,6 +1740,10 @@ blocks:
 
 `support.yaml`（`path: /support.html`，`priority: 0.8`，`changefreq: monthly`）与 `terms.yaml`（`path: /terms.html`，`priority: 0.5`，`changefreq: yearly`）同构，`meta.title`/`description` 从各自原 HTML 的 `<title>`/`<meta name="description">` 搬运。
 
+**⚠️ `support.html` 自带一段独立的 `FAQPage` JSON-LD**（源文件 26–39 行，不含 `@graph` 包裹）。它必须一并搬进 `support.yaml` 的 `meta.jsonLd`，否则静默丢失——`html-text-diff.mjs` 不看 JSON-LD，Task 14 Step 4b 的断言此前也只覆盖了两个首页。搬完后用同款 `deepStrictEqual` 断言核对。
+
+**⚠️ 首页正文 FAQ 与 JSON-LD 里的 FAQ 文案在原页面就不一致**（例如正文「我们不包含任何应用内购」vs JSON-LD「没有任何应用内购」；正文「VoiceBridge 本身」vs JSON-LD「畅译本身」）。**两处各自原样保留，不要统一**——逐字搬运优先于消除不一致。
+
 - [ ] **Step 3: 404.yaml**
 
 ```yaml
