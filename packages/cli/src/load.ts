@@ -101,6 +101,8 @@ function buildMeta(
     changefreq: m.changefreq,
     jsonLd: m.jsonLd ?? null,
     lang: m.lang,
+    alternates: m.alternates,
+    updated: m.updated,
     blocks: m.blocks,
   };
 }
