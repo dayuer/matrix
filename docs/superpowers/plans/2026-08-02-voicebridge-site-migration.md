@@ -45,29 +45,72 @@ ls /tmp/vb-baseline
 #!/usr/bin/env node
 /**
  * HTML 可见文本比对 —— 迁移验收工具。
- * 剥掉标签、script/style 与属性，只留可见文本与 <title>/<meta description>，
- * 用于证明「模板重写后页面说的话没变」。构建产物的 ?v= 时间戳、空白差异一律忽略。
+ * 剥掉标签、script/style 与属性，只留可见文本、<title>、<meta description>，
+ * 以及 <svg> 内 <text> 节点的文案（首页手机样机 SVG 里有真实产品文案，不能当装饰丢掉）。
+ * 构建产物的 ?v= 时间戳与空白差异一律忽略。
+ *
+ * 判定按「有序序列」比对：段落顺序变化、重复次数变化都算差异——
+ * 模板重写最容易踩的坑就是循环少渲染了几次、或栏目顺序被颠倒。
  *
  *   node scripts/html-text-diff.mjs <基线文件> <新文件>
- *   退出码 0 = 文本一致，1 = 有差异（差异打到 stdout）
+ *   退出码 0 = 文本一致，1 = 有差异（差异打到 stdout），2 = 用法错误或文件读不出来
  */
 import fs from 'fs';
 
+const ENTITIES = {
+  '&nbsp;': ' ',
+  '&amp;': '&',
+  '&lt;': '<',
+  '&gt;': '>',
+  '&quot;': '"',
+  '&#34;': '"',
+  '&#39;': "'",
+  '&apos;': "'",
+  '&mdash;': '—',
+  '&ndash;': '–',
+  '&hellip;': '…',
+};
+
+function decodeEntities(s) {
+  return s.replace(/&(?:nbsp|amp|lt|gt|quot|apos|mdash|ndash|hellip|#34|#39);/g, (m) => ENTITIES[m] ?? m);
+}
+
+/** 取 <meta name="description"> 的 content，与属性顺序、引号风格无关。 */
+function metaDescription(raw) {
+  for (const tag of raw.match(/<meta\b[^>]*>/gi) || []) {
+    if (!/\bname\s*=\s*(['"])description\1/i.test(tag)) continue;
+    const m = tag.match(/\bcontent\s*=\s*(['"])([\s\S]*?)\1/i);
+    if (m) return m[2].trim();
+  }
+  return '';
+}
+
+/** SVG 只保留 <text> 节点的文案，其余结构丢弃。 */
+function svgText(svg) {
+  const texts = svg.match(/<text\b[^>]*>([\s\S]*?)<\/text>/gi) || [];
+  return '\n' + texts.map((t) => t.replace(/<[^>]+>/g, '')).join('\n') + '\n';
+}
+
 function extract(file) {
-  const raw = fs.readFileSync(file, 'utf-8');
+  let raw;
+  try {
+    raw = fs.readFileSync(file, 'utf-8');
+  } catch (err) {
+    console.error(`读取失败：${file} —— ${err.message}`);
+    process.exit(2);
+  }
   const title = (raw.match(/<title>([\s\S]*?)<\/title>/i) || [, ''])[1].trim();
-  const desc = (raw.match(/<meta\s+name="description"\s+content="([\s\S]*?)"/i) || [, ''])[1].trim();
+  const desc = metaDescription(raw);
   const body = (raw.match(/<body[^>]*>([\s\S]*)<\/body>/i) || [, raw])[1];
   const text = body
     .replace(/<script[\s\S]*?<\/script>/gi, ' ')
     .replace(/<style[\s\S]*?<\/style>/gi, ' ')
-    .replace(/<svg[\s\S]*?<\/svg>/gi, ' ')
+    .replace(/<svg\b[\s\S]*?<\/svg>/gi, svgText)
     .replace(/<[^>]+>/g, '\n')
-    .replace(/&nbsp;/g, ' ')
     .split('\n')
-    .map((s) => s.replace(/\s+/g, ' ').trim())
+    .map((s) => decodeEntities(s).replace(/\s+/g, ' ').trim())
     .filter(Boolean);
-  return [`TITLE: ${title}`, `DESC: ${desc}`, ...text];
+  return [`TITLE: ${decodeEntities(title)}`, `DESC: ${decodeEntities(desc)}`, ...text];
 }
 
 const [a, b] = process.argv.slice(2);
@@ -77,38 +120,72 @@ if (!a || !b) {
 }
 const la = extract(a);
 const lb = extract(b);
-const setB = new Set(lb);
-const setA = new Set(la);
-const onlyA = la.filter((l) => !setB.has(l));
-const onlyB = lb.filter((l) => !setA.has(l));
 
-if (onlyA.length === 0 && onlyB.length === 0) {
-  console.log(`✅ 文本一致：${a} ≡ ${b}（${la.length} 段）`);
+if (la.length === lb.length && la.every((l, i) => l === lb[i])) {
+  console.log(`✅ 文本一致：${a} ≡ ${b}（${la.length} 段，顺序与重复次数均一致）`);
   process.exit(0);
 }
-console.log(`❌ 文本有差异：${a} vs ${b}`);
+
+console.log(`❌ 文本有差异：${a}（${la.length} 段） vs ${b}（${lb.length} 段）`);
+
+const setA = new Set(la);
+const setB = new Set(lb);
+const onlyA = la.filter((l) => !setB.has(l));
+const onlyB = lb.filter((l) => !setA.has(l));
 for (const l of onlyA) console.log(`  - 仅基线有: ${l}`);
 for (const l of onlyB) console.log(`  + 仅新版有: ${l}`);
+if (onlyA.length === 0 && onlyB.length === 0) {
+  console.log('  ⚠️ 用词完全相同，差异在顺序或重复次数——模板循环渲染次数或栏目顺序变了。');
+}
+
+let firstDiff = -1;
+const max = Math.max(la.length, lb.length);
+for (let i = 0; i < max; i++) {
+  if (la[i] !== lb[i]) {
+    firstDiff = i;
+    break;
+  }
+}
+if (firstDiff >= 0) {
+  console.log(`  首处不一致在第 ${firstDiff + 1} 段：`);
+  console.log(`    基线: ${la[firstDiff] ?? '(无)'}`);
+  console.log(`    新版: ${lb[firstDiff] ?? '(无)'}`);
+}
 process.exit(1);
 ```
+
+**为什么是有序比对而不是集合比对：** 用 `Set` 求差集会放行两类最该拦下的回归——模板循环少渲染了几次（同一段重复 3 次坍缩成 1 次）、栏目顺序被颠倒。两者用词集合完全相同，集合比对判"一致"。同理 `<svg>` 不能整段丢：首页手机样机 SVG 里的 `项目周会`、`发言人 A`、`03:42 · 2 位发言人 · 已完成转写`、`✦ AI 智能纪要` 都是真实产品文案，而 Task 12 恰好要搬运这段 SVG。
 
 - [ ] **Step 3: 自测脚本（同一文件比自己必须通过）**
 
 ```bash
 cd ~/sproot/matrix
-node scripts/html-text-diff.mjs /tmp/vb-baseline/index.html /tmp/vb-baseline/index.html
+node scripts/html-text-diff.mjs /tmp/vb-baseline/index.html /tmp/vb-baseline/index.html; echo "退出码=$?"
 ```
 
-预期：`✅ 文本一致：... （N 段）`，退出码 0。
+预期：`✅ 文本一致：…（N 段，顺序与重复次数均一致）`，`退出码=0`。
 
-- [ ] **Step 4: 反向自测（不同文件必须报差异）**
+- [ ] **Step 4: 四组回归自测（每组都必须按预期退出）**
 
 ```bash
 cd ~/sproot/matrix
-node scripts/html-text-diff.mjs /tmp/vb-baseline/index.html /tmp/vb-baseline/index_en.html; echo "退出码=$?"
+# 4a 不同文件必须报差异
+node scripts/html-text-diff.mjs /tmp/vb-baseline/index.html /tmp/vb-baseline/index_en.html >/dev/null; echo "4a 退出码=$?（应为 1）"
+
+# 4b 顺序与重复次数变化必须被抓到：造两个小用例
+printf '<html><body><p>A</p><p>提示</p><p>B</p><p>提示</p><p>C</p><p>提示</p></body></html>' > /tmp/vb-t-a.html
+printf '<html><body><p>提示</p><p>C</p><p>B</p><p>A</p></body></html>' > /tmp/vb-t-b.html
+node scripts/html-text-diff.mjs /tmp/vb-t-a.html /tmp/vb-t-b.html >/dev/null; echo "4b 退出码=$?（应为 1）"
+
+# 4c SVG 内文案改动必须被抓到
+sed 's/项目周会/产品评审/' /tmp/vb-baseline/index.html > /tmp/vb-t-svg.html
+node scripts/html-text-diff.mjs /tmp/vb-baseline/index.html /tmp/vb-t-svg.html >/dev/null; echo "4c 退出码=$?（应为 1）"
+
+# 4d 文件读不出来必须是 2，不能与「有差异」撞码
+node scripts/html-text-diff.mjs /nonexistent/a.html /nonexistent/b.html >/dev/null 2>&1; echo "4d 退出码=$?（应为 2）"
 ```
 
-预期：打印大量 `- 仅基线有` / `+ 仅新版有`，`退出码=1`。
+预期：`4a 退出码=1`、`4b 退出码=1`、`4c 退出码=1`、`4d 退出码=2`。4b 的完整输出里还应出现 `⚠️ 用词完全相同，差异在顺序或重复次数` 这行。
 
 - [ ] **Step 5: 建立 synon.ai 回归基线**
 
