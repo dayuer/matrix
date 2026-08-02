@@ -245,3 +245,43 @@ blocks:
           a: Select an audio file in the system Voice Memos or Files app and share it to VoiceBridge to start an import; or pick multiple files inside the app to queue them for offline transcription. M4A, WAV, and MP3 are supported.
         - q: How does AI Meeting Notes work?
           a: When you choose to use it, your transcript is passed via the system clipboard to a third-party AI app of your choice (such as ChatGPT or Claude) for you to paste manually. VoiceBridge itself sends no network requests to any third-party server, and asks for your explicit consent before first use.
+
+locals:
+  navItems:
+    - text: Features
+      href: '#features'
+    - text: Support
+      href: '#support'
+    - text: Privacy
+      href: /privacy_en.html
+  ctaOverride:
+    text: Free download
+    href: '#download'
+  langSwitchOverride:
+    text: 中文
+    href: /
+  homeHref: /index_en.html
+  brandNameCnOverride: ''
+  footerOverride:
+    columns:
+      - title: ''
+        links:
+          - text: Features
+            href: '#features'
+          - text: Support
+            href: /support_en.html
+          - text: Privacy Policy
+            href: /privacy_en.html
+          - text: Terms of Service
+            href: /terms_en.html
+          - text: Contact
+            href: 'mailto:support@voicebridge.top'
+          - text: 中文
+            href: /
+    legal:
+      note: 'VoiceBridge is completely free and 100% offline: recognition, voiceprints, and semantic vectors all run locally, no connection required. When you use the AI Meeting Notes feature, your transcript is shared — with your explicit consent — via the system clipboard with a third-party AI app of your choice.'
+      foundingYear: 2026
+      company:
+        text: VoiceBridge
+        href: /index_en.html
+    social: []

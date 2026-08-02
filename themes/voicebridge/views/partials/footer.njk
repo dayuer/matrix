@@ -1,14 +1,17 @@
+{# footer 文案默认取 site.footer，页面可用 locals.footerOverride 覆盖。 #}
+{% set _footer = footerOverride or site.footer %}
+{% set _brandCn = brandNameCnOverride if brandNameCnOverride is defined else site.brand.nameCn %}
 <footer>
   <div class="foot-wrap">
     <div class="foot-top">
-      <div class="foot-brand">{{ site.brand.name }}{% if site.brand.nameCn %}<span class="cn">{{ site.brand.nameCn }}</span>{% endif %}</div>
+      <div class="foot-brand">{{ site.brand.name }}{% if _brandCn %}<span class="cn">{{ _brandCn }}</span>{% endif %}</div>
       <div class="foot-links">
-        {% for col in site.footer.columns %}{% for link in col.links %}<a href="{{ link.href }}">{{ link.text }}</a>{% endfor %}{% endfor %}
+        {% for col in _footer.columns %}{% for link in col.links %}<a href="{{ link.href }}">{{ link.text }}</a>{% endfor %}{% endfor %}
       </div>
     </div>
     <div class="foot-legal">
-      {% if site.footer.legal.note %}{{ site.footer.legal.note }}<br>{% endif %}
-      © {{ site.footer.legal.foundingYear }} {{ site.footer.legal.company.text }}. All rights reserved.
+      {% if _footer.legal.note %}{{ _footer.legal.note }}<br>{% endif %}
+      © {{ _footer.legal.foundingYear }} {{ _footer.legal.company.text }}. All rights reserved.
     </div>
   </div>
 </footer>
