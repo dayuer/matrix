@@ -357,101 +357,95 @@ git commit -m "feat(theme): 7 个内容页 block 的样式，作用域隔离在 
 
 ### Task 3: 知识层 4 页 + `/learn/` 列表页（批 1 交付物）
 
-**Files:**
-- Create: `sites/voicebridge.top/content/learn/index.yaml`（→ `/learn/`）
-- Create: `sites/voicebridge.top/content/learn/what-is-asr.yaml`
-- Create: `sites/voicebridge.top/content/learn/how-diarization-works.yaml`
-- Create: `sites/voicebridge.top/content/learn/on-device-vs-cloud.yaml`
-- Create: `sites/voicebridge.top/content/learn/transcript-vs-minutes.yaml`
+**⚠️ 本节已按用户指示重写。** 原规格写的是「什么是 ASR」这类教科书定义——正确但平庸，任何人都能写，AI 引擎也没有理由引用它而不是引用维基百科。
 
-**为什么知识层排第一**：定义型内容 GEO 见效最快且不依赖排名；同时它能把 7 个新 block 全部跑一遍，早暴露模板问题。
+**新定位：拆开揉碎地讲畅译真实的功能思考、技术选型、踩过的坑、得到的教训。**
+用户明确授权：「代码虽然不开源，但设计思路可以全部开源。」
+
+**写作铁律：**
+- **不许瞎编。** 每一个技术断言都必须能在 `~/sproot/translate/Sources/` 的源码或注释里找到出处。写作时把出处（文件名 + 行号）记在 YAML 注释里，便于复核。
+- **要有失败现场。** 只讲「我们用了 X」是营销稿；讲「我们先用了 Y，它在什么情况下会错成什么样，所以换成 X」才是可引用的内容。
+- **不写准确率数字**、不写最高级表述、不点名竞品。
+- 面向有技术判断力的读者写，但不假设对方懂 ASR 术语——每个术语首次出现时用一句话解释。
+
+**已核实可用的素材**（出处已验证，写作时按需展开）：
+
+| 主题 | 素材 | 出处 |
+|---|---|---|
+| 说话人分离 | 旧方案「VAD 段落 + 段级 AHC 聚类」：一个 VAD 段落里若有多人接话，整段归给一人 → 会议观点张冠李戴；固定阈值 AHC 在不同音频上表现不稳 | `SpeakerDiarizationEngine.swift:4-9` |
+| | 新方案：pyannote 在音频层做话轮/重叠切分 → 每话轮提声纹 → 全局聚类；**切换点由模型定位而非靠文本语义推断** | 同上 |
+| | CAM++ zh_en advanced 是 sherpa-onnx 库内**唯一中英联合**声纹模型——双语场景下没有第二个选项 | `SpeakerDiarizationEngine.swift:11` |
+| | 算法必须单点收敛：历史上 `MeetingSummaryViewModel` 与 `ImportTaskQueue` 两份不一致的实现导致过丢字 bug | `DiarizationService.swift:5-6` |
+| 模型选型 | 中文走 SenseVoice、英文走流式 zipformer——同一套模型在两种语言上表现差异大到不能一刀切 | `StreamingASRService.swift:2`、`SherpaASRService.swift` |
+| | 模型三级回退：BA 资产包 → bundle 子目录 → bundle 根 | `StreamingASRService.swift:25-32` |
+| | 加载失败必须可恢复、不可致命：`fatalError` 会直接崩掉整个 App，而调用点本就写了降级分支，根本等不到执行 | `Bridge/SherpaOnnx.swift:810-814` |
+| | 热词流创建失败退化为普通 reset——不值得为热词崩掉整个识别会话 | `Bridge/SherpaOnnx.swift:349` |
+| 后处理 | ASR 原始输出是零散标点的连续串；统一重排前**先剥离**再由 CT-Transformer 恢复，否则会与模型输出叠加 | `TranscriptComposer.swift:2,79-82`、`PunctuationService.swift:25` |
+| | 分段/切块规则：尾静音 2.4s（无文本）/ 0.7s（有文本）/ 单块 15s | `StreamingASRService.swift:3` |
+| | 标点模型不可用时降级：ASR 自带标点 + 规则修补 | `PunctuationService.swift:1-3` |
+| 音频前处理 | 限幅用 `ceil * tanh(x/ceil)` 而非 `(x/a)*ceil`——后者恒等于 `sign(x)*ceil` 是硬削波，平顶波形的谐波飞溅会糊到 mel 滤波器组上，恰是最不该喂给 fbank 前端的失真；小信号区 tanh(x)≈x 近似线性通过 | `SpeechAudioEnhancer.swift:148-151` |
+| 编辑权 | 精修结果绝不覆盖用户已编辑的段落（editState 锁） | 逐字稿编辑架构 |
+| | 高亮层只做视觉标记、**绝不接收点击**——单击段落=进入编辑且光标落在点击处，是产品红线 | `Views/SelectableText.swift:21-22,78` |
+| | 分段重排后各自以自身文本为新原文快照重设基线（整段旧快照无法干净还原半段） | `MeetingSummaryViewModel.swift:700-701` |
+| 数据安全 | 升级必须保留数据；删旧库不搬数据等同于把用户全部会议记录静默清零 | `App/VoiceBridgeApp.swift:211,302-305` |
+
+**四篇选题**（URL 保留搜索意图，内容是决策叙事）：
+
+1. **`/learn/speaker-diarization/`** —— 说话人分离为什么会认错人
+   核心论点：张冠李戴的根因在**切分层**，不在聚类层。展开旧方案的失败现场 → 为什么切分要交给模型而不是靠文本语义推断 → 双语声纹模型的选择余地为零 → 算法单点收敛的教训。1300–1700 字。
+
+2. **`/learn/on-device-model-tradeoffs/`** —— 端侧模型选型：好模型为什么上不了手机
+   核心论点：端侧的约束不是「能不能跑」，是体积、内存、发热、首次加载四项预算怎么花。展开中英文分流的理由 → 三级回退设计 → 加载失败必须可恢复不可致命 → 局部功能失败不该拖垮主链路。1200–1600 字。
+
+3. **`/learn/asr-postprocessing/`** —— 识别出文字只是开始
+   核心论点：可读性不是识别准确率的副产品，是独立的一层工程。展开原始输出长什么样 → 为什么标点要先剥离再恢复 → 分段规则的三个阈值各自解决什么 → 模型不可用时的降级路径。1100–1500 字。
+
+4. **`/learn/transcript-editing/`** —— 机器改和人改会打架
+   核心论点：AI 产物的编辑权必须明确归属，否则用户的修改会被下一轮自动处理静默吃掉。展开 editState 锁 → 为什么高亮层绝不能接收点击 → 分段重排时基线怎么重设 → 一个被否决的产品方案（独立校对界面）和它教会我们的事。1000–1400 字。
+
+**诚实的取舍说明（写进报告给用户）**：这四篇的直接搜索量低于「什么是语音识别」这类词。但它们更可能被 AI 引擎引用（模型已经知道教科书定义，不需要引用你）、更可能被技术读者主动转发、也更难被竞品复制。这是用搜索量换引用质量的选择。
 
 **每页统一结构**（block 顺序固定）：
 1. `breadcrumb` — 首页 / 知识 / 当前页
-2. 页面标题与副标题（用 `prose` 的第一块，`html` 里放 `<h1 class="doc-title">` 与 `<p class="doc-sub">`）
-3. `answer-card` — 40–80 字直答 + 3–5 条可核验事实
-4. `prose` × N — 正文分节
-5. `related-links` — 3 条相关阅读
+2. `prose`（第一块）—— `<h1 class="doc-title">` + `<p class="doc-sub">`
+3. `answer-card` —— 40–80 字直答 + 3–5 条可核验事实
+4. `prose` × N —— 正文分节
+5. `related-links` —— 3 条
 
-**每页 meta 必备**：`title`（含品牌后缀）、`description`（≤ 155 字，含主关键词）、`keywords`、`canonical`（**带尾斜杠**）、`template: article`、`bodyClass: doc`、`priority: 0.6`、`changefreq: monthly`、`jsonLd`（`Article` + `BreadcrumbList`，定义型页面另加 `DefinedTerm`）。
+**每页 meta 必备**：`title`（含品牌后缀）、`description`（≤155 字）、`keywords`、`canonical`（**带尾斜杠**）、`template: article`、`bodyClass: doc`、`priority: 0.6`、`changefreq: monthly`、`jsonLd`（`Article` + `BreadcrumbList`）。
 
-- [ ] **Step 1: `/learn/what-is-asr/`**
+- [ ] **Step 1–4: 逐页写作**，按上方四篇选题与素材表展开。**每个技术断言在 YAML 里用注释标出处。**
 
-主词：语音识别是什么、ASR 是什么、离线语音识别原理。
-
-内容纲要（写作时按此展开，字数 900–1300）：
-- 直答：ASR 是把语音波形转成文字的技术；现代 ASR 是「声学特征 → 神经网络 → 文本」的端到端过程，不再依赖人工音素规则。
-- 正文分节：① 一段录音是怎么变成文字的（采样 → 特征 → 声学模型 → 解码）；② 为什么标点和分段要单独做（ASR 原始输出是无标点连续串，畅译用 CT-Transformer 离线模型恢复标点，失败时降级为 ASR 自带标点 + 规则修补）；③ 端侧 ASR 与云端 ASR 的工程差异（模型体积、内存、算力）；④ 影响识别质量的现实因素（口音、语速、重叠说话、录音环境）。
-- 相关阅读：`/learn/on-device-vs-cloud/`、`/learn/how-diarization-works/`、`/features/offline-transcription/`（后者尚未建，链接先写，批 2 落地后即通）。
-
-- [ ] **Step 2: `/learn/how-diarization-works/`**
-
-主词：说话人分离原理、声纹识别怎么做、diarization。
-
-**这页是知识层的重头**——App 源码里有真实的设计取舍可写，是竞品营销页写不出的深度。内容纲要（1100–1500 字）：
-- 直答：说话人分离回答的是「谁在什么时候说话」，与「说了什么」是两个独立问题。
-- 正文分节：① 四个阶段（VAD 找出有人声的区间 → 切分 → 每段提声纹向量 → 聚类归人）；② 为什么「VAD 段落 + 段级聚类」会张冠李戴——**一个 VAD 段落里若有多人接话，整段会被归给一人**，这正是会议记录里观点被安错人的根因；③ 畅译的做法：pyannote segmentation-3.0 做切分（能在一个语音活动区间内部切开不同说话人）+ CAM++ 提声纹 + 快速聚类；④ 为什么固定阈值的层次聚类不稳——不同录音的声纹相似度分布不同；⑤ 现实限制：重叠说话、音色相近的人、极短发言。
-- 相关阅读：`/features/speaker-diarization/`、`/learn/what-is-asr/`、`/scenes/meeting/`。
-
-- [ ] **Step 3: `/learn/on-device-vs-cloud/`**
-
-主词：端侧 AI、本地语音识别 vs 云端、录音不上传。
-
-内容纲要（900–1200 字）。**必须包含一个 `fact-table`**（品类对比，不点名竞品）：维度为「数据去向 / 可用性 / 成本模型 / 延迟 / 模型规模 / 隐私边界」，两列为「云端转写」「端侧转写」。
-- 直答：端侧转写把模型跑在手机上，音频不离开设备；云端把音频上传到服务器换取更大的模型。
-- 正文分节：① 两条路线的真实差异（逐条展开表格）；② 端侧的代价（模型体积、首次加载、设备发热与耗电、大模型跑不动）；③ 端侧的不可替代性（飞行模式可用、无账号、数据合规边界清晰）；④ 畅译的边界说明：识别/声纹/语义向量全本地；「AI 智能纪要」是用户主动授权下经系统剪贴板把**文本**交给用户自己选的第三方 AI App，畅译本身不发网络请求。
-- 相关阅读：`/features/privacy-local/`、`/learn/what-is-asr/`、`/compare/online-vs-offline/`。
-
-- [ ] **Step 4: `/learn/transcript-vs-minutes/`**
-
-主词：逐字稿是什么、会议纪要怎么写、逐字稿和纪要的区别。
-
-内容纲要（800–1100 字）：
-- 直答：逐字稿是「说过的每一句」，纪要是「需要被记住的结论与待办」；前者是原始记录，后者是加工产物。
-- 正文分节：① 两者的用途分野（举证/复盘 vs 对齐/执行）；② 从逐字稿到纪要的加工步骤（去口语冗余 → 归并同一议题 → 提取决议与待办 → 标注责任人）；③ 为什么好的纪要必须保留可回溯的原文锚点；④ 什么场景只需要逐字稿、什么场景必须有纪要。
-- 相关阅读：`/features/meeting-minutes/`、`/scenes/interview/`、`/guides/export-share/`。
-
-- [ ] **Step 5: `/learn/` 列表页**
-
-`template: page`、`bodyClass: doc`。结构：`breadcrumb` → 标题与导语 → `card-grid`（4 个条目）。`jsonLd` 用 `CollectionPage` + `BreadcrumbList`。
+- [ ] **Step 5: `/learn/` 列表页** —— `template: page`、`bodyClass: doc`、`breadcrumb` → 标题导语 → `card-grid`（4 条目）、`jsonLd` 用 `CollectionPage` + `BreadcrumbList`。
 
 - [ ] **Step 6: 导出与断言**
 
 ```bash
 cd ~/sproot/matrix && npm run matrix -- export voicebridge.top
-# 新页面 URL 存在且是目录式
-for p in learn learn/what-is-asr learn/how-diarization-works learn/on-device-vs-cloud learn/transcript-vs-minutes; do
+for p in learn learn/speaker-diarization learn/on-device-model-tradeoffs learn/asr-postprocessing learn/transcript-editing; do
   [ -f "sites/voicebridge.top/out/$p/index.html" ] && echo "OK  /$p/" || echo "缺失 /$p/"
 done
-# 既有 8 页零回归
 for f in index.html index_en.html support.html support_en.html privacy.html privacy_en.html terms.html terms_en.html; do
   node scripts/html-text-diff.mjs "/tmp/vb-p2-base/$f" "sites/voicebridge.top/out/$f" >/dev/null || echo "回归 DIFF: $f"
 done
-# sitemap 从 8 条增至 13 条
 grep -c '<loc>' sites/voicebridge.top/out/sitemap.xml
 ```
 
-**另需断言**（工具盲区，必须单独查）：
-- 每个新页面的 `<script type="application/ld+json">` 能被 `JSON.parse`，且 `@type` 与规格一致。
-- 每页 `<h1 class="doc-title">` 恰好 1 个（多个 h1 是 SEO 错误）。
-- `related-links` 里的 `href` 全部指向**本计划最终会存在**的路径（批 2–5 尚未落地的允许暂时 404，但要列出清单确认都在计划内）。
-- `canonical` 全部带尾斜杠。
+另需断言（工具盲区）：每页 JSON-LD 可 `JSON.parse` 且 `@type` 正确；每页 `<h1 class="doc-title">` 恰好 1 个；`canonical` 全部带尾斜杠；`related-links` 的 href 全在本计划页面清单内。
 
-- [ ] **Step 7: 视觉验收**
-
-起本地预览，桌面与移动两档各截一页，确认 7 个 block 的样式都生效（尤其 `.cg-items` 两列、`.step-n` 圆形、`.fact-table` 横向可滚动）。
+- [ ] **Step 7: 视觉验收** —— 桌面与移动两档截图，确认 7 个 block 样式生效。
 
 - [ ] **Step 8: 提交**
 
 ```bash
 cd ~/sproot/matrix
 git add sites/voicebridge.top/content/learn
-git commit -m "content(voicebridge): 知识层 4 页 + /learn/ 列表页"
+git commit -m "content(voicebridge): 知识层 4 页 —— 技术选型与踩坑复盘"
 ```
 
 - [ ] **Step 9: ⛔ 停下来给用户审**
 
-批 1 到此结束。向用户呈交：4 页的完整文案、桌面/移动截图、断言结果。**用户确认文案语气与技术表述无误后，才进入批 2。**
+呈交 4 页完整文案 + 截图 + 断言结果 + 每条技术断言的源码出处清单。**用户确认技术表述无误后才进入批 2。**
 
 ---
 
