@@ -1807,7 +1807,7 @@ blocks: []   # ← 与中文版同构，文案取自 index_en.html
 
 与 Task 12 Step 2 同构，路径分别为 `/support_en.html`、`/privacy_en.html`、`/terms_en.html`，`meta.lang: en`，正文用 `custom-html` 从对应 `*_en.html` 的 `<body>` 搬运（去掉 nav/footer）。
 
-⚠️ 英文页的导航与页脚文案来自 `site.yaml`（中文），迁移后英文页会显示中文导航。**本任务范围内的处理方式**：在 `en/*.yaml` 的 `meta` 里加 `bodyClass: lang-en`，Task 14 验收时若发现导航语言错乱，作为已知缺口记录并在阶段 2 计划中用 `locals` 覆盖解决——不在本计划扩大范围。
+⚠️ 英文页的导航与页脚文案来自 `site.yaml`（中文），迁移后英文页会显示中文导航。**这不是「尚未优化」，是对线上站点的可见退化**——现网 `index_en.html` 的导航本来就是英文的，而本计划的验收标准是「视觉零差异」。因此**必须在本计划内修掉**，见 Task 13b。本任务先照常搬内容，`meta` 里加 `bodyClass: lang-en`。
 
 - [ ] **Step 3: 提交**
 
@@ -1815,6 +1815,120 @@ blocks: []   # ← 与中文版同构，文案取自 index_en.html
 cd ~/sproot/matrix
 git add sites/voicebridge.top/content/en
 git commit -m "feat(voicebridge): 英文首页与法务/支持页迁入 content/en/"
+```
+
+---
+
+### Task 13b: 英文页导航与页脚本地化（修正对线上的可见退化）
+
+Task 13 落地后确认：英文页渲染出的 nav/footer 是**中文**，因为两者的文案来自 `site.yaml`。现网 `index_en.html` 的导航本来是英文，所以这是退化而非缺口。本计划验收标准是「视觉零差异」，必须修。
+
+**方案**：复用平台既有的 `locals` 机制（`load.ts` 把内容文件的 `locals` 透传进 `PageDef`，`export.ts` 渲染时 `{ page: p.page, ...(p.locals || {}) }` 展开），让模板优先取页面级覆盖、缺省回落到 `site.*`。**不新增平台能力，不改 `site.yaml`。**
+
+**Files:**
+- Modify: `themes/voicebridge/views/partials/nav.njk`
+- Modify: `themes/voicebridge/views/partials/footer.njk`
+- Modify: `sites/voicebridge.top/content/en/{home,support,privacy,terms}.yaml`（各加一段 `locals`）
+
+- [ ] **Step 1: nav.njk 支持页面级覆盖**
+
+把 `nav.njk` 整体替换为：
+
+```njk
+{# nav 文案默认取 site.*，页面可用 locals 覆盖（英文页用它渲染英文导航）。 #}
+{% set _nav = navItems or site.nav %}
+{% set _cta = ctaOverride or site.cta %}
+{% set _langSwitch = langSwitchOverride or site.langSwitch %}
+{% set _brandCn = brandNameCnOverride if brandNameCnOverride is defined else site.brand.nameCn %}
+<nav class="nav" id="nav">
+  <a class="brand" href="{{ homeHref or (basePath + '/') }}">{{ site.brand.name }}{% if _brandCn %}<span class="cn">{{ _brandCn }}</span>{% endif %}</a>
+  <div class="links">
+    {% for item in _nav %}<a href="{{ item.href }}">{{ item.text }}</a>{% endfor %}
+  </div>
+  {% if _langSwitch %}<a class="lang" href="{{ _langSwitch.href }}">{{ _langSwitch.text }}</a>{% endif %}
+  <a class="cta" href="{{ _cta.href }}">{{ _cta.text }}</a>
+</nav>
+```
+
+- [ ] **Step 2: footer.njk 支持页面级覆盖**
+
+```njk
+{# footer 文案默认取 site.footer，页面可用 locals.footerOverride 覆盖。 #}
+{% set _footer = footerOverride or site.footer %}
+{% set _brandCn = brandNameCnOverride if brandNameCnOverride is defined else site.brand.nameCn %}
+<footer>
+  <div class="foot-wrap">
+    <div class="foot-top">
+      <div class="foot-brand">{{ site.brand.name }}{% if _brandCn %}<span class="cn">{{ _brandCn }}</span>{% endif %}</div>
+      <div class="foot-links">
+        {% for col in _footer.columns %}{% for link in col.links %}<a href="{{ link.href }}">{{ link.text }}</a>{% endfor %}{% endfor %}
+      </div>
+    </div>
+    <div class="foot-legal">
+      {% if _footer.legal.note %}{{ _footer.legal.note }}<br>{% endif %}
+      © {{ _footer.legal.foundingYear }} {{ _footer.legal.company.text }}. All rights reserved.
+    </div>
+  </div>
+</footer>
+```
+
+- [ ] **Step 3: 四个英文内容文件各加 locals**
+
+文案**逐字取自对应的 `*_en.html` 源文件**（nav 在其 346–356 行附近、footer 在 590–609 行附近，具体行号以实际文件为准）。四个文件的 `locals` 内容相同，形如：
+
+```yaml
+locals:
+  navItems:
+    - { text: <英文「功能」>, href: '#features' }
+    - { text: <英文「支持」>, href: '#support' }
+    - { text: <英文「隐私」>, href: /privacy_en.html }
+  ctaOverride: { text: <英文 CTA>, href: '#download' }
+  langSwitchOverride: { text: <中文切换文案>, href: / }
+  homeHref: /index_en.html
+  footerOverride:
+    columns:
+      - title: ''
+        links: [ <逐条取自英文页脚> ]
+    legal:
+      note: <英文页脚免责长文案>
+      foundingYear: 2026
+      company: { text: VoiceBridge, href: /index_en.html }
+    social: []
+```
+
+⚠️ **`brandNameCnOverride` 只在英文页 brand 不含「畅译」时才需要**——请先看英文源文件的 brand 是什么，再决定要不要设。
+
+- [ ] **Step 4: 验收 —— 英文页文本比对必须变成完全一致**
+
+```bash
+cd ~/sproot/matrix && npm run build -w @matrix/theme-voicebridge && npm run matrix -- export voicebridge.top
+for f in index_en.html support_en.html privacy_en.html terms_en.html; do
+  node scripts/html-text-diff.mjs "/tmp/vb-baseline/$f" "sites/voicebridge.top/out/$f"
+done
+```
+
+预期：`index_en.html` **✅ 文本一致**。三个英文法务页若仍有差异，必须逐条判断并证明只剩「原页面 nav/footer 与英文首页 nav/footer 本身就不同」这类源文件自身差异。
+
+- [ ] **Step 5: 中文侧不回归**
+
+```bash
+for f in index.html support.html privacy.html terms.html; do
+  node scripts/html-text-diff.mjs "/tmp/vb-baseline/$f" "sites/voicebridge.top/out/$f"
+done
+```
+
+预期：`index.html` 仍是 **✅ 文本一致（111 段）**；三个中文法务页的差异与 Task 12 时**完全相同**（模板改动不得影响中文页——中文页不设 `locals`，必须走 `site.*` 回落分支）。
+
+- [ ] **Step 6: 提交**
+
+```bash
+cd ~/sproot/matrix
+git add themes/voicebridge/views/partials/nav.njk themes/voicebridge/views/partials/footer.njk sites/voicebridge.top/content/en
+git commit -m "fix(voicebridge): 英文页用 locals 覆盖 nav/footer 文案
+
+nav/footer 文案来自 site.yaml（中文），迁移后英文页会显示中文导航——
+现网英文页导航本来就是英文的，这是对线上的可见退化，不是待优化缺口。
+复用平台既有 locals 机制做页面级覆盖，中文页走 site.* 回落分支不受影响。"
 ```
 
 ---
