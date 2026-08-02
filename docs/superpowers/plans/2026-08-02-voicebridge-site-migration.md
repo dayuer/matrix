@@ -471,6 +471,87 @@ export function generateRobots(baseUrl: string, extraRules: string[] = []): stri
 }
 ```
 
+- [ ] **Step 1b: XML 转义 + lastmod 格式收敛**（来自 Task 3 质量评审，两条均已实测复现）
+
+同在 `packages/site-kit/src/sitemap.ts`，文件顶部 `import` 之后加入：
+
+```ts
+/**
+ * XML 文本转义。裸 `&` 会让整份 sitemap.xml 不是良构 XML——Google 不是跳过那一条，
+ * 而是拒绝解析整个文件。数据源虽是站点自己的 yaml（可信输入），但这是格式合法性问题，
+ * 不是安全问题：一个带 query 的 alternate 链接就能让全站 sitemap 失效。
+ */
+function escapeXml(s: string): string {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+/**
+ * lastmod 只接受 YYYY-MM-DD 字符串。
+ * js-yaml 会把不加引号的 `updated: 2026-08-02` 解析成 Date 对象而非字符串，
+ * 而 `??` 只挡 null/undefined，Date 是真值会直接漏进去，产出
+ * `<lastmod>Sun Aug 02 2026 07:00:00 GMT+0800 …</lastmod>` 这种非法值，
+ * Google 会静默丢弃该 URL 的 lastmod 信号——构建期毫无征兆。
+ */
+function normalizeLastmod(value: unknown, canonical: string): string | undefined {
+  if (value === undefined || value === null) return undefined;
+  if (value instanceof Date) return value.toISOString().slice(0, 10);
+  if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
+  console.warn(`  ⚠️  ${canonical} 的 updated 不是 YYYY-MM-DD（收到 ${JSON.stringify(value)}），本页 lastmod 回退为导出当天。`);
+  return undefined;
+}
+```
+
+然后把 `generateSitemap` 里这三行：
+
+```ts
+      const loc = `${base}${p.page.canonical}`;
+      const changefreq = p.page.changefreq ?? 'monthly';
+      const lastmod = p.page.updated ?? today;
+```
+
+改为：
+
+```ts
+      const loc = escapeXml(`${base}${p.page.canonical}`);
+      const changefreq = escapeXml(p.page.changefreq ?? 'monthly');
+      const lastmod = normalizeLastmod(p.page.updated, p.page.canonical) ?? today;
+```
+
+以及把 alternates 那行的两处插值包上转义：
+
+```ts
+        lines.push(
+          `    <xhtml:link rel="alternate" hreflang="${escapeXml(alt.hreflang)}" href="${escapeXml(`${base}${alt.href}`)}"/>`
+        );
+```
+
+⚠️ 转义对不含 `&<>"` 的普通路径是恒等变换，所以 Step 5 的 synon.ai 逐字节回归**仍然必须通过**。如果它变了，说明转义写错了。
+
+- [ ] **Step 1c: 断言两条修复生效**
+
+```bash
+cd ~/sproot/matrix && npm run build -w @matrix/site-kit && node -e '
+const { generateSitemap } = require("./packages/site-kit/dist/sitemap.js");
+const assert = require("assert");
+const mk = (p, extra = {}) => ({ path: p, template: "page", page: { title: "t", description: "d", canonical: p, ogImage: "/o.png", activeNav: null, bodyClass: null, ...extra } });
+
+// 1. 裸 & 必须被转义，产物仍是良构 XML
+const amp = generateSitemap("https://x.test", [mk("/a", { alternates: [{ hreflang: "en", href: "/a?ref=en&x=1" }] })]);
+assert.ok(!/href="[^"]*[^m;]&[^a]/.test(amp) && amp.includes("&amp;"), "裸 & 未被转义");
+
+// 2. Date 对象（js-yaml 对不加引号日期的解析结果）必须收敛成 YYYY-MM-DD
+const d = generateSitemap("https://x.test", [mk("/b", { updated: new Date("2026-08-02T00:00:00Z") })]);
+assert.ok(d.includes("<lastmod>2026-08-02</lastmod>"), "Date 型 updated 未收敛，实际：" + (d.match(/<lastmod>[^<]*/) || [])[0]);
+
+// 3. 乱格式字符串必须回退到今天而不是原样输出
+const bad = generateSitemap("https://x.test", [mk("/c", { updated: "8/2/2026" })]);
+assert.ok(!bad.includes("8/2/2026"), "非法 updated 被原样写进 lastmod");
+console.log("✅ XML 转义与 lastmod 收敛断言全部通过");
+'
+```
+
+预期：`✅ XML 转义与 lastmod 收敛断言全部通过`（第 2、3 条断言在修复前必然失败，可先跑一次确认它们真的能抓到问题）。
+
 - [ ] **Step 2: SiteDefinition 增加字段**
 
 `packages/site-kit/src/types.ts` 的 `SiteDefinition` 接口末尾（`cssAliases?: string[];` 之后）追加：
