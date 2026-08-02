@@ -1,0 +1,84 @@
+path: /privacy_en.html
+template: page
+meta:
+  lang: en
+  bodyClass: lang-en
+  title: VoiceBridge — Privacy Policy
+  description: 'VoiceBridge Privacy Policy: core speech recognition runs 100% on-device, audio and text are never uploaded to any server; completely free, no ads, no in-app purchases, and no personal information collected.'
+  keywords: VoiceBridge,privacy policy,offline,no upload,privacy first
+  canonical: /privacy_en.html
+  priority: 0.5
+  changefreq: yearly
+  alternates:
+    - hreflang: zh-Hans
+      href: /privacy.html
+    - hreflang: en
+      href: /privacy_en.html
+    - hreflang: x-default
+      href: /privacy.html
+blocks:
+  - type: custom-html
+    data:
+      html: |
+        <div class="container">
+          <span class="eyebrow">Privacy Policy</span>
+          <h1>Privacy Policy<span class="cn">VoiceBridge</span></h1>
+          <p class="subtitle">Last updated: July 5, 2026 · Effective: July 5, 2026</p>
+
+          <div class="highlight">
+            <p>🔒 VoiceBridge's core speech recognition runs entirely on your device, with no internet connection required. When you choose to use the "AI Meeting Notes" feature, your transcript will be shared with a third-party AI app of your choice via the system clipboard, subject to your explicit consent.</p>
+          </div>
+
+          <h2>1. Data Collection</h2>
+          <p>VoiceBridge does not collect any personal information, including but not limited to:</p>
+          <ul>
+            <li>Name, email, phone number, or other identity information</li>
+            <li>Device identifiers, IP addresses, or location data</li>
+            <li>Usage habits or behavioral analytics</li>
+          </ul>
+
+          <h2>2. Voice Data Processing</h2>
+          <p>VoiceBridge uses the SenseVoice on-device AI engine. All speech recognition is performed entirely on your iPhone:</p>
+          <ul>
+            <li>Audio recordings are stored only in the app's local sandbox</li>
+            <li>Transcribed text is stored only in the local database</li>
+            <li>Voice data is never uploaded to any server</li>
+            <li>Core features work even in Airplane Mode</li>
+          </ul>
+
+          <h2>3. iCloud Sync</h2>
+          <p><strong>Please note that iCloud sync and backup feature is currently not available in this version.</strong></p>
+          <p>In a future update, when we introduce this feature, it will:</p>
+          <ul>
+            <li>Be disabled by default and require your explicit manual activation</li>
+            <li>Only sync .txt plain text files, never any audio recordings</li>
+            <li>Use Apple's iCloud service with end-to-end encryption during transit</li>
+            <li>Allow you to completely turn it off at any time in the app settings</li>
+          </ul>
+
+          <h2>4. Free Service & No Ads Commitment</h2>
+          <p>VoiceBridge is a completely free application. We do not offer any in-app purchases or paid subscription services, and the app contains no advertisements. We do not collect, store, or process any payment, billing, or transaction details.</p>
+
+          <h2>5. Third-Party Services & AI Collaboration</h2>
+          <p>VoiceBridge does not integrate any third-party analytics, advertising, or tracking SDKs. The app contains no advertisements.</p>
+          <p>VoiceBridge offers an "AI Meeting Notes" feature that allows you to send your meeting transcript to a third-party AI app for processing. When using this feature:</p>
+          <ul>
+            <li><strong>Data Sent</strong>: Meeting title, duration, transcript text, speaker labels, and any custom glossary terms you have defined</li>
+            <li><strong>Data Recipients</strong>: The third-party AI app you actively select, including ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google), DeepSeek, Doubao (ByteDance), Kimi (Moonshot AI), Tongyi Qianwen (Alibaba), and Zhipu Qingyan (Zhipu AI)</li>
+            <li><strong>Transfer Method</strong>: Data is transferred via the system clipboard and manually pasted by you into the target app. VoiceBridge does not send any network requests directly to third-party servers</li>
+            <li><strong>User Control</strong>: Before first use, the app will request your explicit consent. You may revoke this authorization at any time in Settings, after which the AI collaboration feature will be unavailable</li>
+            <li><strong>Third-Party Responsibility</strong>: Once data is transferred to a third-party AI app, its processing is governed by that app's own privacy policy. We recommend reviewing the relevant service's privacy terms before use</li>
+          </ul>
+
+          <h2>6. iOS On-device Speech Recognition</h2>
+          <p>For languages not supported by SenseVoice (such as Indonesian, Thai, Vietnamese, Malay, French, German, Spanish, etc.), VoiceBridge uses Apple's native iOS speech recognition with on-device recognition enforced (requiresOnDeviceRecognition): audio is processed locally on your device and is not uploaded to Apple or any server (the device must have the corresponding language's dictation component installed). This capability is provided by Apple; see <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a> for details.</p>
+
+          <h2>7. Children's Privacy</h2>
+          <p>VoiceBridge is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+
+          <h2>8. Changes to This Policy</h2>
+          <p>If this privacy policy is updated, we will publish the revised version on this page and update the effective date. We recommend reviewing this page periodically.</p>
+
+          <h2>9. Contact Us</h2>
+          <p>For privacy-related inquiries, please contact: <a href="mailto:support@voicebridge.top">support@voicebridge.top</a></p>
+        </div>

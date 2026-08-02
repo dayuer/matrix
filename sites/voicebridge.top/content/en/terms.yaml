@@ -1,0 +1,68 @@
+path: /terms_en.html
+template: page
+meta:
+  lang: en
+  bodyClass: lang-en
+  title: VoiceBridge — Terms of Service
+  description: 'VoiceBridge Terms of Service: a completely free, 100% offline voice-to-text and meeting-notes tool. All features are free — no in-app purchases, no subscriptions — and voice data is processed entirely on-device.'
+  keywords: VoiceBridge,terms of service,completely free,offline transcription
+  canonical: /terms_en.html
+  priority: 0.5
+  changefreq: yearly
+  alternates:
+    - hreflang: zh-Hans
+      href: /terms.html
+    - hreflang: en
+      href: /terms_en.html
+    - hreflang: x-default
+      href: /terms.html
+blocks:
+  - type: custom-html
+    data:
+      html: |
+        <div class="container">
+          <span class="eyebrow">Terms of Service</span>
+          <h1>Terms of Service<span class="cn">VoiceBridge</span></h1>
+          <p class="subtitle">Last updated: June 6, 2026 · Effective Date: June 6, 2026</p>
+
+          <h2>1. Acceptance of Terms</h2>
+          <p>By downloading, installing, or using VoiceBridge (hereinafter referred to as "the App"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the App.</p>
+
+          <h2>2. Description of Service</h2>
+          <p>VoiceBridge is an on-device offline voice-to-text tool that provides audio import, speech recognition, text transcription, and meeting-notes features. Core features run entirely on your local device without requiring an internet connection.</p>
+
+          <h2>3. Free Service</h2>
+          <ul>
+            <li>All features provided by the App are completely free of charge. There are no paid subscriptions or hidden fees.</li>
+            <li>We do not impose any limits on transcription duration or the number of meeting records saved. You can use all core features (including speaker voiceprint library, iCloud backup, PDF/text export, etc.) without any restrictions.</li>
+          </ul>
+
+          <h2>4. User Responsibilities</h2>
+          <ul>
+            <li>You are responsible for ensuring that you have obtained the necessary consent from all participants before recording or transcribing any audio.</li>
+            <li>You must not use the App for any illegal purposes.</li>
+            <li>You are solely responsible for all content created and stored through the App.</li>
+          </ul>
+
+          <h2>5. Intellectual Property</h2>
+          <p>The App and all its content, features, and technology are protected by intellectual property laws. You may not copy, modify, distribute, or reverse engineer any part of the App without authorization.</p>
+
+          <h2>6. Disclaimer of Warranties</h2>
+          <ul>
+            <li>Speech recognition results may contain errors and are not guaranteed to be 100% accurate.</li>
+            <li>The App is provided on an "as is" basis without warranties of any kind, either express or implied.</li>
+            <li>We shall not be liable for any direct or indirect damages resulting from the use of the App.</li>
+          </ul>
+
+          <h2>7. Data & Privacy</h2>
+          <p>Our commitment to your privacy is detailed in our <a href="privacy_en.html">Privacy Policy</a>. All voice data processing is completed on-device, and we do not collect any personal information.</p>
+
+          <h2>8. Changes to Terms</h2>
+          <p>We reserve the right to modify these terms at any time. Modified terms will be published on this page and take effect immediately. Continued use of the App constitutes acceptance of the modified terms.</p>
+
+          <h2>9. Governing Law</h2>
+          <p>These terms are governed by the laws of the People's Republic of China.</p>
+
+          <h2>10. Contact Us</h2>
+          <p>For any questions, please contact: <a href="mailto:support@voicebridge.top">support@voicebridge.top</a></p>
+        </div>
