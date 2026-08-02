@@ -1218,7 +1218,9 @@ git commit -m "feat(theme): voicebridge 样式表从手写 index.html 迁入，:
 <meta property="og:image" content="{{ site.baseUrl }}{{ page.ogImage }}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:locale" content="{% if (page.lang or site.lang or 'zh-Hans').startswith('en') %}en_US{% else %}zh_CN{% endif %}">
+{# startsWith 必须是驼峰：Nunjucks 跑在真 JS 字符串上，Jinja2 的全小写 startswith 会抛
+   "Unable to call ... which is undefined or falsey"，让整页渲染失败（已实测）。 #}
+<meta property="og:locale" content="{% if (page.lang or site.lang or 'zh-Hans').startsWith('en') %}en_US{% else %}zh_CN{% endif %}">
 
 {# Twitter #}
 <meta name="twitter:card" content="summary_large_image">
