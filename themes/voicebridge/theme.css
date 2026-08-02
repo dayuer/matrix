@@ -270,3 +270,83 @@
   body.legal-support .faq .a { padding: 0 20px 22px 2px; font-size: 15.5px; line-height: 1.6; }
   body.legal-support .sysreq { background: var(--surface-2); border-radius: 18px; padding: 22px 26px; margin-top: 18px; }
   body.legal-support .sysreq p { color: var(--ink); font-size: 15.5px; line-height: 1.9; }
+
+  /* ---------- 内容页（body.doc） ----------
+     阶段 2 的 27 个长文页共用。作用域必须隔离：裸 h1/h2/h3/p/ul/li 已被首页
+     与 body.legal 占用；.container/.eyebrow/.faq 同理。body class 一律 doc- 前缀，
+     不得与任何组件 class 重名（阶段 1 的 body.support 撞了 section.support）。 */
+  body.doc { line-height: 1.7; }
+  body.doc a:hover { text-decoration: underline; }
+  .doc-wrap { max-width: 720px; margin: 0 auto; padding: 0 22px; }
+
+  /* 面包屑 */
+  .breadcrumb { padding-top: calc(var(--nav-h) + 28px); }
+  .breadcrumb ol { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; }
+  .breadcrumb li { font-size: 13.5px; color: var(--ink-3); margin: 0; }
+  .breadcrumb li + li::before { content: "/"; margin-right: 8px; color: var(--border); }
+  .breadcrumb a { color: var(--ink-2); }
+  .breadcrumb a:hover { color: var(--ink); text-decoration: none; }
+
+  /* 页面标题（内容页专用，避开首页的 h1.title） */
+  body.doc .doc-title { font-size: clamp(32px, 5vw, 46px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; color: var(--ink); margin: 18px 0 0; text-wrap: balance; }
+  body.doc .doc-sub { font-size: 17px; color: var(--ink-2); margin-top: 14px; line-height: 1.6; text-wrap: pretty; }
+
+  /* 直答卡：GEO 的主要载体，视觉上要显著但不喧宾夺主 */
+  .answer-card { margin-top: 30px; }
+  .ac-box { background: var(--surface-2); border-radius: var(--r-lg); padding: 26px 28px 28px; }
+  .ac-q { font-size: 18px; font-weight: 600; color: var(--ink); letter-spacing: -0.01em; margin: 0 0 12px; line-height: 1.45; }
+  .ac-a { font-size: 16.5px; color: var(--ink); line-height: 1.72; margin: 0; text-wrap: pretty; }
+  .ac-facts { margin: 16px 0 0; padding-left: 20px; }
+  .ac-facts li { font-size: 15px; color: var(--ink-2); margin-bottom: 6px; }
+
+  /* 正文 */
+  .prose { margin-top: 34px; }
+  body.doc .prose h2 { font-size: 26px; font-weight: 600; letter-spacing: -0.018em; color: var(--ink); margin: 44px 0 14px; line-height: 1.25; }
+  body.doc .prose h2:first-child { margin-top: 0; }
+  body.doc .prose h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.012em; color: var(--ink); margin: 30px 0 10px; line-height: 1.35; }
+  body.doc .prose p { font-size: 16.5px; color: var(--ink-2); margin: 0 0 14px; line-height: 1.72; text-wrap: pretty; }
+  body.doc .prose ul, body.doc .prose ol { padding-left: 22px; margin: 0 0 14px; }
+  body.doc .prose li { font-size: 16.5px; color: var(--ink-2); margin-bottom: 8px; line-height: 1.7; }
+  body.doc .prose strong { color: var(--ink); font-weight: 600; }
+  body.doc .prose blockquote { border-left: 3px solid var(--accent); padding-left: 16px; margin: 20px 0; color: var(--ink-2); }
+  body.doc .prose code { background: var(--surface-2); border-radius: 6px; padding: 2px 6px; font-size: 14.5px; }
+
+  /* 教程步骤 */
+  .step-list { margin-top: 34px; }
+  .steps { list-style: none; padding: 0; margin: 0; counter-reset: none; }
+  .step { display: flex; gap: 16px; padding: 20px 0; border-top: 1px solid var(--border-2); }
+  .step:last-child { border-bottom: 1px solid var(--border-2); }
+  .step-n { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+  .step-body { flex: 1; }
+  body.doc .step-body h3 { font-size: 17.5px; font-weight: 600; color: var(--ink); margin: 3px 0 6px; letter-spacing: -0.01em; }
+  body.doc .step-body p { font-size: 16px; color: var(--ink-2); margin: 0 0 6px; line-height: 1.68; }
+  body.doc .step-tip { font-size: 14.5px; color: var(--ink-3); }
+
+  /* 列表页条目 */
+  .card-grid { margin-top: 34px; }
+  .cg-lead { font-size: 16.5px; color: var(--ink-2); margin: 0 0 22px; line-height: 1.7; }
+  .cg-items { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .cg-item { display: block; background: var(--surface-2); border-radius: var(--r-md); padding: 22px 22px 24px; transition: transform .15s ease, background .2s ease; }
+  .cg-item:hover { background: #eeeef1; text-decoration: none; transform: translateY(-2px); }
+  .cg-kicker { display: block; font-size: 12.5px; font-weight: 600; color: var(--accent); letter-spacing: 0.02em; margin-bottom: 8px; }
+  body.doc .cg-item h3 { font-size: 17.5px; font-weight: 600; color: var(--ink); margin: 0 0 8px; letter-spacing: -0.012em; line-height: 1.35; }
+  body.doc .cg-item p { font-size: 14.5px; color: var(--ink-2); margin: 0; line-height: 1.6; }
+  @media (max-width: 640px) { .cg-items { grid-template-columns: 1fr; } }
+
+  /* 事实对照表 */
+  .fact-table { margin-top: 34px; }
+  .ft-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .fact-table table { width: 100%; border-collapse: collapse; font-size: 15.5px; }
+  .fact-table th, .fact-table td { text-align: left; padding: 13px 14px; border-bottom: 1px solid var(--border-2); vertical-align: top; }
+  .fact-table th { font-weight: 600; color: var(--ink); background: var(--surface-2); white-space: nowrap; }
+  .fact-table td { color: var(--ink-2); line-height: 1.6; }
+  .fact-table tr:last-child td { border-bottom: none; }
+
+  /* 相关阅读 */
+  .related { margin-top: 46px; padding-bottom: 10px; }
+  body.doc .related h2 { font-size: 20px; font-weight: 600; color: var(--ink); margin: 0 0 14px; letter-spacing: -0.015em; }
+  .rel-list { list-style: none; padding: 0; margin: 0; }
+  .rel-list li { padding: 12px 0; border-top: 1px solid var(--border-2); margin: 0; }
+  .rel-list li:last-child { border-bottom: 1px solid var(--border-2); }
+  .rel-list a { font-size: 16px; color: var(--accent-ink); font-weight: 500; }
+  .rel-desc { display: block; font-size: 14px; color: var(--ink-3); margin-top: 4px; }
