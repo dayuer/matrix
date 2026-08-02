@@ -14,23 +14,45 @@ export interface LlmsConfig {
   summary?: string;
 }
 
-/** 把 block 里的 HTML 粗剥为纯文本（只用于 llms-full.txt，不参与页面渲染）。 */
-function blocksToText(page: SiteDefinition['pages'][number]): string {
-  const parts: string[] = [];
-  for (const block of page.page.blocks || []) {
-    const data = block.data as Record<string, unknown>;
-    for (const value of Object.values(data)) {
-      if (typeof value !== 'string') continue;
-      const text = value
-        .replace(/<script[\s\S]*?<\/script>/gi, ' ')
-        .replace(/<style[\s\S]*?<\/style>/gi, ' ')
-        .replace(/<svg[\s\S]*?<\/svg>/gi, ' ')
-        .replace(/<[^>]+>/g, ' ')
-        .replace(/\s+/g, ' ')
-        .trim();
-      if (text) parts.push(text);
+/**
+ * 这些键是结构/链接元数据，不是文案。递归收集时跳过它们，
+ * 否则 llms-full.txt 会混进 `/privacy.html`、`span-3 feature-hero accent` 这类噪音，
+ * 反而稀释了给 AI 引擎看的事实密度。
+ */
+const NON_CONTENT_KEYS = new Set(['href', 'url', 'src', 'id', 'cls', 'class', 'type', 'target', 'icon']);
+
+/**
+ * 递归收集 block 数据里的文案。
+ * block 的内容常嵌在数组或对象里（如 bento 卡片列表 data.cards[]、页头 data.header{}），
+ * 只取 Object.values(data) 的顶层字符串会把整段内容静默丢掉——首页卖点全在卡片数组里。
+ */
+function collectText(value: unknown, out: string[]): void {
+  if (typeof value === 'string') {
+    const text = value
+      .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+      .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    if (text) out.push(text);
+    return;
+  }
+  if (Array.isArray(value)) {
+    for (const item of value) collectText(item, out);
+    return;
+  }
+  if (value && typeof value === 'object') {
+    for (const [key, v] of Object.entries(value as Record<string, unknown>)) {
+      if (NON_CONTENT_KEYS.has(key)) continue;
+      collectText(v, out);
     }
   }
+}
+
+/** 把 block 里的文案粗剥为纯文本（只用于 llms-full.txt，不参与页面渲染）。 */
+function blocksToText(page: SiteDefinition['pages'][number]): string {
+  const parts: string[] = [];
+  for (const block of page.page.blocks || []) collectText(block.data, parts);
   return parts.join('\n');
 }
 
