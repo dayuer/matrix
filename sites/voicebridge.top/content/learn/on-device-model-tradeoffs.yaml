@@ -1,0 +1,112 @@
+path: /learn/on-device-model-tradeoffs
+template: article
+meta:
+  title: 端侧模型选型：好模型为什么上不了手机 — VoiceBridge 畅译
+  description: 端侧部署的约束不是能不能跑，是体积、内存、发热、首次加载四项预算怎么花。拆解畅译双引擎分工、模型三级回退、加载失败不可致命三条设计决策。
+  keywords: 端侧AI,离线语音识别,zipformer,SenseVoice,模型选型,端侧部署,语音识别原理,VoiceBridge,畅译
+  canonical: "/learn/on-device-model-tradeoffs/"
+  bodyClass: doc
+  priority: 0.6
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "Article"
+        headline: "端侧模型选型：好模型为什么上不了手机"
+        description: "端侧部署的约束是体积、内存、发热、首次加载四项预算怎么花。拆解双引擎分工、三级回退、加载失败不可致命的设计决策。"
+        image: "https://voicebridge.top/og-image.png"
+        author:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+        publisher:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+          logo:
+            "@type": "ImageObject"
+            url: "https://voicebridge.top/favicon.svg"
+        datePublished: "2026-08-03"
+        dateModified: "2026-08-03"
+        mainEntityOfPage:
+          "@type": "WebPage"
+          "@id": "https://voicebridge.top/learn/on-device-model-tradeoffs/"
+        inLanguage: "zh-Hans"
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - "@type": "ListItem"
+            position: 1
+            name: "首页"
+            item: "https://voicebridge.top/"
+          - "@type": "ListItem"
+            position: 2
+            name: "知识"
+            item: "https://voicebridge.top/learn/"
+          - "@type": "ListItem"
+            position: 3
+            name: "端侧模型选型：好模型为什么上不了手机"
+            item: "https://voicebridge.top/learn/on-device-model-tradeoffs/"
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - text: 首页
+          href: /
+        - text: 知识
+          href: /learn/
+        - text: 端侧模型选型
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">端侧模型选型：好模型为什么上不了手机</h1>
+        <p class="doc-sub">端侧的约束不是「能不能跑」，是体积、内存、发热、首次加载这四项预算怎么花。</p>
+
+  # 出处：Sources/ViewModels/RecordingViewModel.swift:191-192,233-238；Sources/Services/StreamingASRService.swift:2；Sources/Services/SherpaASRService.swift:5
+  - type: answer-card
+    data:
+      question: 为什么不能给所有语言用同一个识别模型？
+      answer: 因为「同一个模型」在不同语言上的实际表现可能差出一整个量级——中文强、英文弱的模型直接拿来统一覆盖，会让本来准确的实时结果被更差的结果覆盖掉。畅译按场景拆成两条引擎路径，而不是让一个模型硬扛所有语言。
+      facts:
+        - 实时转录用流式 zipformer（双语），会议结束后离线 SenseVoice 做全量精修
+        - 按英文字符占比判断，英文强主导的块跳过 SenseVoice 精修，直接采用实时粗稿
+        - 模型文件查找三级回退：BA 资产包 → App Bundle 子目录 → Bundle 根级
+        - 模型加载失败一律返回可恢复的 nil，不允许 fatalError 崩溃整个 App
+
+  # 出处：Sources/ViewModels/RecordingViewModel.swift:189-197,233-243
+  - type: prose
+    data:
+      html: |
+        <h2>两条引擎，不是「按语言分工」这么简单</h2>
+        <p>先说清楚两条引擎分别在做什么：实时转录用的是流式 zipformer 模型（双语），一边解码一边吐出部分识别结果，还会持续修正——类似输入法边打边改候选词。录音或会议结束后，离线 SenseVoice 模型会把整段音频重新识别一遍来提升质量，这一步叫「精修」，它不是流式的，一次性吃下整段音频再给结果。</p>
+        <p>问题在于，SenseVoice 对中文的识别质量明显好于对英文，而实时 zipformer 本身在双语场景下已经足够准确。如果不做区分、统一用 SenseVoice 结果覆盖 zipformer 的粗稿，会出现「英文块被更差的结果覆盖」的情况——源码注释里的原话是「SenseVoice 英文差、会把好文本覆盖成乱码」。所以畅译按块判断文本是否「英文强主导」（拉丁字母数是否超过 CJK 汉字数的 3 倍），英文强主导的块直接采用 zipformer 粗稿作为终稿，跳过精修，粗稿即终稿。</p>
+        <p>阈值取 3 倍而不是简单过半，也是取舍过的：如果按简单多数判断，一句拉丁字母 15 个、汉字 7 个的中英混说会被误判成英文块，导致里面本该被精修、加标点的中文部分只剩粗稿。3 倍阈值能让「大段英文 + 上一块溢出的几个汉字」仍判定为英文，又不会把中文主导的正常混说句子错判走。</p>
+
+  # 出处：Sources/Services/StreamingASRService.swift:25-32
+  - type: prose
+    data:
+      html: |
+        <h2>三级回退，不是锦上添花</h2>
+        <p>模型文件不是随安装包一次性铺开的——出于安装包体积考虑，部分模型资产通过按需下载的资产包分发。这意味着「模型文件到底在哪」在运行时有三种可能：资产包已下载完成、资产包未下载但 App Bundle 里有兜底子目录副本、或者只存在于 Bundle 根目录。查找逻辑按这个顺序依次回退：资产包路径 → Bundle 内的专用子目录 → Bundle 根级，任何一步找不到就退到下一步，而不是任何一步失败就直接报错。这是端侧部署要面对的现实：不能假设资源永远待在「标准位置」，回退路径本身就是功能的一部分，不是异常处理的附加项。</p>
+
+  # 出处：Sources/Bridge/SherpaOnnx.swift:805-820,349
+  - type: prose
+    data:
+      html: |
+        <h2>加载失败必须可恢复，不可致命</h2>
+        <p>sherpa-onnx 上游的 C++ 绑定在识别器创建失败时用的是 fatalError，会直接让整个 App 崩溃。畅译把这条路径改成可失败初始化（返回 nil 而不是崩溃），原因很实际：调用方本来就写好了「识别器为 nil 时提示加载失败并降级」的分支——如果上游直接 fatalError，这段本该生效的降级逻辑根本等不到执行的机会，程序已经死了。</p>
+        <p>同样的原则也用在热词（用户自定义、希望被优先识别对的词）上：热词解码流创建失败时，不会连累整个识别会话崩溃，而是退化为普通重置继续跑，只是暂时不带热词能力。说得更直白一点：一个局部功能（热词、某个模型）失败，不该拖垮主链路（录音和转录本身）继续工作的能力——这条原则在端侧场景里比在服务端场景里更重要，因为端侧没有「重试请求」这个选项，App 崩溃就是这一次转录彻底没了。</p>
+
+  - type: related-links
+    data:
+      title: 相关阅读
+      items:
+        - text: 说话人分离为什么会认错人
+          href: /learn/speaker-diarization/
+          desc: 张冠李戴的根因在切分层，不在聚类层
+        - text: 识别出文字只是开始
+          href: /learn/asr-postprocessing/
+          desc: 标点恢复、分段规则、降级路径——可读性是独立的一层工程
+        - text: 离线语音识别功能详解
+          href: /features/offline-transcription/
+          desc: 从用户视角看，飞行模式下离线转录是怎么工作的

@@ -1,0 +1,76 @@
+path: /learn
+template: page
+meta:
+  title: 知识 — 技术选型与踩坑复盘 — VoiceBridge 畅译
+  description: 畅译（VoiceBridge）团队拆开揉碎讲产品背后的功能思考、技术选型与踩过的坑：说话人分离、端侧模型选型、语音识别后处理、逐字稿编辑权设计。
+  keywords: 语音识别原理,端侧AI,说话人分离,技术选型,产品决策,VoiceBridge,畅译
+  canonical: "/learn/"
+  bodyClass: doc
+  priority: 0.6
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "CollectionPage"
+        name: "知识 — VoiceBridge 畅译"
+        description: "畅译团队拆开揉碎讲产品背后的功能思考、技术选型与踩过的坑。"
+        url: "https://voicebridge.top/learn/"
+        inLanguage: "zh-Hans"
+        mainEntity:
+          "@type": "ItemList"
+          itemListElement:
+            - "@type": "ListItem"
+              position: 1
+              url: "https://voicebridge.top/learn/speaker-diarization/"
+            - "@type": "ListItem"
+              position: 2
+              url: "https://voicebridge.top/learn/on-device-model-tradeoffs/"
+            - "@type": "ListItem"
+              position: 3
+              url: "https://voicebridge.top/learn/asr-postprocessing/"
+            - "@type": "ListItem"
+              position: 4
+              url: "https://voicebridge.top/learn/transcript-editing/"
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - "@type": "ListItem"
+            position: 1
+            name: "首页"
+            item: "https://voicebridge.top/"
+          - "@type": "ListItem"
+            position: 2
+            name: "知识"
+            item: "https://voicebridge.top/learn/"
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - text: 首页
+          href: /
+        - text: 知识
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">知识</h1>
+        <p class="doc-sub">代码不开源，但设计思路可以。这里拆开揉碎讲畅译真实的功能思考、技术选型、踩过的坑，以及从坑里学到的教训。</p>
+
+  - type: card-grid
+    data:
+      items:
+        - kicker: 说话人分离
+          title: 说话人分离为什么会认错人
+          desc: 张冠李戴的根因在切分层，不在聚类层——从段级聚类到话轮切分的选型过程
+          href: /learn/speaker-diarization/
+        - kicker: 端侧部署
+          title: 端侧模型选型：好模型为什么上不了手机
+          desc: 体积、内存、发热、首次加载——端侧部署的四项预算怎么花
+          href: /learn/on-device-model-tradeoffs/
+        - kicker: 识别后处理
+          title: 识别出文字只是开始
+          desc: 可读性不是识别准确率的副产品，是独立的一层工程
+          href: /learn/asr-postprocessing/
+        - kicker: 交互设计
+          title: 机器改和人改会打架
+          desc: AI 产物的编辑权必须明确归属，否则用户的修改会被静默吃掉
+          href: /learn/transcript-editing/

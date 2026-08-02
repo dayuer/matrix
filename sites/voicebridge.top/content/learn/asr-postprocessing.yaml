@@ -1,0 +1,118 @@
+path: /learn/asr-postprocessing
+template: article
+meta:
+  title: 识别出文字只是开始 — VoiceBridge 畅译
+  description: 可读性不是识别准确率的副产品，是独立的一层工程。拆解畅译标点先剥离再恢复、三个分段阈值各自解决什么问题、标点模型不可用时的降级路径。
+  keywords: 语音识别后处理,标点恢复,CT-Transformer,ASR分段,逐字稿排版,语音识别原理,VoiceBridge,畅译
+  canonical: "/learn/asr-postprocessing/"
+  bodyClass: doc
+  priority: 0.6
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "Article"
+        headline: "识别出文字只是开始"
+        description: "可读性不是识别准确率的副产品，是独立的一层工程。拆解标点先剥离再恢复、三个分段阈值、降级路径三条设计决策。"
+        image: "https://voicebridge.top/og-image.png"
+        author:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+        publisher:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+          logo:
+            "@type": "ImageObject"
+            url: "https://voicebridge.top/favicon.svg"
+        datePublished: "2026-08-03"
+        dateModified: "2026-08-03"
+        mainEntityOfPage:
+          "@type": "WebPage"
+          "@id": "https://voicebridge.top/learn/asr-postprocessing/"
+        inLanguage: "zh-Hans"
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - "@type": "ListItem"
+            position: 1
+            name: "首页"
+            item: "https://voicebridge.top/"
+          - "@type": "ListItem"
+            position: 2
+            name: "知识"
+            item: "https://voicebridge.top/learn/"
+          - "@type": "ListItem"
+            position: 3
+            name: "识别出文字只是开始"
+            item: "https://voicebridge.top/learn/asr-postprocessing/"
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - text: 首页
+          href: /
+        - text: 知识
+          href: /learn/
+        - text: 识别出文字只是开始
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">识别出文字只是开始</h1>
+        <p class="doc-sub">可读性不是识别准确率的副产品，是独立的一层工程。</p>
+
+  # 出处：Sources/Services/TranscriptComposer.swift:79-96；Sources/Services/PunctuationService.swift:1-3
+  - type: answer-card
+    data:
+      question: 语音识别输出的文字，为什么不能直接拿来用？
+      answer: ASR 原始输出通常是一整段零散标点、不分段的连续文本，直接展示给用户几乎没法读。畅译在识别结果之上单独做了一层后处理：剥离原有标点、用标点恢复模型重新生成、按静音阈值分段，任何一步失败都有兜底，不会因为一个模型不可用就让文字整段挤成一坨。
+      facts:
+        - 统一重排标点前先剥离 ASR 自带标点，避免恢复结果与原有标点叠加
+        - 标点恢复用 CT-Transformer 离线模型，支持中英文
+        - 分段依据尾静音时长：无文本尾静音 2.4 秒、有文本尾静音 0.7 秒，单块最长 15 秒硬切
+        - 标点模型不可用时降级为「ASR 自带标点 + 规则修补」，不空转
+
+  # 出处：Sources/Services/TranscriptComposer.swift:1-3（头注释）
+  - type: prose
+    data:
+      html: |
+        <h2>原始输出长什么样</h2>
+        <p>持续说话时，ASR（自动语音识别）本身也会顺带给出一些标点——这是解码过程中模型附带的产物，零散、不成体系，很多时候一整段话会挤在一起没有分段。直接把这样的结果展示给用户，读起来很吃力，也谈不上是一份能用的逐字稿。识别准确不等于可读，中间还差一整层后处理。</p>
+
+  # 出处：Sources/Services/TranscriptComposer.swift:79-90,215-231；Sources/Services/PunctuationService.swift:25-29
+  - type: prose
+    data:
+      html: |
+        <h2>为什么标点要先剥离，再重新恢复</h2>
+        <p>畅译的做法是：统一重排前，先把 ASR 自带的标点整个剥掉，只保留文字与数字、空白折叠成单个空格，再把这段「干净」的无标点全文交给 CT-Transformer 标点恢复模型重新生成一遍标点。</p>
+        <p>剥离这一步不是多余动作。如果直接在带标点的原文上跑标点恢复模型，模型新加的标点会和原有的零散标点叠加，产生重复或冲突——比如一个逗号后面又跟一个模型新加的逗号，或者一句话被断句两次。先清空、再重建，才能保证最终标点是同一套风格、同一个来源，而不是两套标点系统硬拼在一起的结果。</p>
+
+  # 出处：Sources/Services/StreamingASRService.swift:3,67-73；Sources/Bridge/SherpaOnnx.swift:191-193
+  - type: prose
+    data:
+      html: |
+        <h2>分段背后的三个数字，各自解决什么问题</h2>
+        <p>畅译的分段规则基于说话时的停顿时长，这套阈值最初用的是上游库的默认值：完全没声音时的停顿阈值很长；有内容之后的停顿阈值 1.2 秒；实在没有停顿就硬切一刀，上限 30 秒。实测下来这组默认值偏保守——中英文自然说话时句子之间的停顿一般在 0.5 到 0.8 秒左右，够不着 1.2 秒的阈值，于是连续说话经常一路撑到 30 秒的硬切上限，切出来的块又长又不贴合句子边界。</p>
+        <p>调整后的三个阈值分别是：完全静音 2.4 秒判定为这段话彻底停了；有文本内容时的尾静音阈值降到 0.7 秒，贴近自然的句间停顿；单块硬切上限降到 15 秒，避免连续说话攒成一个大块。三个数字各管一种场景，不是同一件事的三次重复——第一个管「什么时候确认没人在说了」，第二个管「句子之间的自然换气点」，第三个管「没有明显停顿时也不能无限攒下去」的兜底。</p>
+
+  # 出处：Sources/Services/PunctuationService.swift:1-3,26-27
+  - type: prose
+    data:
+      html: |
+        <h2>标点模型不可用时怎么办</h2>
+        <p>标点恢复模型本身也可能加载失败或文件缺失。这种情况下不会让整段文字保持无标点状态，而是降级为「ASR 自带标点 + 规则修补」——用识别引擎顺带给出的零散标点打底，再用规则做基本修补。这不是最好的结果，但比完全没有标点、或者因为一个模型不可用就让整个后处理功能失效要好。这也是这一层设计里反复出现的思路：每一步都要有降级路径，不能让局部失败变成整体失败。</p>
+
+  - type: related-links
+    data:
+      title: 相关阅读
+      items:
+        - text: 端侧模型选型：好模型为什么上不了手机
+          href: /learn/on-device-model-tradeoffs/
+          desc: 体积、内存、发热、首次加载——端侧部署的四项预算怎么花
+        - text: 机器改和人改会打架
+          href: /learn/transcript-editing/
+          desc: AI 产物的编辑权必须明确归属，否则用户的修改会被静默吃掉
+        - text: AI 会议纪要功能详解
+          href: /features/meeting-minutes/
+          desc: 从用户视角看，一键生成结构化纪要是怎么用的
