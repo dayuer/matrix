@@ -19,7 +19,18 @@ export interface LlmsConfig {
  * 否则 llms-full.txt 会混进 `/privacy.html`、`span-3 feature-hero accent` 这类噪音，
  * 反而稀释了给 AI 引擎看的事实密度。
  */
-const NON_CONTENT_KEYS = new Set(['href', 'url', 'src', 'id', 'cls', 'class', 'type', 'target', 'icon']);
+const NON_CONTENT_KEYS = new Set([
+  'href',
+  'url',
+  'src',
+  'id',
+  'cls',
+  'class',
+  'type',
+  'target',
+  'icon',
+  'variant',
+]);
 
 /**
  * 递归收集 block 数据里的文案。
