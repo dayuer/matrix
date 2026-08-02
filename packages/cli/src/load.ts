@@ -35,6 +35,8 @@ interface SiteYaml extends BaseSiteConfig {
   defaults?: Partial<PageMeta>;
   /** 博客/文档等集合：从草稿目录展开为列表页 + 详情页。 */
   collections?: CollectionConfig[];
+  /** 追加到 robots.txt 的自定义规则行。 */
+  robots?: string[];
 }
 
 /** content 文件（yaml 或 md frontmatter）里允许的页面级字段。 */
@@ -153,6 +155,7 @@ export function loadSite(siteDir: string): SiteDefinition {
     cssAliases,
     defaults = {},
     collections = [],
+    robots,
     ...site
   } = raw;
   if (!site.baseUrl) fail(siteFile, '缺少必填字段 baseUrl');
@@ -198,5 +201,6 @@ export function loadSite(siteDir: string): SiteDefinition {
     themeOptions,
     extraAssets,
     cssAliases,
+    robots,
   };
 }

@@ -26,7 +26,7 @@ function copyDir(src: string, dest: string): void {
  * 页面、404、theme.css/style.css、app.js、images/、sitemap.xml、robots.txt 一次产出。
  */
 export function exportSite(def: SiteDefinition): void {
-  const { root, site, pages, notFound, extraAssets = [], cssAliases = [], theme, themeOptions } = def;
+  const { root, site, pages, notFound, extraAssets = [], cssAliases = [], theme, themeOptions, robots = [] } = def;
   const OUT = path.join(root, 'out');
   const basePath = (process.env.BASE_PATH || '').replace(/\/$/, '');
 
@@ -43,6 +43,31 @@ export function exportSite(def: SiteDefinition): void {
 
   if (fs.existsSync(OUT)) fs.rmSync(OUT, { recursive: true });
   ensureDir(OUT);
+
+  // 输出路径守卫：扁平 .html 与目录式两种形态共存后，两类冲突会静默产出错误的站点结构。
+  // 其一，两个页面写到同一个文件（后者覆盖前者，页面凭空消失）。
+  // 其二，/foo 与 /foo.html 并存：nginx 的 try_files $uri $uri/ 会让两个 URL 都返回
+  // 不同内容，是搜索引擎眼里的重复内容——而这次迁移的全部目的就是 SEO。
+  const outputPaths = new Map<string, string>();
+  const urlStems = new Map<string, string>();
+  for (const p of pages) {
+    const rel =
+      p.path === '/'
+        ? 'index.html'
+        : /\.html?$/i.test(p.path)
+          ? p.path.replace(/^\//, '')
+          : `${p.path.replace(/^\//, '')}/index.html`;
+    const clash = outputPaths.get(rel);
+    if (clash) throw new Error(`[site-kit] 输出文件冲突：页面 ${clash} 与 ${p.path} 都会写入 out/${rel}`);
+    outputPaths.set(rel, p.path);
+
+    const stem = p.path.replace(/\.html?$/i, '').replace(/\/$/, '') || '/';
+    const stemClash = urlStems.get(stem);
+    if (stemClash) {
+      console.warn(`  ⚠️  重复内容风险：页面 ${stemClash} 与 ${p.path} 会在同一 URL 前缀下都可访问，请只保留一个。`);
+    }
+    urlStems.set(stem, p.path);
+  }
 
   // 1. 页面
   for (const p of pages) {
@@ -74,7 +99,7 @@ export function exportSite(def: SiteDefinition): void {
 
   // 3. sitemap + robots
   fs.writeFileSync(path.join(OUT, 'sitemap.xml'), generateSitemap(site.baseUrl, pages));
-  fs.writeFileSync(path.join(OUT, 'robots.txt'), generateRobots(site.baseUrl));
+  fs.writeFileSync(path.join(OUT, 'robots.txt'), generateRobots(site.baseUrl, robots));
   console.log('  ✅ sitemap.xml + robots.txt');
 
   // 4. 样式：先主题 theme.css，再站点 style.css（子主题覆盖，<head> 顺序在后者）
