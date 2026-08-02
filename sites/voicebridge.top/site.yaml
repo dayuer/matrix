@@ -1,6 +1,100 @@
-theme: null
-lang: zh-CN
+# VoiceBridge 畅译官网 —— 数据驱动站点，voicebridge 主题。
+theme: voicebridge
+lang: zh-Hans
 baseUrl: https://voicebridge.top
+
 brand:
   name: VoiceBridge
+  nameCn: 畅译
   desc: 端侧 AI 语音转写与实时纪要
+  favicon: /favicon.svg
+
+nav:
+  - key: features
+    text: 功能
+    href: '#features'
+  - key: support
+    text: 支持
+    href: '#support'
+  - key: privacy
+    text: 隐私
+    href: /privacy.html
+
+langSwitch:
+  text: EN
+  href: /index_en.html
+
+cta:
+  text: 免费下载
+  href: '#download'
+
+footer:
+  columns:
+    - title: 站内
+      links:
+        - text: 功能
+          href: '#features'
+        - text: 技术支持
+          href: /support.html
+        - text: 隐私政策
+          href: /privacy.html
+        - text: 使用条款
+          href: /terms.html
+        - text: 联系我们
+          href: 'mailto:support@voicebridge.top'
+        - text: English
+          href: /index_en.html
+  legal:
+    contact: support@voicebridge.top
+    company:
+      text: VoiceBridge
+      href: /
+    foundingYear: 2026
+    note: >-
+      VoiceBridge（畅译）完全免费、100% 离线：识别、声纹与语义向量均在设备本地完成，无需联网。使用「AI 智能纪要」功能时，转录文本将在你的明确授权下通过系统剪贴板传递至你选择的第三方 AI 应用。
+  social: []
+
+defaults:
+  ogImage: /og-image.png
+  changefreq: monthly
+
+extraAssets:
+  - favicon.svg
+  - apple-touch-icon.png
+  - og-image.png
+  - og-image.svg
+  - googlebe863ce68fa6a6d4.html
+
+llms:
+  enabled: true
+  summary: >-
+    VoiceBridge（畅译）是一款完全免费、100% 离线的 iOS 录音转文字与 AI 会议纪要 App。语音识别、说话人声纹分离与语义检索全部在设备本地完成，音频与文字不上传任何服务器；无内购、无广告、无需注册；支持 12 语种离线识别，要求 iOS 17.0 及以上。
+
+robots:
+  - '# AI 生成引擎（GEO）：显式放行'
+  - 'User-agent: GPTBot'
+  - 'Allow: /'
+  - ''
+  - 'User-agent: OAI-SearchBot'
+  - 'Allow: /'
+  - ''
+  - 'User-agent: PerplexityBot'
+  - 'Allow: /'
+  - ''
+  - 'User-agent: ClaudeBot'
+  - 'Allow: /'
+  - ''
+  - 'User-agent: Claude-SearchBot'
+  - 'Allow: /'
+  - ''
+  - 'User-agent: Google-Extended'
+  - 'Allow: /'
+  - ''
+  - 'User-agent: Bytespider'
+  - 'Allow: /'
+  - ''
+  - 'User-agent: Baiduspider'
+  - 'Allow: /'
+  - ''
+  - 'User-agent: YisouSpider'
+  - 'Allow: /'
