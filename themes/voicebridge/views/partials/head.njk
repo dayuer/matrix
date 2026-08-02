@@ -16,14 +16,17 @@
 
 {# Open Graph #}
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="{{ site.brand.name }}">
+<meta property="og:site_name" content="{{ site.brand.name }}{% if site.brand.nameCn %} {{ site.brand.nameCn }}{% endif %}">
 <meta property="og:title" content="{{ page.ogTitle or page.title }}">
 <meta property="og:description" content="{{ page.ogDescription or page.description }}">
 <meta property="og:url" content="{{ site.baseUrl }}{{ page.canonical }}">
 <meta property="og:image" content="{{ site.baseUrl }}{{ page.ogImage }}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+{# startsWith 必须是驼峰：Nunjucks 跑在真 JS 字符串上，Jinja2 的全小写 startswith 会抛
+   "Unable to call ... which is undefined or falsey"，让整页渲染失败（已实测）。 #}
 <meta property="og:locale" content="{% if (page.lang or site.lang or 'zh-Hans').startsWith('en') %}en_US{% else %}zh_CN{% endif %}">
+{% if page.alternates %}<meta property="og:locale:alternate" content="{% if (page.lang or site.lang or 'zh-Hans').startsWith('en') %}zh_CN{% else %}en_US{% endif %}">{% endif %}
 
 {# Twitter #}
 <meta name="twitter:card" content="summary_large_image">
