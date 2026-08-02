@@ -50,6 +50,12 @@ export function exportSite(def: SiteDefinition): void {
     if (p.path === '/') {
       fs.writeFileSync(path.join(OUT, 'index.html'), html);
       console.log('  ✅ / → out/index.html');
+    } else if (/\.html?$/i.test(p.path)) {
+      // 扁平 .html 路径：保留历史已收录 URL，不转目录式
+      const file = path.join(OUT, p.path.replace(/^\//, ''));
+      ensureDir(path.dirname(file));
+      fs.writeFileSync(file, html);
+      console.log(`  ✅ ${p.path} → out${p.path}`);
     } else {
       const dir = path.join(OUT, p.path.replace(/^\//, ''));
       ensureDir(dir);
