@@ -685,6 +685,100 @@ git commit -m "feat(site-kit): robots.txt 支持站点自定义规则行"
 
 ---
 
+### Task 4b: 路径规则收敛为单一真源 + 守卫前置（来自 Task 4 质量评审）
+
+Task 4 的守卫落地后，评审指出两条 Important：
+
+1. 守卫里的 `rel` 推导与 `// 1. 页面` 写入循环的三分支**是同一套「路由 → 输出文件」规则写了两遍**。将来有人只改其中一处，守卫会继续用旧规则算出「无冲突」，而写入时真的覆盖了文件——守卫沉默失效，恰好是它自己注释里担心的那类风险。
+2. 守卫排在 `rm -rf out/` 之后。它只读内存里的 `pages`，不碰文件系统，本可免费前置。守卫 throw 时 `out/` 已被清空，本地预览会看到站点「消失」而不是停在旧版本。「校验先于破坏性操作」在这里是零成本的。
+
+**Files:**
+- Modify: `packages/site-kit/src/export.ts`
+
+- [ ] **Step 1: 抽出单一真源**
+
+在 `copyDir()` 之后、`exportSite()` 之前加入：
+
+```ts
+/**
+ * 页面路由 → out/ 内的相对输出文件路径。
+ * 路径冲突守卫与实际写入循环共用这一份实现——规则只有一处真源，
+ * 否则两处漂移会让守卫报「无冲突」而写入时真的互相覆盖。
+ */
+function resolveOutputRel(routePath: string): string {
+  if (routePath === '/') return 'index.html';
+  const bare = routePath.replace(/^\//, '');
+  return /\.html?$/i.test(routePath) ? bare : `${bare}/index.html`;
+}
+```
+
+- [ ] **Step 2: 守卫改用它，并整体前置到 `rm -rf out/` 之前**
+
+把守卫那段整体移到 `if (fs.existsSync(OUT)) fs.rmSync(...)` **之前**，并把其中的 `rel` 三元表达式替换为：
+
+```ts
+    const rel = resolveOutputRel(p.path);
+```
+
+- [ ] **Step 3: 写入循环塌缩为无分支**
+
+`// 1. 页面` 的整个 `for` 循环体替换为：
+
+```ts
+  for (const p of pages) {
+    const html = env.render(resolveTemplate(p.template, p.page, env, theme), { page: p.page, ...(p.locals || {}) });
+    const rel = resolveOutputRel(p.path);
+    const file = path.join(OUT, rel);
+    ensureDir(path.dirname(file));
+    fs.writeFileSync(file, html);
+    console.log(`  ✅ ${p.path} → out/${rel}`);
+  }
+```
+
+三个分支塌缩成 4 行，且**三种路径形态的日志输出与改造前逐字相同**（`/` → `out/index.html`、`/privacy.html` → `out/privacy.html`、`/guides/foo` → `out/guides/foo/index.html`），所以既有验收不受影响。
+
+- [ ] **Step 4: 回归 —— 三种路径形态 + 守卫两分支 + 既有站点**
+
+```bash
+cd ~/sproot/matrix && npm run build:platform
+# 三种路径形态仍产出同样位置（复用 Task 2 的验证方式）
+node -e '
+const { exportSite } = require("./packages/site-kit/dist/export.js");
+const fs = require("fs"), assert = require("assert");
+const mk = (p) => ({ path: p, template: "page", page: { title: "t", description: "d", canonical: p, ogImage: "/o.png", activeNav: null, bodyClass: null } });
+fs.mkdirSync("/tmp/vb-4b/views", { recursive: true });
+fs.writeFileSync("/tmp/vb-4b/views/layout.njk", "<html><body>{{ page.title }}</body></html>");
+fs.writeFileSync("/tmp/vb-4b/views/page.njk", "<html><body>{{ page.title }}</body></html>");
+exportSite({ root: "/tmp/vb-4b", site: { baseUrl: "https://x.test", brand: { name: "x", desc: "d", favicon: "/f.svg" }, nav: [], cta: { text: "", href: "" }, footer: {} },
+  pages: [mk("/"), mk("/privacy.html"), mk("/guides/foo")], notFound: mk("/404") });
+assert.ok(fs.statSync("/tmp/vb-4b/out/privacy.html").isFile(), "扁平页不是文件");
+assert.ok(fs.statSync("/tmp/vb-4b/out/guides/foo/index.html").isFile(), "目录式页缺 index.html");
+assert.ok(fs.statSync("/tmp/vb-4b/out/index.html").isFile(), "首页缺 index.html");
+console.log("✅ 三种路径形态仍正确");
+'; rm -rf /tmp/vb-4b
+# 守卫前置后，冲突时 out/ 必须仍是旧内容（未被清空）
+npm run matrix -- export synon.ai
+for f in $(cd /tmp/synon-baseline && find . -name '*.html'); do
+  node scripts/html-text-diff.mjs "/tmp/synon-baseline/$f" "sites/synon.ai/out/$f" >/dev/null || echo "DIFF: $f"
+done
+diff /tmp/synon-baseline/sitemap.xml sites/synon.ai/out/sitemap.xml && echo "sitemap 无变化"
+```
+
+另需**单独验证守卫前置真的生效**：让 `out/` 里先有内容，再用冲突的页面清单导出，确认 throw 之后 `out/` 里的旧文件**仍在**（改造前会被清空）。
+
+- [ ] **Step 5: 提交**
+
+```bash
+cd ~/sproot/matrix
+git add packages/site-kit/src/export.ts
+git commit -m "refactor(site-kit): 路径规则收敛为 resolveOutputRel，守卫前置到清空 out/ 之前
+
+守卫与写入循环原本各写了一遍「路由 → 输出文件」规则，漂移会让守卫沉默失效。
+守卫只读 pages 不碰文件系统，前置到 rm 之前是零成本的「校验先于破坏」。"
+```
+
+---
+
 ### Task 5: F4 — 导出时生成 llms.txt / llms-full.txt
 
 **Files:**
