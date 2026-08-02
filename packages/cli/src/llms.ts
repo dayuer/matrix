@@ -36,8 +36,18 @@ const NON_CONTENT_KEYS = new Set([
  * 递归收集 block 数据里的文案。
  * block 的内容常嵌在数组或对象里（如 bento 卡片列表 data.cards[]、页头 data.header{}），
  * 只取 Object.values(data) 的顶层字符串会把整段内容静默丢掉——首页卖点全在卡片数组里。
+ * 不单独剥 <svg>：样机插图的 <text> 节点是真实产品文案，通用标签剥离会保留其文本。
+ *
+ * ancestors 是环检测：YAML 锚点/别名（&a / *a）能构造出循环引用，js-yaml 会如实
+ * 还原成循环的对象图，无保护的递归会以 RangeError 崩掉整个 export --all 批次。
+ * 只记录「当前路径上的祖先」而非「所有访问过的对象」——别名的正常用途是**复用**
+ * （多处引用同一片段），那种情况必须照常收集，只有指回祖先的真环才跳过。
+ *
+ * ⚠️ 已知取舍：NON_CONTENT_KEYS 按**键名**跳过，不区分层级。若某个 block 的 data 里
+ * 合法地有一个叫 type / variant / target / icon 的**内容**字段（如「会议类型：周会」），
+ * 它会被静默丢掉。新增 block 时，承载文案的字段请避开这些键名。
  */
-function collectText(value: unknown, out: string[]): void {
+function collectText(value: unknown, out: string[], ancestors: Set<object> = new Set()): void {
   if (typeof value === 'string') {
     const text = value
       .replace(/<script[\s\S]*?<\/script>/gi, ' ')
@@ -48,16 +58,18 @@ function collectText(value: unknown, out: string[]): void {
     if (text) out.push(text);
     return;
   }
+  if (value === null || typeof value !== 'object') return;
+  if (ancestors.has(value)) return; // 环：指回当前路径上的祖先，停止下钻
+  ancestors.add(value);
   if (Array.isArray(value)) {
-    for (const item of value) collectText(item, out);
-    return;
-  }
-  if (value && typeof value === 'object') {
+    for (const item of value) collectText(item, out, ancestors);
+  } else {
     for (const [key, v] of Object.entries(value as Record<string, unknown>)) {
       if (NON_CONTENT_KEYS.has(key)) continue;
-      collectText(v, out);
+      collectText(v, out, ancestors);
     }
   }
+  ancestors.delete(value); // 回溯：离开这一层后，同一对象在兄弟分支里仍可被收集
 }
 
 /** 把 block 里的文案粗剥为纯文本（只用于 llms-full.txt，不参与页面渲染）。 */
@@ -67,12 +79,22 @@ function blocksToText(page: SiteDefinition['pages'][number]): string {
   return parts.join('\n');
 }
 
+/**
+ * 按 canonical 排序。用序数比较而非 localeCompare——后者的结果依赖 Node 的 ICU 构建，
+ * 同一份内容在不同机器上可能排出不同顺序，让构建产物不可复现。
+ */
+function sortByCanonical(pages: SiteDefinition['pages']): SiteDefinition['pages'] {
+  return [...pages].sort((a, b) =>
+    a.page.canonical < b.page.canonical ? -1 : a.page.canonical > b.page.canonical ? 1 : 0
+  );
+}
+
 export function generateLlmsTxt(def: SiteDefinition, cfg: LlmsConfig): string {
   const base = def.site.baseUrl.replace(/\/$/, '');
   const lines = [`# ${def.site.brand.name}`, ''];
   if (cfg.summary) lines.push(`> ${cfg.summary}`, '');
   lines.push('## 页面', '');
-  for (const p of [...def.pages].sort((a, b) => a.page.canonical.localeCompare(b.page.canonical))) {
+  for (const p of sortByCanonical(def.pages)) {
     lines.push(`- [${p.page.title}](${base}${p.page.canonical}): ${p.page.description}`);
   }
   lines.push('');
@@ -83,7 +105,7 @@ export function generateLlmsFullTxt(def: SiteDefinition, cfg: LlmsConfig): strin
   const base = def.site.baseUrl.replace(/\/$/, '');
   const chunks = [`# ${def.site.brand.name}`, ''];
   if (cfg.summary) chunks.push(cfg.summary, '');
-  for (const p of [...def.pages].sort((a, b) => a.page.canonical.localeCompare(b.page.canonical))) {
+  for (const p of sortByCanonical(def.pages)) {
     chunks.push(`## ${p.page.title}`, `URL: ${base}${p.page.canonical}`, p.page.description, blocksToText(p), '');
   }
   return chunks.join('\n');
