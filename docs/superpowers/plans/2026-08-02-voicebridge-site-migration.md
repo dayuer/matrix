@@ -494,6 +494,59 @@ export function generateRobots(baseUrl: string, extraRules: string[] = []): stri
   fs.writeFileSync(path.join(OUT, 'robots.txt'), generateRobots(site.baseUrl, robots));
 ```
 
+- [ ] **Step 3b: 输出路径冲突守卫**（来自 Task 2 质量评审）
+
+同在 `packages/site-kit/src/export.ts`，在 `// 1. 页面` 循环**之前**插入：
+
+```ts
+  // 输出路径守卫：扁平 .html 与目录式两种形态共存后，两类冲突会静默产出错误的站点结构。
+  // 其一，两个页面写到同一个文件（后者覆盖前者，页面凭空消失）。
+  // 其二，/foo 与 /foo.html 并存：nginx 的 try_files $uri $uri/ 会让两个 URL 都返回
+  // 不同内容，是搜索引擎眼里的重复内容——而这次迁移的全部目的就是 SEO。
+  const outputPaths = new Map<string, string>();
+  const urlStems = new Map<string, string>();
+  for (const p of pages) {
+    const rel =
+      p.path === '/'
+        ? 'index.html'
+        : /\.html?$/i.test(p.path)
+          ? p.path.replace(/^\//, '')
+          : `${p.path.replace(/^\//, '')}/index.html`;
+    const clash = outputPaths.get(rel);
+    if (clash) throw new Error(`[site-kit] 输出文件冲突：页面 ${clash} 与 ${p.path} 都会写入 out/${rel}`);
+    outputPaths.set(rel, p.path);
+
+    const stem = p.path.replace(/\.html?$/i, '').replace(/\/$/, '') || '/';
+    const stemClash = urlStems.get(stem);
+    if (stemClash) {
+      console.warn(`  ⚠️  重复内容风险：页面 ${stemClash} 与 ${p.path} 会在同一 URL 前缀下都可访问，请只保留一个。`);
+    }
+    urlStems.set(stem, p.path);
+  }
+```
+
+文件冲突直接 `throw`（这一定是错的），URL 前缀冲突只 `console.warn`（个别站点可能有意为之）。
+
+- [ ] **Step 3c: 断言守卫生效**
+
+```bash
+cd ~/sproot/matrix && npm run build -w @matrix/site-kit && node -e '
+const { exportSite } = require("./packages/site-kit/dist/export.js");
+const assert = require("assert");
+const mk = (p) => ({ path: p, template: "page", page: { title: "t", description: "d", canonical: p, ogImage: "/o.png", activeNav: null, bodyClass: null } });
+const base = { root: "/tmp/vb-guard-test", site: { baseUrl: "https://x.test", brand: { name: "x", desc: "d", favicon: "/f.svg" }, nav: [], cta: { text: "", href: "" }, footer: {} }, notFound: mk("/404") };
+require("fs").mkdirSync("/tmp/vb-guard-test", { recursive: true });
+assert.throws(
+  () => exportSite({ ...base, pages: [mk("/a.html"), mk("/a.html")] }),
+  /输出文件冲突/,
+  "同名扁平页面未被拦下"
+);
+console.log("✅ 输出文件冲突守卫生效");
+' ; rm -rf /tmp/vb-guard-test
+```
+
+预期：`✅ 输出文件冲突守卫生效`。
+
 - [ ] **Step 4: loader 透传**
 
 `packages/cli/src/load.ts` 的 `SiteYaml` 接口追加：
