@@ -1,0 +1,7 @@
+{# 通用 block 页面：page.blocks 按序渲染，结构由 views/blocks/{type}.njk 决定。 #}
+{% extends "layouts/base.njk" %}
+{% block content %}
+<main id="main">
+  {% for block in page.blocks %}{% include "blocks/" + block.type + ".njk" ignore missing %}{% endfor %}
+</main>
+{% endblock %}

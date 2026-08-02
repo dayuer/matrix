@@ -45,29 +45,75 @@ ls /tmp/vb-baseline
 #!/usr/bin/env node
 /**
  * HTML 可见文本比对 —— 迁移验收工具。
- * 剥掉标签、script/style 与属性，只留可见文本与 <title>/<meta description>，
- * 用于证明「模板重写后页面说的话没变」。构建产物的 ?v= 时间戳、空白差异一律忽略。
+ * 剥掉标签、script/style 与属性，只留可见文本、<title>、<meta description>，
+ * 以及 <svg> 内 <text> 节点的文案（首页手机样机 SVG 里有真实产品文案，不能当装饰丢掉）。
+ * 构建产物的 ?v= 时间戳与空白差异一律忽略。
+ *
+ * 判定按「有序序列」比对：段落顺序变化、重复次数变化都算差异——
+ * 模板重写最容易踩的坑就是循环少渲染了几次、或栏目顺序被颠倒。
  *
  *   node scripts/html-text-diff.mjs <基线文件> <新文件>
- *   退出码 0 = 文本一致，1 = 有差异（差异打到 stdout）
+ *   退出码 0 = 文本一致，1 = 有差异（差异打到 stdout），2 = 用法错误或文件读不出来
  */
 import fs from 'fs';
 
+const ENTITIES = {
+  '&nbsp;': ' ',
+  '&amp;': '&',
+  '&lt;': '<',
+  '&gt;': '>',
+  '&quot;': '"',
+  '&#34;': '"',
+  '&#39;': "'",
+  '&apos;': "'",
+  '&mdash;': '—',
+  '&ndash;': '–',
+  '&hellip;': '…',
+};
+
+function decodeEntities(s) {
+  return s.replace(/&(?:nbsp|amp|lt|gt|quot|apos|mdash|ndash|hellip|#34|#39);/g, (m) => ENTITIES[m] ?? m);
+}
+
+/** 取 <meta name="description"> 的 content，与属性顺序、引号风格无关。 */
+function metaDescription(raw) {
+  for (const tag of raw.match(/<meta\b[^>]*>/gi) || []) {
+    if (!/\bname\s*=\s*(['"])description\1/i.test(tag)) continue;
+    const m = tag.match(/\bcontent\s*=\s*(['"])([\s\S]*?)\1/i);
+    if (m) return m[2].trim();
+  }
+  return '';
+}
+
+/** SVG 只保留 <text> 节点的文案，其余结构丢弃。 */
+function svgText(svg) {
+  const texts = svg.match(/<text\b[^>]*>([\s\S]*?)<\/text>/gi) || [];
+  return '\n' + texts.map((t) => t.replace(/<[^>]+>/g, '')).join('\n') + '\n';
+}
+
 function extract(file) {
-  const raw = fs.readFileSync(file, 'utf-8');
+  let raw;
+  try {
+    raw = fs.readFileSync(file, 'utf-8');
+  } catch (err) {
+    console.error(`读取失败：${file} —— ${err.message}`);
+    process.exit(2);
+  }
   const title = (raw.match(/<title>([\s\S]*?)<\/title>/i) || [, ''])[1].trim();
-  const desc = (raw.match(/<meta\s+name="description"\s+content="([\s\S]*?)"/i) || [, ''])[1].trim();
+  const desc = metaDescription(raw);
   const body = (raw.match(/<body[^>]*>([\s\S]*)<\/body>/i) || [, raw])[1];
   const text = body
     .replace(/<script[\s\S]*?<\/script>/gi, ' ')
     .replace(/<style[\s\S]*?<\/style>/gi, ' ')
-    .replace(/<svg[\s\S]*?<\/svg>/gi, ' ')
+    // 先剥自闭合 <svg .../>：它没有子节点，剥离无损。若留给下面的非贪婪匹配，
+    // 它会与后面某个真实 </svg> 配对，把两者之间的正文整段静默吞掉。
+    .replace(/<svg\b[^>]*\/>/gi, ' ')
+    .replace(/<svg\b[\s\S]*?<\/svg>/gi, svgText)
     .replace(/<[^>]+>/g, '\n')
-    .replace(/&nbsp;/g, ' ')
     .split('\n')
-    .map((s) => s.replace(/\s+/g, ' ').trim())
+    .map((s) => decodeEntities(s).replace(/\s+/g, ' ').trim())
     .filter(Boolean);
-  return [`TITLE: ${title}`, `DESC: ${desc}`, ...text];
+  return [`TITLE: ${decodeEntities(title)}`, `DESC: ${decodeEntities(desc)}`, ...text];
 }
 
 const [a, b] = process.argv.slice(2);
@@ -77,38 +123,72 @@ if (!a || !b) {
 }
 const la = extract(a);
 const lb = extract(b);
-const setB = new Set(lb);
-const setA = new Set(la);
-const onlyA = la.filter((l) => !setB.has(l));
-const onlyB = lb.filter((l) => !setA.has(l));
 
-if (onlyA.length === 0 && onlyB.length === 0) {
-  console.log(`✅ 文本一致：${a} ≡ ${b}（${la.length} 段）`);
+if (la.length === lb.length && la.every((l, i) => l === lb[i])) {
+  console.log(`✅ 文本一致：${a} ≡ ${b}（${la.length} 段，顺序与重复次数均一致）`);
   process.exit(0);
 }
-console.log(`❌ 文本有差异：${a} vs ${b}`);
+
+console.log(`❌ 文本有差异：${a}（${la.length} 段） vs ${b}（${lb.length} 段）`);
+
+const setA = new Set(la);
+const setB = new Set(lb);
+const onlyA = la.filter((l) => !setB.has(l));
+const onlyB = lb.filter((l) => !setA.has(l));
 for (const l of onlyA) console.log(`  - 仅基线有: ${l}`);
 for (const l of onlyB) console.log(`  + 仅新版有: ${l}`);
+if (onlyA.length === 0 && onlyB.length === 0) {
+  console.log('  ⚠️ 用词完全相同，差异在顺序或重复次数——模板循环渲染次数或栏目顺序变了。');
+}
+
+let firstDiff = -1;
+const max = Math.max(la.length, lb.length);
+for (let i = 0; i < max; i++) {
+  if (la[i] !== lb[i]) {
+    firstDiff = i;
+    break;
+  }
+}
+if (firstDiff >= 0) {
+  console.log(`  首处不一致在第 ${firstDiff + 1} 段：`);
+  console.log(`    基线: ${la[firstDiff] ?? '(无)'}`);
+  console.log(`    新版: ${lb[firstDiff] ?? '(无)'}`);
+}
 process.exit(1);
 ```
+
+**为什么是有序比对而不是集合比对：** 用 `Set` 求差集会放行两类最该拦下的回归——模板循环少渲染了几次（同一段重复 3 次坍缩成 1 次）、栏目顺序被颠倒。两者用词集合完全相同，集合比对判"一致"。同理 `<svg>` 不能整段丢：首页手机样机 SVG 里的 `项目周会`、`发言人 A`、`03:42 · 2 位发言人 · 已完成转写`、`✦ AI 智能纪要` 都是真实产品文案，而 Task 12 恰好要搬运这段 SVG。
 
 - [ ] **Step 3: 自测脚本（同一文件比自己必须通过）**
 
 ```bash
 cd ~/sproot/matrix
-node scripts/html-text-diff.mjs /tmp/vb-baseline/index.html /tmp/vb-baseline/index.html
+node scripts/html-text-diff.mjs /tmp/vb-baseline/index.html /tmp/vb-baseline/index.html; echo "退出码=$?"
 ```
 
-预期：`✅ 文本一致：... （N 段）`，退出码 0。
+预期：`✅ 文本一致：…（N 段，顺序与重复次数均一致）`，`退出码=0`。
 
-- [ ] **Step 4: 反向自测（不同文件必须报差异）**
+- [ ] **Step 4: 四组回归自测（每组都必须按预期退出）**
 
 ```bash
 cd ~/sproot/matrix
-node scripts/html-text-diff.mjs /tmp/vb-baseline/index.html /tmp/vb-baseline/index_en.html; echo "退出码=$?"
+# 4a 不同文件必须报差异
+node scripts/html-text-diff.mjs /tmp/vb-baseline/index.html /tmp/vb-baseline/index_en.html >/dev/null; echo "4a 退出码=$?（应为 1）"
+
+# 4b 顺序与重复次数变化必须被抓到：造两个小用例
+printf '<html><body><p>A</p><p>提示</p><p>B</p><p>提示</p><p>C</p><p>提示</p></body></html>' > /tmp/vb-t-a.html
+printf '<html><body><p>提示</p><p>C</p><p>B</p><p>A</p></body></html>' > /tmp/vb-t-b.html
+node scripts/html-text-diff.mjs /tmp/vb-t-a.html /tmp/vb-t-b.html >/dev/null; echo "4b 退出码=$?（应为 1）"
+
+# 4c SVG 内文案改动必须被抓到
+sed 's/项目周会/产品评审/' /tmp/vb-baseline/index.html > /tmp/vb-t-svg.html
+node scripts/html-text-diff.mjs /tmp/vb-baseline/index.html /tmp/vb-t-svg.html >/dev/null; echo "4c 退出码=$?（应为 1）"
+
+# 4d 文件读不出来必须是 2，不能与「有差异」撞码
+node scripts/html-text-diff.mjs /nonexistent/a.html /nonexistent/b.html >/dev/null 2>&1; echo "4d 退出码=$?（应为 2）"
 ```
 
-预期：打印大量 `- 仅基线有` / `+ 仅新版有`，`退出码=1`。
+预期：`4a 退出码=1`、`4b 退出码=1`、`4c 退出码=1`、`4d 退出码=2`。4b 的完整输出里还应出现 `⚠️ 用词完全相同，差异在顺序或重复次数` 这行。
 
 - [ ] **Step 5: 建立 synon.ai 回归基线**
 
@@ -391,6 +471,87 @@ export function generateRobots(baseUrl: string, extraRules: string[] = []): stri
 }
 ```
 
+- [ ] **Step 1b: XML 转义 + lastmod 格式收敛**（来自 Task 3 质量评审，两条均已实测复现）
+
+同在 `packages/site-kit/src/sitemap.ts`，文件顶部 `import` 之后加入：
+
+```ts
+/**
+ * XML 文本转义。裸 `&` 会让整份 sitemap.xml 不是良构 XML——Google 不是跳过那一条，
+ * 而是拒绝解析整个文件。数据源虽是站点自己的 yaml（可信输入），但这是格式合法性问题，
+ * 不是安全问题：一个带 query 的 alternate 链接就能让全站 sitemap 失效。
+ */
+function escapeXml(s: string): string {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+/**
+ * lastmod 只接受 YYYY-MM-DD 字符串。
+ * js-yaml 会把不加引号的 `updated: 2026-08-02` 解析成 Date 对象而非字符串，
+ * 而 `??` 只挡 null/undefined，Date 是真值会直接漏进去，产出
+ * `<lastmod>Sun Aug 02 2026 07:00:00 GMT+0800 …</lastmod>` 这种非法值，
+ * Google 会静默丢弃该 URL 的 lastmod 信号——构建期毫无征兆。
+ */
+function normalizeLastmod(value: unknown, canonical: string): string | undefined {
+  if (value === undefined || value === null) return undefined;
+  if (value instanceof Date) return value.toISOString().slice(0, 10);
+  if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
+  console.warn(`  ⚠️  ${canonical} 的 updated 不是 YYYY-MM-DD（收到 ${JSON.stringify(value)}），本页 lastmod 回退为导出当天。`);
+  return undefined;
+}
+```
+
+然后把 `generateSitemap` 里这三行：
+
+```ts
+      const loc = `${base}${p.page.canonical}`;
+      const changefreq = p.page.changefreq ?? 'monthly';
+      const lastmod = p.page.updated ?? today;
+```
+
+改为：
+
+```ts
+      const loc = escapeXml(`${base}${p.page.canonical}`);
+      const changefreq = escapeXml(p.page.changefreq ?? 'monthly');
+      const lastmod = normalizeLastmod(p.page.updated, p.page.canonical) ?? today;
+```
+
+以及把 alternates 那行的两处插值包上转义：
+
+```ts
+        lines.push(
+          `    <xhtml:link rel="alternate" hreflang="${escapeXml(alt.hreflang)}" href="${escapeXml(`${base}${alt.href}`)}"/>`
+        );
+```
+
+⚠️ 转义对不含 `&<>"` 的普通路径是恒等变换，所以 Step 5 的 synon.ai 逐字节回归**仍然必须通过**。如果它变了，说明转义写错了。
+
+- [ ] **Step 1c: 断言两条修复生效**
+
+```bash
+cd ~/sproot/matrix && npm run build -w @matrix/site-kit && node -e '
+const { generateSitemap } = require("./packages/site-kit/dist/sitemap.js");
+const assert = require("assert");
+const mk = (p, extra = {}) => ({ path: p, template: "page", page: { title: "t", description: "d", canonical: p, ogImage: "/o.png", activeNav: null, bodyClass: null, ...extra } });
+
+// 1. 裸 & 必须被转义，产物仍是良构 XML
+const amp = generateSitemap("https://x.test", [mk("/a", { alternates: [{ hreflang: "en", href: "/a?ref=en&x=1" }] })]);
+assert.ok(!/href="[^"]*[^m;]&[^a]/.test(amp) && amp.includes("&amp;"), "裸 & 未被转义");
+
+// 2. Date 对象（js-yaml 对不加引号日期的解析结果）必须收敛成 YYYY-MM-DD
+const d = generateSitemap("https://x.test", [mk("/b", { updated: new Date("2026-08-02T00:00:00Z") })]);
+assert.ok(d.includes("<lastmod>2026-08-02</lastmod>"), "Date 型 updated 未收敛，实际：" + (d.match(/<lastmod>[^<]*/) || [])[0]);
+
+// 3. 乱格式字符串必须回退到今天而不是原样输出
+const bad = generateSitemap("https://x.test", [mk("/c", { updated: "8/2/2026" })]);
+assert.ok(!bad.includes("8/2/2026"), "非法 updated 被原样写进 lastmod");
+console.log("✅ XML 转义与 lastmod 收敛断言全部通过");
+'
+```
+
+预期：`✅ XML 转义与 lastmod 收敛断言全部通过`（第 2、3 条断言在修复前必然失败，可先跑一次确认它们真的能抓到问题）。
+
 - [ ] **Step 2: SiteDefinition 增加字段**
 
 `packages/site-kit/src/types.ts` 的 `SiteDefinition` 接口末尾（`cssAliases?: string[];` 之后）追加：
@@ -413,6 +574,59 @@ export function generateRobots(baseUrl: string, extraRules: string[] = []): stri
 ```ts
   fs.writeFileSync(path.join(OUT, 'robots.txt'), generateRobots(site.baseUrl, robots));
 ```
+
+- [ ] **Step 3b: 输出路径冲突守卫**（来自 Task 2 质量评审）
+
+同在 `packages/site-kit/src/export.ts`，在 `// 1. 页面` 循环**之前**插入：
+
+```ts
+  // 输出路径守卫：扁平 .html 与目录式两种形态共存后，两类冲突会静默产出错误的站点结构。
+  // 其一，两个页面写到同一个文件（后者覆盖前者，页面凭空消失）。
+  // 其二，/foo 与 /foo.html 并存：nginx 的 try_files $uri $uri/ 会让两个 URL 都返回
+  // 不同内容，是搜索引擎眼里的重复内容——而这次迁移的全部目的就是 SEO。
+  const outputPaths = new Map<string, string>();
+  const urlStems = new Map<string, string>();
+  for (const p of pages) {
+    const rel =
+      p.path === '/'
+        ? 'index.html'
+        : /\.html?$/i.test(p.path)
+          ? p.path.replace(/^\//, '')
+          : `${p.path.replace(/^\//, '')}/index.html`;
+    const clash = outputPaths.get(rel);
+    if (clash) throw new Error(`[site-kit] 输出文件冲突：页面 ${clash} 与 ${p.path} 都会写入 out/${rel}`);
+    outputPaths.set(rel, p.path);
+
+    const stem = p.path.replace(/\.html?$/i, '').replace(/\/$/, '') || '/';
+    const stemClash = urlStems.get(stem);
+    if (stemClash) {
+      console.warn(`  ⚠️  重复内容风险：页面 ${stemClash} 与 ${p.path} 会在同一 URL 前缀下都可访问，请只保留一个。`);
+    }
+    urlStems.set(stem, p.path);
+  }
+```
+
+文件冲突直接 `throw`（这一定是错的），URL 前缀冲突只 `console.warn`（个别站点可能有意为之）。
+
+- [ ] **Step 3c: 断言守卫生效**
+
+```bash
+cd ~/sproot/matrix && npm run build -w @matrix/site-kit && node -e '
+const { exportSite } = require("./packages/site-kit/dist/export.js");
+const assert = require("assert");
+const mk = (p) => ({ path: p, template: "page", page: { title: "t", description: "d", canonical: p, ogImage: "/o.png", activeNav: null, bodyClass: null } });
+const base = { root: "/tmp/vb-guard-test", site: { baseUrl: "https://x.test", brand: { name: "x", desc: "d", favicon: "/f.svg" }, nav: [], cta: { text: "", href: "" }, footer: {} }, notFound: mk("/404") };
+require("fs").mkdirSync("/tmp/vb-guard-test", { recursive: true });
+assert.throws(
+  () => exportSite({ ...base, pages: [mk("/a.html"), mk("/a.html")] }),
+  /输出文件冲突/,
+  "同名扁平页面未被拦下"
+);
+console.log("✅ 输出文件冲突守卫生效");
+' ; rm -rf /tmp/vb-guard-test
+```
+
+预期：`✅ 输出文件冲突守卫生效`。
 
 - [ ] **Step 4: loader 透传**
 
@@ -471,6 +685,100 @@ git commit -m "feat(site-kit): robots.txt 支持站点自定义规则行"
 
 ---
 
+### Task 4b: 路径规则收敛为单一真源 + 守卫前置（来自 Task 4 质量评审）
+
+Task 4 的守卫落地后，评审指出两条 Important：
+
+1. 守卫里的 `rel` 推导与 `// 1. 页面` 写入循环的三分支**是同一套「路由 → 输出文件」规则写了两遍**。将来有人只改其中一处，守卫会继续用旧规则算出「无冲突」，而写入时真的覆盖了文件——守卫沉默失效，恰好是它自己注释里担心的那类风险。
+2. 守卫排在 `rm -rf out/` 之后。它只读内存里的 `pages`，不碰文件系统，本可免费前置。守卫 throw 时 `out/` 已被清空，本地预览会看到站点「消失」而不是停在旧版本。「校验先于破坏性操作」在这里是零成本的。
+
+**Files:**
+- Modify: `packages/site-kit/src/export.ts`
+
+- [ ] **Step 1: 抽出单一真源**
+
+在 `copyDir()` 之后、`exportSite()` 之前加入：
+
+```ts
+/**
+ * 页面路由 → out/ 内的相对输出文件路径。
+ * 路径冲突守卫与实际写入循环共用这一份实现——规则只有一处真源，
+ * 否则两处漂移会让守卫报「无冲突」而写入时真的互相覆盖。
+ */
+function resolveOutputRel(routePath: string): string {
+  if (routePath === '/') return 'index.html';
+  const bare = routePath.replace(/^\//, '');
+  return /\.html?$/i.test(routePath) ? bare : `${bare}/index.html`;
+}
+```
+
+- [ ] **Step 2: 守卫改用它，并整体前置到 `rm -rf out/` 之前**
+
+把守卫那段整体移到 `if (fs.existsSync(OUT)) fs.rmSync(...)` **之前**，并把其中的 `rel` 三元表达式替换为：
+
+```ts
+    const rel = resolveOutputRel(p.path);
+```
+
+- [ ] **Step 3: 写入循环塌缩为无分支**
+
+`// 1. 页面` 的整个 `for` 循环体替换为：
+
+```ts
+  for (const p of pages) {
+    const html = env.render(resolveTemplate(p.template, p.page, env, theme), { page: p.page, ...(p.locals || {}) });
+    const rel = resolveOutputRel(p.path);
+    const file = path.join(OUT, rel);
+    ensureDir(path.dirname(file));
+    fs.writeFileSync(file, html);
+    console.log(`  ✅ ${p.path} → out/${rel}`);
+  }
+```
+
+三个分支塌缩成 4 行，且**三种路径形态的日志输出与改造前逐字相同**（`/` → `out/index.html`、`/privacy.html` → `out/privacy.html`、`/guides/foo` → `out/guides/foo/index.html`），所以既有验收不受影响。
+
+- [ ] **Step 4: 回归 —— 三种路径形态 + 守卫两分支 + 既有站点**
+
+```bash
+cd ~/sproot/matrix && npm run build:platform
+# 三种路径形态仍产出同样位置（复用 Task 2 的验证方式）
+node -e '
+const { exportSite } = require("./packages/site-kit/dist/export.js");
+const fs = require("fs"), assert = require("assert");
+const mk = (p) => ({ path: p, template: "page", page: { title: "t", description: "d", canonical: p, ogImage: "/o.png", activeNav: null, bodyClass: null } });
+fs.mkdirSync("/tmp/vb-4b/views", { recursive: true });
+fs.writeFileSync("/tmp/vb-4b/views/layout.njk", "<html><body>{{ page.title }}</body></html>");
+fs.writeFileSync("/tmp/vb-4b/views/page.njk", "<html><body>{{ page.title }}</body></html>");
+exportSite({ root: "/tmp/vb-4b", site: { baseUrl: "https://x.test", brand: { name: "x", desc: "d", favicon: "/f.svg" }, nav: [], cta: { text: "", href: "" }, footer: {} },
+  pages: [mk("/"), mk("/privacy.html"), mk("/guides/foo")], notFound: mk("/404") });
+assert.ok(fs.statSync("/tmp/vb-4b/out/privacy.html").isFile(), "扁平页不是文件");
+assert.ok(fs.statSync("/tmp/vb-4b/out/guides/foo/index.html").isFile(), "目录式页缺 index.html");
+assert.ok(fs.statSync("/tmp/vb-4b/out/index.html").isFile(), "首页缺 index.html");
+console.log("✅ 三种路径形态仍正确");
+'; rm -rf /tmp/vb-4b
+# 守卫前置后，冲突时 out/ 必须仍是旧内容（未被清空）
+npm run matrix -- export synon.ai
+for f in $(cd /tmp/synon-baseline && find . -name '*.html'); do
+  node scripts/html-text-diff.mjs "/tmp/synon-baseline/$f" "sites/synon.ai/out/$f" >/dev/null || echo "DIFF: $f"
+done
+diff /tmp/synon-baseline/sitemap.xml sites/synon.ai/out/sitemap.xml && echo "sitemap 无变化"
+```
+
+另需**单独验证守卫前置真的生效**：让 `out/` 里先有内容，再用冲突的页面清单导出，确认 throw 之后 `out/` 里的旧文件**仍在**（改造前会被清空）。
+
+- [ ] **Step 5: 提交**
+
+```bash
+cd ~/sproot/matrix
+git add packages/site-kit/src/export.ts
+git commit -m "refactor(site-kit): 路径规则收敛为 resolveOutputRel，守卫前置到清空 out/ 之前
+
+守卫与写入循环原本各写了一遍「路由 → 输出文件」规则，漂移会让守卫沉默失效。
+守卫只读 pages 不碰文件系统，前置到 rm 之前是零成本的「校验先于破坏」。"
+```
+
+---
+
 ### Task 5: F4 — 导出时生成 llms.txt / llms-full.txt
 
 **Files:**
@@ -499,23 +807,78 @@ export interface LlmsConfig {
   summary?: string;
 }
 
-/** 把 block 里的 HTML 粗剥为纯文本（只用于 llms-full.txt，不参与页面渲染）。 */
-function blocksToText(page: SiteDefinition['pages'][number]): string {
-  const parts: string[] = [];
-  for (const block of page.page.blocks || []) {
-    const data = block.data as Record<string, unknown>;
-    for (const value of Object.values(data)) {
-      if (typeof value !== 'string') continue;
-      const text = value
-        .replace(/<script[\s\S]*?<\/script>/gi, ' ')
-        .replace(/<style[\s\S]*?<\/style>/gi, ' ')
-        .replace(/<svg[\s\S]*?<\/svg>/gi, ' ')
-        .replace(/<[^>]+>/g, ' ')
-        .replace(/\s+/g, ' ')
-        .trim();
-      if (text) parts.push(text);
+/**
+ * 这些键是结构/链接元数据，不是文案。递归收集时跳过它们，
+ * 否则 llms-full.txt 会混进 `/privacy.html`、`span-3 feature-hero accent` 这类噪音，
+ * 反而稀释了给 AI 引擎看的事实密度。
+ */
+const NON_CONTENT_KEYS = new Set([
+  'href',
+  'url',
+  'src',
+  'id',
+  'cls',
+  'class',
+  'type',
+  'target',
+  'icon',
+  'variant',
+]);
+
+/**
+ * 递归收集 block 数据里的文案。
+ * block 的内容常嵌在数组或对象里（如 bento 卡片列表 data.cards[]、页头 data.header{}），
+ * 只取 Object.values(data) 的顶层字符串会把整段内容静默丢掉——首页卖点全在卡片数组里。
+ * 不单独剥 <svg>：样机插图的 <text> 节点是真实产品文案，通用标签剥离会保留其文本。
+ *
+ * ancestors 是环检测：YAML 锚点/别名（&a / *a）能构造出循环引用，js-yaml 会如实
+ * 还原成循环的对象图，无保护的递归会以 RangeError 崩掉整个 export --all 批次。
+ * 只记录「当前路径上的祖先」而非「所有访问过的对象」——别名的正常用途是**复用**
+ * （多处引用同一片段），那种情况必须照常收集，只有指回祖先的真环才跳过。
+ *
+ * ⚠️ 已知取舍：NON_CONTENT_KEYS 按**键名**跳过，不区分层级。若某个 block 的 data 里
+ * 合法地有一个叫 type / variant / target / icon 的**内容**字段（如「会议类型：周会」），
+ * 它会被静默丢掉。新增 block 时，承载文案的字段请避开这些键名。
+ */
+function collectText(value: unknown, out: string[], ancestors: Set<object> = new Set()): void {
+  if (typeof value === 'string') {
+    const text = value
+      .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+      .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    if (text) out.push(text);
+    return;
+  }
+  if (value === null || typeof value !== 'object') return;
+  if (ancestors.has(value)) return; // 环：指回当前路径上的祖先，停止下钻
+  ancestors.add(value);
+  if (Array.isArray(value)) {
+    for (const item of value) collectText(item, out, ancestors);
+  } else {
+    for (const [key, v] of Object.entries(value as Record<string, unknown>)) {
+      if (NON_CONTENT_KEYS.has(key)) continue;
+      collectText(v, out, ancestors);
     }
   }
+  ancestors.delete(value); // 回溯：离开这一层后，同一对象在兄弟分支里仍可被收集
+}
+
+/**
+ * 按 canonical 排序。用序数比较而非 localeCompare——后者的结果依赖 Node 的 ICU 构建，
+ * 同一份内容在不同机器上可能排出不同顺序，让构建产物不可复现。
+ */
+function sortByCanonical(pages: SiteDefinition['pages']): SiteDefinition['pages'] {
+  return [...pages].sort((a, b) =>
+    a.page.canonical < b.page.canonical ? -1 : a.page.canonical > b.page.canonical ? 1 : 0
+  );
+}
+
+/** 把 block 里的文案粗剥为纯文本（只用于 llms-full.txt，不参与页面渲染）。 */
+function blocksToText(page: SiteDefinition['pages'][number]): string {
+  const parts: string[] = [];
+  for (const block of page.page.blocks || []) collectText(block.data, parts);
   return parts.join('\n');
 }
 
@@ -524,7 +887,7 @@ export function generateLlmsTxt(def: SiteDefinition, cfg: LlmsConfig): string {
   const lines = [`# ${def.site.brand.name}`, ''];
   if (cfg.summary) lines.push(`> ${cfg.summary}`, '');
   lines.push('## 页面', '');
-  for (const p of [...def.pages].sort((a, b) => a.page.canonical.localeCompare(b.page.canonical))) {
+  for (const p of sortByCanonical(def.pages)) {
     lines.push(`- [${p.page.title}](${base}${p.page.canonical}): ${p.page.description}`);
   }
   lines.push('');
@@ -535,7 +898,7 @@ export function generateLlmsFullTxt(def: SiteDefinition, cfg: LlmsConfig): strin
   const base = def.site.baseUrl.replace(/\/$/, '');
   const chunks = [`# ${def.site.brand.name}`, ''];
   if (cfg.summary) chunks.push(cfg.summary, '');
-  for (const p of [...def.pages].sort((a, b) => a.page.canonical.localeCompare(b.page.canonical))) {
+  for (const p of sortByCanonical(def.pages)) {
     chunks.push(`## ${p.page.title}`, `URL: ${base}${p.page.canonical}`, p.page.description, blocksToText(p), '');
   }
   return chunks.join('\n');
@@ -848,14 +1211,19 @@ git commit -m "feat(theme): voicebridge 样式表从手写 index.html 迁入，:
 
 {# Open Graph #}
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="{{ site.brand.name }}">
+{# 拼回完整品牌词：nav/footer 需要 name + nameCn 两段结构，但 og:site_name
+   在原页面是合并的「VoiceBridge 畅译」，只输出 name 会把品牌词掉一半。 #}
+<meta property="og:site_name" content="{{ site.brand.name }}{% if site.brand.nameCn %} {{ site.brand.nameCn }}{% endif %}">
 <meta property="og:title" content="{{ page.ogTitle or page.title }}">
 <meta property="og:description" content="{{ page.ogDescription or page.description }}">
 <meta property="og:url" content="{{ site.baseUrl }}{{ page.canonical }}">
 <meta property="og:image" content="{{ site.baseUrl }}{{ page.ogImage }}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:locale" content="{% if (page.lang or site.lang or 'zh-Hans').startswith('en') %}en_US{% else %}zh_CN{% endif %}">
+{# startsWith 必须是驼峰：Nunjucks 跑在真 JS 字符串上，Jinja2 的全小写 startswith 会抛
+   "Unable to call ... which is undefined or falsey"，让整页渲染失败（已实测）。 #}
+<meta property="og:locale" content="{% if (page.lang or site.lang or 'zh-Hans').startsWith('en') %}en_US{% else %}zh_CN{% endif %}">
+{% if page.alternates %}<meta property="og:locale:alternate" content="{% if (page.lang or site.lang or 'zh-Hans').startsWith('en') %}zh_CN{% else %}en_US{% endif %}">{% endif %}
 
 {# Twitter #}
 <meta name="twitter:card" content="summary_large_image">
@@ -1339,6 +1707,10 @@ blocks:
 
 **⚠️ 上面三处 `[]` 与 `artHtml` 占位是搬运指令，不是可交付内容。本任务未把它们填满即视为未完成。** 填完后 `content/home.yaml` 里的可见文案必须与 `index.html` 一字不差——Task 14 会用 `html-text-diff.mjs` 逐字校验。
 
+**⚠️ 三个 `id` 是强制项，不是可选项。** `hero.data.id: download`、`band.data.id: features`、`support-panel.data.id: support` —— 模板里 `id` 是条件输出，漏写不报错、不被文本比对抓到，但 nav 的「功能」、hero CTA 的「免费下载」、页脚的「支持」三个页内锚点会全部静默失效。Task 14 Step 3b 会断言这三个 id 存在。
+
+**关于 bento 卡片的 `artHtml`**（Task 10 评审已用 10 张真实卡片验证 schema 够用）：模板的固定顺序是 `kicker → h3 → p → artHtml`，原页面 10 张卡片全部符合这个顺序，无一例外。`.price-tag`、`.art`、`.offline-badge`、`.chips`、`.langs`、`.mini` 这些一次性结构连同其外层包裹 div 一起塞进 `artHtml` 即可，评审已验证渲染产物与原 markup 逐字符一致。
+
 - [ ] **Step 2: support.yaml / privacy.yaml / terms.yaml**
 
 三页都是长文，正文用 `custom-html` block 原样保留（这些是法律文本，重排风险大于收益）。以 `privacy.yaml` 为例：
@@ -1367,6 +1739,10 @@ blocks:
 ```
 
 `support.yaml`（`path: /support.html`，`priority: 0.8`，`changefreq: monthly`）与 `terms.yaml`（`path: /terms.html`，`priority: 0.5`，`changefreq: yearly`）同构，`meta.title`/`description` 从各自原 HTML 的 `<title>`/`<meta name="description">` 搬运。
+
+**⚠️ `support.html` 自带一段独立的 `FAQPage` JSON-LD**（源文件 26–39 行，不含 `@graph` 包裹）。它必须一并搬进 `support.yaml` 的 `meta.jsonLd`，否则静默丢失——`html-text-diff.mjs` 不看 JSON-LD，Task 14 Step 4b 的断言此前也只覆盖了两个首页。搬完后用同款 `deepStrictEqual` 断言核对。
+
+**⚠️ 首页正文 FAQ 与 JSON-LD 里的 FAQ 文案在原页面就不一致**（例如正文「我们不包含任何应用内购」vs JSON-LD「没有任何应用内购」；正文「VoiceBridge 本身」vs JSON-LD「畅译本身」）。**两处各自原样保留，不要统一**——逐字搬运优先于消除不一致。
 
 - [ ] **Step 3: 404.yaml**
 
@@ -1431,7 +1807,7 @@ blocks: []   # ← 与中文版同构，文案取自 index_en.html
 
 与 Task 12 Step 2 同构，路径分别为 `/support_en.html`、`/privacy_en.html`、`/terms_en.html`，`meta.lang: en`，正文用 `custom-html` 从对应 `*_en.html` 的 `<body>` 搬运（去掉 nav/footer）。
 
-⚠️ 英文页的导航与页脚文案来自 `site.yaml`（中文），迁移后英文页会显示中文导航。**本任务范围内的处理方式**：在 `en/*.yaml` 的 `meta` 里加 `bodyClass: lang-en`，Task 14 验收时若发现导航语言错乱，作为已知缺口记录并在阶段 2 计划中用 `locals` 覆盖解决——不在本计划扩大范围。
+⚠️ 英文页的导航与页脚文案来自 `site.yaml`（中文），迁移后英文页会显示中文导航。**这不是「尚未优化」，是对线上站点的可见退化**——现网 `index_en.html` 的导航本来就是英文的，而本计划的验收标准是「视觉零差异」。因此**必须在本计划内修掉**，见 Task 13b。本任务先照常搬内容，`meta` 里加 `bodyClass: lang-en`。
 
 - [ ] **Step 3: 提交**
 
@@ -1439,6 +1815,120 @@ blocks: []   # ← 与中文版同构，文案取自 index_en.html
 cd ~/sproot/matrix
 git add sites/voicebridge.top/content/en
 git commit -m "feat(voicebridge): 英文首页与法务/支持页迁入 content/en/"
+```
+
+---
+
+### Task 13b: 英文页导航与页脚本地化（修正对线上的可见退化）
+
+Task 13 落地后确认：英文页渲染出的 nav/footer 是**中文**，因为两者的文案来自 `site.yaml`。现网 `index_en.html` 的导航本来是英文，所以这是退化而非缺口。本计划验收标准是「视觉零差异」，必须修。
+
+**方案**：复用平台既有的 `locals` 机制（`load.ts` 把内容文件的 `locals` 透传进 `PageDef`，`export.ts` 渲染时 `{ page: p.page, ...(p.locals || {}) }` 展开），让模板优先取页面级覆盖、缺省回落到 `site.*`。**不新增平台能力，不改 `site.yaml`。**
+
+**Files:**
+- Modify: `themes/voicebridge/views/partials/nav.njk`
+- Modify: `themes/voicebridge/views/partials/footer.njk`
+- Modify: `sites/voicebridge.top/content/en/{home,support,privacy,terms}.yaml`（各加一段 `locals`）
+
+- [ ] **Step 1: nav.njk 支持页面级覆盖**
+
+把 `nav.njk` 整体替换为：
+
+```njk
+{# nav 文案默认取 site.*，页面可用 locals 覆盖（英文页用它渲染英文导航）。 #}
+{% set _nav = navItems or site.nav %}
+{% set _cta = ctaOverride or site.cta %}
+{% set _langSwitch = langSwitchOverride or site.langSwitch %}
+{% set _brandCn = brandNameCnOverride if brandNameCnOverride is defined else site.brand.nameCn %}
+<nav class="nav" id="nav">
+  <a class="brand" href="{{ homeHref or (basePath + '/') }}">{{ site.brand.name }}{% if _brandCn %}<span class="cn">{{ _brandCn }}</span>{% endif %}</a>
+  <div class="links">
+    {% for item in _nav %}<a href="{{ item.href }}">{{ item.text }}</a>{% endfor %}
+  </div>
+  {% if _langSwitch %}<a class="lang" href="{{ _langSwitch.href }}">{{ _langSwitch.text }}</a>{% endif %}
+  <a class="cta" href="{{ _cta.href }}">{{ _cta.text }}</a>
+</nav>
+```
+
+- [ ] **Step 2: footer.njk 支持页面级覆盖**
+
+```njk
+{# footer 文案默认取 site.footer，页面可用 locals.footerOverride 覆盖。 #}
+{% set _footer = footerOverride or site.footer %}
+{% set _brandCn = brandNameCnOverride if brandNameCnOverride is defined else site.brand.nameCn %}
+<footer>
+  <div class="foot-wrap">
+    <div class="foot-top">
+      <div class="foot-brand">{{ site.brand.name }}{% if _brandCn %}<span class="cn">{{ _brandCn }}</span>{% endif %}</div>
+      <div class="foot-links">
+        {% for col in _footer.columns %}{% for link in col.links %}<a href="{{ link.href }}">{{ link.text }}</a>{% endfor %}{% endfor %}
+      </div>
+    </div>
+    <div class="foot-legal">
+      {% if _footer.legal.note %}{{ _footer.legal.note }}<br>{% endif %}
+      © {{ _footer.legal.foundingYear }} {{ _footer.legal.company.text }}. All rights reserved.
+    </div>
+  </div>
+</footer>
+```
+
+- [ ] **Step 3: 四个英文内容文件各加 locals**
+
+文案**逐字取自对应的 `*_en.html` 源文件**（nav 在其 346–356 行附近、footer 在 590–609 行附近，具体行号以实际文件为准）。四个文件的 `locals` 内容相同，形如：
+
+```yaml
+locals:
+  navItems:
+    - { text: <英文「功能」>, href: '#features' }
+    - { text: <英文「支持」>, href: '#support' }
+    - { text: <英文「隐私」>, href: /privacy_en.html }
+  ctaOverride: { text: <英文 CTA>, href: '#download' }
+  langSwitchOverride: { text: <中文切换文案>, href: / }
+  homeHref: /index_en.html
+  footerOverride:
+    columns:
+      - title: ''
+        links: [ <逐条取自英文页脚> ]
+    legal:
+      note: <英文页脚免责长文案>
+      foundingYear: 2026
+      company: { text: VoiceBridge, href: /index_en.html }
+    social: []
+```
+
+⚠️ **`brandNameCnOverride` 只在英文页 brand 不含「畅译」时才需要**——请先看英文源文件的 brand 是什么，再决定要不要设。
+
+- [ ] **Step 4: 验收 —— 英文页文本比对必须变成完全一致**
+
+```bash
+cd ~/sproot/matrix && npm run build -w @matrix/theme-voicebridge && npm run matrix -- export voicebridge.top
+for f in index_en.html support_en.html privacy_en.html terms_en.html; do
+  node scripts/html-text-diff.mjs "/tmp/vb-baseline/$f" "sites/voicebridge.top/out/$f"
+done
+```
+
+预期：`index_en.html` **✅ 文本一致**。三个英文法务页若仍有差异，必须逐条判断并证明只剩「原页面 nav/footer 与英文首页 nav/footer 本身就不同」这类源文件自身差异。
+
+- [ ] **Step 5: 中文侧不回归**
+
+```bash
+for f in index.html support.html privacy.html terms.html; do
+  node scripts/html-text-diff.mjs "/tmp/vb-baseline/$f" "sites/voicebridge.top/out/$f"
+done
+```
+
+预期：`index.html` 仍是 **✅ 文本一致（111 段）**；三个中文法务页的差异与 Task 12 时**完全相同**（模板改动不得影响中文页——中文页不设 `locals`，必须走 `site.*` 回落分支）。
+
+- [ ] **Step 6: 提交**
+
+```bash
+cd ~/sproot/matrix
+git add themes/voicebridge/views/partials/nav.njk themes/voicebridge/views/partials/footer.njk sites/voicebridge.top/content/en
+git commit -m "fix(voicebridge): 英文页用 locals 覆盖 nav/footer 文案
+
+nav/footer 文案来自 site.yaml（中文），迁移后英文页会显示中文导航——
+现网英文页导航本来就是英文的，这是对线上的可见退化，不是待优化缺口。
+复用平台既有 locals 机制做页面级覆盖，中文页走 site.* 回落分支不受影响。"
 ```
 
 ---
@@ -1482,6 +1972,25 @@ find out -name index.html -not -path 'out/index.html' | sed 's|^|目录式: |'
 
 预期：9 行全部 `OK`，没有 `缺失`；`目录式:` 一行都不应出现（本阶段还没有新增页面）。
 
+- [ ] **Step 3b: 页内锚点 id 断言**（来自 Task 10 评审）
+
+三个 block 的 `id` 在模板里是**条件输出**（`{% if block.data.id %}`），靠 `content/home.yaml` 提供。漏写不会报错、不会被文本比对抓到，但 nav 的「功能」、hero CTA 的「免费下载」、页脚的「支持」三个页内锚点会**全部静默失效**。
+
+```bash
+cd ~/sproot/matrix
+for id in download features support; do
+  grep -q "id=\"$id\"" sites/voicebridge.top/out/index.html \
+    && echo "OK   id=$id" || echo "缺失 id=$id ← 锚点已失效"
+done
+# 英文页同理
+for id in download features support; do
+  grep -q "id=\"$id\"" sites/voicebridge.top/out/index_en.html \
+    && echo "OK   en id=$id" || echo "缺失 en id=$id"
+done
+```
+
+预期：6 行全 `OK`，一个 `缺失` 都不能有。
+
 - [ ] **Step 4: 逐页可见文本比对**
 
 ```bash
@@ -1494,6 +2003,33 @@ echo "文本比对 fail=$fail"
 ```
 
 预期：`fail=0`。若有差异，逐条对照 `content/*.yaml` 补齐——**允许的差异只有一类**：原 HTML 里被 `<svg>` 包裹的装饰性文本（脚本已整体剥离 svg，不会产生差异）。其余任何差异都必须修到零。
+
+- [ ] **Step 4b: JSON-LD 逐字段比对**（来自 Task 8 评审）
+
+`html-text-diff.mjs` 只比对 `<title>`、`<meta name="description">` 与 body 可见文本，**不看 `<script type="application/ld+json">`**。而首页的 `@graph`（`SoftwareApplication` + `Organization` + `FAQPage`，含 4 条 FAQ 问答与 featureList）是整份内容里唯一既没有自动验收覆盖、又必须逐字段手工搬运的部分——漏搬或搬错都不会有任何信号。
+
+```bash
+cd ~/sproot/matrix && node -e '
+const fs = require("fs");
+const assert = require("assert");
+const grab = (f) => {
+  const m = fs.readFileSync(f, "utf-8").match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+  return m ? JSON.parse(m[1]) : null;
+};
+for (const [base, out] of [
+  ["/tmp/vb-baseline/index.html", "sites/voicebridge.top/out/index.html"],
+  ["/tmp/vb-baseline/index_en.html", "sites/voicebridge.top/out/index_en.html"],
+]) {
+  const a = grab(base), b = grab(out);
+  assert.ok(a, `基线缺 JSON-LD：${base}`);
+  assert.ok(b, `新版缺 JSON-LD：${out}`);
+  assert.deepStrictEqual(b, a, `JSON-LD 与基线不一致：${out}`);
+  console.log(`✅ ${out} 的 JSON-LD 与基线逐字段一致（@graph ${a["@graph"] ? a["@graph"].length : "?"} 个节点）`);
+}
+'
+```
+
+预期：两行 `✅`，`@graph` 各 3 个节点。`deepStrictEqual` 会连键序无关的深层差异一起抓出来——FAQ 少一条、featureList 少一项、Organization 的 email 写错，都会在这里失败。
 
 - [ ] **Step 5: sitemap 与 robots 检查**
 

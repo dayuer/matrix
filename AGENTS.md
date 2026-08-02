@@ -11,7 +11,8 @@ matrix/
 │   ├── arrfunds/       # arrfunds 激活（深绿金融风）
 │   ├── journal/        # journal 激活（企业官网资讯类主题，多页+博客+下单，表现层）
 │   ├── didi/           # didi 激活（didi.bike 独立暗色科技风主题表现层）
-│   └── yaodriver/      # yaodriver 激活（曜行智能企业 AI 流程再造官网主题）
+│   ├── yaodriver/      # yaodriver 激活（曜行智能企业 AI 流程再造官网主题）
+│   └── voicebridge/    # voicebridge.top 激活（苹果发布会风：大标题 hero + bento 卡片网格）
 ├── apps/
 │   ├── arrfunds/       # ARR Funds AI 订阅收入投资基金官网
 │   ├── didi.bike/      # didi.bike 站点
@@ -21,7 +22,7 @@ matrix/
 ├── sites/              # 纯数据驱动与纯静态站点（site.yaml + 配置文件/页面）
 │   ├── synon.ai/       # Synon Global 官网（dossier 主题）
 │   ├── silkline.id/    # SilkLine 印尼企业数字基础设施平台（arrfunds 主题，EN/ID 双语）
-│   └── voicebridge.top/ # VoiceBridge 畅译 App 官网（纯静态 HTML 页面同步）
+│   └── voicebridge.top/ # VoiceBridge 畅译 App 官网（voicebridge 主题，中英双语，SEO/GEO 内容矩阵）
 ├── config/             # 全局/子应用配置文件
 ├── docs/               # 行业洞察、研报与草稿目录
 ├── scripts/            # 辅助脚本（如网站地图生成等）

@@ -1,0 +1,13 @@
+{# nav 文案默认取 site.*，页面可用 locals 覆盖（英文页用它渲染英文导航）。 #}
+{% set _nav = navItems or site.nav %}
+{% set _cta = ctaOverride or site.cta %}
+{% set _langSwitch = langSwitchOverride or site.langSwitch %}
+{% set _brandCn = brandNameCnOverride if brandNameCnOverride is defined else site.brand.nameCn %}
+<nav class="nav" id="nav">
+  <a class="brand" href="{{ homeHref or (basePath + '/') }}">{{ site.brand.name }}{% if _brandCn %}<span class="cn">{{ _brandCn }}</span>{% endif %}</a>
+  <div class="links">
+    {% for item in _nav %}<a href="{{ item.href }}">{{ item.text }}</a>{% endfor %}
+  </div>
+  {% if _langSwitch %}<a class="lang" href="{{ _langSwitch.href }}">{{ _langSwitch.text }}</a>{% endif %}
+  <a class="cta" href="{{ _cta.href }}">{{ _cta.text }}</a>
+</nav>

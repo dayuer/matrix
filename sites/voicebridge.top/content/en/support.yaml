@@ -1,0 +1,135 @@
+path: /support_en.html
+template: page
+meta:
+  lang: en
+  bodyClass: legal legal-support lang-en
+  title: VoiceBridge — Support & FAQ
+  description: 'VoiceBridge Support: contact email, frequently asked questions, and system requirements. A completely free, 100% offline voice-to-text and meeting-notes app that never uploads your data.'
+  keywords: VoiceBridge,support,FAQ,help,contact,offline transcription
+  canonical: /support_en.html
+  priority: 0.8
+  changefreq: monthly
+  alternates:
+    - hreflang: zh-Hans
+      href: /support.html
+    - hreflang: en
+      href: /support_en.html
+    - hreflang: x-default
+      href: /support.html
+  jsonLd:
+    "@context": "https://schema.org"
+    "@type": "FAQPage"
+    inLanguage: "en"
+    mainEntity:
+      - "@type": "Question"
+        name: "Do I need internet to use VoiceBridge?"
+        acceptedAnswer:
+          "@type": "Answer"
+          text: "No. VoiceBridge uses the SenseVoice on-device AI engine. Core recording and transcription features work completely offline, even in Airplane Mode."
+      - "@type": "Question"
+        name: "What languages are supported?"
+        acceptedAnswer:
+          "@type": "Answer"
+          text: "Offline support for Chinese, English, Japanese, Korean, Cantonese, French, German, and Spanish. Additional languages (Indonesian, Thai, Vietnamese, Malay) are available through Apple's iOS Speech engine."
+      - "@type": "Question"
+        name: "Is my recording data safe?"
+        acceptedAnswer:
+          "@type": "Answer"
+          text: "Absolutely. All recordings and transcripts are stored only on your device. Nothing is uploaded to any server, and we collect no personal information."
+      - "@type": "Question"
+        name: "Is VoiceBridge really completely free? Are there any ads or limits?"
+        acceptedAnswer:
+          "@type": "Answer"
+          text: "Yes, VoiceBridge is completely free. We have no in-app purchases, no ads, and all features (including speaker voiceprint library, iCloud backup, PDF export, etc.) are fully unlocked without any limits on duration or meeting count."
+      - "@type": "Question"
+        name: "Will deleting the App delete my meeting transcripts?"
+        acceptedAnswer:
+          "@type": "Answer"
+          text: "Yes. Since VoiceBridge runs 100% offline, all recordings and transcripts are saved only in your iPhone's local secure sandbox. Uninstalling the app will clear all local data. Please export your important files as PDF/TXT before uninstalling."
+blocks:
+  - type: custom-html
+    data:
+      html: |
+        <div class="container">
+          <span class="eyebrow">Support</span>
+          <h1>Support<span class="cn">VoiceBridge</span></h1>
+          <p class="subtitle">Completely Free · Offline AI Meeting Transcription · Privacy First</p>
+
+          <div class="contact-card">
+            <h3>📧 Contact Us</h3>
+            <p>Have a question or feedback? Email us — we usually reply within one business day.</p>
+            <a class="contact-btn" href="mailto:support@voicebridge.top">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3 7 9 6 9-6"/></svg>
+              support@voicebridge.top
+            </a>
+          </div>
+
+          <h2>FAQ</h2>
+          <div class="faq">
+            <details>
+              <summary>Do I need internet to use VoiceBridge?</summary>
+              <div class="a">No. VoiceBridge uses the SenseVoice on-device AI engine. Core recording and transcription features work completely offline, even in Airplane Mode.</div>
+            </details>
+            <details>
+              <summary>What languages are supported?</summary>
+              <div class="a">Offline support for Chinese, English, Japanese, Korean, Cantonese, French, German, and Spanish. Additional languages (Indonesian, Thai, Vietnamese, Malay) are available through Apple's iOS Speech engine.</div>
+            </details>
+            <details>
+              <summary>Is my recording data safe?</summary>
+              <div class="a">Absolutely. All recordings and transcripts are stored only on your device. Nothing is uploaded to any server, and we collect no personal information. See our <a href="privacy_en.html">Privacy Policy</a>.</div>
+            </details>
+            <details>
+              <summary>Is VoiceBridge really completely free? Are there any ads or limits?</summary>
+              <div class="a">Yes, VoiceBridge is completely free. We have no in-app purchases, no ads, and all features (including speaker voiceprint library, local auto-backup, PDF export, etc.) are fully unlocked without any limits on duration or meeting count.</div>
+            </details>
+            <details>
+              <summary>Will deleting the App delete my meeting transcripts?</summary>
+              <div class="a">Yes. Since VoiceBridge runs 100% offline, all recordings and transcripts are saved only in your iPhone's local secure sandbox. Uninstalling the app will clear all local data. Please make sure to export your important files as PDF/TXT before uninstalling.</div>
+            </details>
+          </div>
+
+          <h2>System Requirements</h2>
+          <div class="sysreq">
+            <p>📱 iPhone · iOS 17.0 or later<br>💾 At least 500MB free storage (for AI model files)</p>
+          </div>
+        </div>
+
+locals:
+  navItems:
+    - text: Features
+      href: '#features'
+    - text: Support
+      href: '#support'
+    - text: Privacy
+      href: /privacy_en.html
+  ctaOverride:
+    text: Free download
+    href: '#download'
+  langSwitchOverride:
+    text: 中文
+    href: /
+  homeHref: /index_en.html
+  brandNameCnOverride: ''
+  footerOverride:
+    columns:
+      - title: ''
+        links:
+          - text: Features
+            href: '#features'
+          - text: Support
+            href: /support_en.html
+          - text: Privacy Policy
+            href: /privacy_en.html
+          - text: Terms of Service
+            href: /terms_en.html
+          - text: Contact
+            href: 'mailto:support@voicebridge.top'
+          - text: 中文
+            href: /
+    legal:
+      note: 'VoiceBridge is completely free and 100% offline: recognition, voiceprints, and semantic vectors all run locally, no connection required. When you use the AI Meeting Notes feature, your transcript is shared — with your explicit consent — via the system clipboard with a third-party AI app of your choice.'
+      foundingYear: 2026
+      company:
+        text: VoiceBridge
+        href: /index_en.html
+    social: []

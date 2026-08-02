@@ -1,0 +1,287 @@
+path: /index_en.html
+template: home
+meta:
+  lang: en
+  title: VoiceBridge — Free, 100% Offline Voice-to-Text & AI Meeting Notes
+  description: 'VoiceBridge is a completely free, 100% on-device app that turns any recording into text: offline transcription, automatic speaker separation, punctuation & article formatting, local semantic search, and one-tap PDF export. Your audio never leaves your iPhone — no ads, no in-app purchases, no sign-up.'
+  keywords: voice to text, meeting notes, transcription, offline transcription, speaker diarization, AI notes, PDF export, semantic search, free, VoiceBridge
+  canonical: /index_en.html
+  priority: 1.0
+  changefreq: weekly
+  alternates:
+    - hreflang: zh-Hans
+      href: /
+    - hreflang: en
+      href: /index_en.html
+    - hreflang: x-default
+      href: /
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "SoftwareApplication"
+        name: "VoiceBridge"
+        operatingSystem: "iOS 17.0+"
+        applicationCategory: "ProductivityApplication"
+        description: "A completely free, 100% on-device app that turns any recording into text: offline transcription, automatic speaker separation, punctuation & article formatting, local semantic search, and one-tap PDF export."
+        url: "https://voicebridge.top/index_en.html"
+        image: "https://voicebridge.top/og-image.png"
+        inLanguage: "en"
+        offers:
+          "@type": "Offer"
+          price: "0"
+          priceCurrency: "USD"
+        featureList:
+          - "Offline voice-to-text"
+          - "Speaker separation with voiceprint"
+          - "Punctuation & article formatting"
+          - "Local semantic search"
+          - "AI meeting notes"
+          - "PDF export"
+          - "12 offline languages"
+        publisher:
+          "@id": "https://voicebridge.top/#org"
+      - "@type": "Organization"
+        "@id": "https://voicebridge.top/#org"
+        name: "VoiceBridge"
+        url: "https://voicebridge.top/"
+        email: "support@voicebridge.top"
+        logo: "https://voicebridge.top/favicon.svg"
+      - "@type": "FAQPage"
+        mainEntity:
+          - "@type": "Question"
+            name: "Are my recordings and voice data uploaded?"
+            acceptedAnswer:
+              "@type": "Answer"
+              text: "No. Core speech recognition runs entirely on your iPhone. Recordings and transcripts are stored only in the app's local sandbox and are never uploaded to any server. Core features work even in Airplane Mode."
+          - "@type": "Question"
+            name: "Is VoiceBridge really completely free? Are there any ads or limits?"
+            acceptedAnswer:
+              "@type": "Answer"
+              text: "Yes, VoiceBridge is completely free. We have no in-app purchases, no ads, all features are fully unlocked, and there are no limits on the number of meetings or transcription duration."
+          - "@type": "Question"
+            name: "How do I import a recording into VoiceBridge?"
+            acceptedAnswer:
+              "@type": "Answer"
+              text: "Select an audio file in the system Voice Memos or Files app and share it to VoiceBridge to start an import; or pick multiple files inside the app to queue them for offline transcription. M4A, WAV, and MP3 are supported."
+          - "@type": "Question"
+            name: "How does AI Meeting Notes work?"
+            acceptedAnswer:
+              "@type": "Answer"
+              text: "When you choose to use it, your transcript is passed via the system clipboard to a third-party AI app of your choice (such as ChatGPT or Claude) for you to paste manually. VoiceBridge itself sends no network requests to any third-party server, and asks for your explicit consent before first use."
+blocks:
+  - type: hero
+    data:
+      id: download
+      eyebrow: Completely free · 100% offline · Never uploaded
+      title: Turn recordings<br>into meeting notes.
+      sub: Import any recording and transcribe it offline — speakers separated, punctuation restored into clean articles, one-tap AI notes and PDF export. Audio and text stay 100% on device. Free forever, no ads, no sign-up.
+      appstore:
+        href: '#'
+        label: Download VoiceBridge on the App Store
+        small: Download on the
+        big: App Store
+      secondary:
+        text: Explore all features
+        href: '#features'
+      trust:
+        - '<b>$0</b> Completely free'
+        - No ads · No in-app purchases
+        - No sign-up
+      artHtml: |
+        <svg viewBox="0 0 320 640" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VoiceBridge transcription interface preview with speaker-labeled meeting notes">
+          <defs>
+            <linearGradient id="screeng" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#f5f5f7"/>
+            </linearGradient>
+          </defs>
+          <!-- body -->
+          <rect x="6" y="6" width="308" height="628" rx="52" fill="#1d1d1f"/>
+          <rect x="12" y="12" width="296" height="616" rx="46" fill="url(#screeng)"/>
+          <!-- notch -->
+          <rect x="118" y="24" width="84" height="22" rx="11" fill="#1d1d1f"/>
+          <!-- app header -->
+          <text x="34" y="86" font-family="-apple-system, sans-serif" font-size="21" font-weight="700" fill="#1d1d1f" letter-spacing="-0.5">Weekly Sync</text>
+          <text x="34" y="108" font-family="-apple-system, sans-serif" font-size="12" fill="#86868b">03:42 · 2 speakers · Transcribed</text>
+
+          <!-- transcript row 1 -->
+          <circle cx="46" cy="150" r="15" fill="#6c5ce7"/>
+          <text x="46" y="155" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="12" font-weight="700" fill="#fff">A</text>
+          <text x="72" y="140" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#86868b">Speaker A</text>
+          <rect x="72" y="150" width="200" height="9" rx="4.5" fill="#e8e8ed"/>
+          <rect x="72" y="165" width="150" height="9" rx="4.5" fill="#e8e8ed"/>
+
+          <!-- transcript row 2 -->
+          <circle cx="46" cy="230" r="15" fill="#00b894"/>
+          <text x="46" y="235" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="12" font-weight="700" fill="#fff">B</text>
+          <text x="72" y="220" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#86868b">Speaker B</text>
+          <rect x="72" y="230" width="176" height="9" rx="4.5" fill="#e8e8ed"/>
+          <rect x="72" y="245" width="120" height="9" rx="4.5" fill="#e8e8ed"/>
+
+          <!-- transcript row 3 (active, accent) -->
+          <circle cx="46" cy="310" r="15" fill="#6c5ce7"/>
+          <text x="46" y="315" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="12" font-weight="700" fill="#fff">A</text>
+          <text x="72" y="300" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#86868b">Speaker A</text>
+          <rect x="72" y="310" width="188" height="9" rx="4.5" fill="#d9d4fb"/>
+          <rect x="72" y="325" width="96" height="9" rx="4.5" fill="#d9d4fb"/>
+
+          <!-- AI note floating card -->
+          <g>
+            <rect x="34" y="378" width="252" height="86" rx="18" fill="#1d1d1f"/>
+            <text x="52" y="410" font-family="-apple-system, sans-serif" font-size="12" font-weight="600" fill="#a99bff">✦ AI Meeting Notes</text>
+            <rect x="52" y="422" width="210" height="7" rx="3.5" fill="rgba(255,255,255,0.28)"/>
+            <rect x="52" y="436" width="180" height="7" rx="3.5" fill="rgba(255,255,255,0.18)"/>
+          </g>
+
+          <!-- waveform + synced playback -->
+          <g transform="translate(0 520)">
+            <rect x="34" y="0" width="252" height="72" rx="20" fill="#f0f0f4"/>
+            <g fill="#6c5ce7">
+              <rect class="wave-bar" x="60"  y="18" width="5" height="36" rx="2.5" style="animation-delay:0s"/>
+              <rect class="wave-bar" x="74"  y="18" width="5" height="36" rx="2.5" style="animation-delay:.12s"/>
+              <rect class="wave-bar" x="88"  y="18" width="5" height="36" rx="2.5" style="animation-delay:.24s"/>
+              <rect class="wave-bar" x="102" y="18" width="5" height="36" rx="2.5" style="animation-delay:.36s"/>
+              <rect class="wave-bar" x="116" y="18" width="5" height="36" rx="2.5" style="animation-delay:.18s"/>
+              <rect class="wave-bar" x="130" y="18" width="5" height="36" rx="2.5" style="animation-delay:.30s"/>
+              <rect class="wave-bar" x="144" y="18" width="5" height="36" rx="2.5" style="animation-delay:.06s"/>
+            </g>
+            <circle cx="246" cy="36" r="22" fill="#6c5ce7"/>
+            <path d="M241 27 L241 45 L256 36 Z" fill="#fff"/>
+          </g>
+        </svg>
+  - type: band
+    data:
+      id: features
+      title: The features paid apps charge for, <span class="dim">all free and all offline.</span>
+      lead: Import, recognize, separate, organize, export — every step runs locally on your iPhone. Audio and text never leave the device.
+  - type: feature-bento
+    data:
+      cards:
+        - cls: span-3 feature-hero accent
+          kicker: Completely free
+          title: What others gate behind a subscription — unlocked for $0.
+          body: Unlimited duration, unlimited transcripts, every feature open. No in-app purchases, no ads, no account. Install and go.
+          artHtml: |
+            <div class="price-tag"><b>$0</b><em>Free forever · No IAP · No ads</em></div>
+        - cls: span-3 feature-hero
+          kicker: 100% offline
+          title: Nothing leaves the device — works in Airplane Mode.
+          body: 'The SenseVoice on-device engine runs recognition, voiceprints, and semantic vectors locally. Audio and text: zero uploads, zero tracking, zero sign-up.'
+          artHtml: |
+            <div class="art">
+              <div class="offline-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+                <span>100% offline · Nothing leaves the device</span>
+              </div>
+            </div>
+        - cls: span-3
+          kicker: One-tap import
+          title: Share from Voice Memos, transcribe instantly.
+          body: Pick audio in the system Voice Memos or Files app and share it to VoiceBridge. A background FIFO queue processes files and resumes even if the app is force-quit.
+          artHtml: |
+            <div class="chips">
+              <span class="chip">M4A</span>
+              <span class="chip">WAV</span>
+              <span class="chip">MP3</span>
+            </div>
+        - cls: span-3
+          kicker: Speaker separation · Voiceprint library
+          title: Who said what, sorted out clearly.
+          body: pyannote + CAM++ voiceprint clustering separates multiple speakers and color-codes them; the voiceprint library remembers regulars and auto-matches them in new imports.
+          artHtml: |
+            <div class="art">
+              <div class="mini">
+                <div class="row"><div class="spk" style="background:#6c5ce7">A</div><div class="txt"><div class="name">Speaker A</div><div class="line w1"></div><div class="line w2"></div></div></div>
+                <div class="row"><div class="spk" style="background:#00b894">B</div><div class="txt"><div class="name">Speaker B</div><div class="line w1"></div><div class="line w2"></div></div></div>
+              </div>
+            </div>
+        - cls: span-2
+          kicker: Article formatting
+          title: Punctuation, restored.
+          body: An on-device CT-Transformer model plus VAD segmentation turn raw output into readable articles — not one endless run-on block.
+        - cls: span-2
+          kicker: Local semantic search
+          title: Search by meaning.
+          body: Each transcript gets on-device sentence vectors, so you can search across meetings by meaning without recalling the exact words — all offline.
+        - cls: span-2
+          kicker: One-tap PDF export
+          title: Polished notes to share.
+          body: Export a PDF with speaker colors, a timeline, and AI summary cards — or export .txt and the original audio.
+        - cls: span-3
+          kicker: AI Meeting Notes
+          title: One tap to structured notes.
+          body: Six built-in prompt templates (notes, action items, decisions, key points, mind map, follow-up email) hand off to an AI app installed on your device; results archive back into VoiceBridge for reuse.
+          artHtml: |
+            <div class="chips">
+              <span class="chip"><span class="dot" style="background:#10a37f"></span>ChatGPT</span>
+              <span class="chip"><span class="dot" style="background:#d97757"></span>Claude</span>
+              <span class="chip"><span class="dot" style="background:#4285f4"></span>Gemini</span>
+              <span class="chip"><span class="dot" style="background:#4d6bfe"></span>DeepSeek</span>
+              <span class="chip"><span class="dot" style="background:#1c1c1c"></span>Doubao · Kimi · more</span>
+            </div>
+        - cls: span-3
+          kicker: 12 offline languages
+          title: Covers the languages you meet in.
+          body: Chinese, English, Cantonese, Japanese, and Korean run fully offline on SenseVoice; seven more use Apple's on-device recognition, forced never to upload.
+          artHtml: |
+            <div class="langs">
+              <span class="on">中文</span><span class="on">English</span><span class="on">粤语</span><span class="on">日本語</span><span class="on">한국어</span><span>Français</span><span>Deutsch</span><span>Español</span><span>Bahasa</span><span>ภาษาไทย</span><span>Tiếng Việt</span>
+            </div>
+        - cls: span-6
+          kicker: Local Storage / iCloud Backup (Coming Soon)
+          title: Transcripts follow you across devices. Audio stays local.
+          body: 'Secure local sandbox storage is supported. iCloud Drive automatic backup is coming soon: only .txt files sync, encrypted by Apple in transit, while audio recordings are never uploaded. Toggled anytime in Settings.'
+  - type: support-panel
+    data:
+      id: support
+      title: Need a hand?
+      body: Whether it's a how-to, a feature idea, or other feedback, we're glad to hear it. Drop us an email — we usually reply within one business day.
+      email: support@voicebridge.top
+      faq:
+        - q: Are my recordings and voice data uploaded?
+          a: No. Core speech recognition runs entirely on your iPhone. Recordings and transcripts are stored only in the app's local sandbox and are never uploaded to any server. Core features work even in Airplane Mode.
+        - q: Is VoiceBridge really completely free? Are there any ads or limits?
+          a: Yes, VoiceBridge is completely free. We have no in-app purchases, no ads, all features are fully unlocked, and there are no limits on the number of meetings or transcription duration.
+        - q: How do I import a recording into VoiceBridge?
+          a: Select an audio file in the system Voice Memos or Files app and share it to VoiceBridge to start an import; or pick multiple files inside the app to queue them for offline transcription. M4A, WAV, and MP3 are supported.
+        - q: How does AI Meeting Notes work?
+          a: When you choose to use it, your transcript is passed via the system clipboard to a third-party AI app of your choice (such as ChatGPT or Claude) for you to paste manually. VoiceBridge itself sends no network requests to any third-party server, and asks for your explicit consent before first use.
+
+locals:
+  navItems:
+    - text: Features
+      href: '#features'
+    - text: Support
+      href: '#support'
+    - text: Privacy
+      href: /privacy_en.html
+  ctaOverride:
+    text: Free download
+    href: '#download'
+  langSwitchOverride:
+    text: 中文
+    href: /
+  homeHref: /index_en.html
+  brandNameCnOverride: ''
+  footerOverride:
+    columns:
+      - title: ''
+        links:
+          - text: Features
+            href: '#features'
+          - text: Support
+            href: /support_en.html
+          - text: Privacy Policy
+            href: /privacy_en.html
+          - text: Terms of Service
+            href: /terms_en.html
+          - text: Contact
+            href: 'mailto:support@voicebridge.top'
+          - text: 中文
+            href: /
+    legal:
+      note: 'VoiceBridge is completely free and 100% offline: recognition, voiceprints, and semantic vectors all run locally, no connection required. When you use the AI Meeting Notes feature, your transcript is shared — with your explicit consent — via the system clipboard with a third-party AI app of your choice.'
+      foundingYear: 2026
+      company:
+        text: VoiceBridge
+        href: /index_en.html
+    social: []

@@ -1,0 +1,7 @@
+{# 全宽标语带：一个 h2 + 一段引言。 #}
+<section class="band"{% if block.data.id %} id="{{ block.data.id }}"{% endif %}>
+  <div class="wrap">
+    <h2>{{ block.data.title | safe }}</h2>
+    {% if block.data.lead %}<p class="lead">{{ block.data.lead }}</p>{% endif %}
+  </div>
+</section>

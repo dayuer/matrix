@@ -1,0 +1,11 @@
+path: /404
+template: notFound
+meta:
+  title: 页面不存在 — VoiceBridge 畅译
+  description: 你访问的页面不存在，返回首页继续了解 VoiceBridge（畅译）。
+  canonical: /404
+blocks:
+  - type: band
+    data:
+      title: 页面不存在
+      lead: 你访问的链接可能已失效。返回首页继续了解 VoiceBridge（畅译）。

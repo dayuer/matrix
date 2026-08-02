@@ -10,8 +10,10 @@ SITE_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 REPO_ROOT="$(cd "$SITE_DIR/../.." && pwd)"
 SITE_NAME="$(basename "$SITE_DIR")"
 
-# 静态渲染导出：把本站点根目录下的所有 HTML 和相关的 png/svg/xml/txt 静态资产拷贝到 out/ 进行发布
-export EXPORT_CMD="mkdir -p '$SITE_DIR/out' && rm -rf '$SITE_DIR/out/'* && cp '$SITE_DIR/'*.html '$SITE_DIR/out/' && cp -f '$SITE_DIR/'*.{png,svg,xml,txt} '$SITE_DIR/out/' 2>/dev/null || true"
+# 平台包（blocks → site-kit → cli）与主题必须先构建为 dist/
+(cd "$REPO_ROOT" && npm run build:platform && npm run build -w @matrix/theme-voicebridge)
+
+export EXPORT_CMD="npm --prefix '$REPO_ROOT' run matrix -- export '$SITE_NAME'"
 
 cd "$SITE_DIR"
 source "$REPO_ROOT/packages/site-kit/deploy/deploy.template.sh"

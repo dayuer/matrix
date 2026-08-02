@@ -178,6 +178,8 @@ function meta(
     priority: m.priority,
     changefreq: m.changefreq,
     jsonLd: m.jsonLd ?? null,
+    alternates: m.alternates,
+    updated: m.updated,
     blocks: m.blocks as BlockInstance[] | undefined,
   };
 }

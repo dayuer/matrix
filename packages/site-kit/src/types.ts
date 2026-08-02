@@ -33,10 +33,14 @@ export interface FooterLegal {
   icp?: { text: string; href: string };
   company: { text: string; href: string };
   foundingYear: number;
+  /** 页脚长段免责/说明文案（可选）。 */
+  note?: string;
 }
 
 export interface Brand {
   name: string;
+  /** 品牌中文副名，渲染为品牌字后缀（可选）。 */
+  nameCn?: string;
   logo?: string;
   desc: string;
   favicon: string;
@@ -45,6 +49,10 @@ export interface Brand {
 /** 各站点 site 配置的通用底座，可被扩展。 */
 export interface BaseSiteConfig {
   baseUrl: string;
+  /** 站点默认语言，注入 <html lang>。页面可用 meta.lang 覆盖。 */
+  lang?: string;
+  /** 导航右侧的语言切换入口（可选）。 */
+  langSwitch?: { text: string; href: string };
   brand: Brand;
   nav: NavItem[];
   cta: { text: string; href: string };
@@ -72,6 +80,10 @@ export interface PageMeta {
   jsonLd?: Record<string, unknown> | null;
   /** 页面语言覆盖（可选）：覆盖 site.lang，注入 &lt;html lang="..."&gt;。 */
   lang?: string;
+  /** 本页的多语言对照版本，用于 sitemap 与 <link rel="alternate"> 的 hreflang。 */
+  alternates?: Array<{ hreflang: string; href: string }>;
+  /** 本页最后实质更新日期（YYYY-MM-DD）。缺省时 sitemap 用导出当天。 */
+  updated?: string;
   /** 页面内容块（可选）：由内容层组装，主题通用模板据此按 block.type 分发渲染。 */
   blocks?: BlockInstance[];
 }
@@ -124,4 +136,8 @@ export interface SiteDefinition {
   extraAssets?: string[];
   /** 导出时把 theme.css 额外复制成这些文件名（兼容旧缓存 HTML 引用的资源名，如 ['style.css']）。 */
   cssAliases?: string[];
+  /** 追加到 robots.txt 的自定义规则行（站点 site.yaml 的 robots 字段）。 */
+  robots?: string[];
+  /** GEO：llms.txt 生成配置（由 @matrix/cli 消费，site-kit 不使用）。 */
+  llms?: { enabled?: boolean; summary?: string };
 }

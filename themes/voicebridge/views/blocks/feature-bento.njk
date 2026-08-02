@@ -1,0 +1,15 @@
+{# bento 卡片网格。每张卡：span 类名 + kicker + 标题 + 正文 + 可选一次性插画/价签。 #}
+<section>
+  <div class="wrap">
+    <div class="bento">
+      {% for card in block.data.cards %}
+      <div class="card {{ card.cls }}">
+        {% if card.kicker %}<span class="kicker">{{ card.kicker }}</span>{% endif %}
+        <h3>{{ card.title | safe }}</h3>
+        {% if card.body %}<p>{{ card.body }}</p>{% endif %}
+        {% if card.artHtml %}{{ card.artHtml | safe }}{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,67 @@
+path: /terms.html
+template: page
+meta:
+  title: VoiceBridge 畅译 — 使用条款
+  description: VoiceBridge（畅译）使用条款：一款完全免费、100% 离线的录音转文字与会议纪要工具，所有功能免费，无内购、无订阅，语音数据均在设备端处理。
+  keywords: VoiceBridge,畅译,使用条款,完全免费,离线转录
+  bodyClass: legal
+  canonical: /terms.html
+  priority: 0.5
+  changefreq: yearly
+  alternates:
+    - hreflang: zh-Hans
+      href: /terms.html
+    - hreflang: en
+      href: /terms_en.html
+    - hreflang: x-default
+      href: /terms.html
+blocks:
+  - type: custom-html
+    data:
+      html: |
+        <div class="container">
+          <span class="eyebrow">使用条款</span>
+          <h1>使用条款<span class="cn">VoiceBridge · 畅译</span></h1>
+          <p class="subtitle">最后更新：2026 年 6 月 6 日 · 生效日期：2026 年 6 月 6 日</p>
+
+          <h2>1. 接受条款</h2>
+          <p>下载、安装或使用 VoiceBridge（畅译，以下简称“本应用”），即表示您同意受本使用条款的约束。如果您不同意本条款，请勿使用本应用。</p>
+
+          <h2>2. 服务描述</h2>
+          <p>VoiceBridge 是一款端侧离线语音转文字工具，提供音频导入、语音识别、文本转录、会议纪要等功能。核心功能完全在您的设备上运行，无需互联网连接。</p>
+
+          <h2>3. 免费服务</h2>
+          <ul>
+            <li>本应用提供的所有功能均完全免费，不包含任何收费或订阅项目。</li>
+            <li>我们不设任何会议保存条数或录音时长的限制，您可无限制使用所有核心功能（包括声纹库、iCloud 备份、PDF/文本导出等）。</li>
+          </ul>
+
+          <h2>4. 用户责任</h2>
+          <ul>
+            <li>您应确保在录音时已获得所有参与者的知情同意</li>
+            <li>您不得将本应用用于任何非法目的</li>
+            <li>您对通过本应用创建和存储的所有内容负责</li>
+          </ul>
+
+          <h2>5. 知识产权</h2>
+          <p>本应用及其所有内容、功能和技术均受知识产权法保护。未经授权，不得复制、修改、分发或逆向工程本应用的任何部分。</p>
+
+          <h2>6. 免责声明</h2>
+          <ul>
+            <li>语音识别结果可能存在误差，不保证 100% 准确</li>
+            <li>本应用按“现状”提供，不提供任何形式的明示或暗示保证</li>
+            <li>我们不对因使用本应用导致的任何直接或间接损失承担责任</li>
+          </ul>
+
+          <h2>7. 数据与隐私</h2>
+          <p>我们对您的隐私承诺详见<a href="privacy.html">隐私政策</a>。所有语音数据处理均在设备端完成，我们不收集任何个人信息。</p>
+
+          <h2>8. 条款变更</h2>
+          <p>我们保留随时修改本条款的权利。修改后的条款将在此页面发布并立即生效。继续使用本应用即表示您接受修改后的条款。</p>
+
+          <h2>9. 适用法律</h2>
+          <p>本条款受中华人民共和国法律管辖。</p>
+
+          <h2>10. 联系我们</h2>
+          <p>如有疑问，请联系：<a href="mailto:support@voicebridge.top">support@voicebridge.top</a></p>
+        </div>
