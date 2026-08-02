@@ -1211,7 +1211,9 @@ git commit -m "feat(theme): voicebridge 样式表从手写 index.html 迁入，:
 
 {# Open Graph #}
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="{{ site.brand.name }}">
+{# 拼回完整品牌词：nav/footer 需要 name + nameCn 两段结构，但 og:site_name
+   在原页面是合并的「VoiceBridge 畅译」，只输出 name 会把品牌词掉一半。 #}
+<meta property="og:site_name" content="{{ site.brand.name }}{% if site.brand.nameCn %} {{ site.brand.nameCn }}{% endif %}">
 <meta property="og:title" content="{{ page.ogTitle or page.title }}">
 <meta property="og:description" content="{{ page.ogDescription or page.description }}">
 <meta property="og:url" content="{{ site.baseUrl }}{{ page.canonical }}">
@@ -1221,6 +1223,7 @@ git commit -m "feat(theme): voicebridge 样式表从手写 index.html 迁入，:
 {# startsWith 必须是驼峰：Nunjucks 跑在真 JS 字符串上，Jinja2 的全小写 startswith 会抛
    "Unable to call ... which is undefined or falsey"，让整页渲染失败（已实测）。 #}
 <meta property="og:locale" content="{% if (page.lang or site.lang or 'zh-Hans').startsWith('en') %}en_US{% else %}zh_CN{% endif %}">
+{% if page.alternates %}<meta property="og:locale:alternate" content="{% if (page.lang or site.lang or 'zh-Hans').startsWith('en') %}zh_CN{% else %}en_US{% endif %}">{% endif %}
 
 {# Twitter #}
 <meta name="twitter:card" content="summary_large_image">
@@ -1859,6 +1862,33 @@ echo "文本比对 fail=$fail"
 ```
 
 预期：`fail=0`。若有差异，逐条对照 `content/*.yaml` 补齐——**允许的差异只有一类**：原 HTML 里被 `<svg>` 包裹的装饰性文本（脚本已整体剥离 svg，不会产生差异）。其余任何差异都必须修到零。
+
+- [ ] **Step 4b: JSON-LD 逐字段比对**（来自 Task 8 评审）
+
+`html-text-diff.mjs` 只比对 `<title>`、`<meta name="description">` 与 body 可见文本，**不看 `<script type="application/ld+json">`**。而首页的 `@graph`（`SoftwareApplication` + `Organization` + `FAQPage`，含 4 条 FAQ 问答与 featureList）是整份内容里唯一既没有自动验收覆盖、又必须逐字段手工搬运的部分——漏搬或搬错都不会有任何信号。
+
+```bash
+cd ~/sproot/matrix && node -e '
+const fs = require("fs");
+const assert = require("assert");
+const grab = (f) => {
+  const m = fs.readFileSync(f, "utf-8").match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+  return m ? JSON.parse(m[1]) : null;
+};
+for (const [base, out] of [
+  ["/tmp/vb-baseline/index.html", "sites/voicebridge.top/out/index.html"],
+  ["/tmp/vb-baseline/index_en.html", "sites/voicebridge.top/out/index_en.html"],
+]) {
+  const a = grab(base), b = grab(out);
+  assert.ok(a, `基线缺 JSON-LD：${base}`);
+  assert.ok(b, `新版缺 JSON-LD：${out}`);
+  assert.deepStrictEqual(b, a, `JSON-LD 与基线不一致：${out}`);
+  console.log(`✅ ${out} 的 JSON-LD 与基线逐字段一致（@graph ${a["@graph"] ? a["@graph"].length : "?"} 个节点）`);
+}
+'
+```
+
+预期：两行 `✅`，`@graph` 各 3 个节点。`deepStrictEqual` 会连键序无关的深层差异一起抓出来——FAQ 少一条、featureList 少一项、Organization 的 email 写错，都会在这里失败。
 
 - [ ] **Step 5: sitemap 与 robots 检查**
 
