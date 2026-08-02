@@ -1,0 +1,7 @@
+{# 长文页（教程/知识）：正文走窄栏排版，其余与 page.njk 一致。 #}
+{% extends "layouts/base.njk" %}
+{% block content %}
+<main id="main" class="article">
+  {% for block in page.blocks %}{% include "blocks/" + block.type + ".njk" ignore missing %}{% endfor %}
+</main>
+{% endblock %}

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang or site.lang or 'zh-Hans' }}">
+<head>
+  {% include "partials/head.njk" %}
+</head>
+<body{% if page.bodyClass %} class="{{ page.bodyClass }}"{% endif %}>
+  {% include "partials/nav.njk" %}
+  {% block content %}{% endblock %}
+  {% include "partials/footer.njk" %}
+  <script src="{{ basePath }}/app.js?v={{ assetVersion }}"></script>
+</body>
+</html>

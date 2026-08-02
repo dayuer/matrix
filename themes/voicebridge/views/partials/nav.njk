@@ -1,0 +1,8 @@
+<nav class="nav" id="nav">
+  <a class="brand" href="{{ basePath }}/">{{ site.brand.name }}{% if site.brand.nameCn %}<span class="cn">{{ site.brand.nameCn }}</span>{% endif %}</a>
+  <div class="links">
+    {% for item in site.nav %}<a href="{{ item.href }}">{{ item.text }}</a>{% endfor %}
+  </div>
+  {% if site.langSwitch %}<a class="lang" href="{{ site.langSwitch.href }}">{{ site.langSwitch.text }}</a>{% endif %}
+  <a class="cta" href="{{ site.cta.href }}">{{ site.cta.text }}</a>
+</nav>
