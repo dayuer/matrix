@@ -1707,6 +1707,10 @@ blocks:
 
 **⚠️ 上面三处 `[]` 与 `artHtml` 占位是搬运指令，不是可交付内容。本任务未把它们填满即视为未完成。** 填完后 `content/home.yaml` 里的可见文案必须与 `index.html` 一字不差——Task 14 会用 `html-text-diff.mjs` 逐字校验。
 
+**⚠️ 三个 `id` 是强制项，不是可选项。** `hero.data.id: download`、`band.data.id: features`、`support-panel.data.id: support` —— 模板里 `id` 是条件输出，漏写不报错、不被文本比对抓到，但 nav 的「功能」、hero CTA 的「免费下载」、页脚的「支持」三个页内锚点会全部静默失效。Task 14 Step 3b 会断言这三个 id 存在。
+
+**关于 bento 卡片的 `artHtml`**（Task 10 评审已用 10 张真实卡片验证 schema 够用）：模板的固定顺序是 `kicker → h3 → p → artHtml`，原页面 10 张卡片全部符合这个顺序，无一例外。`.price-tag`、`.art`、`.offline-badge`、`.chips`、`.langs`、`.mini` 这些一次性结构连同其外层包裹 div 一起塞进 `artHtml` 即可，评审已验证渲染产物与原 markup 逐字符一致。
+
 - [ ] **Step 2: support.yaml / privacy.yaml / terms.yaml**
 
 三页都是长文，正文用 `custom-html` block 原样保留（这些是法律文本，重排风险大于收益）。以 `privacy.yaml` 为例：
@@ -1849,6 +1853,25 @@ find out -name index.html -not -path 'out/index.html' | sed 's|^|目录式: |'
 ```
 
 预期：9 行全部 `OK`，没有 `缺失`；`目录式:` 一行都不应出现（本阶段还没有新增页面）。
+
+- [ ] **Step 3b: 页内锚点 id 断言**（来自 Task 10 评审）
+
+三个 block 的 `id` 在模板里是**条件输出**（`{% if block.data.id %}`），靠 `content/home.yaml` 提供。漏写不会报错、不会被文本比对抓到，但 nav 的「功能」、hero CTA 的「免费下载」、页脚的「支持」三个页内锚点会**全部静默失效**。
+
+```bash
+cd ~/sproot/matrix
+for id in download features support; do
+  grep -q "id=\"$id\"" sites/voicebridge.top/out/index.html \
+    && echo "OK   id=$id" || echo "缺失 id=$id ← 锚点已失效"
+done
+# 英文页同理
+for id in download features support; do
+  grep -q "id=\"$id\"" sites/voicebridge.top/out/index_en.html \
+    && echo "OK   en id=$id" || echo "缺失 en id=$id"
+done
+```
+
+预期：6 行全 `OK`，一个 `缺失` 都不能有。
 
 - [ ] **Step 4: 逐页可见文本比对**
 
