@@ -13,6 +13,7 @@ import fs from 'fs';
 import path from 'path';
 import { exportSite, startServer } from '@matrix/site-kit';
 import { loadSite } from './load';
+import { writeLlmsFiles } from './llms';
 
 /** sites/ 根目录：默认相对仓库根（本包上两级），可用 MATRIX_SITES_DIR 覆盖。 */
 function sitesRoot(): string {
@@ -67,7 +68,11 @@ switch (cmd) {
       console.error('[matrix] 没有可导出的站点。');
       process.exit(1);
     }
-    for (const name of targets) exportSite(loadSite(siteDir(name)));
+    for (const name of targets) {
+      const def = loadSite(siteDir(name));
+      exportSite(def);
+      writeLlmsFiles(def, def.llms);
+    }
     break;
   }
   default:

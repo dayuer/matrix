@@ -138,4 +138,6 @@ export interface SiteDefinition {
   cssAliases?: string[];
   /** 追加到 robots.txt 的自定义规则行（站点 site.yaml 的 robots 字段）。 */
   robots?: string[];
+  /** GEO：llms.txt 生成配置（由 @matrix/cli 消费，site-kit 不使用）。 */
+  llms?: { enabled?: boolean; summary?: string };
 }

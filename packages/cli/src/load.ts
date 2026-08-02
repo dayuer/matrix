@@ -24,6 +24,7 @@ import type {
   ThemeOptions,
 } from '@matrix/site-kit';
 import { expandCollection, type CollectionConfig } from './blog';
+import type { LlmsConfig } from './llms';
 
 /** site.yaml 的形状：BaseSiteConfig + 平台字段。 */
 interface SiteYaml extends BaseSiteConfig {
@@ -37,6 +38,8 @@ interface SiteYaml extends BaseSiteConfig {
   collections?: CollectionConfig[];
   /** 追加到 robots.txt 的自定义规则行。 */
   robots?: string[];
+  /** GEO：llms.txt / llms-full.txt 生成配置。 */
+  llms?: LlmsConfig;
 }
 
 /** content 文件（yaml 或 md frontmatter）里允许的页面级字段。 */
@@ -156,6 +159,7 @@ export function loadSite(siteDir: string): SiteDefinition {
     defaults = {},
     collections = [],
     robots,
+    llms,
     ...site
   } = raw;
   if (!site.baseUrl) fail(siteFile, '缺少必填字段 baseUrl');
@@ -202,5 +206,6 @@ export function loadSite(siteDir: string): SiteDefinition {
     extraAssets,
     cssAliases,
     robots,
+    llms,
   };
 }
