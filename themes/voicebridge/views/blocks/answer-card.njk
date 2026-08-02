@@ -1,0 +1,15 @@
+{# 直答卡：每页首屏一段可脱离上下文成立的回答，同时是 FAQPage/Answer schema 的文案来源。
+   question 用 h2 而非 h1——h1 留给页面标题，避免与 breadcrumb 后的标题竞争。 #}
+<section class="answer-card">
+  <div class="doc-wrap">
+    <div class="ac-box">
+      {% if block.data.question %}<h2 class="ac-q">{{ block.data.question }}</h2>{% endif %}
+      <p class="ac-a">{{ block.data.answer }}</p>
+      {% if block.data.facts %}
+      <ul class="ac-facts">
+        {% for f in block.data.facts %}<li>{{ f }}</li>{% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+</section>

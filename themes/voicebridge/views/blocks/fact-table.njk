@@ -1,0 +1,18 @@
+{# 事实对照表。用于 /compare/online-vs-offline/ 与 /facts。
+   rows[].cells 是字符串数组，长度必须与 head 一致——不一致时表格会错位，
+   Task 3 的断言会检查这一点。 #}
+<section class="fact-table">
+  <div class="doc-wrap">
+    {% if block.data.title %}<h2>{{ block.data.title }}</h2>{% endif %}
+    <div class="ft-scroll">
+      <table>
+        <thead><tr>{% for h in block.data.head %}<th>{{ h }}</th>{% endfor %}</tr></thead>
+        <tbody>
+          {% for r in block.data.rows %}
+          <tr>{% for c in r.cells %}<td>{{ c }}</td>{% endfor %}</tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

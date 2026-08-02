@@ -1,0 +1,19 @@
+{# 有序步骤。每步 name + text，可选 tip。HowTo 的结构化数据由页面 meta.jsonLd 提供，
+   这里只负责可见结构，两者的文案必须一致。 #}
+<section class="step-list">
+  <div class="doc-wrap">
+    {% if block.data.title %}<h2>{{ block.data.title }}</h2>{% endif %}
+    <ol class="steps">
+      {% for s in block.data.steps %}
+      <li class="step">
+        <div class="step-n">{{ loop.index }}</div>
+        <div class="step-body">
+          <h3>{{ s.name }}</h3>
+          <p>{{ s.text }}</p>
+          {% if s.tip %}<p class="step-tip">{{ s.tip }}</p>{% endif %}
+        </div>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>

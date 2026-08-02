@@ -1,0 +1,16 @@
+{# 列表页的条目网格（/learn/、/guides/、/scenes/ 共用）。 #}
+<section class="card-grid">
+  <div class="doc-wrap">
+    {% if block.data.title %}<h2>{{ block.data.title }}</h2>{% endif %}
+    {% if block.data.lead %}<p class="cg-lead">{{ block.data.lead }}</p>{% endif %}
+    <div class="cg-items">
+      {% for it in block.data.items %}
+      <a class="cg-item" href="{{ it.href }}">
+        {% if it.kicker %}<span class="cg-kicker">{{ it.kicker }}</span>{% endif %}
+        <h3>{{ it.title }}</h3>
+        <p>{{ it.desc }}</p>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>

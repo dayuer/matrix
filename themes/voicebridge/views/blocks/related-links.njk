@@ -1,0 +1,13 @@
+{# 页尾相关阅读。内链是本次改造的重要一环——27 页若互不链接，等于 27 个孤岛。 #}
+{% if block.data.items %}
+<section class="related">
+  <div class="doc-wrap">
+    <h2>{{ block.data.title or '相关阅读' }}</h2>
+    <ul class="rel-list">
+      {% for it in block.data.items %}
+      <li><a href="{{ it.href }}">{{ it.text }}</a>{% if it.desc %}<span class="rel-desc">{{ it.desc }}</span>{% endif %}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}

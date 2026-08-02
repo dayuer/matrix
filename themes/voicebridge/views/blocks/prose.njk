@@ -1,0 +1,8 @@
+{# 长文正文。html 字段承载 Markdown 编译后的 HTML，必须 safe；
+   排版规则全部由 body.doc 作用域下的 theme.css 提供。 #}
+<section class="prose">
+  <div class="doc-wrap">
+    {% if block.data.title %}<h2>{{ block.data.title }}</h2>{% endif %}
+    {{ block.data.html | safe }}
+  </div>
+</section>

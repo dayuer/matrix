@@ -1,0 +1,11 @@
+{# 面包屑。BreadcrumbList 结构化数据由页面 meta.jsonLd 提供，此处只渲染可见结构。
+   最后一项是当前页，不带链接。 #}
+<nav class="breadcrumb" aria-label="面包屑">
+  <div class="doc-wrap">
+    <ol>
+      {% for c in block.data.items %}
+      <li>{% if c.href %}<a href="{{ c.href }}">{{ c.text }}</a>{% else %}<span aria-current="page">{{ c.text }}</span>{% endif %}</li>
+      {% endfor %}
+    </ol>
+  </div>
+</nav>
