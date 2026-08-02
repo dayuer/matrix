@@ -105,6 +105,9 @@ function extract(file) {
   const text = body
     .replace(/<script[\s\S]*?<\/script>/gi, ' ')
     .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+    // 先剥自闭合 <svg .../>：它没有子节点，剥离无损。若留给下面的非贪婪匹配，
+    // 它会与后面某个真实 </svg> 配对，把两者之间的正文整段静默吞掉。
+    .replace(/<svg\b[^>]*\/>/gi, ' ')
     .replace(/<svg\b[\s\S]*?<\/svg>/gi, svgText)
     .replace(/<[^>]+>/g, '\n')
     .split('\n')
