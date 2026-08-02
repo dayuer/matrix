@@ -1,0 +1,25 @@
+{# 支持区：标题 + 说明 + 邮件按钮 + FAQ 折叠列表。 #}
+<section class="support"{% if block.data.id %} id="{{ block.data.id }}"{% endif %}>
+  <div class="wrap">
+    <div class="support-inner">
+      <h2>{{ block.data.title }}</h2>
+      <p>{{ block.data.body }}</p>
+      {% if block.data.email %}
+      <a class="mail" href="mailto:{{ block.data.email }}">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3 7 9 6 9-6"/></svg>
+        {{ block.data.email }}
+      </a>
+      {% endif %}
+      {% if block.data.faq %}
+      <div class="faq">
+        {% for item in block.data.faq %}
+        <details>
+          <summary>{{ item.q }}</summary>
+          <div class="a">{{ item.a }}</div>
+        </details>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>

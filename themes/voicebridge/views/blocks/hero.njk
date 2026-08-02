@@ -1,0 +1,23 @@
+{# 首屏：eyebrow + 大标题 + 副文 + 双 CTA + 信任条 + 一次性插画（artHtml 原样透传）。 #}
+<section class="hero"{% if block.data.id %} id="{{ block.data.id }}"{% endif %}>
+  <div class="wrap">
+    {% if block.data.eyebrow %}<span class="eyebrow rise d1">{{ block.data.eyebrow }}</span>{% endif %}
+    <h1 class="title rise d2">{{ block.data.title | safe }}</h1>
+    <p class="sub rise d3">{{ block.data.sub }}</p>
+    <div class="actions rise d4">
+      {% if block.data.appstore %}
+      <a class="appstore" href="{{ block.data.appstore.href }}" aria-label="{{ block.data.appstore.label }}">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.02-2.02 1.65-2.99 1.72-3.04-0.94-1.37-2.4-1.56-2.92-1.58-1.24-.13-2.42.73-3.05.73-.63 0-1.6-.71-2.63-.69-1.35.02-2.6.79-3.3 2-1.41 2.44-.36 6.05 1.01 8.03.67.97 1.47 2.06 2.51 2.02 1.01-.04 1.39-.65 2.61-.65 1.22 0 1.56.65 2.63.63 1.09-.02 1.78-.99 2.44-1.96.77-1.12 1.09-2.21 1.11-2.27-.02-.01-2.13-.82-2.15-3.25zM15.03 6.6c.56-.68.94-1.62.83-2.56-.81.03-1.79.54-2.37 1.21-.52.6-.97 1.56-.85 2.48.9.07 1.83-.46 2.39-1.13z"/></svg>
+        <span class="txt"><small>{{ block.data.appstore.small }}</small><b>{{ block.data.appstore.big }}</b></span>
+      </a>
+      {% endif %}
+      {% if block.data.secondary %}<a class="link-arrow" href="{{ block.data.secondary.href }}">{{ block.data.secondary.text }}</a>{% endif %}
+    </div>
+    {% if block.data.trust %}
+    <div class="trust rise d4">
+      {% for t in block.data.trust %}<span>{{ t | safe }}</span>{% endfor %}
+    </div>
+    {% endif %}
+    {% if block.data.artHtml %}<div class="device rise d4">{{ block.data.artHtml | safe }}</div>{% endif %}
+  </div>
+</section>
