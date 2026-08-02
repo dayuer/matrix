@@ -4,6 +4,7 @@ meta:
   title: VoiceBridge 畅译 — 使用条款
   description: VoiceBridge（畅译）使用条款：一款完全免费、100% 离线的录音转文字与会议纪要工具，所有功能免费，无内购、无订阅，语音数据均在设备端处理。
   keywords: VoiceBridge,畅译,使用条款,完全免费,离线转录
+  bodyClass: legal
   canonical: /terms.html
   priority: 0.5
   changefreq: yearly

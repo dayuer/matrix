@@ -226,3 +226,47 @@
     .card { padding: 28px 24px 30px; }
     .hero .actions { gap: 16px; }
   }
+
+  /* ---------- 法务/支持页（body.legal；support 页另加 .legal-support，刻意不叫 .support——首页的 section.support 有一组 p 规则会命中整页） ----------
+     迁移自 privacy.html / terms.html / support.html 各自原有的 <style> 块。
+     这些页面不走 block 模板，正文是整段 custom-html，样式必须由主题提供。
+     全部作用域在 body.legal 下：裸 h1/h2/p/li 与 .eyebrow/.faq 若不隔离，
+     会与首页已有的同名规则互相冲掉。 */
+  body.legal { line-height: 1.65; }
+  body.legal a:hover { text-decoration: underline; }
+  body.legal .container { max-width: 720px; margin: 0 auto; padding: calc(var(--nav-h) + 56px) 22px 0; }
+  /* letter-spacing 必须显式写回 normal：首页的 .eyebrow 有 -0.01em，
+     本页原样式没有，不覆盖会继承过来。 */
+  body.legal .eyebrow { display: inline-block; font-size: 14px; font-weight: 600; color: var(--accent); margin-bottom: 12px; letter-spacing: normal; }
+  body.legal h1 { font-size: clamp(34px, 6vw, 52px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.08; color: var(--ink); }
+  body.legal h1 .cn { font-size: 0.42em; font-weight: 500; color: var(--ink-3); letter-spacing: 0; margin-left: 10px; }
+  body.legal .subtitle { color: var(--ink-3); font-size: 14.5px; margin-top: 14px; }
+  body.legal h2 { font-size: 22px; font-weight: 600; letter-spacing: -0.015em; color: var(--ink); margin: 44px 0 14px; }
+  body.legal p, body.legal li { font-size: 16px; color: var(--ink-2); margin-bottom: 12px; text-wrap: pretty; }
+  body.legal strong { color: var(--ink); font-weight: 600; }
+  body.legal ul { padding-left: 22px; margin-bottom: 12px; }
+  body.legal li { margin-bottom: 7px; }
+  body.legal .highlight { background: var(--surface-2); border-radius: 18px; padding: 24px 26px; margin: 28px 0; }
+  body.legal .highlight p { color: var(--ink); margin-bottom: 0; font-size: 16px; }
+
+  /* support 页专属（class 名必须避开首页的 .support）：原 support.html 的 h2 间距与 p/li 下边距与 privacy/terms 不同 */
+  body.legal-support h2 { margin: 48px 0 16px; }
+  body.legal-support p, body.legal-support li { margin-bottom: 0; }
+  body.legal-support .contact-card { background: var(--surface-2); border-radius: 20px; padding: 30px 30px 32px; margin-top: 30px; }
+  body.legal-support .contact-card h3 { font-size: 19px; font-weight: 600; color: var(--ink); letter-spacing: -0.01em; }
+  body.legal-support .contact-card p { margin-top: 8px; }
+  body.legal-support .contact-btn {
+    display: inline-flex; align-items: center; gap: 9px; margin-top: 20px;
+    background: var(--accent); color: #fff; font-size: 16px; font-weight: 500;
+    padding: 12px 24px; border-radius: 980px; letter-spacing: -0.01em;
+    transition: transform .15s ease, background .2s ease; touch-action: manipulation;
+  }
+  body.legal-support .contact-btn:hover { background: var(--accent-ink); text-decoration: none; }
+  body.legal-support .contact-btn:active { transform: scale(0.97); }
+  body.legal-support .contact-btn svg { width: 18px; height: 18px; }
+  /* support 页的 FAQ 与首页 FAQ 参数不同（宽度、内边距、字号），这里还原本页原值 */
+  body.legal-support .faq { max-width: none; margin: 0; }
+  body.legal-support .faq summary { padding: 20px 40px 20px 2px; font-size: 17px; }
+  body.legal-support .faq .a { padding: 0 20px 22px 2px; font-size: 15.5px; line-height: 1.6; }
+  body.legal-support .sysreq { background: var(--surface-2); border-radius: 18px; padding: 22px 26px; margin-top: 18px; }
+  body.legal-support .sysreq p { color: var(--ink); font-size: 15.5px; line-height: 1.9; }

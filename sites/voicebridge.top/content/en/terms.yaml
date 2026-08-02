@@ -2,7 +2,7 @@ path: /terms_en.html
 template: page
 meta:
   lang: en
-  bodyClass: lang-en
+  bodyClass: legal lang-en
   title: VoiceBridge — Terms of Service
   description: 'VoiceBridge Terms of Service: a completely free, 100% offline voice-to-text and meeting-notes tool. All features are free — no in-app purchases, no subscriptions — and voice data is processed entirely on-device.'
   keywords: VoiceBridge,terms of service,completely free,offline transcription

@@ -2,7 +2,7 @@ path: /privacy_en.html
 template: page
 meta:
   lang: en
-  bodyClass: lang-en
+  bodyClass: legal lang-en
   title: VoiceBridge — Privacy Policy
   description: 'VoiceBridge Privacy Policy: core speech recognition runs 100% on-device, audio and text are never uploaded to any server; completely free, no ads, no in-app purchases, and no personal information collected.'
   keywords: VoiceBridge,privacy policy,offline,no upload,privacy first

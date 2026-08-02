@@ -2,7 +2,7 @@ path: /support_en.html
 template: page
 meta:
   lang: en
-  bodyClass: lang-en
+  bodyClass: legal legal-support lang-en
   title: VoiceBridge — Support & FAQ
   description: 'VoiceBridge Support: contact email, frequently asked questions, and system requirements. A completely free, 100% offline voice-to-text and meeting-notes app that never uploads your data.'
   keywords: VoiceBridge,support,FAQ,help,contact,offline transcription

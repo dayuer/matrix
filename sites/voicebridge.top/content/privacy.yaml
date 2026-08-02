@@ -4,6 +4,7 @@ meta:
   title: VoiceBridge 畅译 — 隐私政策
   description: VoiceBridge（畅译）隐私政策：核心语音识别 100% 在设备本地完成，音频与文字绝不上传服务器；完全免费、无广告、无内购，不收集任何个人信息。
   keywords: VoiceBridge,畅译,隐私政策,离线,数据不上传,隐私优先
+  bodyClass: legal
   canonical: /privacy.html
   priority: 0.5
   changefreq: yearly
