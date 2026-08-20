@@ -122,6 +122,6 @@ blocks:
         - text: 识别出文字只是开始
           href: /learn/asr-postprocessing/
           desc: 标点、分段、可读性，这些都得自己做
-        - text: 数据不出设备是怎么做到的
-          href: /features/privacy-local/
-          desc: 哪些在本地跑，哪些需要你授权
+        - text: 哪些在本地跑，哪些需要你授权
+          href: /privacy.html
+          desc: 隐私政策里写清楚了数据的边界

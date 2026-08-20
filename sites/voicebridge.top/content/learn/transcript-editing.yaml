@@ -130,6 +130,6 @@ blocks:
         - text: 说话人分离为什么会认错人
           href: /learn/speaker-diarization/
           desc: 另一个查错了方向的 bug
-        - text: 校对与纠错词典怎么用
-          href: /guides/proofread-dictionary/
-          desc: 从用户视角看这套功能
+        - text: 用起来有问题？
+          href: /support.html
+          desc: 常见问题与联系方式

@@ -120,6 +120,6 @@ blocks:
         - text: 机器改和人改会打架
           href: /learn/transcript-editing/
           desc: 稿子出来之后，谁有权改它
-        - text: 逐字稿自动分段是怎么做的
-          href: /features/offline-transcription/
-          desc: 从用户视角看这条链路
+        - text: 看看转出来的稿子长什么样
+          href: /#features
+          desc: 逐字稿文章化、标点恢复，都在首页功能区

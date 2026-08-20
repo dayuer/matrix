@@ -138,6 +138,6 @@ blocks:
         - text: 机器改和人改会打架
           href: /learn/transcript-editing/
           desc: AI 产物的编辑权归谁，不说清楚用户的修改就会被吃掉
-        - text: 发言人分离功能详解
-          href: /features/speaker-diarization/
-          desc: 从用户视角看，自动区分发言人在畅译里怎么用
+        - text: 看看这个功能在畅译里长什么样
+          href: /#features
+          desc: 自动区分发言人、声纹库、导出，都在首页功能区
