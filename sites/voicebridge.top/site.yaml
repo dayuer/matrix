@@ -9,16 +9,21 @@ brand:
   desc: 端侧 AI 语音转写与实时纪要
   favicon: /favicon.svg
 
+# 导航一律用绝对路径：'#features' 这类锚点只在首页存在，
+# 在 /learn/、/features/ 等页面上点了不会有任何反应（曾是线上缺陷）。
 nav:
   - key: features
     text: 功能
-    href: '#features'
+    href: /features/
+  - key: guides
+    text: 教程
+    href: /guides/
+  - key: learn
+    text: 知识
+    href: /learn/
   - key: support
     text: 支持
-    href: '#support'
-  - key: privacy
-    text: 隐私
-    href: /privacy.html
+    href: /support.html
 
 langSwitch:
   text: EN
@@ -33,7 +38,15 @@ footer:
     - title: 站内
       links:
         - text: 功能
-          href: '#features'
+          href: /features/
+        - text: 使用场景
+          href: /scenes/
+        - text: 使用教程
+          href: /guides/
+        - text: 技术选型与踩坑
+          href: /learn/
+        - text: 常见问题
+          href: /faq/
         - text: 技术支持
           href: /support.html
         - text: 隐私政策

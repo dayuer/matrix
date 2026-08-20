@@ -97,14 +97,14 @@ blocks:
 locals:
   navItems:
     - text: Features
-      href: '#features'
+      href: /index_en.html#features
     - text: Support
-      href: '#support'
+      href: /index_en.html#support
     - text: Privacy
       href: /privacy_en.html
   ctaOverride:
     text: Free download
-    href: '#download'
+    href: /index_en.html#download
   langSwitchOverride:
     text: 中文
     href: /
@@ -115,7 +115,7 @@ locals:
       - title: ''
         links:
           - text: Features
-            href: '#features'
+            href: /index_en.html#features
           - text: Support
             href: /support_en.html
           - text: Privacy Policy
