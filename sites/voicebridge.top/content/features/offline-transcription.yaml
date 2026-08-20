@@ -2,7 +2,7 @@ path: /features/offline-transcription
 template: article
 meta:
   title: 离线录音转文字,完全免费不用联网 — VoiceBridge 畅译
-  description: 畅译支持导入 M4A、WAV、MP3 等录音离线转文字,识别、标点排版全部在 iPhone 本地完成,飞行模式也能用。完全免费,无时长与条数限制,无需注册,支持 12 语种。
+  description: 畅译支持导入 M4A、WAV、MP3 等录音离线转文字,识别、标点排版全部在 iPhone 本地完成,飞行模式也能用。完全免费,无时长与条数限制,无需注册。中、英、日、韩、粤 5 种完全离线。
   keywords: 离线录音转文字,语音转文字免费,录音转文字,离线转录,语音识别免费,VoiceBridge,畅译
   canonical: "/features/offline-transcription/"
   bodyClass: doc
@@ -87,7 +87,7 @@ blocks:
         - 完全免费,无内购、无广告、无需注册
         - 识别全过程在设备本地完成,飞行模式下也能用
         - 支持 M4A、WAV、MP3 等主流录音格式导入
-        - 12 语种离线识别,覆盖中文、英语、粤语、日语、韩语等常用语言
+        - 中文、英语、日语、韩语、粤语 5 种完全在设备本地识别,不联网
         - 单次识别没有时长上限,批量导入没有条数上限
 
   - type: prose

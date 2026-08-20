@@ -89,5 +89,5 @@ blocks:
           href: /guides/export-share/
         - kicker: 多语种
           title: 怎么设置识别语言、切换语种
-          desc: 12 语种离线识别，导入时怎么指定语言、怎么让引擎自动判断
+          desc: 哪些语种完全离线、哪些会联网，导入时怎么指定语言
           href: /guides/languages/

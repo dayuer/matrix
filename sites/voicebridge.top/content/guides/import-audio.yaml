@@ -121,7 +121,7 @@ blocks:
           desc: 主流录音格式不用转码，直接导入识别
         - text: 怎么设置识别语言、切换语种
           href: /guides/languages/
-          desc: 12 语种离线识别，导入时怎么指定语言
+          desc: 哪些语种完全离线，导入时怎么指定语言
         - text: 离线录音转文字是怎么做到的
           href: /features/offline-transcription/
           desc: 端侧识别引擎，模型装在手机里，不用连服务器
