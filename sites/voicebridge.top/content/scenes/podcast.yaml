@@ -1,0 +1,130 @@
+path: /scenes/podcast
+template: article
+meta:
+  title: 播客转文字,视频字幕文稿一次搞定 — VoiceBridge 畅译
+  description: 一期播客录完,离线转成文字稿,自动区分主播和嘉宾,方便写节目简介、剪辑关键片段、做视频字幕文稿。畅译完全免费,录音不上传。
+  keywords: 播客转文字,视频字幕文稿,播客文字稿,节目转录,VoiceBridge,畅译
+  canonical: "/scenes/podcast/"
+  bodyClass: doc
+  priority: 0.7
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "Article"
+        headline: "播客转文字,视频字幕文稿一次搞定"
+        description: "一期播客录完,离线转成文字稿,自动区分主播和嘉宾,方便写节目简介、剪辑关键片段、做视频字幕文稿。畅译完全免费,录音不上传。"
+        image: "https://voicebridge.top/og-image.png"
+        author:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+        publisher:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+          logo:
+            "@type": "ImageObject"
+            url: "https://voicebridge.top/favicon.svg"
+        datePublished: "2026-08-21"
+        dateModified: "2026-08-21"
+        mainEntityOfPage:
+          "@type": "WebPage"
+          "@id": "https://voicebridge.top/scenes/podcast/"
+        inLanguage: "zh-Hans"
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - "@type": "ListItem"
+            position: 1
+            name: "首页"
+            item: "https://voicebridge.top/"
+          - "@type": "ListItem"
+            position: 2
+            name: "使用场景"
+            item: "https://voicebridge.top/scenes/"
+          - "@type": "ListItem"
+            position: 3
+            name: "播客转文字"
+            item: "https://voicebridge.top/scenes/podcast/"
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - text: 首页
+          href: /
+        - text: 使用场景
+          href: /scenes/
+        - text: 播客转文字
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">一期播客录完了,文字稿从这一步开始</h1>
+        <p class="doc-sub">一个半小时的对谈录完,后期剪辑要挑片段、写节目简介要摘金句、发小红书要配一段文字引用,每一步都得回去翻录音找原话,来回拖进度条比录节目本身还累。</p>
+
+  - type: answer-card
+    data:
+      question: 播客录音怎么转成能直接用的文字稿?
+      answer: 导入录音离线转写,自动区分主播和嘉宾,标点恢复、分段落排成文章,转出来能直接搜关键词定位片段,也能整段复制去写简介、配文字稿。
+      facts:
+        - 识别全过程在设备本地完成,不联网也能转
+        - 自动区分发言人,主播和嘉宾分得清
+        - 逐字稿自动恢复标点、按语义分段
+        - 支持导入 M4A、WAV、MP3 等主流录音格式
+        - 完全免费,无时长限制,一期多长都能转
+
+  - type: prose
+    data:
+      html: |
+        <h2>播客这类录音的特点</h2>
+        <p>一期节目常常一个半小时起步,内容是主播和一到两位嘉宾来回对谈,话题跳跃,偶尔互相打断插话。很多播客用两轨或者多轨录音分别录每个人的声音,后期合成一条双声道甚至立体声文件。这种长时间、多人交替说话的内容,靠人工整理文字稿,光是听一遍就要搭进去一期节目的时长,还没算上反复定位某句话的时间。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>主播和嘉宾分开标,剪辑找片段更快</h2>
+        <p>畅译在转写时自动识别发言人切换,把主播和嘉宾的发言分开标注。整理节目简介或者找适合做切片的金句时,顺着标好的发言人往下看就行,不用凭印象回忆是谁说的那句话。这一步靠的是在音频层面定位话轮切换,具体怎么做的写在<a href="/learn/speaker-diarization/">说话人分离为什么会认错人</a>里。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>双声道录音,导入不用先处理</h2>
+        <p>不管是单轨混音还是多轨分别录制后导出的双声道文件,M4A、WAV、MP3 这些主流格式都能直接导入畅译,不用先转码或者预处理。转写照常进行,识别效果不会因为声道数不同受到明显影响。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>转出来的文字,能搜也能直接用</h2>
+        <p>整理成带标点、分好段落的文字稿之后,想找某个话题聊到哪句金句,在文字里搜关键词就能定位,不用再拖动播放条一段段找。文字稿本身也能直接用来写节目简介的摘要,或者截取一段配成社交媒体的文字引用,省去自己重新组织语言复述一遍的功夫。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>专业术语和人名,改一次记住</h2>
+        <p>嘉宾的名字、行业黑话、外语词汇,机器识别有时会出错。逐字稿可以直接点开编辑,改完不会被后台重新识别的结果覆盖回去。同一个词后续几期节目还会反复出现,加进纠错词典之后,以后转写会自动按纠正过的写法处理。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>做视频字幕文稿,先有文字打底</h2>
+        <p>如果这期播客要剪成视频版发到其他平台,配字幕之前通常需要一份完整的文字底稿方便逐句校对断句。畅译转出的逐字稿已经带好标点和段落,可以在这个基础上截取需要的句子,比从头听录音手打字幕快不少。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>转完之后怎么用</h2>
+        <p>文字稿整理好之后,可以导出带发言人色标的 PDF 存档,也可以导出 txt 文本直接复制去写简介或者做二次创作。固定搭档的对谈类节目,声纹库会记住已经标注过的主播和常驻嘉宾,新一期录音导入后系统会尝试自动比对匹配,不用每期都重新手动标注。</p>
+
+  - type: related-links
+    data:
+      title: 相关阅读
+      items:
+        - text: 说话人分离为什么会认错人
+          href: /learn/speaker-diarization/
+          desc: 切分交给专门定位话轮边界的模型,不是靠文本内容去猜
+        - text: 发言人分离功能详解
+          href: /features/speaker-diarization/
+          desc: 声纹库记住常用发言人,固定搭档节目不用每次重新标
+        - text: 离线录音转文字详解
+          href: /features/offline-transcription/
+          desc: 支持的格式、语种覆盖与免费范围
