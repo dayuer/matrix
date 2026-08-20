@@ -53,7 +53,7 @@ blocks:
     data:
       html: |
         <h1 class="doc-title">做畅译时踩过的坑</h1>
-        <p class="doc-sub">代码不开源，思路可以。这里记的是几次选型、几次返工，和当时是怎么想的。</p>
+        <p class="doc-sub">代码不开源，思路可以。这里记的是几次选型、几次返工、几个查错了方向的 bug，和当时是怎么想的。</p>
 
   - type: card-grid
     data:
@@ -74,3 +74,19 @@ blocks:
           title: 机器改和人改会打架
           desc: 用户改过的字被后台改回去，这种 bug 一次就够让人卸载
           href: /learn/transcript-editing/
+        - kicker: 录音链路
+          title: 录一段音这件事，比我想的难得多
+          desc: 戴蓝牙耳机必崩、接个电话回来计时器还在走但没在录
+          href: /learn/recording-pitfalls/
+        - kicker: 崩溃排查
+          title: 只在真机 Release 才崩的 bug
+          desc: 开发机跑一万遍没事，装到手机上 75% 概率卡死
+          href: /learn/build-config-bugs/
+        - kicker: 实时转写
+          title: 实时转写为什么会丢字
+          desc: 一场 5.6 分钟的录音，丢了 71% 的内容
+          href: /learn/live-transcription-loss/
+        - kicker: 数据安全
+          title: 差点把用户的会议记录清零
+          desc: 那段兜底代码我写的时候觉得挺稳妥的
+          href: /learn/data-migration/
