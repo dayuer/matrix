@@ -1,0 +1,124 @@
+path: /guides/export-share
+template: article
+meta:
+  title: 逐字稿怎么导出 PDF、怎么分享 — VoiceBridge 畅译
+  description: 转写完的逐字稿怎么导出成 PDF、怎么分享给没装畅译的同事。畅译支持导出带发言人色标的 PDF、纯文本 txt，也能带走原始音频。
+  keywords: 导出PDF,分享逐字稿,转写导出,VoiceBridge,畅译
+  canonical: "/guides/export-share/"
+  bodyClass: doc
+  priority: 0.7
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "HowTo"
+        name: "把逐字稿导出成 PDF 并分享"
+        description: "在畅译里把转写完成的逐字稿导出成 PDF 或文本，通过系统分享菜单发给需要的人。"
+        totalTime: "PT1M"
+        step:
+          - { "@type": "HowToStep", position: 1, name: "打开要导出的逐字稿", text: "在畅译里打开转写完成的那份逐字稿。" }
+          - { "@type": "HowToStep", position: 2, name: "找到导出入口", text: "在这份逐字稿的操作入口里找到导出选项。" }
+          - { "@type": "HowToStep", position: 3, name: "选择导出格式", text: "按需要选择导出带发言人色标的 PDF，或者导出纯文本 txt。" }
+          - { "@type": "HowToStep", position: 4, name: "通过分享菜单发送出去", text: "导出生成后，用系统分享菜单发给同事，或者存到文件、云盘里。" }
+      - "@type": "Article"
+        headline: "逐字稿怎么导出 PDF、怎么分享"
+        description: "转写完的逐字稿怎么导出成 PDF、怎么分享给没装畅译的同事。"
+        image: "https://voicebridge.top/og-image.png"
+        author:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+        publisher:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+          logo:
+            "@type": "ImageObject"
+            url: "https://voicebridge.top/favicon.svg"
+        datePublished: "2026-08-21"
+        dateModified: "2026-08-21"
+        mainEntityOfPage:
+          "@type": "WebPage"
+          "@id": "https://voicebridge.top/guides/export-share/"
+        inLanguage: "zh-Hans"
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - "@type": "ListItem"
+            position: 1
+            name: "首页"
+            item: "https://voicebridge.top/"
+          - "@type": "ListItem"
+            position: 2
+            name: "教程"
+            item: "https://voicebridge.top/guides/"
+          - "@type": "ListItem"
+            position: 3
+            name: "逐字稿怎么导出 PDF、怎么分享"
+            item: "https://voicebridge.top/guides/export-share/"
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - text: 首页
+          href: /
+        - text: 教程
+          href: /guides/
+        - text: 逐字稿怎么导出 PDF、怎么分享
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">逐字稿怎么导出 PDF、怎么分享出去</h1>
+        <p class="doc-sub">转完的文字稿总要发给人看，畅译留了两条路：一份排版好的 PDF，或者一段能直接粘贴的纯文本。</p>
+
+  - type: answer-card
+    data:
+      question: 转写结果能导出吗？能发给没装畅译的人吗？
+      answer: 能。逐字稿支持导出带发言人色标的 PDF，也能导出纯文本 txt，导出之后通过系统分享菜单发给任何人，对方不需要装畅译也能打开。原始音频也可以一并导出带走。
+      facts:
+        - 支持导出带发言人色标、排好版的 PDF
+        - 也能导出纯文本 txt，方便复制粘贴进邮件或文档
+        - 原始录音音频可以单独导出，归档或者转发给需要复核的人
+        - 导出走系统分享菜单，接收方不需要安装畅译
+
+  - type: prose
+    data:
+      html: |
+        <h2>PDF 和文本，怎么选</h2>
+        <p>要发给不方便读一大段无格式文字的同事或客户，PDF 更合适：带着发言人色标，一眼看出来谁说了什么。要把内容粘贴进邮件正文、会议纪要文档或者别的编辑器，纯文本更方便，不用先转格式。两种导出对应的是同一份逐字稿，内容不会有差别，只是呈现形式不同。</p>
+
+  - type: step-list
+    data:
+      title: 具体怎么操作
+      steps:
+        - name: 打开要导出的逐字稿
+          text: 在畅译里打开转写完成的那份逐字稿。
+        - name: 找到导出入口
+          text: 在这份逐字稿的操作入口里找到导出选项。
+        - name: 选择导出格式
+          text: 按需要选择导出带发言人色标的 PDF，或者导出纯文本 txt。
+          tip: 需要复核原始录音的话，原始音频也能单独导出。
+        - name: 通过分享菜单发送出去
+          text: 导出生成后，用系统分享菜单发给同事，或者存到文件、云盘里。
+
+  - type: prose
+    data:
+      html: |
+        <h2>常见问题</h2>
+        <p><b>接收方需要装畅译才能看吗？</b>不需要。PDF 和 txt 都是通用格式，用系统自带的预览、文档或邮件 App 就能打开。</p>
+        <p><b>导出的 PDF 里能看出是谁说的话吗？</b>能，多人对话导出的 PDF 带着发言人色标，跟应用内看到的区分是一致的。</p>
+        <p><b>只想要文字，不想带音频，可以吗？</b>可以，PDF 和 txt 都只包含转写文字，音频是单独的导出选项，按需要选择即可。</p>
+
+  - type: related-links
+    data:
+      title: 相关阅读
+      items:
+        - text: AI 会议纪要怎么用
+          href: /features/meeting-minutes/
+          desc: 转出来的文字一键联动 AI，整理成结构化纪要
+        - text: 说话人分离为什么会认错人
+          href: /learn/speaker-diarization/
+          desc: 发言人色标的准确度取决于切分这一步
+        - text: 转写结果怎么校对、怎么建纠错词典
+          href: /guides/proofread-dictionary/
+          desc: 导出之前先把明显的识别错误改掉

@@ -1,0 +1,126 @@
+path: /guides/languages
+template: article
+meta:
+  title: 多语种识别设置怎么切换语言 — VoiceBridge 畅译
+  description: 畅译支持 12 语种离线识别，导入录音时怎么指定语言、怎么让引擎自动检测、需要换语种时怎么重新设置，完全免费不联网。
+  keywords: 多语种识别,切换语言,语音识别语言设置,VoiceBridge,畅译
+  canonical: "/guides/languages/"
+  bodyClass: doc
+  priority: 0.7
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "HowTo"
+        name: "设置识别语言并切换语种"
+        description: "在畅译导入录音时指定识别语言，或者交给引擎自动检测，需要时重新切换语种。"
+        totalTime: "PT1M"
+        step:
+          - { "@type": "HowToStep", position: 1, name: "导入录音，进入语言选择", text: "导入一段录音后，找到识别语言的设置入口。" }
+          - { "@type": "HowToStep", position: 2, name: "选择手动指定语言或自动检测", text: "从支持的语种列表里手动选一个，或者选择自动检测，交给引擎判断录音里说的是哪种语言。" }
+          - { "@type": "HowToStep", position: 3, name: "确认后开始识别", text: "确认语言设置后，畅译开始离线识别这段录音。" }
+          - { "@type": "HowToStep", position: 4, name: "需要换语种时重新设置", text: "下一段录音是别的语种，重复同样的步骤重新指定语言即可，设置只作用于当前这次导入。" }
+      - "@type": "Article"
+        headline: "多语种识别设置怎么切换语言"
+        description: "畅译支持 12 语种离线识别，导入录音时怎么指定语言、怎么让引擎自动检测。"
+        image: "https://voicebridge.top/og-image.png"
+        author:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+        publisher:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+          logo:
+            "@type": "ImageObject"
+            url: "https://voicebridge.top/favicon.svg"
+        datePublished: "2026-08-21"
+        dateModified: "2026-08-21"
+        mainEntityOfPage:
+          "@type": "WebPage"
+          "@id": "https://voicebridge.top/guides/languages/"
+        inLanguage: "zh-Hans"
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - "@type": "ListItem"
+            position: 1
+            name: "首页"
+            item: "https://voicebridge.top/"
+          - "@type": "ListItem"
+            position: 2
+            name: "教程"
+            item: "https://voicebridge.top/guides/"
+          - "@type": "ListItem"
+            position: 3
+            name: "多语种识别设置怎么切换语言"
+            item: "https://voicebridge.top/guides/languages/"
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - text: 首页
+          href: /
+        - text: 教程
+          href: /guides/
+        - text: 多语种识别设置怎么切换语言
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">怎么设置识别语言、切换语种</h1>
+        <p class="doc-sub">中英文夹着说的会议、外语采访、方言口音的课堂录音，畅译覆盖 12 种语言的离线识别，语言怎么选、怎么换，这篇说清楚。</p>
+
+  - type: answer-card
+    data:
+      question: 畅译支持哪些语言识别？导入时怎么设置语言？
+      answer: 支持 12 种语言的离线识别，覆盖中文、英语、粤语、日语、韩语等常用语种。导入录音时可以手动指定语言，也可以选择自动检测，交给引擎判断录音里说的是哪种语言，整个过程都在设备本地完成。
+      facts:
+        - 支持 12 语种离线识别
+        - 中文、英语、粤语、日语、韩语由 SenseVoice 端侧引擎处理
+        - 其余语种由 Apple 系统自带的设备端识别引擎处理
+        - 导入时可手动指定语言，也可选择自动检测
+        - 所有语种的识别都在设备本地完成，不联网、不上传
+
+  - type: prose
+    data:
+      html: |
+        <h2>覆盖的语种范围</h2>
+        <p>中文、英语、粤语、日语、韩语这 5 个主力语种由 SenseVoice 完全离线识别；其余 7 种语言经 Apple 系统自带的设备端识别引擎本地处理，同样不联网、不上传。加起来一共 12 种语言的离线识别能力，覆盖大多数人日常会用到的场景。</p>
+        <p>不确定录音是哪个语种，或者一段录音里中英文夹杂着说，交给自动检测通常比手动选更省事。</p>
+
+  - type: step-list
+    data:
+      title: 具体怎么操作
+      steps:
+        - name: 导入录音，进入语言选择
+          text: 导入一段录音后，找到识别语言的设置入口。
+        - name: 选择手动指定语言或自动检测
+          text: 从支持的语种列表里手动选一个，或者选择自动检测，交给引擎判断录音里说的是哪种语言。
+          tip: 中英文混说的录音，选自动检测通常比手动指定单一语言效果更稳。
+        - name: 确认后开始识别
+          text: 确认语言设置后，畅译开始离线识别这段录音。
+        - name: 需要换语种时重新设置
+          text: 下一段录音是别的语种，重复同样的步骤重新指定语言即可，设置只作用于当前这次导入。
+
+  - type: prose
+    data:
+      html: |
+        <h2>常见问题</h2>
+        <p><b>一段录音里中英文夹杂，能识别吗？</b>能，中英混杂是常见场景，选自动检测或者对应的主力语种，识别引擎会处理夹杂的部分。</p>
+        <p><b>不在 12 语种范围内的语言能转吗？</b>目前只支持列出的这些语种，不在范围内的语言识别效果无法保证。</p>
+        <p><b>换语种要重新下载模型吗？</b>不需要，支持的语种模型在首次安装时已经准备好，切换语言不需要额外下载。</p>
+
+  - type: related-links
+    data:
+      title: 相关阅读
+      items:
+        - text: 离线录音转文字是怎么做到的
+          href: /features/offline-transcription/
+          desc: 端侧识别引擎，模型装在手机里，不用连服务器
+        - text: 端侧模型选型：好模型为什么上不了手机
+          href: /learn/on-device-model-tradeoffs/
+          desc: 体积、速度和效果之间的取舍
+        - text: 怎么一次导入多个音频批量转写
+          href: /guides/import-audio/
+          desc: 应用内多选文件，交给后台队列排队处理

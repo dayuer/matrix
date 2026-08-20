@@ -1,0 +1,93 @@
+path: /guides
+template: page
+meta:
+  title: 使用教程 — 录音转文字操作指南 — VoiceBridge 畅译
+  description: 畅译（VoiceBridge）使用教程：语音备忘录转文字、m4a/mp3 转文字、导入音频批量转写、转写校对与纠错词典、导出 PDF 与分享逐字稿、多语种识别设置。
+  keywords: 使用教程,录音转文字教程,VoiceBridge,畅译
+  canonical: "/guides/"
+  bodyClass: doc
+  priority: 0.6
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "CollectionPage"
+        name: "使用教程 — VoiceBridge 畅译"
+        description: "畅译使用教程：语音备忘录转文字、m4a/mp3 转文字、导入音频批量转写、转写校对与纠错词典、导出 PDF 与分享逐字稿、多语种识别设置。"
+        url: "https://voicebridge.top/guides/"
+        inLanguage: "zh-Hans"
+        mainEntity:
+          "@type": "ItemList"
+          itemListElement:
+            - "@type": "ListItem"
+              position: 1
+              url: "https://voicebridge.top/guides/iphone-voice-memo-to-text/"
+            - "@type": "ListItem"
+              position: 2
+              url: "https://voicebridge.top/guides/m4a-mp3-to-text/"
+            - "@type": "ListItem"
+              position: 3
+              url: "https://voicebridge.top/guides/import-audio/"
+            - "@type": "ListItem"
+              position: 4
+              url: "https://voicebridge.top/guides/proofread-dictionary/"
+            - "@type": "ListItem"
+              position: 5
+              url: "https://voicebridge.top/guides/export-share/"
+            - "@type": "ListItem"
+              position: 6
+              url: "https://voicebridge.top/guides/languages/"
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - "@type": "ListItem"
+            position: 1
+            name: "首页"
+            item: "https://voicebridge.top/"
+          - "@type": "ListItem"
+            position: 2
+            name: "教程"
+            item: "https://voicebridge.top/guides/"
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - text: 首页
+          href: /
+        - text: 教程
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">怎么用畅译把录音变成文字</h1>
+        <p class="doc-sub">从语音备忘录导入到导出分享，按具体问题分好类的操作指南，找到对应的那篇，跟着步骤做就行。</p>
+        <p>不管录音是手机自带的语音备忘录录的，还是文件、云盘里存的 m4a、mp3，畅译都能直接导入，识别全程在设备本地完成，不用联网。转出来的逐字稿可以校对、可以导出，也能按需要设置识别语言。下面这几篇按最常遇到的操作场景分开写，各自独立，需要哪篇看哪篇。</p>
+
+  - type: card-grid
+    data:
+      title: 六篇教程
+      lead: 覆盖导入、批量转写、校对、导出分享和多语种设置这几类最常遇到的操作。
+      items:
+        - kicker: 语音备忘录
+          title: iPhone 语音备忘录怎么转文字
+          desc: 从系统「语音备忘录」App 分享一条录音到畅译，几步转出逐字稿
+          href: /guides/iphone-voice-memo-to-text/
+        - kicker: 格式支持
+          title: m4a、mp3 录音怎么转文字
+          desc: 主流录音格式不用转码，直接导入畅译离线识别
+          href: /guides/m4a-mp3-to-text/
+        - kicker: 批量导入
+          title: 怎么一次导入多个音频批量转写
+          desc: 应用内多选文件，交给后台队列排队处理
+          href: /guides/import-audio/
+        - kicker: 校对纠错
+          title: 转写结果怎么校对、怎么建纠错词典
+          desc: 逐字稿哪里能改，改一次之后同类错误怎么自动纠正
+          href: /guides/proofread-dictionary/
+        - kicker: 导出分享
+          title: 逐字稿怎么导出 PDF、怎么分享出去
+          desc: 带发言人色标的 PDF，或者一段纯文本，两种路子都留着
+          href: /guides/export-share/
+        - kicker: 多语种
+          title: 怎么设置识别语言、切换语种
+          desc: 12 语种离线识别，导入时怎么指定语言、怎么让引擎自动判断
+          href: /guides/languages/

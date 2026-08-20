@@ -1,0 +1,127 @@
+path: /guides/import-audio
+template: article
+meta:
+  title: 怎么导入音频文件批量转写 — VoiceBridge 畅译
+  description: 手里攒了很多没整理的录音，怎么一次导入畅译批量转写。应用内多选文件交给后台队列，逐个自动识别，不用一个个点开单独转。
+  keywords: 导入音频文件,批量转写,批量转录,录音转文字,VoiceBridge,畅译
+  canonical: "/guides/import-audio/"
+  bodyClass: doc
+  priority: 0.7
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "HowTo"
+        name: "在畅译里批量导入音频转写"
+        description: "在畅译应用内一次多选多个音频文件，交给后台队列批量转写。"
+        totalTime: "PT3M"
+        step:
+          - { "@type": "HowToStep", position: 1, name: "打开畅译，进入导入入口", text: "打开畅译，找到导入音频的入口。" }
+          - { "@type": "HowToStep", position: 2, name: "多选要转写的音频文件", text: "在文件选择界面里，一次勾选多个要转写的音频，不用一个个单独操作。" }
+          - { "@type": "HowToStep", position: 3, name: "确认导入", text: "确认选好的文件列表，提交导入。" }
+          - { "@type": "HowToStep", position: 4, name: "让后台队列排队处理", text: "所有文件进入后台队列，按先进先出的顺序依次转写，转写期间可以切到别的 App 做别的事。" }
+          - { "@type": "HowToStep", position: 5, name: "回到畅译查看转写结果", text: "队列处理完之后，回到畅译就能看到每个文件对应的逐字稿。" }
+      - "@type": "Article"
+        headline: "怎么导入音频文件批量转写"
+        description: "应用内多选文件交给后台队列，逐个自动离线识别，不用一个个点开单独转。"
+        image: "https://voicebridge.top/og-image.png"
+        author:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+        publisher:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+          logo:
+            "@type": "ImageObject"
+            url: "https://voicebridge.top/favicon.svg"
+        datePublished: "2026-08-21"
+        dateModified: "2026-08-21"
+        mainEntityOfPage:
+          "@type": "WebPage"
+          "@id": "https://voicebridge.top/guides/import-audio/"
+        inLanguage: "zh-Hans"
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - "@type": "ListItem"
+            position: 1
+            name: "首页"
+            item: "https://voicebridge.top/"
+          - "@type": "ListItem"
+            position: 2
+            name: "教程"
+            item: "https://voicebridge.top/guides/"
+          - "@type": "ListItem"
+            position: 3
+            name: "怎么导入音频文件批量转写"
+            item: "https://voicebridge.top/guides/import-audio/"
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - text: 首页
+          href: /
+        - text: 教程
+          href: /guides/
+        - text: 怎么导入音频文件批量转写
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">怎么一次导入多个音频批量转写</h1>
+        <p class="doc-sub">手机里攒了一堆没来得及整理的旧录音，不用一条一条点开单独转，一次多选交给后台排队就行。</p>
+
+  - type: answer-card
+    data:
+      question: 能不能一次导入好几个音频文件一起转写？
+      answer: 可以。在畅译应用内多选文件后一起提交，所有文件进入后台队列按顺序自动转写，不需要每转完一个手动点一下才能开始下一个。
+      facts:
+        - 应用内支持一次多选多个音频文件
+        - 转写走先进先出的后台队列，自动依次处理
+        - 处理过程中可以切到别的 App，转完再回来看
+        - 队列处理到一半 App 被系统强杀，回来也能接着转，不用从头再来
+
+  - type: prose
+    data:
+      html: |
+        <h2>什么时候会用到批量导入</h2>
+        <p>攒了好几场没整理的会议录音，或者一学期的课堂录音堆在手机里没空一条条听，这种情况下把它们一次性倒进畅译比逐条打开转更省事。队列会在后台按顺序处理，你可以先去忙别的，回头再统一看转写结果。</p>
+
+  - type: step-list
+    data:
+      title: 具体怎么操作
+      steps:
+        - name: 打开畅译，进入导入入口
+          text: 打开畅译，找到导入音频的入口。
+        - name: 多选要转写的音频文件
+          text: 在文件选择界面里，一次勾选多个要转写的音频，不用一个个单独操作。
+        - name: 确认导入
+          text: 确认选好的文件列表，提交导入。
+        - name: 让后台队列排队处理
+          text: 所有文件进入后台队列，按先进先出的顺序依次转写，转写期间可以切到别的 App 做别的事。
+          tip: 就算处理到一半被系统强制关闭 App，重新打开也会接着处理，不会丢进度。
+        - name: 回到畅译查看转写结果
+          text: 队列处理完之后，回到畅译就能看到每个文件对应的逐字稿。
+
+  - type: prose
+    data:
+      html: |
+        <h2>常见问题</h2>
+        <p><b>批量导入的文件要一样的格式吗？</b>不需要，M4A、WAV、MP3 这几种主流格式可以混着一起导入。</p>
+        <p><b>队列会不会卡住？</b>队列按顺序处理，前一个转完自动接着转下一个，中途不需要手动干预。</p>
+        <p><b>能同时指定不同的识别语言吗？</b>每个文件可以单独指定语言，也可以都交给引擎自动检测，具体见<a href="/guides/languages/">多语种识别设置</a>。</p>
+
+  - type: related-links
+    data:
+      title: 相关阅读
+      items:
+        - text: m4a、mp3 录音怎么转文字
+          href: /guides/m4a-mp3-to-text/
+          desc: 主流录音格式不用转码，直接导入识别
+        - text: 怎么设置识别语言、切换语种
+          href: /guides/languages/
+          desc: 12 语种离线识别，导入时怎么指定语言
+        - text: 离线录音转文字是怎么做到的
+          href: /features/offline-transcription/
+          desc: 端侧识别引擎，模型装在手机里，不用连服务器

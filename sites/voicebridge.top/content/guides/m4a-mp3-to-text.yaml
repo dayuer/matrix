@@ -1,0 +1,124 @@
+path: /guides/m4a-mp3-to-text
+template: article
+meta:
+  title: m4a、mp3 录音怎么转文字 — VoiceBridge 畅译
+  description: m4a 转文字、mp3 转文字不用先转码。畅译直接支持主流录音格式导入，本地离线识别，完全免费，识别没有时长限制。
+  keywords: m4a转文字,mp3转文字,录音转文字,音频转文字,VoiceBridge,畅译
+  canonical: "/guides/m4a-mp3-to-text/"
+  bodyClass: doc
+  priority: 0.7
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "HowTo"
+        name: "把 m4a、mp3 录音转成文字"
+        description: "把 m4a、mp3 等格式的录音文件导入畅译，本地离线识别成文字。"
+        totalTime: "PT2M"
+        step:
+          - { "@type": "HowToStep", position: 1, name: "打开文件 App，找到录音文件", text: "在系统「文件」App 里，找到要转写的 m4a 或 mp3 文件。" }
+          - { "@type": "HowToStep", position: 2, name: "选中文件，点分享按钮", text: "选中这个文件，点右上角或长按弹出的分享按钮。" }
+          - { "@type": "HowToStep", position: 3, name: "在分享列表里选择畅译", text: "系统分享面板的应用列表里找到畅译，点一下发起导入。" }
+          - { "@type": "HowToStep", position: 4, name: "等待离线转写完成", text: "畅译在设备本地识别这段录音，转写在后台队列里进行，完成后就是一份带标点分好段落的逐字稿。" }
+      - "@type": "Article"
+        headline: "m4a、mp3 录音怎么转文字"
+        description: "m4a 转文字、mp3 转文字不用先转码，畅译直接支持主流录音格式导入，本地离线识别。"
+        image: "https://voicebridge.top/og-image.png"
+        author:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+        publisher:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+          logo:
+            "@type": "ImageObject"
+            url: "https://voicebridge.top/favicon.svg"
+        datePublished: "2026-08-21"
+        dateModified: "2026-08-21"
+        mainEntityOfPage:
+          "@type": "WebPage"
+          "@id": "https://voicebridge.top/guides/m4a-mp3-to-text/"
+        inLanguage: "zh-Hans"
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - "@type": "ListItem"
+            position: 1
+            name: "首页"
+            item: "https://voicebridge.top/"
+          - "@type": "ListItem"
+            position: 2
+            name: "教程"
+            item: "https://voicebridge.top/guides/"
+          - "@type": "ListItem"
+            position: 3
+            name: "m4a、mp3 录音怎么转文字"
+            item: "https://voicebridge.top/guides/m4a-mp3-to-text/"
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - text: 首页
+          href: /
+        - text: 教程
+          href: /guides/
+        - text: m4a、mp3 录音怎么转文字
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">m4a、mp3 录音怎么转文字</h1>
+        <p class="doc-sub">手机相册、云盘、微信收到的录音文件大多是 m4a 或 mp3，不用先转成别的格式，畅译直接能识别。</p>
+
+  - type: answer-card
+    data:
+      question: m4a、mp3 格式的录音要转码才能识别吗？
+      answer: 不用。畅译支持 M4A、WAV、MP3 等主流格式直接导入，不需要先转码，识别全过程在设备本地完成。
+      facts:
+        - 支持 M4A、WAV、MP3 等主流录音格式，直接导入不用转码
+        - 从系统「文件」App 用分享菜单一键发到畅译
+        - 也能在应用内一次多选好几个文件批量导入
+        - 完全免费，识别没有时长和条数限制
+
+  - type: prose
+    data:
+      html: |
+        <h2>这些录音文件是哪来的</h2>
+        <p>会议录音软件导出的、别人微信发过来的、云盘同步下来的音频，大多是 m4a 或 mp3 格式。这类文件通常已经躺在系统「文件」App 里，或者存在某个云盘 App 的本地缓存里，不需要额外处理格式，直接分享给畅译就能开始识别。</p>
+
+  - type: step-list
+    data:
+      title: 具体怎么操作
+      steps:
+        - name: 打开文件 App，找到录音文件
+          text: 在系统「文件」App 里，找到要转写的 m4a 或 mp3 文件。
+        - name: 选中文件，点分享按钮
+          text: 选中这个文件，点右上角或长按弹出的分享按钮。
+          tip: 如果有好几个文件要转，可以先多选，再一起分享。
+        - name: 在分享列表里选择畅译
+          text: 系统分享面板的应用列表里找到畅译，点一下发起导入。
+        - name: 等待离线转写完成
+          text: 畅译在设备本地识别这段录音，转写在后台队列里进行，完成后就是一份带标点分好段落的逐字稿。
+
+  - type: prose
+    data:
+      html: |
+        <h2>常见问题</h2>
+        <p><b>wav 格式支持吗？</b>支持。M4A、WAV、MP3 这几种主流格式都能直接导入。</p>
+        <p><b>文件很大会不会导入失败？</b>识别没有时长限制，长文件一样能处理，只是耗时会相应变长。</p>
+        <p><b>能一次导入好几个文件吗？</b>可以，应用内支持多选文件批量导入，后台按队列顺序处理，具体操作见<a href="/guides/import-audio/">导入音频与批量转写</a>。</p>
+
+  - type: related-links
+    data:
+      title: 相关阅读
+      items:
+        - text: 怎么一次导入多个音频批量转写
+          href: /guides/import-audio/
+          desc: 应用内多选文件，交给后台队列排队处理
+        - text: 离线录音转文字是怎么做到的
+          href: /features/offline-transcription/
+          desc: 端侧识别引擎，模型装在手机里，不用连服务器
+        - text: iPhone 语音备忘录怎么转文字
+          href: /guides/iphone-voice-memo-to-text/
+          desc: 从系统语音备忘录分享一条录音，几步转出逐字稿
