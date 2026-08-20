@@ -1,0 +1,99 @@
+path: /about
+template: article
+meta:
+  title: 关于畅译 — VoiceBridge
+  description: 畅译（VoiceBridge）是完全免费、100% 离线的录音转文字与 AI 会议纪要 App。了解它是什么、为什么做成免费且离线、以及技术上做了哪些取舍。
+  keywords: 关于畅译,VoiceBridge 是什么,离线语音识别,VoiceBridge,畅译
+  canonical: "/about/"
+  bodyClass: doc
+  priority: 0.6
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - "@type": "ListItem"
+            position: 1
+            name: "首页"
+            item: "https://voicebridge.top/"
+          - "@type": "ListItem"
+            position: 2
+            name: "关于畅译"
+            item: "https://voicebridge.top/about/"
+      - "@type": "AboutPage"
+        name: "关于畅译"
+        description: "畅译（VoiceBridge）是完全免费、100% 离线的录音转文字与 AI 会议纪要 App。"
+        url: "https://voicebridge.top/about/"
+        inLanguage: "zh-Hans"
+        mainEntity:
+          "@type": "SoftwareApplication"
+          name: "畅译 VoiceBridge"
+          operatingSystem: "iOS 17.0+"
+          applicationCategory: "ProductivityApplication"
+          offers:
+            "@type": "Offer"
+            price: "0"
+            priceCurrency: "USD"
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - text: 首页
+          href: /
+        - text: 关于畅译
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">关于畅译</h1>
+        <p class="doc-sub">畅译是一款录音转文字与会议纪要 App，完全免费，识别过程留在手机本地。</p>
+
+  - type: answer-card
+    data:
+      question: 畅译是什么？
+      answer: 畅译（VoiceBridge）是一款把录音变成可编辑文字稿的 iOS App。导入音频后离线识别，自动区分发言人，恢复标点排成文章，可以联动本地已装的 AI 应用整理成结构化纪要。完全免费，识别、声纹、语义向量都在设备本地完成。
+      facts:
+        - 完全免费，无内购、无广告、无需注册
+        - 识别、声纹、语义向量全部在设备本地完成
+        - 支持 12 语种离线识别
+        - iOS 17.0 及以上
+
+  - type: prose
+    data:
+      html: |
+        <h2>为什么做成完全免费</h2>
+        <p>转录这件事本身的成本，大头是识别用的模型推理。畅译把识别引擎放进手机里跑，不需要为每一次转写付服务器算力的账单，也就没有必要按时长或者条数收费。没有内购，没有广告，不需要注册账号，装好就能直接用，功能都是开的。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>为什么做成 100% 离线</h2>
+        <p>录音里装的往往是会议内容、采访素材、私人对话，这些东西不需要经过一台不属于你的服务器才能变成文字。畅译选择把识别、说话人分离、语义向量计算都放在设备本地完成，音频和转录文本不会被上传。这个选择是产品边界，不是营销说法：核心转写功能在飞行模式下一样能跑。这背后端侧模型在体积、速度、效果之间怎么取舍，写在<a href="/learn/on-device-model-tradeoffs/">端侧模型选型</a>里。</p>
+        <p>「AI 智能纪要」是唯一会经手第三方服务的功能，而且只在你主动使用、并且明确授权之后才会发生：转录文本经系统剪贴板交给你自己选定的第三方 AI 应用，由你手动粘贴，畅译本身不会替你发出这次网络请求。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>转文字之后还做了什么</h2>
+        <p>光识别出文字只是第一步。畅译在识别结果上跑标点恢复和语义分段，把一整段没有停顿的文字整理成可读的文章；多人对话会自动区分发言人并配上声纹库，同一个人下次开会再出现时会尝试比对匹配；识别有出入的地方可以直接在逐字稿里编辑，改完不会被后台精修覆盖。这几步分别写在<a href="/learn/asr-postprocessing/">识别出文字只是开始</a>、<a href="/learn/speaker-diarization/">说话人分离</a>、<a href="/learn/transcript-editing/">逐字稿编辑架构</a>这几篇里，记录的是具体做法和踩过的坑，不是功能列表。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>这页没写的</h2>
+        <p>这页不介绍团队规模、成立时间或者融资情况，这些不是畅译这款 App 想让你了解的重点。想知道产品具体怎么用，可以看<a href="/features/">功能页</a>；遇到问题，可以看<a href="/faq/">常见问题</a>或者直接发邮件到技术支持。</p>
+
+  - type: related-links
+    data:
+      title: 相关阅读
+      items:
+        - text: 全部功能
+          href: /features/
+          desc: 离线转写、发言人分离、AI 纪要、隐私边界
+        - text: 端侧模型选型
+          href: /learn/on-device-model-tradeoffs/
+          desc: 好模型为什么不一定能装进手机里
+        - text: 常见问题
+          href: /faq/
+          desc: 收费、隐私、导入、识别效果的问题汇总

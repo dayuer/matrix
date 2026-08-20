@@ -1,0 +1,120 @@
+path: /compare/online-vs-offline
+template: article
+meta:
+  title: 在线转写 vs 离线转写,怎么选 — VoiceBridge 畅译
+  description: 录音转文字有两条技术路线：音频上传服务器处理的在线转写，和识别全程留在设备本地的离线转写。从数据去向、网络依赖、模型规模、收费模式几个维度做客观对比。
+  keywords: 在线转写,离线转写,语音识别对比,云端转写,端侧转写,VoiceBridge,畅译
+  canonical: "/compare/online-vs-offline/"
+  bodyClass: doc
+  priority: 0.7
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - "@type": "ListItem"
+            position: 1
+            name: "首页"
+            item: "https://voicebridge.top/"
+          - "@type": "ListItem"
+            position: 2
+            name: "对比"
+            item: "https://voicebridge.top/compare/"
+          - "@type": "ListItem"
+            position: 3
+            name: "在线转写 vs 离线转写"
+            item: "https://voicebridge.top/compare/online-vs-offline/"
+      - "@type": "Article"
+        headline: "在线转写 vs 离线转写,怎么选"
+        description: "录音转文字的两条技术路线对比：音频上传服务器处理的在线转写，和识别全程留在设备本地的离线转写。"
+        image: "https://voicebridge.top/og-image.png"
+        author:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+        publisher:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+          logo:
+            "@type": "ImageObject"
+            url: "https://voicebridge.top/favicon.svg"
+        mainEntityOfPage:
+          "@type": "WebPage"
+          "@id": "https://voicebridge.top/compare/online-vs-offline/"
+        inLanguage: "zh-Hans"
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - text: 首页
+          href: /
+        - text: 对比
+        - text: 在线转写 vs 离线转写
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">在线转写 vs 离线转写,怎么选</h1>
+        <p class="doc-sub">录音转文字有两条不同的技术路线,数据去哪儿、要不要联网、模型能做多大,是三个决定性差异。</p>
+
+  - type: answer-card
+    data:
+      question: 在线转写和离线转写最本质的区别是什么？
+      answer: 在线转写把音频上传到服务器,由服务器完成识别再把结果传回来;离线转写把识别模型装进设备,识别过程不离开这台设备。前者可以调用更大的模型和更强的算力,后者不需要联网、音频内容不出设备。
+      facts:
+        - 在线转写依赖网络,识别发生在服务器
+        - 离线转写不依赖网络,识别发生在设备本地
+        - 在线转写能用更大的模型,离线转写受设备算力和存储限制
+
+  - type: fact-table
+    data:
+      title: 两条路线的差别
+      head: [维度, 云端转写, 端侧转写]
+      rows:
+        - cells: [数据去向, 音频上传到服务器处理, 音频留在设备本地]
+        - cells: [网络依赖, 需要联网才能转写, 飞行模式也能用]
+        - cells: [模型规模, 服务器算力支持更大模型, 受手机算力和存储限制、模型需要裁剪]
+        - cells: [处理速度, 受网络带宽和服务器排队影响, 不受网络波动影响、但受本机算力限制]
+        - cells: [设备关联, 账号绑定、换设备可直接继续用, 数据留在这台设备、换机需自行导出迁移]
+        - cells: [典型收费模式, 常见按时长或订阅收费, 具备做成一次性或免费的条件]
+        - cells: [隐私边界, 音频内容经过服务商处理链路, 音频内容不出设备]
+
+  - type: prose
+    data:
+      html: |
+        <h2>云端转写的优势是真实的</h2>
+        <p>把识别放到服务器上跑,好处也很直接:模型可以做得更大,算力不受一部手机的芯片和电池限制,理论上能压出更高的识别上限;转录结果和账号绑定,换手机、换平板都能直接接着用,不用操心数据怎么搬;遇到需要持续更新模型版本的场景,服务器端升级一次,所有用户立刻用上新版本,不需要用户重新下载安装包。这些是端侧路线暂时替代不了的地方。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>端侧转写换来的是什么</h2>
+        <p>识别模型直接装进设备,换来的第一件事是不依赖网络:没有信号的地下车库、飞机上、境外没插本地卡的时候,核心转写功能照样能跑。第二件事是音频内容不需要上传,识别、说话人分离、语义检索这些计算过程都在设备本地完成。这背后要解决的问题是怎么把模型塞进手机存储和算力的限制里,这部分选型和取舍写在<a href="/learn/on-device-model-tradeoffs/">端侧模型选型</a>里。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>怎么选,看场景</h2>
+        <p>需要处理超长音频、追求极致识别精度、或者本身就习惯把工作数据放在云端管理,在线转写路线更合适。更在意录音内容不出设备、经常在没有网络的地方用、或者不想为转写内容额外承担一层上传风险,端侧转写路线更合适。这不是谁绝对更好的问题,是数据去哪儿、要不要联网、模型能做多大之间的权衡。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>畅译走的是哪条路</h2>
+        <p>畅译选择了端侧转写路线:识别、发言人分离、语义向量计算全部在 iPhone 本地完成,音频与文字不上传服务器,飞行模式下核心功能一样能用。具体产品能力见<a href="/features/offline-transcription/">离线录音转文字</a>,数据边界见<a href="/features/privacy-local/">数据不出设备</a>。</p>
+
+  - type: related-links
+    data:
+      title: 相关阅读
+      items:
+        - text: 离线录音转文字详情
+          href: /features/offline-transcription/
+          desc: 识别全过程在设备本地完成,飞行模式也能用
+        - text: 端侧模型选型
+          href: /learn/on-device-model-tradeoffs/
+          desc: 好模型为什么不一定能装进手机里
+        - text: 录音会不会被上传
+          href: /features/privacy-local/
+          desc: 识别、声纹、语义向量全部在设备本地完成

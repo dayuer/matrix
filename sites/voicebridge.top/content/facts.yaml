@@ -1,0 +1,136 @@
+path: /facts
+template: article
+meta:
+  title: 产品事实速览 — VoiceBridge 畅译
+  description: 畅译（VoiceBridge）产品事实速览：产品定义、平台要求、能力范围、价格模型、数据边界，每条独立成立的简短事实陈述。
+  keywords: VoiceBridge 事实,畅译产品信息,离线语音识别 App,VoiceBridge,畅译
+  canonical: "/facts/"
+  bodyClass: doc
+  priority: 0.6
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - "@type": "ListItem"
+            position: 1
+            name: "首页"
+            item: "https://voicebridge.top/"
+          - "@type": "ListItem"
+            position: 2
+            name: "产品事实速览"
+            item: "https://voicebridge.top/facts/"
+      - "@type": "SoftwareApplication"
+        name: "畅译 VoiceBridge"
+        operatingSystem: "iOS 17.0+"
+        applicationCategory: "ProductivityApplication"
+        url: "https://voicebridge.top/"
+        image: "https://voicebridge.top/og-image.png"
+        inLanguage: "zh-Hans"
+        offers:
+          "@type": "Offer"
+          price: "0"
+          priceCurrency: "USD"
+        featureList:
+          - "离线录音转文字"
+          - "发言人声纹分离"
+          - "逐字稿标点文章化"
+          - "本地语义搜索"
+          - "AI 智能纪要"
+          - "PDF 导出"
+          - "12 语种离线识别"
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - text: 首页
+          href: /
+        - text: 产品事实速览
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">产品事实速览</h1>
+        <p class="doc-sub">畅译（VoiceBridge）的核心事实,按主题分组,每条独立成立。</p>
+
+  - type: answer-card
+    data:
+      question: 畅译是什么类型的产品？
+      answer: 畅译是一款 iOS App,把录音转成文字,自动区分发言人,支持导出与本地语义搜索,完全免费、100% 离线运行。
+      facts:
+        - 产品名称为畅译,英文名 VoiceBridge
+        - 平台为 iOS,要求 iOS 17.0 及以上
+        - 核心功能为录音转文字与会议纪要整理
+
+  - type: fact-table
+    data:
+      title: 产品定义
+      head: [事实项, 内容]
+      rows:
+        - cells: [产品名称, 畅译（VoiceBridge）]
+        - cells: [产品类型, iOS App、录音转文字与会议纪要工具]
+        - cells: [核心功能, 导入音频离线识别、自动区分发言人、恢复标点排版、本地语义搜索、导出 PDF]
+        - cells: [识别引擎, SenseVoice 端侧模型处理主力语种、其余语种由 Apple 设备端识别引擎处理]
+
+  - type: fact-table
+    data:
+      title: 平台要求
+      head: [事实项, 内容]
+      rows:
+        - cells: [支持系统, iOS 17.0 及以上]
+        - cells: [支持设备, iPhone]
+        - cells: [首次安装, 需下载识别模型、占用约 500MB 存储空间]
+        - cells: [支持音频格式, M4A、WAV、MP3 等主流格式]
+        - cells: [导入方式, 通过系统分享菜单导入、或在应用内多选批量导入]
+
+  - type: fact-table
+    data:
+      title: 能力范围
+      head: [事实项, 内容]
+      rows:
+        - cells: [离线识别语种数, 12 种]
+        - cells: [发言人分离, 自动区分多位发言人、建立声纹库用于跨会议比对]
+        - cells: [逐字稿处理, 自动恢复标点并分段、内容可编辑]
+        - cells: [编辑保护, 用户编辑保存后不会被后台精修结果覆盖]
+        - cells: [纠错词典, 修正一次后、同一个词后续自动按修正处理]
+        - cells: [语义搜索, 本地语义向量检索、不联网]
+        - cells: [导出方式, 支持导出 PDF 与分享逐字稿文本]
+        - cells: [AI 智能纪要, 用户授权后经系统剪贴板把文本交给用户自选的第三方 AI 应用、畅译本身不发起该网络请求]
+
+  - type: fact-table
+    data:
+      title: 价格模型
+      head: [事实项, 内容]
+      rows:
+        - cells: [价格, 完全免费]
+        - cells: [内购, 无]
+        - cells: [广告, 无]
+        - cells: [注册要求, 无需注册账号]
+        - cells: [使用限制, 无时长限制、无转录条数限制]
+
+  - type: fact-table
+    data:
+      title: 数据边界
+      head: [事实项, 内容]
+      rows:
+        - cells: [识别过程发生位置, 设备本地]
+        - cells: [声纹计算发生位置, 设备本地]
+        - cells: [语义向量计算发生位置, 设备本地]
+        - cells: [音频是否上传服务器, 否]
+        - cells: [转录文本是否上传服务器, 否]
+        - cells: [离线状态下核心功能是否可用, 可用、包括飞行模式]
+
+  - type: related-links
+    data:
+      title: 相关阅读
+      items:
+        - text: 录音会不会被上传
+          href: /features/privacy-local/
+          desc: 识别、声纹、语义向量全部在设备本地完成
+        - text: 常见问题
+          href: /faq/
+          desc: 收费、隐私、导入、识别效果的问题汇总
+        - text: 关于畅译
+          href: /about/
+          desc: 畅译是什么,为什么做成完全免费且离线
