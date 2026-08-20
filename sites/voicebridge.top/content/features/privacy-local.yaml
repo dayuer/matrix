@@ -1,0 +1,171 @@
+path: /features/privacy-local
+template: article
+meta:
+  title: 录音不上传,本地转写保护隐私 — VoiceBridge 畅译
+  description: 畅译的语音识别、声纹分析、语义向量全部在 iPhone 本地完成,音频与文字不上传服务器,不需要注册账号。AI 智能纪要功能的数据边界在页面里写清楚。
+  keywords: 录音不上传,本地转写,离线隐私,语音识别隐私,数据不上传,VoiceBridge,畅译
+  canonical: "/features/privacy-local/"
+  bodyClass: doc
+  priority: 0.8
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "Article"
+        headline: "录音不上传,本地转写保护隐私"
+        description: "畅译的语音识别、声纹分析、语义向量全部在 iPhone 本地完成,音频与文字不上传服务器,不需要注册账号。"
+        image: "https://voicebridge.top/og-image.png"
+        author:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+        publisher:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+          logo:
+            "@type": "ImageObject"
+            url: "https://voicebridge.top/favicon.svg"
+        datePublished: "2026-08-20"
+        dateModified: "2026-08-20"
+        mainEntityOfPage:
+          "@type": "WebPage"
+          "@id": "https://voicebridge.top/features/privacy-local/"
+        inLanguage: "zh-Hans"
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - "@type": "ListItem"
+            position: 1
+            name: "首页"
+            item: "https://voicebridge.top/"
+          - "@type": "ListItem"
+            position: 2
+            name: "功能"
+            item: "https://voicebridge.top/features/"
+          - "@type": "ListItem"
+            position: 3
+            name: "录音不上传"
+            item: "https://voicebridge.top/features/privacy-local/"
+      - "@type": "FAQPage"
+        mainEntity:
+          - "@type": "Question"
+            name: "录音会上传到服务器吗?"
+            acceptedAnswer:
+              "@type": "Answer"
+              text: "不会。核心识别、声纹分离、语义向量全部在设备本地完成,不联网也能用。"
+          - "@type": "Question"
+            name: "「AI 智能纪要」功能会不会把内容发出去?"
+            acceptedAnswer:
+              "@type": "Answer"
+              text: "只有你主动使用该功能时,转录文本才会经系统剪贴板传给你自己选的第三方 AI App,由你手动粘贴,畅译本身不发起网络请求,首次使用需要你明确同意。"
+          - "@type": "Question"
+            name: "卸载 App 会丢失数据吗?"
+            acceptedAnswer:
+              "@type": "Answer"
+              text: "会。数据只存在设备本地沙盒里,卸载前建议用 PDF 或 txt 导出备份。"
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - text: 首页
+          href: /
+        - text: 功能
+          href: /features/
+        - text: 录音不上传
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">录音不上传,转写全部留在设备本地</h1>
+        <p class="doc-sub">会议里聊到报价、聊到还没公开的决定,这些内容你不想经过别人的服务器,哪怕只是「经过」。</p>
+
+  - type: answer-card
+    data:
+      question: 畅译的录音和转录文字会上传服务器吗?
+      answer: 不会。语音识别、声纹分析、语义向量全部在 iPhone 本地完成,音频和文字只存在设备沙盒里,不联网也能用。
+      facts:
+        - 识别、声纹分析、语义向量生成全部在设备本地完成
+        - 音频与转录文字不上传任何服务器
+        - 不需要注册账号,不收集个人信息
+        - 完全免费,无内购、无广告
+        - 只有「AI 智能纪要」会涉及第三方,且需你主动触发并明确同意
+
+  - type: prose
+    data:
+      html: |
+        <h2>什么场景最在意这个</h2>
+        <p>合同还没签完就先聊了报价和底线,谈判过程录了音,这段内容不想经过谁的服务器;内部讨论人事变动或者还没公开的决定,参会人心里都清楚这不是能往外传的东西;面试候选人,聊到薪资期望和过往经历,这些也是别人的隐私;律师、医生跟客户或者患者的沟通,录音本身就带着敏感信息。这些场景的共同点是,录音一旦离开设备,担心就已经产生了,不管最终有没有出事。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>识别这一步,不用出设备</h2>
+        <p>畅译用的是 SenseVoice 端侧识别引擎,连同声纹分析和后面的语义向量生成,全部在你的 iPhone 上跑完。转写过程不需要联网,飞行模式下也能正常用,因为本来就没有请求要发出去。模型下载一次之后就留在手机里,后面每一次转录都是本地计算,不会因为网络状况影响识别过程。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>音频和文字只写在手机本地</h2>
+        <p>录音文件和转出来的文字保存在设备本地的沙盒目录里,不会同步到服务器,也不会经过任何中间环节。用畅译不需要注册账号,也不会收集你的个人信息。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>为什么不干脆放到云端</h2>
+        <p>云端转写有云端的好处,比如换个设备也能看到之前的结果,手机本身不用占存储。畅译选择把计算放在设备本地,换来的是同一份内容除了你自己,没有第二方经手。这是两种不同的取舍,畅译选了后者,也是「录音不出设备」这条边界一直没有松动过的原因。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>搜索也不是把关键词发出去查</h2>
+        <p>畅译支持跨会议的语义搜索,每篇纪要会生成一份设备端的句向量,搜索的时候是在这些本地向量里做比对,不是把你的搜索词发到服务器上查。搜「关于预算的讨论」这种模糊描述也能找到相关内容,全程不联网。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>编辑逐字稿也不触发网络请求</h2>
+        <p>转录出来的文字如果有识别错的地方,可以直接在逐字稿里点开编辑、保存。这个过程和转写本身一样只发生在设备本地,修改的内容不会被上传,也不会因为编辑这个动作触发额外的网络请求。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>同意范围只覆盖这一个功能</h2>
+        <p>首次使用「AI 智能纪要」时弹出的同意,只对这一个功能生效。同意之后,识别、发言人分离、语义搜索这些其他环节还是按原来的方式在本地跑,不会因为用过一次 AI 整理,后台就默认打开别的联网行为。不用「AI 智能纪要」这个功能的人,可以完全不用管这段同意,照样用畅译把录音转成文字、整理成能看的纪要。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>免费和隐私放在一起说</h2>
+        <p>畅译不需要注册账号,也没有内购和广告。没有账号,意味着没有一个身份把你的会议记录关联起来;没有广告,意味着不需要靠分析内容做用户画像和精准投放。这两件事放在一起看,比单独一句「我们重视隐私」更容易核实。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>「AI 智能纪要」这一步,边界写清楚</h2>
+        <p>畅译的功能里,只有「AI 智能纪要」会涉及第三方。它的工作方式是:你主动点开这个功能时,转录文本会通过系统剪贴板传给你自己选择的 AI App,比如 ChatGPT、Claude、Gemini,由你手动粘贴进去。这个过程里畅译本身不会向任何服务器发起请求,首次使用前会先弹窗征求你的明确同意。不用这个功能,不影响其他部分继续离线运行,转录、发言人分离、语义搜索照常在本地跑。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>卸载前记得导出</h2>
+        <p>数据只存在设备本地,这也意味着卸载 App 会把这些数据一起清掉。如果录音或纪要要长期留着,建议在卸载前用 PDF 或 txt 导出备份一份,导出的文件可以另外存到你自己的文件 App 或者电脑里。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>隐私政策写了更完整的细节</h2>
+        <p>上面是「AI 智能纪要」之外几乎不发生的数据流转,更完整的条款写在<a href="/privacy.html">隐私政策</a>里,包括权限用途、第三方 SDK 说明和你可以行使的权利。挑重点先看这一页就够,想核对具体条款再去翻政策全文。</p>
+
+  - type: related-links
+    data:
+      title: 相关阅读
+      items:
+        - text: 发言人分离是怎么在本地跑起来的
+          href: /learn/speaker-diarization/
+          desc: 声纹分析用的模型和识别一样,在设备本地运行
+        - text: 离线转文字详解
+          href: /features/offline-transcription/
+          desc: 识别引擎、支持格式与免费范围
+        - text: 隐私政策全文
+          href: /privacy.html
+          desc: 权限用途、第三方 SDK 说明与你的权利

@@ -1,0 +1,173 @@
+path: /features/offline-transcription
+template: article
+meta:
+  title: 离线录音转文字,完全免费不用联网 — VoiceBridge 畅译
+  description: 畅译支持导入 M4A、WAV、MP3 等录音离线转文字,识别、标点排版全部在 iPhone 本地完成,飞行模式也能用。完全免费,无时长与条数限制,无需注册,支持 12 语种。
+  keywords: 离线录音转文字,语音转文字免费,录音转文字,离线转录,语音识别免费,VoiceBridge,畅译
+  canonical: "/features/offline-transcription/"
+  bodyClass: doc
+  priority: 0.8
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "Article"
+        headline: "离线录音转文字,完全免费不用联网"
+        description: "畅译支持导入 M4A、WAV、MP3 等录音离线转文字,识别与标点排版全部在 iPhone 本地完成,完全免费、无时长限制。"
+        image: "https://voicebridge.top/og-image.png"
+        author:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+        publisher:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+          logo:
+            "@type": "ImageObject"
+            url: "https://voicebridge.top/favicon.svg"
+        datePublished: "2026-08-20"
+        dateModified: "2026-08-20"
+        mainEntityOfPage:
+          "@type": "WebPage"
+          "@id": "https://voicebridge.top/features/offline-transcription/"
+        inLanguage: "zh-Hans"
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - "@type": "ListItem"
+            position: 1
+            name: "首页"
+            item: "https://voicebridge.top/"
+          - "@type": "ListItem"
+            position: 2
+            name: "功能"
+            item: "https://voicebridge.top/features/"
+          - "@type": "ListItem"
+            position: 3
+            name: "离线录音转文字"
+            item: "https://voicebridge.top/features/offline-transcription/"
+      - "@type": "FAQPage"
+        mainEntity:
+          - "@type": "Question"
+            name: "畅译的录音转文字要收费吗?"
+            acceptedAnswer:
+              "@type": "Answer"
+              text: "不收费,完全免费。没有内购,没有广告,不需要注册账号,识别没有时长限制,也没有转录条数限制。"
+          - "@type": "Question"
+            name: "不联网可以转录音吗?"
+            acceptedAnswer:
+              "@type": "Answer"
+              text: "可以。核心识别引擎在设备本地运行,不需要连接服务器,飞行模式下也能正常转写。"
+          - "@type": "Question"
+            name: "支持哪些录音格式导入?"
+            acceptedAnswer:
+              "@type": "Answer"
+              text: "支持 M4A、WAV、MP3 等主流格式,可以从系统「语音备忘录」或「文件」App 用分享菜单一键导入,也能在应用内多选批量导入。"
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - text: 首页
+          href: /
+        - text: 功能
+          href: /features/
+        - text: 离线录音转文字
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">离线录音转文字,免费用,不挑网络</h1>
+        <p class="doc-sub">手机里躺着一段录音,你想把它变成文字,又不想为这个按分钟付费,也不想把内容传去不知道哪台服务器。</p>
+
+  - type: answer-card
+    data:
+      question: 畅译的录音转文字是完全离线的吗?要收费吗?
+      answer: 是。识别在 iPhone 本地运行,不联网也能转;完全免费,不限时长和条数,没有内购和广告。
+      facts:
+        - 完全免费,无内购、无广告、无需注册
+        - 识别全过程在设备本地完成,飞行模式下也能用
+        - 支持 M4A、WAV、MP3 等主流录音格式导入
+        - 12 语种离线识别,覆盖中文、英语、粤语、日语、韩语等常用语言
+        - 单次识别没有时长上限,批量导入没有条数上限
+
+  - type: prose
+    data:
+      html: |
+        <h2>关掉网络,识别照样能跑</h2>
+        <p>畅译用的是 SenseVoice 端侧识别引擎,模型装在手机里,转录的时候不需要连服务器。出差在飞机上想把上一场会议的录音先整理出来,或者在没有信号的地下车库、境外没插本地卡的时候要处理一段采访,核心的转文字功能都不受影响,飞行模式下也能正常用。选端侧模型要在体积、速度和效果之间做取舍,这部分选型过程记在<a href="/learn/on-device-model-tradeoffs/">端侧模型选型</a>里。</p>
+        <p>这跟那种要先把音频传上去、排队等服务器处理完再传回结果的做法不一样。畅译不需要这一来一回,识别从一开始就在手机里发生,你随时能打开看进度,不用担心网络卡在中间导致转写失败。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>什么场合会用到这个</h2>
+        <p>采访做完赶稿子,先把两小时的录音转成文字,再从里面挑能用的段落整理成稿;跨国团队开会,中英文夹着说,会后想留一份文字记录方便回看和检索;上完一堂课,把课堂录音转出来整理笔记,比对着录音一句句听省事得多。不管是哪种场景,拿到手的都是同一份东西:一份分好段落、可以直接复制粘贴的文字稿。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>常见格式和常见来源都接得住</h2>
+        <p>M4A、WAV、MP3 这些主流录音格式都能直接导入,不用先转码。最顺手的路径是在系统「语音备忘录」或「文件」App 里选中音频,用分享菜单一键分享到畅译;也可以在应用内一次多选好几个文件,交给后台排队处理。转写走的是先进先出的队列,就算处理到一半 App 被系统强杀,回来也能接着转,不用从头再来。</p>
+        <p>手里攒了很多没来得及整理的旧录音,也可以一次性多选倒进去,不用一个个点开单独转。队列会按顺序在后台处理,你可以先去做别的事,回来再看结果。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>转出来是文章,不是一坨字</h2>
+        <p>光把语音识别成文字还不够读,一大段没有标点、不分段落的文字看着很累。畅译在识别之后跑了一遍标点恢复和语义分段,把结果整理成带逗号句号、分好段落的文字。这一步具体怎么做、踩过什么坑,写在<a href="/learn/asr-postprocessing/">识别出文字只是开始</a>里。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>覆盖你大概率会用到的语言</h2>
+        <p>畅译支持 12 种语言的离线识别。中文、英语、粤语、日语、韩语这些主力语种交给 SenseVoice 本地识别,其余语种由 Apple 系统自带的设备端识别引擎处理,同样不联网、不上传,识别过程都留在手机本地完成。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>手机需要满足的条件</h2>
+        <p>畅译需要 iOS 17.0 或更高版本。首次安装时要下载识别模型,大概占用 500MB 存储空间,之后不管转多少次都不用再重新下载。模型下到手机里之后,后面每一次识别都是本地计算,不依赖服务器状态,也不会因为版本更新突然变得用不了。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>转写等待,不用一直盯着</h2>
+        <p>转录在后台队列里处理,不需要你守着进度条不动。可以先切到别的 App 处理别的事,转完了回到畅译直接看结果;如果是批量导入的好几个文件,前一个转完自动接着转下一个,不用每转完一个手动点一下才能开始下一个。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>录音怎么进到畅译里</h2>
+        <p>两种路子都行:打开畅译直接开始录音,录完自动进入转写;或者用手机上已经录好的音频,通过分享菜单或者应用内导入。不管走哪条路,后面的识别、标点、分段是同一套流程,结果没有差别。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>识别有出入的地方,自己动手改</h2>
+        <p>机器识别不会每个字都对,专业术语、人名、口音重一点的发音都可能出错。畅译里的逐字稿可以直接点开编辑,改完保存,不会被后台重新识别的结果覆盖回去。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>免费到什么程度</h2>
+        <p>有的转录工具会分免费版和付费版,免费版卡着时长或者次数,用着用着就提示要升级。畅译只有一个版本,没有内购,没有广告,不需要注册账号,装好就能直接用。识别没有时长限制,不管是十分钟的备忘录还是两个小时的长会,也没有转录条数限制,想转多少转多少。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>转完之后</h2>
+        <p>文字转出来只是开头一步。多人对话会自动<a href="/features/speaker-diarization/">区分发言人</a>,可以联动整理成<a href="/features/meeting-minutes/">AI 会议纪要</a>。处理完的内容能导出带发言人色标的 PDF,方便直接发给没装畅译的同事;也能导出 txt 文本,整段复制粘贴进邮件或文档;原始音频还能一并导出带走,归档或者转发给需要复核的人都用得上。</p>
+
+  - type: related-links
+    data:
+      title: 相关阅读
+      items:
+        - text: 说话人分离为什么会认错人
+          href: /learn/speaker-diarization/
+          desc: 切分交给专门的模型定位话轮边界,不是靠文本内容去猜
+        - text: AI 会议纪要怎么用
+          href: /features/meeting-minutes/
+          desc: 转出来的文字一键联动你已经在用的 AI,整理成结构化纪要
+        - text: 录音会不会被上传
+          href: /features/privacy-local/
+          desc: 识别、声纹、语义向量全部在设备本地完成

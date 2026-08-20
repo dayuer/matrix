@@ -1,0 +1,171 @@
+path: /features/meeting-minutes
+template: article
+meta:
+  title: AI 会议纪要自动整理,会议记录一键生成 — VoiceBridge 畅译
+  description: 畅译先离线转出带标点、分段落的逐字稿并自动区分发言人,再一键联动你手机上的 AI App 生成纪要、待办、决策等结构化整理,过程全程可见,完全免费。
+  keywords: AI 会议纪要,会议记录整理,会议纪要生成,会议录音转文字,VoiceBridge,畅译
+  canonical: "/features/meeting-minutes/"
+  bodyClass: doc
+  priority: 0.8
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "Article"
+        headline: "AI 会议纪要自动整理"
+        description: "畅译先离线转出带标点、分段落的逐字稿并自动区分发言人,再一键联动手机上的 AI App 生成结构化会议纪要。"
+        image: "https://voicebridge.top/og-image.png"
+        author:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+        publisher:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+          logo:
+            "@type": "ImageObject"
+            url: "https://voicebridge.top/favicon.svg"
+        datePublished: "2026-08-20"
+        dateModified: "2026-08-20"
+        mainEntityOfPage:
+          "@type": "WebPage"
+          "@id": "https://voicebridge.top/features/meeting-minutes/"
+        inLanguage: "zh-Hans"
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - "@type": "ListItem"
+            position: 1
+            name: "首页"
+            item: "https://voicebridge.top/"
+          - "@type": "ListItem"
+            position: 2
+            name: "功能"
+            item: "https://voicebridge.top/features/"
+          - "@type": "ListItem"
+            position: 3
+            name: "AI 会议纪要"
+            item: "https://voicebridge.top/features/meeting-minutes/"
+      - "@type": "FAQPage"
+        mainEntity:
+          - "@type": "Question"
+            name: "畅译怎么把录音整理成会议纪要?"
+            acceptedAnswer:
+              "@type": "Answer"
+              text: "先离线转成带标点、分段落的逐字稿并自动区分发言人,再从 6 组提示词模板里选一个,转录文本通过系统剪贴板传给你自己选的 AI App,由你手动粘贴生成纪要。"
+          - "@type": "Question"
+            name: "生成纪要要收费吗?"
+            acceptedAnswer:
+              "@type": "Answer"
+              text: "不收费。内置的 6 组提示词模板(纪要、待办、决策、观点、思维导图、会后邮件)都是免费功能。"
+          - "@type": "Question"
+            name: "纪要能导出吗?"
+            acceptedAnswer:
+              "@type": "Answer"
+              text: "能。支持导出带发言人色标、时间线和 AI 摘要卡片的 PDF,也支持导出 txt 文本。"
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - text: 首页
+          href: /
+        - text: 功能
+          href: /features/
+        - text: AI 会议纪要
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">会议录完了,纪要自动整理</h1>
+        <p class="doc-sub">两个小时的会开完,录音也录了,接下来轮到你一句一句听、一条一条记要点,又要搭进去一个多小时。</p>
+
+  - type: answer-card
+    data:
+      question: 畅译怎么把录音整理成会议纪要?
+      answer: 先离线转成分好段落的逐字稿并自动区分发言人,再一键把文本交给你自己选的 AI App 生成结构化纪要,过程你都能看到、能确认。
+      facts:
+        - 逐字稿自动恢复标点、按语义分段
+        - 自动区分发言人,标注是谁在说
+        - 内置 6 组提示词模板:纪要、待办、决策、观点、思维导图、会后邮件
+        - 一键联动设备上已安装的 ChatGPT、Claude、Gemini、DeepSeek 等 AI App
+        - 结果可以归档回畅译,长期留存复用
+
+  - type: prose
+    data:
+      html: |
+        <h2>纪要的前提,是先有一份读得下去的逐字稿</h2>
+        <p>会议录音直接转出来的文字如果没有标点、不分段,谁看了都没耐心整理。畅译先把识别结果做标点恢复和语义分段,变成正常文章的样子,这是后面整理纪要的地基。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>什么会议最需要这个</h2>
+        <p>项目周会开完,进度和待办容易记漏,尤其是临时决定的那几条;跟客户谈完一轮方案,回去要写纪要发给团队核对,靠回忆容易漏掉细节;面试完一轮候选人,想留一份文字记录方便后面几轮参考对比。这些场景的共同点是,会开完之后还有一堆整理工作在等着,畅译想把这部分压缩到几分钟。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>谁说的分得清,摘要才靠谱</h2>
+        <p>三个人开会,转录里如果分不清谁说了哪句话,后面整理出来的决策和待办也说不清是谁提的、谁认领的。畅译在转写阶段就自动识别参会人切换,把发言按人分开、标上颜色,这是纪要能用起来的前提,具体怎么定位话轮边界写在<a href="/learn/speaker-diarization/">说话人分离为什么会认错人</a>里。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>六种整理方式,对应六种需要</h2>
+        <p>同一场会,不同人要看到的重点不一样。想要一份能直接发给没参会同事的摘要,选纪要模板;想要一份能马上分给个人的任务清单,选待办模板;想搞清楚这场会最后拍板了什么,选决策模板;想留一份不同意见的记录,选观点模板;想要一张能贴进文档的结构图,选思维导图模板;开完会要跟客户或者上级回一封邮件,选会后邮件模板,直接生成初稿。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>一键联动你已经在用的 AI</h2>
+        <p>选好模板,转录文本会通过系统剪贴板传给你手机上已经装好的 AI App,比如 ChatGPT、Claude、Gemini、DeepSeek,你手动粘贴一下就能拿到整理结果。这一步由你主动触发,畅译本身不会替你直接向任何服务器发请求,首次使用会先征求你的明确同意。用哪个 AI、什么时候用,决定权都在你,不用也不影响其他部分正常使用。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>整理出来的东西能存下来</h2>
+        <p>AI 生成的纪要可以归档回畅译,跟原始录音、逐字稿放在一起长期保存,不用每次开完会都重新整理一遍格式,也不用在好几个 App 之间来回倒腾内容。过段时间想回顾某次讨论的结论,打开对应的会议记录就能看到。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>纪要之外,原始逐字稿还在</h2>
+        <p>AI 生成的纪要是整理过的版本,难免会有取舍和归纳。畅译不会用纪要替换掉原始逐字稿,两者一直分开保存,想确认某句话到底是怎么说的,随时能翻回逐字稿核对,不用完全依赖整理出来的结果。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>什么时候用不上完整流程</h2>
+        <p>不是每次开完会都要走一遍 AI 整理。很多时候转出来的逐字稿加上自动区分好的发言人已经够用,翻一遍标好颜色的对话就能理清楚谁说了什么;只有需要一份浓缩版本、要发给别人同步进度或者要归档存档时,才用得上 AI 整理这一步。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>整理之前,先把明显的识别错误改一改</h2>
+        <p>逐字稿里如果有识别错的专业术语或者人名,可以直接点开编辑改掉,改完的内容会保留下来,不会被后台重新覆盖。整理纪要之前先过一遍逐字稿、顺手改掉明显的错字,交给 AI 整理时用的就是准确的文本,结果也会更贴近实际讨论的内容。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>AI 整理的内容,最后还是自己核对一遍</h2>
+        <p>不同 AI App 给出的整理结果风格不完全一样,措辞也可能有出入。粘贴回畅译之前,自己再看一眼这份纪要有没有准确反映会议实际讨论的内容比较稳妥,最后要对这份纪要负责的是你自己,不是生成它的那个 AI。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>纪要之外,还能搜、能导出</h2>
+        <p>每篇纪要会生成一份设备端的句向量,跨会议按语义检索,想找某次讨论到的内容,不用记得当时的原话怎么说,全程不联网。整理好的内容支持导出带发言人色标、时间线和 AI 摘要卡片的 PDF,也能导出 txt 文本。</p>
+
+  - type: related-links
+    data:
+      title: 相关阅读
+      items:
+        - text: 发言人怎么自动分开的
+          href: /features/speaker-diarization/
+          desc: 声纹库记住常用发言人,复用的团队会议不用每次重新标
+        - text: 说话人分离的技术细节
+          href: /learn/speaker-diarization/
+          desc: 切分交给专门定位话轮边界的模型,不是靠文本内容去猜
+        - text: 转写内容会不会被上传
+          href: /features/privacy-local/
+          desc: AI 纪要功能的数据边界写清楚
