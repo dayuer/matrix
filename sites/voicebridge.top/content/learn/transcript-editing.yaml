@@ -130,6 +130,6 @@ blocks:
         - text: 说话人分离为什么会认错人
           href: /learn/speaker-diarization/
           desc: 另一个查错了方向的 bug
-        - text: 用起来有问题？
-          href: /support.html
-          desc: 常见问题与联系方式
+        - text: AI 会议纪要功能详解
+          href: /features/meeting-minutes/
+          desc: 从逐字稿到纪要，这一步在畅译里怎么走
