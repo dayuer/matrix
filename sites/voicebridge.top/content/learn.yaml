@@ -52,25 +52,25 @@ blocks:
   - type: prose
     data:
       html: |
-        <h1 class="doc-title">知识</h1>
-        <p class="doc-sub">代码不开源，但设计思路可以。这里拆开揉碎讲畅译真实的功能思考、技术选型、踩过的坑，以及从坑里学到的教训。</p>
+        <h1 class="doc-title">做畅译时踩过的坑</h1>
+        <p class="doc-sub">代码不开源，思路可以。这里记的是几次选型、几次返工，和当时是怎么想的。</p>
 
   - type: card-grid
     data:
       items:
         - kicker: 说话人分离
           title: 说话人分离为什么会认错人
-          desc: 张冠李戴的根因在切分层，不在聚类层——从段级聚类到话轮切分的选型过程
+          desc: 查了两周声纹模型，最后发现问题在更早的切分那一步
           href: /learn/speaker-diarization/
         - kicker: 端侧部署
           title: 端侧模型选型：好模型为什么上不了手机
-          desc: 体积、内存、发热、首次加载——端侧部署的四项预算怎么花
+          desc: 调研推荐的方案最后没用，看起来该做的优化最后被砍掉
           href: /learn/on-device-model-tradeoffs/
         - kicker: 识别后处理
           title: 识别出文字只是开始
-          desc: 可读性不是识别准确率的副产品，是独立的一层工程
+          desc: 固定时长切块为什么是错的，标点为什么要先剥掉再加一遍
           href: /learn/asr-postprocessing/
         - kicker: 交互设计
           title: 机器改和人改会打架
-          desc: AI 产物的编辑权必须明确归属，否则用户的修改会被静默吃掉
+          desc: 用户改过的字被后台改回去，这种 bug 一次就够让人卸载
           href: /learn/transcript-editing/
