@@ -1,0 +1,22 @@
+{
+  "name": "polish-proxy",
+  "version": "0.1.0",
+  "private": true,
+  "description": "VoiceBridge 云端润色代理:持钥转发 Anthropic API,零留存,限速熔断(契约见 translate 仓 docs/cloud-polish-api-contract.md)",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx watch src/server.ts",
+    "dev:mock": "MOCK=1 tsx watch src/server.ts",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.78.0",
+    "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
