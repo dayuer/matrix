@@ -104,13 +104,16 @@ app.post("/v1/polish", async (req, res) => {
   const text = typeof req.body?.text === "string" ? req.body.text : "";
   const langHint = typeof req.body?.lang_hint === "string" ? req.body.lang_hint : "";
   const trimmed = text.trim();
+  // 长度复核与客户端否决闸门同口径:按「去除所有空白后的字符数」计。
+  // 口径不一致会造成「客户端放行、代理 400」缝隙(2026-08-23 Task 4 规格审查发现)。
+  const effectiveLength = [...text].filter((c) => !/\s/.test(c)).length;
 
   if (!deviceKey || !assertion || !verifyAssertion(deviceKey, assertion, Buffer.from(text))) {
     logLine(401, trimmed.length);
     return res.status(401).json({ error: "attest_failed" });
   }
-  if (trimmed.length < 5 || trimmed.length > 2000) {
-    logLine(400, trimmed.length);
+  if (effectiveLength < 5 || effectiveLength > 2000) {
+    logLine(400, effectiveLength);
     return res.status(400).json({ error: "text_invalid" });
   }
   if (rateLimited(deviceKey)) {
