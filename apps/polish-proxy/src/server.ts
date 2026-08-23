@@ -13,6 +13,11 @@ const PORT = Number(process.env.PORT ?? 8787);
 const MODEL = process.env.POLISH_MODEL ?? "gpt-4o-mini";
 const UPSTREAM_BASE = process.env.UPSTREAM_BASE_URL ?? "";
 const UPSTREAM_KEY = process.env.UPSTREAM_API_KEY ?? "";
+// 备用上游(2026-08-23 评测拍板):DeepSeek 官方 flash,主上游挂掉时单次降级重试。
+// 质量 13/13 与主档打平、忠实度好;成本上限约主档 5-10 倍,仅故障窗口内发生。
+const FALLBACK_BASE = process.env.FALLBACK_BASE_URL ?? "";
+const FALLBACK_KEY = process.env.FALLBACK_API_KEY ?? "";
+const FALLBACK_MODEL = process.env.FALLBACK_MODEL ?? "deepseek-v4-flash";
 const DAILY_BUDGET_CALLS = Number(process.env.DAILY_BUDGET_CALLS ?? 5000);
 const MOCK = process.env.MOCK === "1";
 /** 单设备滑动窗限速:60 次/小时(验签补齐前的盗刷上限由它 + 日预算熔断兜底) */
@@ -144,20 +149,33 @@ app.post("/v1/polish", async (req, res) => {
 
   try {
     const hintLine = langHint ? `\n(提示:这段以${langHint === "en" ? "英文" : langHint === "mixed" ? "中英混说" : "中文"}为主)` : "";
-    const upstream = await fetch(`${UPSTREAM_BASE.replace(/\/$/, "")}/chat/completions`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Authorization: `Bearer ${UPSTREAM_KEY}` },
-      body: JSON.stringify({
-        model: MODEL,
-        messages: [
-          { role: "system", content: SYSTEM_PROMPT },
-          { role: "user", content: trimmed + hintLine },
-        ],
-        max_tokens: 4000,
-        temperature: 0,
-      }),
-      signal: AbortSignal.timeout(30_000),
-    });
+    const callUpstream = (base: string, key: string, model: string, extra: object) =>
+      fetch(`${base.replace(/\/$/, "")}/chat/completions`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${key}` },
+        body: JSON.stringify({
+          model,
+          messages: [
+            { role: "system", content: SYSTEM_PROMPT },
+            { role: "user", content: trimmed + hintLine },
+          ],
+          max_tokens: 4000,
+          temperature: 0,
+          ...extra,
+        }),
+        signal: AbortSignal.timeout(30_000),
+      });
+    let upstream = await callUpstream(UPSTREAM_BASE, UPSTREAM_KEY, MODEL, {}).catch(() => null);
+    // 主上游网络失败或 5xx → 备用上游单次降级(4xx 不降级:内容/参数问题换上游无意义)。
+    // DeepSeek thinking 默认开启,备用调用显式关闭(拍板:不开 think)。
+    if ((!upstream || upstream.status >= 500) && FALLBACK_BASE && FALLBACK_KEY) {
+      upstream = await callUpstream(FALLBACK_BASE, FALLBACK_KEY, FALLBACK_MODEL,
+        { thinking: { type: "disabled" } }).catch(() => null);
+    }
+    if (!upstream) {
+      logLine(502, trimmed.length);
+      return res.status(502).json({ error: "upstream_error" });
+    }
     if (!upstream.ok) {
       // 上游内容过滤(400/422 带 content_filter 等)统一归 content_declined,其余 upstream_error
       logLine(upstream.status === 400 || upstream.status === 422 ? 422 : 502, trimmed.length);
