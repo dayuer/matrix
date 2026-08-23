@@ -21,12 +21,6 @@ UPSTREAM_BASE_URL=... UPSTREAM_API_KEY=... \
 FALLBACK_BASE_URL=https://api.deepseek.com FALLBACK_API_KEY=... npm run dev
 ```
 
-## 仅主上游
-
-```bash
-ANTHROPIC_API_KEY=... POLISH_MODEL=claude-opus-5 npm run dev
-```
-
 ## 部署（后议，未定稿）
 
 按 matrix 惯例走 `packages/site-kit/deploy/deploy.template.sh` 的 VPS+SSL 模板即可承载；域名、进程管理与密钥注入方式待部署轮拍板。
