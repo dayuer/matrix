@@ -6,10 +6,13 @@
 
 import crypto from "node:crypto";
 import express from "express";
-import Anthropic from "@anthropic-ai/sdk";
 
 const PORT = Number(process.env.PORT ?? 8787);
-const MODEL = process.env.POLISH_MODEL ?? "claude-opus-5";
+// 上游:OpenAI 兼容中转(2026-08-23 评测定档,见 translate 仓 specs/2026-08-23-cloud-polish-model-eval.md)
+// gpt-4o-mini: 12模型两轮实测 50/50 成功、p50 1.5s、$0.00007/次、规则遵从度最佳
+const MODEL = process.env.POLISH_MODEL ?? "gpt-4o-mini";
+const UPSTREAM_BASE = process.env.UPSTREAM_BASE_URL ?? "";
+const UPSTREAM_KEY = process.env.UPSTREAM_API_KEY ?? "";
 const DAILY_BUDGET_CALLS = Number(process.env.DAILY_BUDGET_CALLS ?? 5000);
 const MOCK = process.env.MOCK === "1";
 /** 单设备滑动窗限速:60 次/小时(验签补齐前的盗刷上限由它 + 日预算熔断兜底) */
@@ -85,8 +88,6 @@ function verifyAssertion(_deviceKey: string, _assertion: string, _body: Buffer):
 const app = express();
 app.use(express.json({ limit: "32kb" }));
 
-const client = MOCK ? null : new Anthropic();
-
 app.get("/healthz", (_req, res) => {
   res.status(204).end();
 });
@@ -143,29 +144,29 @@ app.post("/v1/polish", async (req, res) => {
 
   try {
     const hintLine = langHint ? `\n(提示:这段以${langHint === "en" ? "英文" : langHint === "mixed" ? "中英混说" : "中文"}为主)` : "";
-    const response = await client!.beta.messages.create(
-      {
+    const upstream = await fetch(`${UPSTREAM_BASE.replace(/\/$/, "")}/chat/completions`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${UPSTREAM_KEY}` },
+      body: JSON.stringify({
         model: MODEL,
-        max_tokens: 4096,
-        system: SYSTEM_PROMPT,
-        messages: [{ role: "user", content: trimmed + hintLine }],
-        betas: ["server-side-fallback-2026-07-01"],
-        // 安全分类器误拒时按类别路由到兜底模型,收窄 content_declined 面积。
-        // fallbacks 尚未进 SDK 类型定义,经 spread 透传(wire 层有效)
-        ...({ fallbacks: "default" } as object),
-      },
-      { timeout: 30_000 }
-    );
-
-    if (response.stop_reason === "refusal") {
-      logLine(422, trimmed.length);
-      return res.status(422).json({ error: "content_declined" });
+        messages: [
+          { role: "system", content: SYSTEM_PROMPT },
+          { role: "user", content: trimmed + hintLine },
+        ],
+        max_tokens: 4000,
+        temperature: 0,
+      }),
+      signal: AbortSignal.timeout(30_000),
+    });
+    if (!upstream.ok) {
+      // 上游内容过滤(400/422 带 content_filter 等)统一归 content_declined,其余 upstream_error
+      logLine(upstream.status === 400 || upstream.status === 422 ? 422 : 502, trimmed.length);
+      return res
+        .status(upstream.status === 400 || upstream.status === 422 ? 422 : 502)
+        .json({ error: upstream.status === 400 || upstream.status === 422 ? "content_declined" : "upstream_error" });
     }
-    const polished = response.content
-      .filter((b): b is Extract<typeof b, { type: "text" }> => b.type === "text")
-      .map((b) => b.text)
-      .join("")
-      .trim();
+    const data = (await upstream.json()) as { choices?: { message?: { content?: string } }[] };
+    const polished = (data.choices?.[0]?.message?.content ?? "").trim();
     if (!polished) {
       logLine(502, trimmed.length);
       return res.status(502).json({ error: "upstream_error" });
