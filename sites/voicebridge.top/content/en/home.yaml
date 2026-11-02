@@ -37,7 +37,7 @@ meta:
           - "Local semantic search"
           - "AI meeting notes"
           - "PDF export"
-          - "12 offline languages"
+          - "5 languages fully offline"
         publisher:
           "@id": "https://voicebridge.top/#org"
       - "@type": "Organization"
@@ -219,9 +219,9 @@ blocks:
               <span class="chip"><span class="dot" style="background:#1c1c1c"></span>Doubao · Kimi · more</span>
             </div>
         - cls: span-3
-          kicker: 12 offline languages
+          kicker: 5 fully offline
           title: Covers the languages you meet in.
-          body: Chinese, English, Cantonese, Japanese, and Korean run fully offline on SenseVoice; seven more use Apple's on-device recognition, forced never to upload.
+          body: Chinese, English, Cantonese, Japanese and Korean run fully offline on SenseVoice, never touching the network. Seven more go through the system speech recognizer, which stays on-device where the system supports it and falls back to the network where it does not.
           artHtml: |
             <div class="langs">
               <span class="on">中文</span><span class="on">English</span><span class="on">粤语</span><span class="on">日本語</span><span class="on">한국어</span><span>Français</span><span>Deutsch</span><span>Español</span><span>Bahasa</span><span>ภาษาไทย</span><span>Tiếng Việt</span>

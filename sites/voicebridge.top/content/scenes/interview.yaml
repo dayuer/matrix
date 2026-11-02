@@ -1,0 +1,130 @@
+path: /scenes/interview
+template: article
+meta:
+  title: 采访录音转逐字稿,自动分清提问与回答 — VoiceBridge 畅译
+  description: 一小时采访录音,边听边敲字要三四个小时。畅译离线转出逐字稿并自动区分记者与受访者,标点分段排成文章,完全免费,录音不上传。
+  keywords: 采访逐字稿,访谈转录,采访录音转文字,人物专访转文字,VoiceBridge,畅译
+  canonical: "/scenes/interview/"
+  bodyClass: doc
+  priority: 0.7
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "Article"
+        headline: "采访录音转逐字稿,自动分清提问与回答"
+        description: "一小时采访录音,畅译离线转出逐字稿并自动区分记者与受访者,标点分段排成文章,完全免费,录音不上传。"
+        image: "https://voicebridge.top/og-image.png"
+        author:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+        publisher:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+          logo:
+            "@type": "ImageObject"
+            url: "https://voicebridge.top/favicon.svg"
+        datePublished: "2026-08-21"
+        dateModified: "2026-08-21"
+        mainEntityOfPage:
+          "@type": "WebPage"
+          "@id": "https://voicebridge.top/scenes/interview/"
+        inLanguage: "zh-Hans"
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - "@type": "ListItem"
+            position: 1
+            name: "首页"
+            item: "https://voicebridge.top/"
+          - "@type": "ListItem"
+            position: 2
+            name: "使用场景"
+            item: "https://voicebridge.top/scenes/"
+          - "@type": "ListItem"
+            position: 3
+            name: "采访逐字稿"
+            item: "https://voicebridge.top/scenes/interview/"
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - text: 首页
+          href: /
+        - text: 使用场景
+          href: /scenes/
+        - text: 采访逐字稿
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">采访录完了,逐字稿从这一步开始</h1>
+        <p class="doc-sub">一小时的采访录音,边听边敲字要三四个小时,还得来回拖进度条找刚才那句原话是怎么说的。截稿时间就在后面追着,这一步耗掉的时间往往比写稿本身还长。</p>
+
+  - type: answer-card
+    data:
+      question: 采访录音怎么转成能直接用的逐字稿?
+      answer: 导入录音离线转写,自动区分提问和回答的发言人,标点恢复、分段落排成文章,转出来直接能读、能改、能复制进稿子。
+      facts:
+        - 识别全过程在设备本地完成,不联网也能转
+        - 自动区分发言人,提问和回答分得清
+        - 逐字稿自动恢复标点、按语义分段
+        - 逐字稿可直接编辑,改过的地方不会被后台覆盖
+        - 完全免费,无时长限制,单次采访多长都能转
+
+  - type: prose
+    data:
+      html: |
+        <h2>采访和普通录音不太一样的地方</h2>
+        <p>采访录音大多是两个人的对话,一问一答,中间夹杂着追问和插话。记者说话的比例不高,受访者往往一口气讲好几分钟,中间不怎么停顿。这种长段独白对着录音一句句听着敲字最费时间,因为耳朵和手很难跟上语速,常常要倒回去重听。如果是圆桌或者多人访谈,还要在几个人之间来回分辨是谁在讲。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>转出来先看谁说了哪句</h2>
+        <p>畅译在转写时会自动识别发言人切换,把记者的提问和受访者的回答分开标注,不用自己再回头听一遍去标记这句是谁说的。这一步靠的是音频层面定位话轮边界,不是靠猜文本内容像谁说的话,具体怎么做的写在<a href="/learn/speaker-diarization/">说话人分离为什么会认错人</a>里。整理成稿的时候,直接顺着标好的发言人往下捋,提问和回答一目了然。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>受访者的长段独白,不用来回拖进度条</h2>
+        <p>受访者讲到兴头上一口气说好几分钟很常见,过去这种段落最耗时间,得反复暂停、倒退、重听。转出来之后这些内容已经变成带标点、分好段落的文字,想核对某一句原话怎么说的,在文字里搜关键词就能定位到对应位置,不用再拖动播放条一段段找。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>专业术语和人名,自己纠一次就够</h2>
+        <p>受访者的名字、公司名、行业术语,机器识别容易出错,尤其是不常见的专有名词。逐字稿可以直接点开编辑,把错的地方改过来,改完不会被后台重新识别的结果覆盖回去。如果同一个词后面还会反复出现,加进纠错词典之后,后续的转写会自动按纠正过的写法处理,不用每次都手动改一遍。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>圆桌采访,声纹库记得住常聊的人</h2>
+        <p>如果是固定嘉宾的系列访谈或者圆桌讨论,声纹库会记住已经标注过的发言人,同一个人再次出现在新的录音里,系统会尝试自动比对匹配,不用每次都重新手动标注一遍是谁在说话。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>敏感内容录在手机里,不经过别的服务器</h2>
+        <p>有些采访会聊到受访者还没公开的想法,或者对上级、对同行的直接评价,这些内容对方大概率不希望在见报前就流转到别处。畅译的识别、发言人分离全部在设备本地完成,音频和文字不上传,飞行模式下也能正常转写,具体的数据边界写在<a href="/features/privacy-local/">录音不上传</a>里。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>转完之后怎么用</h2>
+        <p>逐字稿整理好之后,可以导出带发言人色标的 PDF 发给编辑核对原话,也可以导出 txt 文本直接复制进写稿工具。如果这次访谈内容多、需要先提炼要点再动笔,还能联动生成结构化整理,具体怎么用写在<a href="/features/meeting-minutes/">AI 智能纪要</a>里,不过大部分采访场景里,分好发言人的逐字稿本身已经够用来写稿。</p>
+
+  - type: related-links
+    data:
+      title: 相关阅读
+      items:
+        - text: 说话人分离为什么会认错人
+          href: /learn/speaker-diarization/
+          desc: 切分交给专门定位话轮边界的模型,不是靠文本内容去猜
+        - text: 发言人分离功能详解
+          href: /features/speaker-diarization/
+          desc: 声纹库记住常用发言人,系列访谈不用每次重新标
+        - text: 录音会不会被上传
+          href: /features/privacy-local/
+          desc: 识别、声纹、语义向量全部在设备本地完成

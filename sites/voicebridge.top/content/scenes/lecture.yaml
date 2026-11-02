@@ -1,0 +1,124 @@
+path: /scenes/lecture
+template: article
+meta:
+  title: 课堂录音转文字,讲座笔记不用边听边记 — VoiceBridge 畅译
+  description: 两小时的课堂录音,离线转成文字,不用一边听一边抢着记笔记。畅译支持批量导入、逐字稿可编辑,完全免费,录音不上传。
+  keywords: 课堂录音整理,讲座笔记,课堂录音转文字,上课录音转文字,VoiceBridge,畅译
+  canonical: "/scenes/lecture/"
+  bodyClass: doc
+  priority: 0.7
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "Article"
+        headline: "课堂录音转文字,讲座笔记不用边听边记"
+        description: "两小时的课堂录音,离线转成文字,不用一边听一边抢着记笔记。畅译支持批量导入、逐字稿可编辑,完全免费,录音不上传。"
+        image: "https://voicebridge.top/og-image.png"
+        author:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+        publisher:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+          logo:
+            "@type": "ImageObject"
+            url: "https://voicebridge.top/favicon.svg"
+        datePublished: "2026-08-21"
+        dateModified: "2026-08-21"
+        mainEntityOfPage:
+          "@type": "WebPage"
+          "@id": "https://voicebridge.top/scenes/lecture/"
+        inLanguage: "zh-Hans"
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - "@type": "ListItem"
+            position: 1
+            name: "首页"
+            item: "https://voicebridge.top/"
+          - "@type": "ListItem"
+            position: 2
+            name: "使用场景"
+            item: "https://voicebridge.top/scenes/"
+          - "@type": "ListItem"
+            position: 3
+            name: "课堂录音整理"
+            item: "https://voicebridge.top/scenes/lecture/"
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - text: 首页
+          href: /
+        - text: 使用场景
+          href: /scenes/
+        - text: 课堂录音整理
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">两小时的课录完了,笔记从录音里长出来</h1>
+        <p class="doc-sub">老师讲到一半突然抛出一个重点,你还在琢磨上一句怎么记,这句就已经翻篇了。整堂课录下来是保险,但两个小时的录音自己听一遍整理笔记,花的时间不比上课短。</p>
+
+  - type: answer-card
+    data:
+      question: 课堂录音怎么整理成能复习的笔记?
+      answer: 导入录音离线转写,自动恢复标点、按语义分段排成文章,转出来的文字可以直接编辑、划重点,比对着录音一句句听省下大半时间。
+      facts:
+        - 识别全过程在设备本地完成,不联网也能转
+        - 单次识别没有时长限制,两小时的课能一次转完
+        - 可以一次多选好几节课的录音,后台排队批量转写
+        - 逐字稿自动恢复标点、按语义分段,读起来是文章不是流水账
+        - 完全免费,无内购、无广告,不用注册账号
+
+  - type: prose
+    data:
+      html: |
+        <h2>课堂录音的几个麻烦</h2>
+        <p>手机放在课桌上,离讲台有一段距离,老师声音会比正常说话录音更轻;整堂课经常是老师一个人连续讲很长时间,中间几乎不停顿,专业课还会夹杂大量术语和公式对应的口头表达。这些都让课后重新整理笔记变得比想象中费劲,单靠自己一边听一边补笔记,漏记、听错的地方不少。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>整堂课一次转完,不用分段导入</h2>
+        <p>畅译的识别没有时长上限,一节两小时的大课或者一场讲座,导入之后一次性转完,不用先把录音切成几段再分别处理。如果这学期攒了好几节课的录音都没来得及整理,也可以一次多选批量导入,交给后台按顺序排队转写,你可以先去做别的事,回来再看结果。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>转出来是能读的文章,不是一坨字</h2>
+        <p>光是把语音转成文字还不够拿来复习,一大段没有标点、不分段落的内容看着很累。畅译在识别之后跑了一遍标点恢复和语义分段,把内容整理成带逗号句号、分好段落的文字,这一步具体怎么处理写在<a href="/learn/asr-postprocessing/">识别出文字只是开始</a>里。整理出来的段落大致对应老师讲课时话题切换的节奏,复习的时候按段落找重点比翻一整篇没有标点的文字轻松很多。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>专业术语听不清,自己改一次就记住了</h2>
+        <p>专业课里的术语、公式念法、外语人名,机器识别容易出错。逐字稿可以直接点开编辑,把明显识别错的地方改过来,改完不会被后台重新识别的结果覆盖。同一个术语这学期还会反复出现,加进纠错词典之后,后面的课再转写到同一个词会自动按纠正过的写法处理,不用每节课都改一遍。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>录音离讲台远,识别照样能跑</h2>
+        <p>课堂录音的拾音条件通常不如面对面对话理想,声音偏轻、偶尔有周围同学翻书写字的杂音。畅译的识别引擎装在手机本地,不依赖网络状态,拾音条件一般的情况下也能正常转写,转完之后如果个别句子识别不准,按上面说的方式手动改一下即可。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>期末复习,靠搜索定位到那一段</h2>
+        <p>整个学期的课都转成了文字,期末复习想找某节课讲到的某个知识点,不用一节一节翻录音回忆是哪节课讲的,在逐字稿里搜关键词就能定位到具体位置。转出来的内容还能导出 PDF 或 txt,方便存进自己的笔记软件,和其他复习资料放在一起。</p>
+
+  - type: related-links
+    data:
+      title: 相关阅读
+      items:
+        - text: 识别出文字只是开始
+          href: /learn/asr-postprocessing/
+          desc: 标点恢复和语义分段是怎么做的,固定时长切块为什么是错的
+        - text: 离线录音转文字详解
+          href: /features/offline-transcription/
+          desc: 支持的格式、语种覆盖与免费范围
+        - text: 录音会不会被上传
+          href: /features/privacy-local/
+          desc: 识别全过程在设备本地完成,不联网也能转

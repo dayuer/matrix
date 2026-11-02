@@ -1,0 +1,126 @@
+path: /guides/proofread-dictionary
+template: article
+meta:
+  title: 转写校对与纠错词典怎么用 — VoiceBridge 畅译
+  description: 逐字稿识别有出入的地方怎么改，改过之后同类错误怎么让后续录音自动纠正。畅译的转写校对与纠错词典操作方法。
+  keywords: 转写校对,纠错词典,逐字稿编辑,语音识别纠错,VoiceBridge,畅译
+  canonical: "/guides/proofread-dictionary/"
+  bodyClass: doc
+  priority: 0.7
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "HowTo"
+        name: "校对逐字稿并建立纠错词典"
+        description: "在畅译里编辑逐字稿的识别错误，建立纠错词典，让同类错误在后续录音里自动纠正。"
+        totalTime: "PT2M"
+        step:
+          - { "@type": "HowToStep", position: 1, name: "打开逐字稿，找到要修改的段落", text: "打开一份转写完成的逐字稿，找到识别有出入的那一段。" }
+          - { "@type": "HowToStep", position: 2, name: "点开段落进入编辑，修改文字", text: "点开这段文字进入编辑状态，把认错的字改成正确的。" }
+          - { "@type": "HowToStep", position: 3, name: "退出编辑区，改动自动保存", text: "改完点击别处或退出编辑区，改动就会保存，后台的自动优化不会把这段改回去。" }
+          - { "@type": "HowToStep", position: 4, name: "同类错误后续自动被纠正", text: "这次修改会被记进纠错词典，后续录音里再出现同一个词，识别结果会自动按纠正后的写法处理。" }
+      - "@type": "Article"
+        headline: "转写校对与纠错词典怎么用"
+        description: "逐字稿识别有出入的地方怎么改，改过之后同类错误怎么让后续录音自动纠正。"
+        image: "https://voicebridge.top/og-image.png"
+        author:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+        publisher:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+          logo:
+            "@type": "ImageObject"
+            url: "https://voicebridge.top/favicon.svg"
+        datePublished: "2026-08-21"
+        dateModified: "2026-08-21"
+        mainEntityOfPage:
+          "@type": "WebPage"
+          "@id": "https://voicebridge.top/guides/proofread-dictionary/"
+        inLanguage: "zh-Hans"
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - "@type": "ListItem"
+            position: 1
+            name: "首页"
+            item: "https://voicebridge.top/"
+          - "@type": "ListItem"
+            position: 2
+            name: "教程"
+            item: "https://voicebridge.top/guides/"
+          - "@type": "ListItem"
+            position: 3
+            name: "转写校对与纠错词典怎么用"
+            item: "https://voicebridge.top/guides/proofread-dictionary/"
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - text: 首页
+          href: /
+        - text: 教程
+          href: /guides/
+        - text: 转写校对与纠错词典怎么用
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">转写结果怎么校对、怎么建纠错词典</h1>
+        <p class="doc-sub">专业术语、人名、口音重的发音，机器识别总会有认错的地方。改一次，畅译能记住这个纠正，后面同样的词不用再改第二次。</p>
+
+  - type: answer-card
+    data:
+      question: 逐字稿识别错了怎么改？改完会不会又被自动改回去？
+      answer: 逐字稿里的段落可以直接点开编辑，改完退出即保存。这段一旦被用户手动改过，后台的自动精修流程就不会再覆盖它。改过的词还会被记进纠错词典，后续录音里同样的词会自动按纠正后的写法处理。
+      facts:
+        - 逐字稿按段落编辑，改完退出编辑区自动保存
+        - 用户改过的段落不会被后台自动优化覆盖
+        - 改一次之后，纠错词典记住这个词的正确写法
+        - 后续录音里同类错误自动按词典纠正，不用每次都手改
+
+  - type: prose
+    data:
+      html: |
+        <h2>为什么要自己校对</h2>
+        <p>语音识别对专业术语、人名、口音重的发音不一定每次都认得准。畅译在识别之后会跑一遍标点恢复和分段整理，把结果排成可读的文章，但具体某个词认没认对，还是得靠人核对一遍。逐字稿本身就是校对台，不用跳到另一个界面去改。</p>
+        <p>用户手动改过的内容有一个明确的优先级：不管后台后续怎么重新精修，这段已经被改过的文字都不会被覆盖回去。改完就是最终结果。</p>
+        <p>更详细的编辑权设计，见<a href="/learn/transcript-editing/">机器改和人改会打架</a>。</p>
+
+  - type: step-list
+    data:
+      title: 具体怎么操作
+      steps:
+        - name: 打开逐字稿，找到要修改的段落
+          text: 打开一份转写完成的逐字稿，找到识别有出入的那一段。
+        - name: 点开段落进入编辑，修改文字
+          text: 点开这段文字进入编辑状态，把认错的字改成正确的。
+        - name: 退出编辑区，改动自动保存
+          text: 改完点击别处或退出编辑区，改动就会保存，后台的自动优化不会把这段改回去。
+        - name: 同类错误后续自动被纠正
+          text: 这次修改会被记进纠错词典，后续录音里再出现同一个词，识别结果会自动按纠正后的写法处理。
+          tip: 专业术语、人名这类反复出现的词最值得改一次，省下来的是以后每一次录音都不用再改。
+
+  - type: prose
+    data:
+      html: |
+        <h2>常见问题</h2>
+        <p><b>改错了能撤销吗？</b>可以再次点开这段重新编辑，改回想要的文字。</p>
+        <p><b>纠错词典能手动管理吗？</b>词典由校对时的修改自动积累，不需要额外维护一份单独的表。</p>
+        <p><b>只改文字，标点和分段会跟着变吗？</b>手动编辑改的是这一段的文字内容，已经生成的标点和分段结构不会因为这次编辑被重新打乱。</p>
+
+  - type: related-links
+    data:
+      title: 相关阅读
+      items:
+        - text: 机器改和人改会打架
+          href: /learn/transcript-editing/
+          desc: 用户改过的字被后台改回去，这种 bug 一次就够让人卸载
+        - text: 识别出文字只是开始
+          href: /learn/asr-postprocessing/
+          desc: 标点为什么要先剥掉再加一遍
+        - text: 逐字稿怎么导出 PDF、怎么分享出去
+          href: /guides/export-share/
+          desc: 校对完的内容怎么带走

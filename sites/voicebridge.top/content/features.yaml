@@ -1,0 +1,76 @@
+path: /features
+template: page
+meta:
+  title: 功能 — 离线转录、发言人分离与 AI 会议纪要 — VoiceBridge 畅译
+  description: 畅译(VoiceBridge)完全免费、100% 离线的核心功能:录音转文字、AI 会议纪要、发言人分离、录音不上传的隐私边界,一次看全。
+  keywords: 录音转文字,会议纪要,发言人分离,语音转文字,离线转录,隐私,VoiceBridge,畅译
+  canonical: "/features/"
+  bodyClass: doc
+  priority: 0.8
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "CollectionPage"
+        name: "功能 — VoiceBridge 畅译"
+        description: "畅译完全免费、100% 离线的核心功能:录音转文字、AI 会议纪要、发言人分离、录音不上传的隐私边界。"
+        url: "https://voicebridge.top/features/"
+        inLanguage: "zh-Hans"
+        mainEntity:
+          "@type": "ItemList"
+          itemListElement:
+            - "@type": "ListItem"
+              position: 1
+              url: "https://voicebridge.top/features/offline-transcription/"
+            - "@type": "ListItem"
+              position: 2
+              url: "https://voicebridge.top/features/meeting-minutes/"
+            - "@type": "ListItem"
+              position: 3
+              url: "https://voicebridge.top/features/speaker-diarization/"
+            - "@type": "ListItem"
+              position: 4
+              url: "https://voicebridge.top/features/privacy-local/"
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - "@type": "ListItem"
+            position: 1
+            name: "首页"
+            item: "https://voicebridge.top/"
+          - "@type": "ListItem"
+            position: 2
+            name: "功能"
+            item: "https://voicebridge.top/features/"
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - text: 首页
+          href: /
+        - text: 功能
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">畅译能帮你做什么</h1>
+        <p class="doc-sub">从一段录音开始,到一份能读、能搜、能分享的纪要,中间这几步分别是怎么做的,点进去看细节。</p>
+
+  - type: card-grid
+    data:
+      items:
+        - kicker: 离线转文字
+          title: 离线录音转文字,免费用,不挑网络
+          desc: 导入 M4A、WAV、MP3 等录音,识别全程在设备本地完成,不联网也能转,完全免费无时长限制
+          href: /features/offline-transcription/
+        - kicker: AI 会议纪要
+          title: 会议录完了,纪要自动整理
+          desc: 逐字稿自动区分发言人,一键联动你手机上的 AI App 生成结构化纪要
+          href: /features/meeting-minutes/
+        - kicker: 发言人分离
+          title: 自动区分发言人,读纪要不用猜是谁说的
+          desc: 转写时自动分析音频、标注发言人,声纹库记住常用的人
+          href: /features/speaker-diarization/
+        - kicker: 隐私与本地
+          title: 录音不上传,转写全部留在设备本地
+          desc: 识别、声纹分析、语义向量全部在 iPhone 本地完成,数据边界写清楚
+          href: /features/privacy-local/

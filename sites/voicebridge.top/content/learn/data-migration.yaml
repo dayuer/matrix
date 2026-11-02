@@ -1,0 +1,102 @@
+path: /learn/data-migration
+template: article
+meta:
+  title: 差点把用户的会议记录清零 — VoiceBridge 畅译
+  description: 升级时数据库迁移失败，兜底逻辑是把旧库改名、建个空的。文件其实还在磁盘上，但用户打开看到的是空首页。记录畅译改掉这个逻辑的过程。
+  keywords: 数据迁移,SwiftData,数据丢失,升级兜底,数据安全,备份原子性,VoiceBridge,畅译
+  canonical: "/learn/data-migration/"
+  bodyClass: doc
+  priority: 0.6
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "Article"
+        headline: "差点把用户的会议记录清零"
+        description: "升级时迁移失败的兜底逻辑是重建空库。文件还在磁盘上，但用户看到的是空首页。"
+        image: "https://voicebridge.top/og-image.png"
+        author: { "@type": "Organization", name: "VoiceBridge", url: "https://voicebridge.top/" }
+        publisher:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+          logo: { "@type": "ImageObject", url: "https://voicebridge.top/favicon.svg" }
+        datePublished: "2026-08-20"
+        dateModified: "2026-08-20"
+        mainEntityOfPage: { "@type": "WebPage", "@id": "https://voicebridge.top/learn/data-migration/" }
+        inLanguage: "zh-Hans"
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - { "@type": "ListItem", position: 1, name: "首页", item: "https://voicebridge.top/" }
+          - { "@type": "ListItem", position: 2, name: "知识", item: "https://voicebridge.top/learn/" }
+          - { "@type": "ListItem", position: 3, name: "差点把用户的会议记录清零", item: "https://voicebridge.top/learn/data-migration/" }
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - { text: 首页, href: / }
+        - { text: 知识, href: /learn/ }
+        - text: 差点把用户的会议记录清零
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">差点把用户的会议记录清零</h1>
+        <p class="doc-sub">那段兜底代码我写的时候觉得挺稳妥的。</p>
+
+  - type: answer-card
+    data:
+      question: 升级时数据库迁移失败了，应该怎么办？
+      answer: 不能重建空库。旧的兜底逻辑是把打不开的库改个名、建一个新的空库让程序能启动，文件其实一个字节都没少，但用户打开看到的是空白首页，他会认定数据没了，然后卸载。现在的做法是回滚重试，仍然失败就停在一个明确告知数据还在的页面上。
+      facts:
+        - 旧逻辑：迁移失败就把库改名加时间戳后缀，然后建空库
+        - 从用户视角看，这和真的删了没有区别
+        - 现在失败会停在升级失败页，页面上写明数据没丢，并提供导出原始文件
+        - 备份的成功返回值必须真的意味着文件已落位，否则重试会建出空库
+
+  # 出处：docs/superpowers/specs/2026-07-29-proofreading-loop-design.md §3.1
+  #       App/VoiceBridgeApp.swift:302-305（地雷警告注释）
+  - type: prose
+    data:
+      html: |
+        <h2>那段代码看起来很合理</h2>
+        <p>数据库要加字段的时候，系统会做一次轻量迁移。绝大多数情况下没问题，但迁移是可能失败的，失败了程序就起不来，直接闪退。</p>
+        <p>所以我写了兜底：迁移失败就把打不开的那个库文件改名，加个 corrupt 加时间戳的后缀，然后建一个新的空库。这样程序至少能启动，不至于装了更新就打不开。数据文件我也没删，还在沙盒里躺着，理论上可以恢复。</p>
+        <p>写的时候我觉得这挺周全的。后来重新审这段逻辑，才意识到它在用户那边是什么样子：他更新完打开应用，首页是空的，一场会议记录都没有。他不知道有个改了名的文件躺在沙盒里，也没有任何界面告诉他。他只知道数据没了。</p>
+        <p>「文件还在磁盘上」和「用户能拿回数据」之间，隔着整个产品。前者是技术事实，后者才是用户体验，而我当时用前者说服了自己。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>改成了什么</h2>
+        <p>现在迁移失败不再建空库。先尝试从备份回滚然后重试；如果还是不行，返回一个内存里的临时库让程序能起来，同时置一个全局标志。应用根视图检测到这个标志，显示的不是正常首页，而是一个数据升级失败页。</p>
+        <p>这个页面要做到两件事。第一是明确告诉用户：你的数据仍然在这台设备上，没有丢失。这句话必须写在最显眼的位置，因为用户此刻最需要的不是解决方案，是别慌。第二是给出两条出路，重试升级，或者把原始数据文件导出去，走系统分享存到文件应用或者发给自己。</p>
+        <p>源码里那个删旧库的函数上面，现在有一段警告注释，写明这个函数删除旧库时不做任何数据搬运，将来如果要改库文件名，必须先写完整的跨库搬运逻辑再改名，否则等同于把用户的全部会议记录静默清零。</p>
+
+  # 出处：docs/superpowers/specs/2026-07-29-proofreading-loop-design.md §3.1（备份失败语义，质量审查后收紧）
+  #       fix(data): StoreMigrationGuard 失败语义 / kill 路径备份原子性 / 备份按版本原子
+  - type: prose
+    data:
+      html: |
+        <h2>备份说成功了，不代表真的成功</h2>
+        <p>方案定了之后做质量审查，又挖出一层。</p>
+        <p>回滚依赖备份，而备份和恢复这两个操作本身也会失败。最危险的一种组合是：恢复的时候先把当前那个坏库删掉，然后拷贝备份过去，拷贝失败了，但函数仍然返回成功。上层信了这个返回值，认为回滚完成，继续往下走，结果是活库被删了、备份没拷进来，重试的时候当然只能建出一个空库。磁盘满的时候就会走到这条路。</p>
+        <p>所以恢复函数的返回值被重新定义了：它返回成功，当且仅当主文件已经真的落位。实现上主文件先写成临时名，再用系统的原子替换换过去，没换成必须返回失败。</p>
+        <p>还有几处是同一类问题。数据库不是一个文件，还有预写日志和共享内存两个附属文件，恢复之后现场的三个文件必须精确镜像备份里的那一套；如果备份里没有预写日志，就得把现场残留的那个删掉，否则旧库配着新日志，是个错配的组合。备份本身也改成按版本原子，中途失败要清掉这一版的残留，不能留下半套。</p>
+        <p>这些都不是「数据丢了」的 bug，是「我以为我保住了但其实没有」的 bug。它们只在磁盘满、进程被杀这类边缘情况下才显形，平时测不出来。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>后来加的一条硬约束</h2>
+        <p>这件事之后，项目里立了一条规矩：升级必须保留数据，任何分支都不允许删除或改名用户的库文件。</p>
+        <p>光写在文档里不够，文档是会被绕过的。所以在构建配置里加了一个脚本阶段来检查相关的调用点，这是这个项目的第一个脚本阶段。缺了调用点会直接编译失败，比单元测试更早暴露，也更难被绕开。</p>
+        <p>我觉得这类约束值得用编译失败来保护。功能出 bug 用户会抱怨，然后你修；数据没了用户直接卸载，没有第二次机会。</p>
+
+  - type: related-links
+    data:
+      title: 相关阅读
+      items:
+        - { text: "只在真机 Release 才崩的 bug", href: /learn/build-config-bugs/, desc: "另一类只在特定条件下才显形的问题" }
+        - { text: "机器改和人改会打架", href: /learn/transcript-editing/, desc: "用户改过的字，自动流程不许碰" }
+        - { text: "数据边界写在隐私政策里", href: /privacy.html, desc: "哪些在本地跑，哪些需要你授权" }

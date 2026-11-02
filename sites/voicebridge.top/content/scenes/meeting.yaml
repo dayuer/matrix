@@ -1,0 +1,124 @@
+path: /scenes/meeting
+template: article
+meta:
+  title: 商务会议记录,录完自动整理成会议纪要 — VoiceBridge 畅译
+  description: 客户会谈、项目周会录完音,离线转成逐字稿并自动区分发言人,一键联动 AI 整理成会议纪要。畅译完全免费,录音不上传,谈判内容不出设备。
+  keywords: 商务会议记录,会议纪要,会议录音转文字,客户会谈记录,VoiceBridge,畅译
+  canonical: "/scenes/meeting/"
+  bodyClass: doc
+  priority: 0.7
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "Article"
+        headline: "商务会议记录,录完自动整理成会议纪要"
+        description: "客户会谈、项目周会录完音,离线转成逐字稿并自动区分发言人,一键联动 AI 整理成会议纪要。畅译完全免费,录音不上传。"
+        image: "https://voicebridge.top/og-image.png"
+        author:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+        publisher:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+          logo:
+            "@type": "ImageObject"
+            url: "https://voicebridge.top/favicon.svg"
+        datePublished: "2026-08-21"
+        dateModified: "2026-08-21"
+        mainEntityOfPage:
+          "@type": "WebPage"
+          "@id": "https://voicebridge.top/scenes/meeting/"
+        inLanguage: "zh-Hans"
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - "@type": "ListItem"
+            position: 1
+            name: "首页"
+            item: "https://voicebridge.top/"
+          - "@type": "ListItem"
+            position: 2
+            name: "使用场景"
+            item: "https://voicebridge.top/scenes/"
+          - "@type": "ListItem"
+            position: 3
+            name: "商务会议记录"
+            item: "https://voicebridge.top/scenes/meeting/"
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - text: 首页
+          href: /
+        - text: 使用场景
+          href: /scenes/
+        - text: 商务会议记录
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">会开完了,纪要不用自己一句句捋</h1>
+        <p class="doc-sub">跟客户谈了一个半小时方案,散会之后才想起来刚才那句报价的具体数字是谁说的、有没有当场确认。项目周会开完,回去写纪要发给团队核对,靠回忆写,难免漏掉临时改口的那一条。</p>
+
+  - type: answer-card
+    data:
+      question: 商务会议录音怎么整理成会议纪要?
+      answer: 导入录音离线转写,自动区分参会人发言,标点恢复排成文章,再按需一键联动 AI 整理成结构化纪要,内容全程留在设备,不用担心谈判细节外流。
+      facts:
+        - 识别全过程在设备本地完成,不联网也能转
+        - 自动区分发言人,标注是谁在说
+        - 逐字稿自动恢复标点、按语义分段
+        - 内置 6 组提示词模板:纪要、待办、决策、观点、思维导图、会后邮件
+        - 完全免费,识别与整理都不收费,音频与文字不上传
+
+  - type: prose
+    data:
+      html: |
+        <h2>商务会议最容易漏掉的两类内容</h2>
+        <p>一类是临时拍板的决定,比如价格上有一点松动、交期改了几天,这种当场一句话带过的调整,事后回忆最容易漏掉;另一类是谁认领了哪个待办,会开到后半段容易记混是甲方说的还是乙方说的。录音本身能兜底,但从录音里把这两类内容捞出来,自己听一遍整理,往往比开会本身还费时间。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>先分清谁说了哪句,纪要才靠谱</h2>
+        <p>几个人开会,转录里如果分不清是谁说的,后面整理出来的决策和待办也说不清该找谁确认。畅译在转写阶段自动识别参会人切换,把发言按人分开、标上颜色,这是后面能放心整理纪要的前提,具体怎么定位话轮边界写在<a href="/learn/speaker-diarization/">说话人分离为什么会认错人</a>里。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>会议类型不同,该抓的重点也不同</h2>
+        <p>客户会谈更在意最后拍板了什么、报价和条款有没有变化,适合直接用决策模板整理;项目周会更在意进度和待办,谁认领了哪一项、截止到什么时候,适合用待办模板;跟团队复盘一次讨论,想留一份不同意见的记录方便后续参考,适合用观点模板。畅译内置了 6 组提示词模板,对应不同的整理需要,详细说明写在<a href="/features/meeting-minutes/">AI 会议纪要</a>里。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>报价、条款、还没公开的决定,不出设备</h2>
+        <p>商务谈判里聊到的价格底线、内部还没公开的战略调整,这些内容参会人心里都清楚不是能随便往外传的。畅译的识别、发言人分离全部在设备本地完成,音频和文字不上传服务器,只有主动使用「AI 智能纪要」时,转录文本才会经系统剪贴板传给自己选的 AI App,由自己手动粘贴,首次使用需要明确同意,不用这个功能不影响其他部分离线运行。数据边界写在<a href="/features/privacy-local/">录音不上传</a>里。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>整理之前先改一遍明显的识别错误</h2>
+        <p>客户公司名、产品型号、专业术语,机器识别容易出错。逐字稿可以直接点开编辑,改完不会被后台重新识别的结果覆盖。用 AI 整理纪要之前先过一遍逐字稿改掉明显的错字,交给 AI 的就是准确的文本,整理出来的纪要也更贴近实际讨论的内容。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>整理完成,发给对方核对</h2>
+        <p>纪要整理好之后可以导出带发言人色标和时间线的 PDF,直接发给客户或者团队核对内容有没有遗漏;也能导出 txt 文本方便复制粘贴进会后邮件。原始逐字稿一直单独保留,想确认某句话的原始措辞,随时能翻回去核对,不用完全依赖整理过的版本。</p>
+
+  - type: related-links
+    data:
+      title: 相关阅读
+      items:
+        - text: AI 会议纪要怎么用
+          href: /features/meeting-minutes/
+          desc: 6 组提示词模板,一键联动手机上已经在用的 AI
+        - text: 说话人分离的技术细节
+          href: /learn/speaker-diarization/
+          desc: 切分交给专门定位话轮边界的模型,不是靠文本内容去猜
+        - text: 录音会不会被上传
+          href: /features/privacy-local/
+          desc: AI 纪要功能的数据边界写清楚

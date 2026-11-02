@@ -1,0 +1,122 @@
+path: /learn/recording-pitfalls
+template: article
+meta:
+  title: 录一段音这件事，比我想的难得多 — VoiceBridge 畅译
+  description: 戴蓝牙耳机必崩、来电之后计时器还在走但没在录、AirPods 一断就静默变哑。记录畅译在录音这条链路上修过的一串 bug。
+  keywords: iOS录音,AVAudioSession,音频中断,蓝牙录音,AVAudioEngine,录音失败,VoiceBridge,畅译
+  canonical: "/learn/recording-pitfalls/"
+  bodyClass: doc
+  priority: 0.6
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "Article"
+        headline: "录一段音这件事，比我想的难得多"
+        description: "戴蓝牙耳机必崩、来电之后计时器还在走但没在录。记录畅译在录音链路上修过的一串 bug。"
+        image: "https://voicebridge.top/og-image.png"
+        author: { "@type": "Organization", name: "VoiceBridge", url: "https://voicebridge.top/" }
+        publisher:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+          logo: { "@type": "ImageObject", url: "https://voicebridge.top/favicon.svg" }
+        datePublished: "2026-08-20"
+        dateModified: "2026-08-20"
+        mainEntityOfPage: { "@type": "WebPage", "@id": "https://voicebridge.top/learn/recording-pitfalls/" }
+        inLanguage: "zh-Hans"
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - { "@type": "ListItem", position: 1, name: "首页", item: "https://voicebridge.top/" }
+          - { "@type": "ListItem", position: 2, name: "知识", item: "https://voicebridge.top/learn/" }
+          - { "@type": "ListItem", position: 3, name: "录一段音这件事，比我想的难得多", item: "https://voicebridge.top/learn/recording-pitfalls/" }
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - { text: 首页, href: / }
+        - { text: 知识, href: /learn/ }
+        - text: 录一段音这件事，比我想的难得多
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">录一段音这件事，比我想的难得多</h1>
+        <p class="doc-sub">开始做之前我以为这是最简单的一环。</p>
+
+  - type: answer-card
+    data:
+      question: 手机录音能出什么问题？
+      answer: 一堆。戴蓝牙耳机开录必失败，接个电话回来计时器还在走但已经没在录，AirPods 一断录音静默变哑，还有只在权限刚授予那一瞬间才会出现的竞态。这些都是真机上收到反馈之后才发现的。
+      facts:
+        - 蓝牙耳机开录必现录音文件创建失败，根因是写死的码率超出编码器许可区间
+        - 来电中断结束后系统自动恢复了引擎，但应用状态卡在暂停，转写归零
+        - 权限刚授予时麦克风输入格式会短暂返回 0Hz，用它建文件必然失败
+        - 一个曾被认定是根因的假设后来被证伪，但那段防御代码留下了
+
+  # 出处：fix(recording): 蓝牙耳机开录必现「录音文件创建失败」— AAC 码率超 16kHz 许可区间
+  - type: prose
+    data:
+      html: |
+        <h2>戴蓝牙耳机就录不了</h2>
+        <p>有用户反馈戴着蓝牙耳机点录音，直接弹「录音文件创建失败」，摘掉耳机就好了。</p>
+        <p>真机控制台抓到的错误码是 560226676，四字符码 <code>!dat</code>，也就是 <code>kAudioFormatUnsupportedDataFormatError</code>。蓝牙走 HFP 通话链路时输入是 16kHz 单声道，而我的音频文件设置里码率是写死的 96kbps。这个组合超出了 AAC 编码器在该采样率下的许可区间，创建文件那一步直接抛错。</p>
+        <p>值得记的是修之前我猜错过一次。当时手上另有一个已知的竞态，怀疑是开麦时序问题，围着那个方向查了一阵。后来发现这个失败和时序无关，戴耳机就必现，摘掉就不现，是个纯粹的参数问题。</p>
+        <p>修法是让码率跟着采样率走，低于 32kHz 时首选 48kbps，并且加了 96、48、24 三档逐级降档重试，任何路由都能自适应。降档和最终失败都留日志，下次再有类似反馈能直接看出走到了哪一档。</p>
+
+  # 出处：fix(recording): 输入格式 0Hz 竞态防御 — 权限刚授予/会话刚激活时 inputNode 短暂报 0Hz
+  - type: prose
+    data:
+      html: |
+        <h2>那个被证伪的假设，代码还留着</h2>
+        <p>上面提到的猜错，说的是 0Hz 竞态。</p>
+        <p>为了让点下录音键就立刻开始录、一个字都不丢，我把开麦的时机从「识别引擎加载完之后」提前到了「麦克风权限一拿到就开」。这一提前撞上了系统的一个已知竞态：音频会话刚激活的那个极短窗口里，输入节点的格式会返回 0Hz、0 声道。拿这个格式去建音频文件、去建重采样器，两个都会失败，对外表现同样是「录音文件创建失败」。</p>
+        <p>这个竞态其实一直存在，用户以前也偶尔遇到过，只是从前有引擎加载的那几秒垫着，正好把窗口盖住了。零丢字这个改动把垫子抽掉，它就浮出来了。</p>
+        <p>修法是启动改成异步，格式无效时重建引擎并轮询，每 100 毫秒一次最多十次，仍然无效就明确报「麦克风输入未就绪」，而不是笼统的文件创建失败。重试日志本身也是根因的运行时证据。</p>
+        <p>后来蓝牙那个 bug 被定位成码率问题，这段 0Hz 防御其实不是那次故障的解药。但我没有删它，因为竞态是真实存在的，只是被另一个更显眼的问题盖过去了。</p>
+
+  # 出处：fix: 处理 AVAudioSession 中断（来电/闹钟/抢麦）
+  #       fix(audio): 会话层四处修复 — 新增 onInterruptionResume 回调
+  - type: prose
+    data:
+      html: |
+        <h2>接个电话，录音就废了</h2>
+        <p>最早的实现完全没处理音频中断。来电、闹钟、别的应用抢麦克风，系统会把音频引擎停掉，但我的状态机还停在录音中，计时器接着走。用户看着屏幕上时间在涨，以为一直在录，实际上从接电话那一刻起就什么都没有了。</p>
+        <p>加上中断监听之后好了一半：中断开始时进入暂停态。但还有另一半，中断结束时系统会自动把引擎和时钟恢复，而我的状态还卡在暂停，导致所有音频数据在消费入口被提前丢弃，录音在继续，转写却归零。</p>
+        <p>补上中断结束的回调，通知上层把状态跟着恢复，这条链路才算闭合。这个缺陷单看任何一段代码都不明显，因为它是「系统恢复了，我没跟着恢复」的错位。</p>
+
+  # 出处：fix: 处理音频路由变化（蓝牙/耳机断开）+ 抽出 installRecordingTap
+  - type: prose
+    data:
+      html: |
+        <h2>AirPods 一断，录音静默变哑</h2>
+        <p>安装音频采集回调的时候要指定一个输入格式，最早这个格式是在安装那一刻锁定的。录着录着 AirPods 没电断开，输入切回手机麦克风，采样率和声道数都变了，还拿旧格式去接新数据，轻则静默失败，重则崩溃。</p>
+        <p>现在监听路由变化，检测到旧设备不可用就移除旧的采集回调，按当前输入的最新格式重建。格式变了之后通过转换器续写同一个文件，不会因为中途换设备就把录音切成两段。如果重建失败就转成暂停，保住已经录到的部分，不再静默变哑。</p>
+        <p>顺带还有一个更隐蔽的：声道数原来也是写死的单声道。碰上双声道输入的 USB 麦克风或某些蓝牙麦，每次写入都静默失败，产出一个时长正常但完全空白的音频文件。用户录完一小时打开一看，什么都没有。现在声道数跟着输入走，写入失败的第一次报错也会记进日志，不再全程无声。</p>
+
+  # 出处：fix(recording): installTap 闭包标记 @Sendable，修复实时队列上的 MainActor 隔离断言闪退
+  - type: prose
+    data:
+      html: |
+        <h2>四份崩溃报告，同一个签名</h2>
+        <p>有一批闪退报告堆在后台，四份，崩溃签名完全一样，都指向录音启动函数里的某个闭包。</p>
+        <p>原因是 Swift 6 的并发检查：在主线程上下文里写的闭包字面量，如果没有显式标记，会被推断为主线程隔离。而音频框架调用采集回调是在实时音频队列上，不是主线程，运行时的队列断言直接触发陷阱指令。</p>
+        <p>修法只有一个标记的事，把那个闭包标成可跨线程发送。但找到它花的时间远比改它长，因为崩溃发生在系统框架的调用栈里，不在我自己的代码行上。</p>
+
+  # 出处：fix(recording): 编排层六处 — discardIfUnstarted 判空改按实录时长
+  - type: prose
+    data:
+      html: |
+        <h2>差点把一小时的录音删掉</h2>
+        <p>还有一个我觉得最险的。</p>
+        <p>录音启动失败时要做清理，把那条没录成的空记录删掉，免得列表里堆一堆零秒的垃圾。判断依据我当时写的是「这条记录没有任何转写段落」。</p>
+        <p>问题是转写段落要到停止录音的时候才会被创建，录音全程这个条件恒为真。也就是说这个清理逻辑在任何时候被触发，都会认为当前这条是空档。如果用户录了一小时，中间某次恢复失败走到了这个分支，那一小时连着档案一起被删。</p>
+        <p>现在的判据改成实际录到的时长：不足一秒才删档并清理孤儿音频文件，一秒以上绝不删除，转交后台队列去兜底转写。这个改动没有修复任何已发生的用户投诉，它修的是一个还没爆但一定会爆的雷。</p>
+
+  - type: related-links
+    data:
+      title: 相关阅读
+      items:
+        - { text: "只在真机 Release 才崩的 bug", href: /learn/build-config-bugs/, desc: "Debug 跑一万遍都没事，装到真机上 75% 概率卡死" }
+        - { text: "实时转写为什么会丢字", href: /learn/live-transcription-loss/, desc: "一场 5.6 分钟的录音丢了 71% 的内容" }
+        - { text: "端侧模型选型：好模型为什么上不了手机", href: /learn/on-device-model-tradeoffs/, desc: "体积、内存、发热、首次加载，这四项预算怎么花" }

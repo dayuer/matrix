@@ -1,0 +1,124 @@
+path: /scenes/voice-memo
+template: article
+meta:
+  title: 语音备忘录批量转文字,攒了几十条一次转完 — VoiceBridge 畅译
+  description: 手机语音备忘录攒了几十条没空整理,畅译支持一次多选批量导入离线转写,后台排队处理,完全免费,录音不上传,无条数限制。
+  keywords: 语音备忘录转文字,批量转写,备忘录转文字,语音笔记转文字,VoiceBridge,畅译
+  canonical: "/scenes/voice-memo/"
+  bodyClass: doc
+  priority: 0.7
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "Article"
+        headline: "语音备忘录批量转文字,攒了几十条一次转完"
+        description: "手机语音备忘录攒了几十条没空整理,畅译支持一次多选批量导入离线转写,后台排队处理,完全免费,录音不上传。"
+        image: "https://voicebridge.top/og-image.png"
+        author:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+        publisher:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+          logo:
+            "@type": "ImageObject"
+            url: "https://voicebridge.top/favicon.svg"
+        datePublished: "2026-08-21"
+        dateModified: "2026-08-21"
+        mainEntityOfPage:
+          "@type": "WebPage"
+          "@id": "https://voicebridge.top/scenes/voice-memo/"
+        inLanguage: "zh-Hans"
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - "@type": "ListItem"
+            position: 1
+            name: "首页"
+            item: "https://voicebridge.top/"
+          - "@type": "ListItem"
+            position: 2
+            name: "使用场景"
+            item: "https://voicebridge.top/scenes/"
+          - "@type": "ListItem"
+            position: 3
+            name: "语音备忘录批量转文字"
+            item: "https://voicebridge.top/scenes/voice-memo/"
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - text: 首页
+          href: /
+        - text: 使用场景
+          href: /scenes/
+        - text: 语音备忘录批量转文字
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">备忘录里攒了几十条,一次转完</h1>
+        <p class="doc-sub">走在路上想到一个点子,顺手录一条语音备忘录,当时觉得方便,过了两周想找回来的时候,面对几十条没有标题、只有时间戳的录音,一条条点开听完全找不到当时想说的是哪句。</p>
+
+  - type: answer-card
+    data:
+      question: 手机里攒了很多语音备忘录,怎么一次性整理成文字?
+      answer: 在应用内一次多选好几个文件,交给后台排队离线转写,不用一条条点开单独转;转出来的文字可以直接搜关键词,找回某条备忘录里说过的内容。
+      facts:
+        - 应用内可一次多选批量导入,后台排队处理
+        - 转写走先进先出的队列,App 被系统强杀也能接着转,不用从头再来
+        - 识别全过程在设备本地完成,不联网也能转
+        - 转出的文字支持本地语义搜索,不用记得原话怎么说
+        - 完全免费,批量导入没有条数限制
+
+  - type: prose
+    data:
+      html: |
+        <h2>语音备忘录最大的问题不是录,是找</h2>
+        <p>随手录一条语音很方便,难的是过后找回来。几十条备忘录只有时间和一段波形,标题大多是系统自动生成的日期,想找某天说的某句话,只能一条条点开听,听到一半才发现录错了那条。攒得越多,越懒得整理,最后变成一堆没人回头看的音频文件。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>一次多选,交给后台排队处理</h2>
+        <p>不用一条条打开单独转写,可以在应用内一次多选好几十条备忘录,交给畅译的后台队列。转写按先进先出的顺序依次处理,处理到一半即便 App 被系统强制关闭,回来也能接着转,不用担心转到一半就前功尽弃。可以先去做别的事,过一会儿回来看结果。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>从「语音备忘录」App 直接分享过来</h2>
+        <p>系统「语音备忘录」App 里选中要转写的条目,用分享菜单一键分享到畅译,就能发起导入,不用先导出到「文件」App 再倒腾一遍。M4A、WAV、MP3 这些主流格式都能直接处理,不用先转码。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>转成文字之后,搜索比回忆靠谱</h2>
+        <p>几十条录音转成文字之后,想找某条提到的具体内容,不用再靠日期去猜是哪一条,直接搜关键词就能定位。畅译支持本地语义搜索,搜「关于报销的那条」这种模糊描述也能找到相关内容,比对着一堆时间戳去回忆靠谱得多,而且全程在设备本地检索,不联网。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>灵感、待办、临时提醒,混在一起也没关系</h2>
+        <p>语音备忘录里常常什么都有,一闪而过的点子、临时想起来的待办、给自己留的提醒,内容杂、长短不一。批量转成文字之后,不用先分类再决定要不要转,全部转出来之后再挑有用的整理进笔记或者待办工具,比提前一条条判断值不值得转省事。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>转完之后可以导出带走</h2>
+        <p>整理好的文字可以导出 txt 文本,批量复制进笔记软件归档;需要保留原始录音的,音频文件也能一并导出。这些内容只存在设备本地,不会上传服务器,想长期留存建议整理完之后导出备份一份。</p>
+
+  - type: related-links
+    data:
+      title: 相关阅读
+      items:
+        - text: 离线录音转文字详解
+          href: /features/offline-transcription/
+          desc: 支持的格式、批量导入方式与免费范围
+        - text: 录音会不会被上传
+          href: /features/privacy-local/
+          desc: 识别全过程在设备本地完成,不联网也能转
+        - text: 识别出文字只是开始
+          href: /learn/asr-postprocessing/
+          desc: 标点恢复和语义分段是怎么做的
