@@ -4,8 +4,8 @@ meta:
   lang: en
   bodyClass: legal lang-en
   title: VoiceBridge — Privacy Policy
-  description: 'VoiceBridge Privacy Policy: core speech recognition runs 100% on-device, audio and text are never uploaded to any server; completely free, no ads, no in-app purchases, and no personal information collected.'
-  keywords: VoiceBridge,privacy policy,offline,no upload,privacy first
+  description: 'VoiceBridge 2.0 Privacy Policy: recording, transcription, speaker separation and search run on your device, and audio is never uploaded. Cloud features send only redacted text and are paid with credits; VoiceBridge servers do not store that text or use it for training. No third-party analytics or ads, no sign-up.'
+  keywords: VoiceBridge,privacy policy,audio never uploaded,on-device transcription,cloud features,credits,data boundary
   canonical: /privacy_en.html
   priority: 0.5
   changefreq: yearly
@@ -14,8 +14,13 @@ meta:
       href: /privacy.html
     - hreflang: en
       href: /privacy_en.html
+    - hreflang: ja
+      href: /privacy_ja.html
     - hreflang: x-default
       href: /privacy.html
+# The effective date appears only in the first <p class="subtitle"> line below.
+# All three pages (content/privacy.yaml, this file, content/ja/privacy.yaml) must carry the same date.
+# The Chinese page is authoritative; keep this page equivalent in meaning.
 blocks:
   - type: custom-html
     data:
@@ -23,80 +28,126 @@ blocks:
         <div class="container">
           <span class="eyebrow">Privacy Policy</span>
           <h1>Privacy Policy<span class="cn">VoiceBridge</span></h1>
-          <p class="subtitle">Last updated: July 5, 2026 · Effective: July 5, 2026</p>
+          <p class="subtitle">Last updated: November 2, 2026 · Effective: November 2, 2026 · Applies to VoiceBridge 2.0 and later</p>
+          <p class="subtitle"><a href="/privacy.html" hreflang="zh-Hans" lang="zh-Hans">中文</a> · English · <a href="/privacy_ja.html" hreflang="ja" lang="ja">日本語</a> (if the language versions differ, the Chinese version prevails)</p>
 
           <div class="highlight">
-            <p>🔒 VoiceBridge's core speech recognition runs entirely on your device, with no internet connection required. When you choose to use the "AI Meeting Notes" feature, your transcript will be shared with a third-party AI app of your choice via the system clipboard, subject to your explicit consent.</p>
+            <p>🔒 Recording, transcription, speaker separation, silence detection and search all happen on your device, and <strong>your audio is never uploaded</strong>. Only when you use a cloud feature is redacted text sent to VoiceBridge servers for processing; <strong>VoiceBridge servers do not store that text or use it for training</strong>. Cloud processing relies on third-party model providers, whose handling of data is governed by their own privacy policies (see Section 4.5). VoiceBridge has no third-party analytics or ads, and you don't need an account.</p>
           </div>
 
-          <h2>1. Data Collection</h2>
-          <p>VoiceBridge does not collect any personal information, including but not limited to:</p>
+          <h2>1. Scope</h2>
+          <p>This policy explains how the VoiceBridge iOS app and its companion Apple Watch app (together, "VoiceBridge") handle your data. Sections 2 and 3 cover processing that stays on your device; Sections 4, 5 and 6 cover data that leaves your device and what VoiceBridge servers keep as a result.</p>
+
+          <h2>2. Processing on your device</h2>
           <ul>
-            <li>Name, email, phone number, or other identity information</li>
-            <li>Device identifiers, IP addresses, or location data</li>
-            <li>Usage habits or behavioral analytics</li>
+            <li><strong>Recording, transcription, speaker separation, silence detection and search</strong> are performed by on-device models. Recordings and transcripts are stored locally on your device</li>
+            <li><strong>Audio is never uploaded</strong>: recordings are not sent to VoiceBridge servers or any third-party server, including when you use cloud features</li>
+            <li>Some languages use Apple's on-device iOS speech recognition with on-device processing enforced (requiresOnDeviceRecognition), so audio is not sent to Apple. This capability is provided by Apple; see the <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple Privacy Policy</a></li>
+            <li>Recognition models are large and may need to be downloaded from Apple's content delivery network on first use, then stay on your device; after that, recognition works without a connection</li>
+            <li>When you don't use cloud features, recording, transcription and search work in Airplane Mode</li>
           </ul>
 
-          <h2>2. Voice Data Processing</h2>
-          <p>VoiceBridge uses the SenseVoice on-device AI engine. All speech recognition is performed entirely on your iPhone:</p>
+          <h2>3. Apple Watch recording</h2>
           <ul>
-            <li>Audio recordings are stored only in the app's local sandbox</li>
-            <li>Transcribed text is stored only in the local database</li>
-            <li>Voice data is never uploaded to any server</li>
-            <li>Core features work even in Airplane Mode</li>
+            <li>Recordings made on the watch are transferred only to VoiceBridge on your own paired iPhone, not through VoiceBridge servers</li>
+            <li>Silence detection runs only on your device. Stretches judged silent go to a recycle area first, where you can listen to or restore them during the recycle period; <strong>once the period ends, that audio is deleted and cannot be restored</strong></li>
           </ul>
 
-          <h2>3. iCloud Sync</h2>
-          <p><strong>Please note that iCloud sync and backup feature is currently not available in this version.</strong></p>
-          <p>In a future update, when we introduce this feature, it will:</p>
+          <h2>4. Cloud features (optional)</h2>
+          <h3>4.1 Which features</h3>
+          <p>Proofread transcript, minutes, single-sentence polish, Ask, Daily Review, topic sorting and Auto-Organize. These features call cloud large language models and are paid with credits (see Section 6). If you don't use them, VoiceBridge's on-device features are unaffected.</p>
+
+          <h3>4.2 What is sent, and what is not</h3>
           <ul>
-            <li>Be disabled by default and require your explicit manual activation</li>
-            <li>Only sync .txt plain text files, never any audio recordings</li>
-            <li>Use Apple's iCloud service with end-to-end encryption during transit</li>
-            <li>Allow you to completely turn it off at any time in the app settings</li>
+            <li><strong>Only redacted text is sent</strong>: before sending, VoiceBridge redacts sensitive words on your device using your glossary. When you start a task yourself, you can preview the redacted text before deciding to send it. With Auto-Organize on, there is no per-task preview; text is redacted automatically using your glossary, and newly found possible sensitive words are collected and confirmed with you once, in your review</li>
+            <li>Along with the text, supporting information needed for that task may be sent, such as the spellings of proper nouns you have confirmed (these entries may include people's names)</li>
+            <li><strong>Audio is not sent</strong></li>
           </ul>
 
-          <h2>4. Free Service & No Ads Commitment</h2>
-          <p>VoiceBridge is a completely free application. We do not offer any in-app purchases or paid subscription services, and the app contains no advertisements. We do not collect, store, or process any payment, billing, or transaction details.</p>
-
-          <h2>5. Third-Party Services & AI Collaboration</h2>
-          <p>VoiceBridge does not integrate any third-party analytics, advertising, or tracking SDKs. The app contains no advertisements.</p>
-          <p>VoiceBridge offers an "AI Meeting Notes" feature that allows you to send your meeting transcript to a third-party AI app for processing. When using this feature:</p>
+          <h3>4.3 Consent and withdrawal</h3>
           <ul>
-            <li><strong>Data Sent</strong>: Meeting title, duration, transcript text, speaker labels, and any custom glossary terms you have defined</li>
-            <li><strong>Data Recipients</strong>: The third-party AI app you actively select, including ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google), DeepSeek, Doubao (ByteDance), Kimi (Moonshot AI), Tongyi Qianwen (Alibaba), and Zhipu Qingyan (Zhipu AI)</li>
-            <li><strong>Transfer Method</strong>: Data is transferred via the system clipboard and manually pasted by you into the target app. VoiceBridge does not send any network requests directly to third-party servers</li>
-            <li><strong>User Control</strong>: Before first use, the app will request your explicit consent. You may revoke this authorization at any time in Settings, after which the AI collaboration feature will be unavailable</li>
-            <li><strong>Third-Party Responsibility</strong>: Once data is transferred to a third-party AI app, its processing is governed by that app's own privacy policy. We recommend reviewing the relevant service's privacy terms before use</li>
+            <li>VoiceBridge asks for your consent separately before you first use each cloud feature</li>
+            <li>Ask, Daily Review and topic sorting combine text from multiple meetings, so the three share one "cross-meeting cloud" consent</li>
+            <li>You can withdraw consent at any time in Me › Terms &amp; Privacy. After you withdraw, <strong>tasks already paid for and in progress will finish</strong>, but <strong>no new cloud processing will start</strong>. Withdrawing doesn't delete recordings or text on your device, and your credit balance is kept. Agree again whenever you want to use these features</li>
           </ul>
 
-          <h2>6. iOS On-device Speech Recognition</h2>
-          <p>For languages not supported by SenseVoice (such as Indonesian, Thai, Vietnamese, Malay, French, German, Spanish, etc.), VoiceBridge uses Apple's native iOS speech recognition with on-device recognition enforced (requiresOnDeviceRecognition): audio is processed locally on your device and is not uploaded to Apple or any server (the device must have the corresponding language's dictation component installed). This capability is provided by Apple; see <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a> for details.</p>
+          <h3>4.4 How VoiceBridge servers handle it</h3>
+          <ul>
+            <li>Text is sent to VoiceBridge servers over HTTPS. The servers work on a "one request, one processing run" basis, and the result is returned to your device in that response</li>
+            <li><strong>VoiceBridge servers do not store the text you send or the results, and do not use them to train any model</strong>. Progress and output of multi-step tasks are kept on your device</li>
+            <li>VoiceBridge servers keep a metadata-only access log for troubleshooting and abuse prevention, <strong>deleted after 7 days</strong>. It records the time, the first 8 characters of a hash of the device key, request ID, task type, status code, <strong>text length (not content)</strong>, model usage and processing time. Request and response bodies are not written to the log. A separate operations log records only the feature type and character count (no content) and is likewise deleted after 7 days</li>
+          </ul>
 
-          <h2>7. Children's Privacy</h2>
-          <p>VoiceBridge is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+          <h3>4.5 Third-party model providers</h3>
+          <p>The text itself is generated by third-party large model providers: VoiceBridge servers pass the redacted text to a provider's API and return the result to you.</p>
+          <p>What is passed on is limited to the text and instructions needed for that task, and <strong>does not include your account identifier or device key</strong>. Providers and their servers may be located outside your country or region. How a provider handles the data it receives (including whether it retains it or uses it for training) is governed by its own privacy policy and terms and is outside VoiceBridge's control; where this policy says "not stored, not used for training", it refers only to VoiceBridge servers.</p>
 
-          <h2>8. Changes to This Policy</h2>
-          <p>If this privacy policy is updated, we will publish the revised version on this page and update the effective date. We recommend reviewing this page periodically.</p>
+          <h2>5. Send to AI apps (system clipboard)</h2>
+          <p>You can also hand meeting content to a third-party AI app of your choice (such as ChatGPT, Claude, Gemini, DeepSeek, Doubao, Kimi, Tongyi Qianwen or Zhipu Qingyan):</p>
+          <ul>
+            <li>Content is passed via the system clipboard and you paste it into the app yourself; this does not go through VoiceBridge servers</li>
+            <li>VoiceBridge asks for your consent before first use, and you can withdraw it in Me › Terms &amp; Privacy</li>
+            <li>Once data is in a third-party AI app, it is governed by that app's own privacy policy</li>
+          </ul>
 
-          <h2>9. Contact Us</h2>
-          <p>For privacy-related inquiries, please contact: <a href="mailto:support@voicebridge.top">support@voicebridge.top</a></p>
+          <h2>6. Credits, purchases and the server-side ledger</h2>
+          <ul>
+            <li><strong>Recording, transcription, search and export never use credits</strong>. Credits are used only for the cloud features in Section 4</li>
+            <li>Credits are sold as consumable in-app purchases. <strong>They are not a subscription and do not renew automatically</strong>. All payments are handled by the App Store; VoiceBridge has no access to your card or Apple Account details</li>
+            <li>To keep accounts, VoiceBridge servers maintain a credit ledger that records:
+              <ul>
+                <li><strong>An anonymous account identifier</strong>: a random string generated by VoiceBridge on your device, used to identify your credit ledger. VoiceBridge servers see only this string and don't know your name, email, phone number or Apple Account</li>
+                <li><strong>Credit balance and purchase records</strong>: App Store transaction ID, credits granted, price and currency, and time</li>
+                <li><strong>Usage records</strong>: feature type, billed characters, credits deducted, time and task status (no text content)</li>
+                <li><strong>Which device keys an account has been used with</strong>: to stop the same device from repeatedly claiming new-user bonus credits</li>
+              </ul>
+            </li>
+            <li>This information is used to keep balances and charge credits, restore your balance on a new device, reconcile purchases and handle refunds, and prevent abuse</li>
+            <li>Usage records are kept for 12 months, then rolled up into monthly statistics without account identifiers, and the detailed records are deleted</li>
+            <li>Purchase records (transaction ID, price and currency) are kept for as long as the account exists, to reconcile credit balances, handle Apple refunds and reconcile accounts. If you ask by email for them to be deleted, we delete them within 30 days, except where law or Apple reconciliation obligations require us to keep them</li>
+          </ul>
+
+          <h2>7. Device verification and abuse prevention</h2>
+          <p>Cloud requests use a device key generated by Apple's App Attest service to confirm that requests come from a genuine VoiceBridge app on a real device, and to apply rate limits and prevent abuse. The device key does not identify you and is not used to track you across apps.</p>
+
+          <h2>8. What we don't do</h2>
+          <ul>
+            <li>No third-party analytics, advertising or tracking SDKs, and no ads in the app</li>
+            <li>No account required; we don't collect your name, email or phone number</li>
+            <li>We don't sell your data</li>
+          </ul>
+
+          <h2>9. Children's privacy</h2>
+          <p>VoiceBridge is not directed at children under 13, and we do not knowingly collect personal information from children.</p>
+
+          <h2>10. Your choices</h2>
+          <ul>
+            <li>When you don't use cloud features, your recordings and text stay only on your device</li>
+            <li>Withdraw cloud consent at any time in Me › Terms &amp; Privacy</li>
+            <li>Delete recordings, or delete the app, to remove data from your device</li>
+            <li>To ask about or delete ledger records tied to your anonymous account identifier, email us at the contact address below</li>
+          </ul>
+
+          <h2>11. Changes to this policy</h2>
+          <p>When this policy changes, we will post the new version on this page and update the date. Material changes to how data is used will also be announced in the app.</p>
+
+          <h2>12. Contact us</h2>
+          <p>For privacy questions, contact <a href="mailto:support@voicebridge.top">support@voicebridge.top</a></p>
         </div>
-
 locals:
   navItems:
     - text: Features
-      href: '#features'
+      href: /index_en.html#features
     - text: Support
-      href: '#support'
+      href: /index_en.html#support
     - text: Privacy
       href: /privacy_en.html
   ctaOverride:
     text: Free download
-    href: '#download'
+    href: /index_en.html#download
   langSwitchOverride:
     text: 中文
-    href: /
+    href: /privacy.html
   homeHref: /index_en.html
   brandNameCnOverride: ''
   footerOverride:
@@ -104,7 +155,7 @@ locals:
       - title: ''
         links:
           - text: Features
-            href: '#features'
+            href: /index_en.html#features
           - text: Support
             href: /support_en.html
           - text: Privacy Policy
@@ -116,7 +167,7 @@ locals:
           - text: 中文
             href: /
     legal:
-      note: 'VoiceBridge is completely free and 100% offline: recognition, voiceprints, and semantic vectors all run locally, no connection required. When you use the AI Meeting Notes feature, your transcript is shared — with your explicit consent — via the system clipboard with a third-party AI app of your choice.'
+      note: 'Recording, transcription and search run on your device, and your audio never leaves it. Cloud features send only redacted text, and VoiceBridge servers neither store it nor use it for training; third-party model providers are governed by their own policies. See the Privacy Policy for details.'
       foundingYear: 2026
       company:
         text: VoiceBridge
