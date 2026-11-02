@@ -1,0 +1,165 @@
+path: /features/speaker-diarization
+template: article
+meta:
+  title: 发言人自动分离,区分说话人不用猜 — VoiceBridge 畅译
+  description: 畅译在转写时自动分析音频、区分发言人并标色,声纹库记住常用发言人,新会议导入自动比对匹配,支持中英文混说场景,识别与声纹分析全部在设备本地完成。
+  keywords: 发言人分离,区分说话人,说话人识别,声纹识别,会议录音转文字,VoiceBridge,畅译
+  canonical: "/features/speaker-diarization/"
+  bodyClass: doc
+  priority: 0.8
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "Article"
+        headline: "发言人自动分离,区分说话人不用猜"
+        description: "畅译在转写时自动分析音频、区分发言人并标色,声纹库记住常用发言人,支持中英文混说场景。"
+        image: "https://voicebridge.top/og-image.png"
+        author:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+        publisher:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+          logo:
+            "@type": "ImageObject"
+            url: "https://voicebridge.top/favicon.svg"
+        datePublished: "2026-08-20"
+        dateModified: "2026-08-20"
+        mainEntityOfPage:
+          "@type": "WebPage"
+          "@id": "https://voicebridge.top/features/speaker-diarization/"
+        inLanguage: "zh-Hans"
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - "@type": "ListItem"
+            position: 1
+            name: "首页"
+            item: "https://voicebridge.top/"
+          - "@type": "ListItem"
+            position: 2
+            name: "功能"
+            item: "https://voicebridge.top/features/"
+          - "@type": "ListItem"
+            position: 3
+            name: "发言人分离"
+            item: "https://voicebridge.top/features/speaker-diarization/"
+      - "@type": "FAQPage"
+        mainEntity:
+          - "@type": "Question"
+            name: "发言人分离是自动完成的吗?"
+            acceptedAnswer:
+              "@type": "Answer"
+              text: "是。导入或录制完成后自动分析音频并标注发言人,不需要手动逐句标记。"
+          - "@type": "Question"
+            name: "能不能记住同一个人下次还认得出来?"
+            acceptedAnswer:
+              "@type": "Answer"
+              text: "可以。声纹库会保存常用发言人的声纹特征,新会议导入时自动比对匹配。"
+          - "@type": "Question"
+            name: "支持中英文混说的场景吗?"
+            acceptedAnswer:
+              "@type": "Answer"
+              text: "支持。声纹模型是中英双语联合训练的,同一个人中英切换也能识别成同一人。"
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - text: 首页
+          href: /
+        - text: 功能
+          href: /features/
+        - text: 发言人分离
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">自动区分发言人,读纪要不用猜是谁说的</h1>
+        <p class="doc-sub">三个人开的周会转出来是一整段文字,不追着回放音频,根本分不清哪句是谁说的。</p>
+
+  - type: answer-card
+    data:
+      question: 畅译怎么自动区分发言人?
+      answer: 导入或录制完成后自动分析音频,定位每个人开口和停顿的位置,再给每段话标上发言人和颜色,不需要你手动逐句标记。
+      facts:
+        - 自动区分发言人并标色,转写完成即可见
+        - 声纹库记住常用发言人,新会议自动比对匹配
+        - 声纹模型支持中英文混说场景
+        - 发言人信息会带进 AI 纪要和 PDF 导出
+        - 识别、声纹分析全部在设备本地完成,不联网
+
+  - type: prose
+    data:
+      html: |
+        <h2>什么场合最需要这个</h2>
+        <p>三人以上的项目周会,发言频繁切换,靠回放对照根本记不住是谁说的;一对多的访谈,受访人换了好几位,转录里如果混在一起,后面整理就很难还原是谁说了哪句话;小组讨论或者头脑风暴,大家你一言我一语,分不清人的转录基本没法直接拿来用。这些场景里,发言人标注不是锦上添花,是纪要能不能用起来的前提。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>转出来的话,自动挂在人名下</h2>
+        <p>导入一段多人对话,不用你自己回放音频去标记谁在什么时候说话。畅译在转写的同时会分析音频,把每一段话分给对应的发言人,标注颜色,打开逐字稿就能看到「发言人 A」「发言人 B」这样的标签,不用边听边猜。每个发言人配一个颜色,翻逐字稿的时候扫一眼颜色分布,就能大致看出这场会是谁在主导发言、谁话比较少。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>切分交给专门的模型</h2>
+        <p>判断话轮切换靠的是一个专门定位说话人边界的模型,不是等文字转出来之后拿措辞去猜这句话像谁说的。两个人接得很紧凑的对话,模型也能在音频层面把切换点找出来。这部分选型和踩过的坑写在<a href="/learn/speaker-diarization/">说话人分离为什么会认错人</a>里,包括早期版本在多人接话时把整段错判成一个人的问题,以及后来是怎么定位到根因、改掉这个问题的。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>声纹库记住常用的人</h2>
+        <p>团队周会这种固定参会人的场景,声纹库会保存常用发言人的声纹特征,下次导入新的一场会议,畅译会自动比对匹配,不用每次都重新手动标注是谁。同事换了新的会议室、录音设备不一样,只要声音本身没变,声纹库照样能认出来。声纹库不是一次性建好就不变的,团队反复开周会,存进去的人越多,新会议导入时能自动匹配上的机会也随之增加。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>和只做语音识别的差别在哪</h2>
+        <p>单人语音转文字,只要把声音变成文字就够了。多人对话如果只做识别不做发言人分离,转出来的还是一整段文字,读的时候还是要靠自己去猜是谁在说话。发言人分离要解决的是这道额外的工序,让转录结果从一整段话,变成谁在什么时候说了什么,这也是它和普通语音转文字最直接的差别。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>两人对话和多人讨论,同一套逻辑</h2>
+        <p>无论是一对一的访谈,还是几个人围在一起讨论,处理逻辑都是先把音频按话轮切开,再给每一段配声纹、聚类成同一个人。人数越多、发言切换越频繁,前面这道切分工序的准确度就越关键,这也是畅译把切分单独交给专门模型处理的原因。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>不用提前告诉畅译有几个人</h2>
+        <p>不需要在开始转写前先设定这场会有几个人参加。畅译会在分析音频的过程里自动判断出现了几个不同的声音,再逐一分配发言人标签,人数变化不用你手动调整设置。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>颜色从逐字稿一路带到导出</h2>
+        <p>逐字稿里给发言人配的颜色,会一路带进 AI 纪要整理和 PDF 导出:同一个人在所有产出物里都是同一个颜色,不会转录里是一种、导出以后又变成另一种,对不上号。翻旧会议的时候靠颜色扫一眼就能认出常见的几张「面孔」,不用重新读一遍名字标签。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>中英文混说也能认得出同一个人</h2>
+        <p>技术会议、留学场景下经常是中英文夹着说。畅译用的声纹模型是中英双语联合训练的,同一个人在中英之间切换,不会被误判成两个不同的人,不用为了识别效果特意统一整场会议用哪种语言说话。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>标好的发言人能带到后面去</h2>
+        <p>区分好的发言人信息会带进后续流程:整理<a href="/features/meeting-minutes/">AI 会议纪要</a>时能看清楚某个观点或待办是谁提的,不用回头再去核对;导出 PDF 时也带着发言人色标和时间线,发给没参会的同事,对方翻几眼就能看懂这场会大致是怎么讨论下来的,不用重新对照音频确认。</p>
+
+  - type: related-links
+    data:
+      title: 相关阅读
+      items:
+        - text: 说话人分离为什么会认错人
+          href: /learn/speaker-diarization/
+          desc: 早期版本多人接话会整段错判,后来把切分单独交给专门的模型
+        - text: AI 会议纪要怎么用
+          href: /features/meeting-minutes/
+          desc: 发言人信息直接带进纪要整理
+        - text: 录音会不会被上传
+          href: /features/privacy-local/
+          desc: 声纹分析和识别一样,全部在设备本地完成

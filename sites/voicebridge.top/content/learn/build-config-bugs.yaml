@@ -1,0 +1,101 @@
+path: /learn/build-config-bugs
+template: article
+meta:
+  title: 只在真机 Release 才崩的 bug — VoiceBridge 畅译
+  description: 模拟器跑一万遍没事，装到真机上 75% 概率卡死。还有反过来的：只在 Debug 崩、上线反而不爆。记录畅译遇到的几个跟构建配置绑定的 bug。
+  keywords: iOS崩溃排查,Release优化,野指针,Swift与C桥接,真机调试,SIGTRAP,VoiceBridge,畅译
+  canonical: "/learn/build-config-bugs/"
+  bodyClass: doc
+  priority: 0.6
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "Article"
+        headline: "只在真机 Release 才崩的 bug"
+        description: "模拟器跑一万遍没事，装到真机上 75% 概率卡死。记录几个跟构建配置绑定的 bug。"
+        image: "https://voicebridge.top/og-image.png"
+        author: { "@type": "Organization", name: "VoiceBridge", url: "https://voicebridge.top/" }
+        publisher:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+          logo: { "@type": "ImageObject", url: "https://voicebridge.top/favicon.svg" }
+        datePublished: "2026-08-20"
+        dateModified: "2026-08-20"
+        mainEntityOfPage: { "@type": "WebPage", "@id": "https://voicebridge.top/learn/build-config-bugs/" }
+        inLanguage: "zh-Hans"
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - { "@type": "ListItem", position: 1, name: "首页", item: "https://voicebridge.top/" }
+          - { "@type": "ListItem", position: 2, name: "知识", item: "https://voicebridge.top/learn/" }
+          - { "@type": "ListItem", position: 3, name: "只在真机 Release 才崩的 bug", item: "https://voicebridge.top/learn/build-config-bugs/" }
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - { text: 首页, href: / }
+        - { text: 知识, href: /learn/ }
+        - text: 只在真机 Release 才崩的 bug
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">只在真机 Release 才崩的 bug</h1>
+        <p class="doc-sub">开发机上跑得好好的，打包装到手机上 75% 概率卡死。</p>
+
+  - type: answer-card
+    data:
+      question: 为什么同一份代码，Debug 正常、Release 就崩？
+      answer: 因为编译器优化会改变临时对象的存活时间。一个在 Debug 下侥幸还活着的指针，在 Release 下可能刚拿到就已经失效。反过来也有：Debug 会开启一些运行时检查，那些检查在 Release 下被优化掉，于是同一个问题只在 Debug 崩。
+      facts:
+        - 一个 Swift 转 C 字符串的写法，在 Release 下变成野指针，导致引擎 75% 概率卡死
+        - 另一个改动只在 Debug 必崩，线上没爆是因为 Release 优化掉了那类检查
+        - 还有一个只在某个系统 beta 版本的真机上触发，模拟器复现不了
+        - 这三类都不能靠在开发机上多跑几遍来发现
+
+  # 出处：add596b5 fix(Core): 彻底解决 iOS 17 真机 Release 编译优化下 ONNX 引擎野指针导致的 75% 卡死
+  #       diff 显示 (s as NSString).utf8String → CStringPool.alloc(strdup)
+  - type: prose
+    data:
+      html: |
+        <h2>75% 概率卡死</h2>
+        <p>识别引擎是 C 写的，配置要从 Swift 传过去，其中一堆是字符串：模型文件路径、词表路径之类。我当时的转换写法是把 Swift 字符串桥接成 NSString，再取它的 UTF-8 指针交出去。</p>
+        <p>这个写法在模拟器和 Debug 构建下一直没问题。装到真机跑 Release，引擎创建之后大概四次里有三次直接卡死，没有崩溃报告，就是不动了。</p>
+        <p>问题在那个指针的生命周期。它属于临时的桥接对象，这个对象什么时候被释放，取决于自动释放池和优化器。Debug 下优化关着，临时对象往往活到当前作用域结束，指针碰巧还有效；Release 下优化器判断这个对象后面没人用了，可以立刻回收，于是 C 那边拿到的是一块已经还给系统的内存。里面残留的字节有时候恰好还是原来的路径，有时候是别的东西。引擎拿着一个乱码路径去加载模型，就卡在那儿了。</p>
+        <p>四分之三这个比例，本质上是内存被复用的概率。</p>
+        <p>修法是不再依赖临时对象。写了一个小的字符串池，每次转换时用 <code>strdup</code> 把内容复制一份，指针存进池子里，等 C 那边把配置消费完了再统一释放。丑，但生命周期是我自己说了算，不再依赖优化器的判断。</p>
+
+  # 出处：fix(ui): 还原原文延后一拍执行 — 菜单收起期独占访问违规(Debug 必崩)
+  - type: prose
+    data:
+      html: |
+        <h2>反过来的那种：只在 Debug 崩</h2>
+        <p>另一个方向的例子更有意思。</p>
+        <p>逐字稿的段落上有个长按菜单，其中一项是「还原原文」。这个动作的闭包里直接同步修改了被观察的状态。真机 Debug 下实测两次崩溃，签名相同，都停在独占访问检查上，发生在菜单收起的过程中。</p>
+        <p>根因是在菜单还在拆除的过程中就去改它依赖的状态，两边对同一份内存的访问重叠了。Swift 在 Debug 下会插入动态的独占访问检查，撞上就直接终止；Release 下这类检查大部分被优化掉，所以线上一直没爆。</p>
+        <p>这里容易走岔的是结论。看到「Release 不崩」，很容易觉得那就不是问题，或者只是 Debug 太严格。但访问冲突本身是真实的，只是没有检查在拦它，行为变成了未定义。它不爆是运气，不是安全。</p>
+        <p>修法和另一处同类问题一样，把状态修改延后一拍，等菜单彻底收起再执行。</p>
+
+  # 出处：Sources/Extensions/Color+Hex.swift:8（Scanner.scanHexInt64 在 iOS 26 beta 真机 SIGTRAP）
+  - type: prose
+    data:
+      html: |
+        <h2>还有只在某个系统版本崩的</h2>
+        <p>颜色工具类里有个从十六进制字符串解析颜色的函数，最早用的是系统的 Scanner。在 iOS 26 的 beta 真机上，它的十六进制扫描方法会触发陷阱指令直接终止。</p>
+        <p>这个不好绕，因为无法判断是自己用错了还是那个 beta 版本的问题，而 beta 期间用户已经在用了。最后干脆不用 Scanner，改成用字符串的进制初始化直接解析，功能等价，少了一个依赖。代码里留了一行注释说明为什么不用 Scanner，免得以后有人觉得这里写得绕，顺手改回去。</p>
+
+  - type: prose
+    data:
+      html: |
+        <h2>这几个坑的共同点</h2>
+        <p>它们都不是逻辑写错了。逻辑在任何一台机器上推演都是对的，出问题的是它依赖的那些没写在代码里的前提：优化器什么时候回收临时对象、运行时检查开没开、这个系统版本的这个方法有没有毛病。</p>
+        <p>所以后来我的习惯是，凡是涉及和 C 交互、涉及内存生命周期、涉及系统框架回调的改动，一律真机 Release 跑一遍再说。开发机上跑通只能证明逻辑没写反。</p>
+
+  - type: related-links
+    data:
+      title: 相关阅读
+      items:
+        - { text: "录一段音这件事，比我想的难得多", href: /learn/recording-pitfalls/, desc: "戴蓝牙耳机必崩、接个电话录音就废了" }
+        - { text: "端侧模型选型：好模型为什么上不了手机", href: /learn/on-device-model-tradeoffs/, desc: "为什么加载失败必须能降级，不能让程序崩掉" }
+        - { text: "差点把用户的会议记录清零", href: /learn/data-migration/, desc: "一个看起来很合理的兜底逻辑" }

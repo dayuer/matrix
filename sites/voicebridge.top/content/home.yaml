@@ -36,7 +36,7 @@ meta:
           - "本地语义搜索"
           - "AI 智能纪要"
           - "PDF 导出"
-          - "12 语种离线识别"
+          - "中英日韩粤 5 语种完全离线识别"
         publisher:
           "@id": "https://voicebridge.top/#org"
       - "@type": "Organization"
@@ -218,9 +218,9 @@ blocks:
               <span class="chip"><span class="dot" style="background:#1c1c1c"></span>豆包 · Kimi · 通义 · 智谱</span>
             </div>
         - cls: span-3
-          kicker: 12 语种离线识别
+          kicker: 5 语种完全离线
           title: 覆盖你会遇到的语言。
-          body: 中英日韩粤 5 大语种由 SenseVoice 完全离线识别；另 7 种经 Apple 设备端识别本地处理、强制不上传。
+          body: 中英日韩粤 5 大语种由 SenseVoice 完全离线识别，全程不联网；另 7 种经系统语音识别处理，系统支持端侧识别时强制本地完成，不支持时会联网。
           artHtml: |
             <div class="langs">
               <span class="on">中文</span><span class="on">English</span><span class="on">粤语</span><span class="on">日本語</span><span class="on">한국어</span><span>Français</span><span>Deutsch</span><span>Español</span><span>Bahasa</span><span>ภาษาไทย</span><span>Tiếng Việt</span>

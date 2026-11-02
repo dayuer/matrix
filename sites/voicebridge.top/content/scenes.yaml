@@ -1,0 +1,83 @@
+path: /scenes
+template: page
+meta:
+  title: 使用场景 — 采访、课堂、播客、会议、备忘录 — VoiceBridge 畅译
+  description: 畅译在不同场景下怎么用:采访逐字稿、课堂录音整理、播客转文字、商务会议记录、语音备忘录批量转写,完全免费,离线不上传。
+  keywords: 使用场景,录音转文字场景,采访逐字稿,课堂录音整理,播客转文字,会议记录,语音备忘录,VoiceBridge,畅译
+  canonical: "/scenes/"
+  bodyClass: doc
+  priority: 0.7
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "CollectionPage"
+        name: "使用场景 — VoiceBridge 畅译"
+        description: "畅译在不同场景下怎么用:采访逐字稿、课堂录音整理、播客转文字、商务会议记录、语音备忘录批量转写。"
+        url: "https://voicebridge.top/scenes/"
+        inLanguage: "zh-Hans"
+        mainEntity:
+          "@type": "ItemList"
+          itemListElement:
+            - "@type": "ListItem"
+              position: 1
+              url: "https://voicebridge.top/scenes/interview/"
+            - "@type": "ListItem"
+              position: 2
+              url: "https://voicebridge.top/scenes/lecture/"
+            - "@type": "ListItem"
+              position: 3
+              url: "https://voicebridge.top/scenes/podcast/"
+            - "@type": "ListItem"
+              position: 4
+              url: "https://voicebridge.top/scenes/meeting/"
+            - "@type": "ListItem"
+              position: 5
+              url: "https://voicebridge.top/scenes/voice-memo/"
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - "@type": "ListItem"
+            position: 1
+            name: "首页"
+            item: "https://voicebridge.top/"
+          - "@type": "ListItem"
+            position: 2
+            name: "使用场景"
+            item: "https://voicebridge.top/scenes/"
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - text: 首页
+          href: /
+        - text: 使用场景
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">什么场合会用到畅译</h1>
+        <p class="doc-sub">采访完要出逐字稿,上完课要整理笔记,录完播客要写文案,开完会要发纪要,手机里攒了一堆语音备忘录没空听。这些具体的处境,点进去看对应场景下怎么用。</p>
+
+  - type: card-grid
+    data:
+      items:
+        - kicker: 采访逐字稿
+          title: 采访录完了,逐字稿从这一步开始
+          desc: 自动区分记者和受访者,长段独白不用来回拖进度条
+          href: /scenes/interview/
+        - kicker: 课堂录音整理
+          title: 两小时的课录完了,笔记从录音里长出来
+          desc: 单次识别没有时长限制,专业术语改一次自动记住
+          href: /scenes/lecture/
+        - kicker: 播客转文字
+          title: 一期播客录完了,文字稿从这一步开始
+          desc: 自动区分主播和嘉宾,写简介、剪片段直接搜关键词定位
+          href: /scenes/podcast/
+        - kicker: 商务会议记录
+          title: 会开完了,纪要不用自己一句句捋
+          desc: 谈判细节和还没公开的决定不出设备,自动区分发言人
+          href: /scenes/meeting/
+        - kicker: 语音备忘录批量转写
+          title: 备忘录里攒了几十条,一次转完
+          desc: 应用内多选批量导入,后台排队处理,不用一条条点开听
+          href: /scenes/voice-memo/

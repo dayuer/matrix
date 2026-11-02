@@ -1,0 +1,127 @@
+path: /guides/iphone-voice-memo-to-text
+template: article
+meta:
+  title: iPhone 语音备忘录怎么转文字 — VoiceBridge 畅译
+  description: 手机自带的语音备忘录怎么转成文字。用系统分享菜单把录音发到畅译，离线识别，几步拿到可编辑的逐字稿，完全免费不用联网。
+  keywords: iPhone语音备忘录转文字,语音备忘录转文字,录音转文字,VoiceBridge,畅译
+  canonical: "/guides/iphone-voice-memo-to-text/"
+  bodyClass: doc
+  priority: 0.7
+  changefreq: monthly
+  jsonLd:
+    "@context": "https://schema.org"
+    "@graph":
+      - "@type": "HowTo"
+        name: "在 iPhone 上把语音备忘录转成文字"
+        description: "从系统语音备忘录 App 用分享菜单把录音发到畅译，离线识别成逐字稿。"
+        totalTime: "PT2M"
+        step:
+          - { "@type": "HowToStep", position: 1, name: "打开语音备忘录，找到要转写的录音", text: "在系统「语音备忘录」App 里，找到需要转写的那条录音。" }
+          - { "@type": "HowToStep", position: 2, name: "长按或点开更多按钮，选择分享", text: "长按这条录音，或点开右上角的更多按钮，在弹出的菜单里点「分享」。" }
+          - { "@type": "HowToStep", position: 3, name: "在分享列表里选择畅译", text: "系统分享面板的应用列表里找到畅译，点一下，把这条录音发过去。" }
+          - { "@type": "HowToStep", position: 4, name: "确认识别语言", text: "导入时可以手动指定识别语言，也可以交给畅译自动判断录音里说的是哪种语言。" }
+          - { "@type": "HowToStep", position: 5, name: "等待离线转写完成", text: "畅译在设备本地把录音识别成文字，转写在后台队列里进行，完成后就能在畅译里看到带标点、分好段落的逐字稿。" }
+      - "@type": "Article"
+        headline: "iPhone 语音备忘录怎么转文字"
+        description: "从系统语音备忘录 App 用分享菜单把录音发到畅译，离线识别成逐字稿，不用联网也不用注册。"
+        image: "https://voicebridge.top/og-image.png"
+        author:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+        publisher:
+          "@type": "Organization"
+          name: "VoiceBridge"
+          url: "https://voicebridge.top/"
+          logo:
+            "@type": "ImageObject"
+            url: "https://voicebridge.top/favicon.svg"
+        datePublished: "2026-08-21"
+        dateModified: "2026-08-21"
+        mainEntityOfPage:
+          "@type": "WebPage"
+          "@id": "https://voicebridge.top/guides/iphone-voice-memo-to-text/"
+        inLanguage: "zh-Hans"
+      - "@type": "BreadcrumbList"
+        itemListElement:
+          - "@type": "ListItem"
+            position: 1
+            name: "首页"
+            item: "https://voicebridge.top/"
+          - "@type": "ListItem"
+            position: 2
+            name: "教程"
+            item: "https://voicebridge.top/guides/"
+          - "@type": "ListItem"
+            position: 3
+            name: "iPhone 语音备忘录怎么转文字"
+            item: "https://voicebridge.top/guides/iphone-voice-memo-to-text/"
+blocks:
+  - type: breadcrumb
+    data:
+      items:
+        - text: 首页
+          href: /
+        - text: 教程
+          href: /guides/
+        - text: iPhone 语音备忘录怎么转文字
+
+  - type: prose
+    data:
+      html: |
+        <h1 class="doc-title">iPhone 语音备忘录怎么转文字</h1>
+        <p class="doc-sub">手机里用系统语音备忘录录的音，不用先导出到电脑，也不用联网上传，几步就能在手机上直接转成文字。</p>
+
+  - type: answer-card
+    data:
+      question: 语音备忘录里的录音怎么转成文字？
+      answer: 在语音备忘录里找到那条录音，用系统的分享菜单分享到畅译，畅译在设备本地离线识别，完成后就是一份带标点分好段落的逐字稿。
+      facts:
+        - 走系统分享菜单，不用先导出文件
+        - 识别全程在 iPhone 本地完成，不联网也能转
+        - 完全免费，无需注册，没有时长限制
+        - 转出来自动带标点、分段落，不是一坨没有断句的文字
+
+  - type: prose
+    data:
+      html: |
+        <h2>什么时候会用到这个</h2>
+        <p>开会、采访、上课的时候顺手用系统自带的语音备忘录录了一段，事后想整理成文字稿，又不想专门插数据线倒进电脑处理。这种场景下最省事的路子就是直接在手机上把这条录音分享给畅译，转写和整理都在手机里完成。</p>
+
+  - type: step-list
+    data:
+      title: 具体怎么操作
+      steps:
+        - name: 打开语音备忘录，找到要转写的录音
+          text: 在系统「语音备忘录」App 里，找到需要转写的那条录音。
+          tip: 如果录音被删过，得先去「最近删除」里恢复出来才能分享。
+        - name: 长按或点开更多按钮，选择分享
+          text: 长按这条录音，或点开右上角的更多按钮，在弹出的菜单里点「分享」。
+        - name: 在分享列表里选择畅译
+          text: 系统分享面板的应用列表里找到畅译，点一下，把这条录音发过去。
+        - name: 确认识别语言
+          text: 导入时可以手动指定识别语言，也可以交给畅译自动判断录音里说的是哪种语言。
+        - name: 等待离线转写完成
+          text: 畅译在设备本地把录音识别成文字，转写在后台队列里进行，完成后就能在畅译里看到带标点、分好段落的逐字稿。
+
+  - type: prose
+    data:
+      html: |
+        <h2>常见问题</h2>
+        <p><b>要联网吗？</b>不需要。识别引擎在设备本地运行，飞行模式下也能正常转写。</p>
+        <p><b>录音很长会不会转不完？</b>识别没有时长上限，长录音一样能转完，只是耗时会更久，转写在后台队列里跑，不用一直盯着。</p>
+        <p><b>识别有错别字怎么办？</b>逐字稿里的段落可以直接点开编辑，改完保存不会被后台的自动优化覆盖回去。</p>
+
+  - type: related-links
+    data:
+      title: 相关阅读
+      items:
+        - text: 离线录音转文字是怎么做到的
+          href: /features/offline-transcription/
+          desc: 端侧识别引擎，模型装在手机里，不用连服务器
+        - text: m4a、mp3 录音怎么转文字
+          href: /guides/m4a-mp3-to-text/
+          desc: 主流录音格式不用转码，直接导入识别
+        - text: 转写结果怎么校对、怎么建纠错词典
+          href: /guides/proofread-dictionary/
+          desc: 逐字稿哪里能改，改一次之后同类错误怎么自动纠正
