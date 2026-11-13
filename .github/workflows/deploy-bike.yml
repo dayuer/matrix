@@ -6,8 +6,12 @@ on:
       - main
     paths:
       - 'apps/didi.bike/**'
+      - 'themes/didi/**'
+      - 'packages/**'
       - 'docs/didi.bike-drafts/**'
       - 'scripts/**'
+      - '.github/workflows/deploy-bike.yml'
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -15,27 +19,32 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # 先于构建失败，避免跑完 2000+ 页导出才发现没凭据
+      - name: Preflight — 校验部署凭据
+        env:
+          HAS_KEY: ${{ secrets.VPS_A_SSH_KEY != '' }}
+          HAS_HOST: ${{ secrets.VPS_A_HOST != '' }}
+        run: |
+          missing=""
+          [ "$HAS_KEY"  = "true" ] || missing="$missing VPS_A_SSH_KEY"
+          [ "$HAS_HOST" = "true" ] || missing="$missing VPS_A_HOST"
+          if [ -n "$missing" ]; then
+            echo "::error::缺少仓库 secret:$missing。到 Settings → Secrets and variables → Actions 添加后重跑本 workflow。"
+            exit 1
+          fi
+          echo "部署凭据就绪"
+
+      # Node 22：marked@18 要求 >=20，isomorphic-dompurify@3.18 要求 ^20.19 || ^22.13 || >=24
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
 
       - name: Install Monorepo Dependencies
-        run: |
-          npm install
+        run: npm install
 
-      - name: Sync Articles to VPS A
-        env:
-          TARGET_SITE: didi.bike
-          PB_URL: ${{ secrets.BIKE_PB_URL }}
-          PB_IDENTITY: ${{ secrets.BIKE_PB_IDENTITY }}
-          PB_PASSWORD: ${{ secrets.BIKE_PB_PASSWORD }}
-        run: |
-          node scripts/publish-articles.mjs
-
+      # 构建顺序有依赖：blocks → site-kit → cli，然后才是主题包
       - name: Build & Export didi.bike
-        env:
-          POCKETBASE_URL: ${{ secrets.BIKE_PB_URL }}
         run: |
           npm run build:platform
           npm run build -w @matrix/theme-didi
