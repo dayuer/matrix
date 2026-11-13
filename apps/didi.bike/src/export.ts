@@ -3,7 +3,6 @@
  * 逻辑收敛在 @matrix/site-kit。
  * 用法：npx tsx src/export.ts
  */
-import 'dotenv/config';
 import { exportSite } from '@matrix/site-kit';
 import { getSiteDefinition } from './site-def';
 
