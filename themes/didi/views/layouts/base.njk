@@ -56,7 +56,9 @@
   <script type="application/ld+json">{{ page.jsonLd | dump | safe }}</script>
   {% endif %}
 </head>
-<body>
+{% set promoOn = site.promo and site.promo.enabled and site.promo.locales.indexOf(locale or 'en') != -1 %}
+{% set showPromoBar = promoOn and site.promo.bar.enabled and page.activeNav == 'blog' %}
+<body{% if showPromoBar %} class="has-promo-bar"{% endif %}>
   <!-- Navigation Header -->
   {% include "partials/navbar.njk" %}
 

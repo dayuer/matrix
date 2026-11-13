@@ -1,0 +1,8 @@
+{# 广告位 3：全站页脚合作条，放在免责声明之前。 #}
+{% set p = site.promo %}
+<a class="promo-footer" href="{{ p.url }}?ct=didi-footer" target="_blank" rel="sponsored noopener" aria-label="Sponsored: {{ p.name }}">
+  <img class="promo-icon" src="{{ p.icon }}" alt="" width="32" height="32" loading="lazy">
+  <span class="promo-label">{{ p.footer.label }}</span>
+  <span class="promo-footer-text">{{ p.footer.text }}</span>
+  <span class="promo-footer-cta">{{ p.footer.cta }} →</span>
+</a>

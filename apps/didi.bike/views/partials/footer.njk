@@ -100,6 +100,8 @@
       </div>
     </div>
 
+    {% if site.promo and site.promo.enabled and site.promo.footer.enabled and site.promo.locales.indexOf(locale or 'en') != -1 %}{% include "partials/promo-footer.njk" %}{% endif %}
+
     <!-- Disclaimer -->
     <div class="footer-disclaimer">
       <p>{{ dict.footer.disclaimer or 'DIDI.BIKE is an independent sports technology brand.' }}</p>

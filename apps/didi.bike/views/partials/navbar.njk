@@ -10,6 +10,7 @@
 {% endif %}
 
 <nav class="navbar" id="navbar" aria-label="Main navigation">
+  {% if site.promo and site.promo.enabled and site.promo.bar.enabled and page.activeNav == 'blog' and site.promo.locales.indexOf(locale or 'en') != -1 %}{% include "partials/promo-bar.njk" %}{% endif %}
   <div class="container navbar-inner">
     <a href="{{ homePrefix }}/" class="navbar-logo">
       <!-- DIDI.BIKE Logo SVG -->

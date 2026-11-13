@@ -1,0 +1,22 @@
+{# 广告位 2：文章正文之后、相关阅读之前的原生推荐卡片。 #}
+{% set p = site.promo %}
+<aside class="promo-card" aria-label="Sponsored">
+  <div class="promo-card-visual">
+    <img src="{{ p.image }}" alt="{{ p.imageAlt }}" width="208" height="248" loading="lazy" decoding="async">
+  </div>
+  <div class="promo-card-body">
+    <div class="promo-card-head">
+      <img class="promo-icon" src="{{ p.icon }}" alt="" width="28" height="28" loading="lazy">
+      <span class="promo-label">{{ p.card.label }}</span>
+    </div>
+    <h2 class="promo-card-title">{{ p.card.title }}</h2>
+    <p class="promo-card-text">{{ p.card.body }}</p>
+    <ul class="promo-card-points">
+      {% for pt in p.card.points %}<li>{{ pt }}</li>{% endfor %}
+    </ul>
+    <div class="promo-card-actions">
+      <a class="promo-card-cta" href="{{ p.url }}?ct=didi-card" target="_blank" rel="sponsored noopener">{{ p.card.cta }}</a>
+      <span class="promo-card-meta">{{ p.card.meta }}</span>
+    </div>
+  </div>
+</aside>

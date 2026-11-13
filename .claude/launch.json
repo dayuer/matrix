@@ -18,6 +18,13 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["-y", "http-server", "sites/edaijia/out", "-p", "4601", "-c-1"],
       "port": 4601
+    },
+    {
+      "name": "didi-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "-w", "apps/didi.bike"],
+      "env": { "PORT": "4602" },
+      "port": 4602
     }
   ]
 }

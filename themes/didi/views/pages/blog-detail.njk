@@ -127,6 +127,10 @@
       </section>
     {% endif %}
 
+    {% if site.promo and site.promo.enabled and site.promo.card.enabled and site.promo.locales.indexOf(locale) != -1 %}
+      {% include "partials/promo-card.njk" %}
+    {% endif %}
+
     <!-- Related Reading section -->
     {% if relatedPosts and relatedPosts.length > 0 %}
       <section class="related-posts">

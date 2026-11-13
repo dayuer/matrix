@@ -40,6 +40,8 @@ matrix/
 - `themes/<name>/theme.css` · `views/` · `client/`: 主题样式（基于注入 token）、模板与交互。
 - `themes/didi/client/app.ts`: didi 主题的客户端交互与 wiki 前端搜索、表单提交逻辑。
 - `themes/didi/views/`: didi 主题对应的 Nunjucks 模板集，支持多语言和 SEO。
+- `themes/didi/views/partials/promo-*.njk` · `apps/didi.bike/src/config/site.ts#promo`: didi.bike 合作推广位（VoiceBridge，仅 /en）：博客顶部通栏 / 文章正文后卡片 / 全站页脚条，素材在 `apps/didi.bike/images/vb-*`。
+- `apps/didi.bike/views/partials/`: 覆盖主题同名 partial（navbar/footer 等），改 didi 导航或页脚要改这里。
 - `apps/synon.ai`·`apps/arrfunds`/src/site-def.ts: 落地页站点定义（`theme`/`themeOptions` + 页面清单 + 404）。
 - `apps/edaijia/src/server.ts`·`export.ts`: 应用型站点，保留路由/API/博客/设备分流，经 `createEnv({ theme })` 加载 `themes/journal`。
 - `apps/<site>/src/config/site.ts`: 站点单源内容与配置。

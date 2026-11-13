@@ -1,0 +1,25 @@
+{# 广告位 1：博客页顶部通栏。放在固定导航栏内部，随导航栏一起吸顶；body.has-promo-bar 负责把正文下推。 #}
+{% set p = site.promo %}
+<div class="promo-bar" id="promoBar" role="complementary" aria-label="Sponsored">
+  <div class="container promo-bar-inner">
+    <img class="promo-icon" src="{{ p.icon }}" alt="" width="20" height="20">
+    <span class="promo-label">{{ p.bar.label }}</span>
+    <a class="promo-bar-link" href="{{ p.url }}?ct=didi-bar" target="_blank" rel="sponsored noopener">
+      <span class="promo-bar-text">{{ p.bar.text }}</span>
+      <span class="promo-bar-cta">{{ p.bar.cta }} →</span>
+    </a>
+    <button type="button" class="promo-bar-close" id="promoBarClose" aria-label="Dismiss">×</button>
+  </div>
+</div>
+<script>
+  (function () {
+    var KEY = 'didi.promoBar.dismissed';
+    var bar = document.getElementById('promoBar');
+    function hide() { bar && bar.remove(); document.body.classList.remove('has-promo-bar'); }
+    try { if (localStorage.getItem(KEY)) { hide(); return; } } catch (e) {}
+    document.getElementById('promoBarClose').addEventListener('click', function () {
+      try { localStorage.setItem(KEY, '1'); } catch (e) {}
+      hide();
+    });
+  })();
+</script>
